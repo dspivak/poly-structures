@@ -332,10 +332,10 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\cocl}[1]{\overset{#1}{\frown}}
 
 \newcommand{\hyper}[1]{
-	\begin{tikzpicture}[y=.5cm, font=\tiny, baseline=(base)]
-		\node (ar) {$\nearrow$};
+	\begin{tikzpicture}[y=.5cm, font=\scriptsize, baseline=(base)]
+		\node[rotate=-15] (ar) {$\nearrow$};
 		\coordinate[below=3pt] (base) at (ar);
-		\node[above=-8pt of ar] (f) {$#1$};
+		\node[above=-7pt of ar] (f) {$#1$};
 	\end{tikzpicture}
 }
 
@@ -587,6 +587,11 @@ This satisfies the following indexed-adjunction formula:
 \begin{equation}
 	\poly(p,q\otimes r)\cong\sum_{f\colon p(1)\to q(1)}\poly(p\hyper{f}q,r)
 \end{equation}
+It satisfies the following:
+\begin{align}
+	(p_1+p_2)\hyper{(f_1,f_2)}q&\cong(p_1\hyper{f_1}q)+(p_2\hyper{f_2}q)\\
+	p\hyper{(f_1,f_2)}(q_1\otimes q_2)&\cong (p\hyper{f_1}q_1)\hyper{f_2}q_2
+\end{align}
 
 %-------- Chapter --------%
 \chapter{Other monoidal structures}
