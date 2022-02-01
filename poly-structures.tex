@@ -331,27 +331,13 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 
 \newcommand{\cocl}[1]{\overset{#1}{\frown}}
 
-\makeatletter
-% \xnearrow[<below>]{<above>}
-\newcommand*{\xnearrow}[2][]{%
-  \mathchoice
-  {\@xnearrow\scriptstyle{#1}{#2}}%
-  {\@xnearrow\scriptstyle{#1}{#2}}%
-  {\@xnearrow\scriptscriptstyle{#1}{#2}}%
-  {\@xnearrow\scriptscriptstyle{#1}{#2}}%
+\newcommand{\hyper}[1]{
+	\begin{tikzpicture}[y=.5cm, font=\tiny, baseline=(base)]
+		\node (ar) {$\nearrow$};
+		\coordinate[below=3pt] (base) at (ar);
+		\node[above=-8pt of ar] (f) {$#1$};
+	\end{tikzpicture}
 }
-% #1: math style
-% #2: text below arrow
-% #3: text above arrow
-\newcommand*{\@xnearrow}[3]{%
-  \rotatebox[origin=c]{30}{%
-    $#1\xrightarrow[{#2}]{#3}\m@th$%
-  }%
-}
-\makeatother
-
-\newcommand{\hyper}[1]{\xnearrow{#1}}
-
 
 \newcommand{\qand}{\quad\text{and}\quad}
 \newcommand{\qqand}{\qquad\text{and}\qquad}
@@ -397,7 +383,7 @@ In this document, we collect a list of categorical structures on the category $\
 \bigskip
 
 This document is only meant as a reference; we do not supply proofs, but we have written about most of it elsewhere; see \cite{spivak2022poly}, \cite{spivak2021functorial}, and \cite{spivak2022polynomial}. 
- For everything else written here, one can consider it to be only ``conjecture'', as we are not supplying a proof; if one wishes to prove something here and get ``priority'', please feel free. In particular, we wish to claim no credit for originality of anything here, though most of it was discovered independently by the author, so we also do not supply additional references. 
+ For everything else written here, one can consider it to be only ``conjecture'', as we are not supplying a proof; if one wishes to prove something here and get ``priority'', please feel free and encouraged to do so. In particular, we wish to claim no credit for originality of anything here, though most of it was discovered independently by the author, so we also do not supply additional references. 
 
 A polynomial functor $p\colon\smset\to\smset$ is any functor that's isomorphic to a coproduct of representables
 \[
@@ -408,8 +394,6 @@ and a morphism between them is a natural transformation; the associated category
 We will typically use the above notation---which we call \emph{standard form}---appropriately modified for $p'$, $p_1$, or $q$, e.g.
 \[
 p'\coloneqq\sum_{I'\in p'(1)}\yon^{p'[I']}
-\qqor
-p_1\coloneqq\sum_{I_1\in p_1(1)}\yon^{p_1[I_1]}
 \qqor
 q\coloneqq\sum_{J\in q(1)}\yon^{q[J]}.
 \]
@@ -433,7 +417,7 @@ p+q\cong\sum_{X\in p(1)+q(1)}\yon^{\fontsize{8pt}{8pt}\selectfont
 \end{equation}
 
 For any symmetric monoidal product $(I,\cdot)$ on $\smset$, there is a corresponding symmetric monoidal structure $(\yon^I,\odot)$ on $\poly$, where the monoidal product given as follows:%
-\footnote{The symmetric monoidal structure $\odot$ is the Day convolution of $\cdot$.}
+\footnote{The symmetric monoidal structure $\odot$ on $\poly$ is the Day convolution of the $\cdot$ structure on $\smset$.}
 \begin{equation}
 p\odot q\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\cdot q[J]}.
 \end{equation}
@@ -443,18 +427,18 @@ p\odot(q_1+q_2)\cong (p\odot q_1)+(p\odot q_2).
 \end{equation}
 
 We know of three symmetric monoidal products on $\smset$, namely $+$, $\times$, and $A\vee B\coloneqq A+(A\times B)+B$,%
-\footnote{I learned this from Richard Garner.}
+\footnote{I learned this $\vee$ monoidal structure from Richard Garner.}
 which has unit $0$. These lead to the following symmetric monoidal products on $\poly$:
 \begin{align}
 	p\times q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]+ q[J]}\\
 	p\otimes q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\times q[J]}\\
 	p\ovee q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\vee q[J]}\label{eqn.ovee}
 \end{align}
-The first two are highly relevant: the first is the categorical product, and the second is the \emph{Dirichlet} product, both of which come up often in practice. So far we have not seen a use for $\ovee$.
+The first two are highly relevant: the first ($\times$) is the categorical product, and the second ($\otimes$) is the \emph{Dirichlet} product, both of which come up often in practice. So far we have not seen a use for $\ovee$.
 
 \chapter{Monoidal closures}
 
-Both $\times$ and $\otimes$ are monoidal closed; they are given by
+Both $\times$ and $\otimes$ are monoidal closed; the associated closures are given by
 \begin{align}
   q^p&\coloneqq \prod_{I\in p(1)}q(p[I]+\yon)\\
   [p,q]&\coloneqq\prod_{I\in p(1)}q(p[I]\times\yon)
@@ -462,9 +446,9 @@ Both $\times$ and $\otimes$ are monoidal closed; they are given by
 These satisfy the defining universal properties:
 \begin{align}
   \poly(p',q^p)&\cong\poly(p'\times p,q)\\
-  \poly(p',[p,q])&\cong\poly(p\otimes p,q)
+  \poly(p',[p,q])&\cong\poly(p'\otimes p,q)
 \end{align}
-The first, $q^p$ is the Cartesian closure; its standard form is not particularly enlightening. The second $[p,q]$ is what we call the \emph{Dirichlet-hom}; it has a very nice standard form:
+The first one, $q^p$, is the Cartesian closure; its standard form is not particularly enlightening. The second one, $[p,q]$, is what we call the \emph{Dirichlet closure}; it has a very nice standard form:
 \[
 [p,q]\cong\sum_{\varphi\in\poly(p,q)}\yon^{\sum\limits_{I\in p(1)}q[\varphi_1I]}
 \]
@@ -479,7 +463,7 @@ The cartesian closure satisfies all the usual arithmetic properties:
 	p^1\cong p,\quad
 	p^{q\times r}\cong (p^q)^r
 \end{gather}
-The Dirichlet-hom has only some of the analogous properties:
+The Dirichlet closure has only some of the analogous properties:
 \begin{gather}
 	[0,p]\cong1,\qquad
 	[q_1+q_2,p]\cong [q_1,p]\times[q_2,p],\qquad
@@ -503,11 +487,11 @@ This monoidal structure is left distributive with respect to $+$ and $\times$:
 	(p+p')\tri q\cong (p\tri q)+(p'\tri q)\\
 	(p\times p')\tri q\cong (p\tri q)\times(p'\tri q)
 \end{align*}
-The monoidal structure $\tri$ preserves all limits in the left-variable, and it preserves connected limits in the right variable. If $p$ is finitary (all $p[I]$ are finite) then for any diagram $q\colon \cat{J}\to\poly$ with $\cat{J}$ filtered, the natural map
+The monoidal structure $\tri$ preserves all limits in the left-variable, and it preserves connected limits in the right variable. If $p$ is finitary (all $p[I]$ are finite) then for any diagram $q\colon J\to\poly$ with $J\in\smcat$ filtered, the natural map
 \begin{equation}
 \colim_{j\in J}\poly(p,q_j)\to\poly(p,\colim_{j\in J}q_j)
 \end{equation}
-is an isomorphism. For any filtered diagram $p\colon\cat{J}\to\polycart$ of cartesian maps and any $q\in\poly$, the natural map
+is an isomorphism. For any filtered diagram $p\colon J\to\polycart$ of cartesian maps and any $q\in\poly$, the natural map
 \begin{equation}
 \poly(\colim_{j\in J}p_j,q)\to\lim_{j\in J}\poly(p_j,q)
 \end{equation}
@@ -545,12 +529,12 @@ This interacts with $\otimes$ via natural maps
 	\cocr{p_1\otimes p_2}{q_1\otimes q_2}\to\cocr{p_1}{q_1}\otimes\cocr{p_2}{q_2}
 \end{equation}
 For any set $A$, we have
-\begin{equation}
+\begin{equation}\label{eqn.left_adjoints}
   \cocr{p}{A\yon}\cong p\tri\yon^A
   \qqand
   A\yon\tri\cocr{p}{q}\cong\cocr{A\yon\tri p}{q}
 \end{equation}
-We include these because they generalize to bicomodules---namely $A\yon$ and $\yon^A$ can be replaced by any pair of adjoint bicomodules---even though that is beyond the scope of this document.
+We include \eqref{eqn.left_adjoints} because these equations generalize to bicomodules---namely $A\yon$ and $\yon^A$ can be replaced by any pair of adjoint bicomodules---even though that is beyond the scope of this document. Indeed, a great deal of the structures in this document generalize.
 
 For any polynomial monad $(m,\eta,\mu)$, the corresponding Lawvere theory is the $\tri$-comonad (category)
 \begin{equation}
@@ -558,7 +542,7 @@ For any polynomial monad $(m,\eta,\mu)$, the corresponding Lawvere theory is the
 \end{equation}
 where $u\coloneqq\sum_{N\in\nn}\yon^N$. In other words, $\cocr{u}{u\tri m}$ is a compact representation of what usually has a long description: the full subcategory of (the opposite of (the Kleisli category for $m$ on $\smset$)), spanned by the finite sets.
 
-There is also an \emph{indexed} left coclosure. That is, for any function $f\colon p(1)\to q(1)$, define
+There is also an \emph{indexed} left $\tri$-coclosure. That is, for any function $f\colon p(1)\to q(1)$, define
 \begin{equation}
 	p\cocl{f}q\coloneqq \sum_{I\in p(1)}q[fI]\,\yon^{p[I]}.
 \end{equation}
@@ -569,26 +553,24 @@ This satisfies the following indexed-adjunction formula:
 Given $\varphi\colon p\to q\tri r$, we denote its image by $(\varphi.1,\varphi.2)$, where $\varphi.1\colon p(1)\to q(1)$ and $\varphi.2\colon (p\cocl{\varphi.1}q)\to r$.
 
 The indexed coclosure is a very well-behaved structure.
-\begin{align*}
+\begin{align}
 	p\cocl{!}\yon^A&\cong Ap\\
-	p\cocl{\id}p&\cong\dot{p}\yon\\
+	p\cocl{\id}p&\cong\dot{p}\yon\label{eqn.deriv}\\
 	(p+p')\cocl{(f,f')}q&\cong(p\cocl{f}q)+(p'\cocl{f'}q)\\
 	p\cocl{(f,g)}(q\times q')&\cong(p\cocl{f}q)+(p\cocl{g}q')\\
 	(p\cocl{f}q)\times p'&\cong(p\times p')\cocl{(p\times!)\then f}q\\
 	(p\cocl{f}q)\tri p'&\cong(p\tri p')\cocl{(p\tri!)\then f}q\\
 	p\cocl{f}(q\tri r)&\cong(p\cocl{f.1}q)\cocl{f.2}r\\
 	(p\otimes p')\cocl{f\tri f'}(q\otimes q')&\cong(p\cocl{f}q)\otimes(p'\cocl{f'}q')\\
-\end{align*}
-Above, $\dot{p}$ is the derivative of $p$.
+\end{align}
+In \eqref{eqn.deriv}, $\dot{p}$ is the derivative of $p$.
 
 There is a functor
-\begin{equation}
-\begin{aligned}
+\begin{align}
 	\frown\colon\poly&\to\Span(\poly)\\
 	p&\mapsto\dot{p}\yon\\
 	(p\To{\varphi}q)&\mapsto\big(\dot{p}\yon\from(p\cocl{\varphi_1}q)\to\dot{q}\yon\big)
-\end{aligned}
-\end{equation}
+\end{align}
 That is, for any $p\To{\varphi}q\To{\psi}r$, there is an isomorphism
 \begin{equation}
 	(p\cocl{\varphi_1}q)\times_{\dot{q}\yon}(q\cocl{\psi_1}r)\cong p\cocl{\varphi_1\then\psi_1}r
@@ -596,12 +578,12 @@ That is, for any $p\To{\varphi}q\To{\psi}r$, there is an isomorphism
 This functor is strong monoidal with respect to both $+$ and $\otimes$.
 
 There is an indexed coclosure for $\otimes$.%
-\footnote{I learned about this indexed coclosure for $\otimes$ from Nelson Niu.}
+\footnote{I learned about this indexed coclosure $\hyper{}$ for $\otimes$ from Nelson Niu.}
 For any function $f\colon p(1)\to q(1)$, define
 \begin{equation}
 p \hyper{f} q\coloneqq\sum_{I\in p(1)}\yon^{\left(p[I]^{q[fI]}\right)}
 \end{equation}
-This satisfied the following indexed-adjunction formula:
+This satisfies the following indexed-adjunction formula:
 \begin{equation}
 	\poly(p,q\otimes r)\cong\sum_{f\colon p(1)\to q(1)}\poly(p\hyper{f}q,r)
 \end{equation}
@@ -609,7 +591,7 @@ This satisfied the following indexed-adjunction formula:
 %-------- Chapter --------%
 \chapter{Other monoidal structures}
 
-Of the following monoidal structures, only the first one ($\vee$) appears to be interesting; it will appear prominently in the section on free monads.
+Of the following three monoidal structures, only the first one ($\vee$) appears to be interesting; it will appear prominently in the section on free monads; e.g.\ see \eqref{eqn.vees}.
 
 There is a symmetric monoidal structure on $\poly$ with unit $0$ and product given by
 \begin{equation}
@@ -634,9 +616,7 @@ There are two other symmetric monoidal structures we know of, though we currentl
 	(p,q)&\mapsto p+(p\times q)+q\\
 	(p,q)&\mapsto p+(p\ovee q)+q
 \end{align}
-Their units are both $0$. 
-
-We do not recommend reserving the symbol $\odot$ for the monoidal product in \eqref{eqn.odot}. The main purpose of this section was to introduce $\vee$, and to simply mention that we know of eight total monoidal products on $\poly$.
+Their units are both $0$. The main purpose of this section was to introduce $\vee$, and to simply mention that we know of eight total monoidal products on $\poly$.
 
 
 %-------- Chapter --------%
@@ -731,13 +711,13 @@ where the $q_k$ are defined inductively as follows:
 \intertext{and the maps $g_k\colon q_{k}\to q_{k+1}$ are defined inductively as follows:}
 	q_0=0&\To{f_0\coloneqq!}\yon+q\tri 0=q_1&q_{k+1}=\yon+(q\tri q_{k})&\To{g_{k+1}\coloneqq\yon+(q\tri g_k)}\yon+(q\tri q_{k+1})=q_{k+2}
 \end{align}
-An arbitrary polynomial $p$ can be written as the filtered limit of its vertical projections $p\to p^{j}$ onto finitary polynomials: that is, for each sum-component $I\in p(1)$, just replace $p[I]$ by an arbitrary finite subset of it, and take the limit of all such things under component-wise projection. That limit is isomorphic to $p$, and we write $p\cong\lim_{j\in J_p}p^{(j)}$. By construction, each of these $p^{(j)}$ is finitary, so let $\mathfrak{m}_p^{(j)}$ denote the free monad on it, constructed as above. Then finally we have
+An arbitrary polynomial $p$ can be written as the filtered limit of its vertical projections $p\to p^{j}$ onto finitary polynomials: that is, for each sum-component $I\in p(1)$, just replace $p[I]$ by an arbitrary finite subset of it, and take the limit of all such things under component-wise projection. That limit is isomorphic to $p$, and we write $p\cong\lim_{j\in J_p}p^{(j)}$. By construction, each of these $p^{(j)}$ is finitary, so let $\mathfrak{m}_p^{(j)}\coloneqq\mathfrak{m}_{p^{(j)}}$ denote the free monad on it, constructed as above. Then finally we have
 \begin{equation}
 	\mathfrak{m}_p\coloneqq\lim_{j\in J_p}\mathfrak{m}_p^{(j)}.
 \end{equation}
 
 The free monad monad $\mathfrak{m}\colon\poly\to\poly$ is not lax monoidal with respect to $\otimes$ on both sides, but it is lax monoidal with $\vee$ in many ways:
-\begin{align}
+\begin{align}\label{eqn.vees}
 	\mathfrak{m}&\colon(\poly,0,\vee)\to(\poly,0,+)\\
 	\mathfrak{m}&\colon(\poly,0,\vee)\to(\poly,\yon,\otimes)\\
 	\mathfrak{m}&\colon(\poly,0,\vee)\to(\poly,\yon,\tri)\\
@@ -750,6 +730,7 @@ That is, there are natural and coherent maps
 	\mathfrak{m}_p\tri\mathfrak{m}_q&\to\mathfrak{m}_{p\vee q}\\
 	\mathfrak{m}_p\vee\mathfrak{m}_q&\to\mathfrak{m}_{p\vee q}
 \end{align}
+
 
 
 
@@ -800,6 +781,8 @@ That is, there are natural and coherent maps
 %\end{remark}
 %
 %
+
+
 
 
 \printbibliography 
