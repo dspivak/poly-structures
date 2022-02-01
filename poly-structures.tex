@@ -297,7 +297,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 
 \newcommand{\yon}{\mathcal{y}}
 \newcommand{\poly}{\Cat{Poly}}
-\newcommand{\dir}{\Set{Dir}}
+\newcommand{\Span}{\Cat{Span}}
 \newcommand{\rect}{\Set{Rect}}
 \newcommand{\polycart}{\poly^{\Cat{Cart}}}
 \newcommand{\hh}{\mathcal{h}}
@@ -322,13 +322,15 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\littlecocl}[2]{
      \begin{bsmallmatrix}{\vphantom{f}#2} \\ {\vphantom{f}#1} \end{bsmallmatrix}
 }
-\newcommand{\cocl}[2]{
+\newcommand{\cocr}[2]{
   \relax\if@display
      \bigcocl{#1}{#2}
   \else
      \littlecocl{#1}{#2}
   \fi
 }
+
+\newcommand{\cocl}[1]{\overset{#1}{\frown}}
 
 
 
@@ -371,17 +373,24 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 In this document, we collect a list of categorical structures on the category $\poly$ of polynomial functors. There is no implied claim that this list is in any way complete. It includes: eight monoidal structures, seven of which are symmetric, two of which are closed, several of which distribute, several of which are duoidal; it also includes a right-coclosure and an indexed left coclosure for the nonsymmetric monoidal structure $\tri$; it also includes various adjunctions of which $\poly$ is a part, including the free monad and cofree comonad. 
 \end{abstract}
 
+This document is only meant as a reference; we do not supply proofs, but we have written about most of it elsewhere; see \cite{spivak2022poly}, \cite{spivak2021functorial}, and \cite{spivak2022polynomial}. 
+ For everything else written here, one can consider it to be only ``conjecture'', especially if they wish to prove it and get ``priority''. In particular, we wish to claim no credit for originality of anything here, though most of it was discovered independently by the author, so we also do not supply additional references. 
+
+\bigskip
+
 A polynomial functor $p\colon\smset\to\smset$ is any functor that's isomorphic to a coproduct of representables
 \[
 p\coloneqq\sum_{I\in p(1)}\yon^{p[I]},
 \]
-and a morphism between them is a natural transformation; the associated category is denoted $\poly$. For more, see \cref{chap.background}. We will typically use the above notation---which we call \emph{standard form}---modified for $p'$ or $q$, e.g.
+and a morphism between them is a natural transformation; the associated category is denoted $\poly$. For more, see \cref{chap.background}. We will typically use the above notation---which we call \emph{standard form}---appropriately modified for $p'$, $p_1$, or $q$, e.g.
 \[
 p'\coloneqq\sum_{I'\in p'(1)}\yon^{p'[I']}
 \qqor
+p_1\coloneqq\sum_{I_1\in p_1(1)}\yon^{p_1[I_1]}
+\qqor
 q\coloneqq\sum_{J\in q(1)}\yon^{q[J]}.
 \]
-We refer the reader to \cite{spivak2022poly} and \cite{spivak2021functorial}.
+
 
 %-------- Chapter --------%
 \chapter{Coproducts and distributive monoidal structures}
@@ -494,34 +503,175 @@ Comonoids with respect to $\tri$ are exactly categories. Monoids with respect to
 
 For any $p,q\in\poly$, define
 \begin{equation}
-\cocl{p}{p'}\coloneqq\sum_{I\in p(1)}\yon^{p'\tri (p[I])}
+\cocr{p}{p'}\coloneqq\sum_{I\in p(1)}\yon^{p'\tri (p[I])}
 \end{equation}
-This satisfies the following universal property:
+This satisfies the following universal property of a right-coclosure:
 \begin{equation}
-	\poly\left(\cocl{p}{p'},q\right)\cong\poly\left(p,q\tri p'\right).
+	\poly\left(\cocr{p}{p'},q\right)\cong\poly\left(p,q\tri p'\right).
 \end{equation}
 This interacts with $\otimes$ via natural maps
 \begin{equation}
-	\cocl{p_1\otimes p_2}{q_1\otimes q_2}\to\cocl{p_1}{q_1}\otimes\cocl{p_2}{q_2}
+	\cocr{p_1\otimes p_2}{q_1\otimes q_2}\to\cocr{p_1}{q_1}\otimes\cocr{p_2}{q_2}
 \end{equation}
 For any set $A$, we have
 \begin{equation}
-  \cocl{p}{A\yon}\cong p\tri\yon^A
+  \cocr{p}{A\yon}\cong p\tri\yon^A
   \qqand
-  A\yon\tri\cocl{p}{q}\cong\cocl{A\yon\tri p}{q}
+  A\yon\tri\cocr{p}{q}\cong\cocr{A\yon\tri p}{q}
 \end{equation}
 We include these because they generalize to bicomodules---namely $A\yon$ and $\yon^A$ can be replaced by any pair of adjoint bicomodules---even though that is beyond the scope of this document.
 
+For any polynomial monad $(m,\eta,\mu)$, the corresponding Lawvere theory is the $\tri$-comonad (category)
+\begin{equation}
+	\text{Law}(m)\cong\cocr{u}{u\tri m}
+\end{equation}
+where $u\coloneqq\sum_{N\in\nn}\yon^N$. In other words, $\cocr{u}{u\tri m}$ is a compact representation of what usually has a long description: the full subcategory of (the opposite of (the Kleisli category for $m$ on $\smset$)), spanned by the finite sets.
+
+There is also an \emph{indexed} left coclosure. That is, for any function $f\colon p(1)\to q(1)$, define
+\begin{equation}
+	p\cocl{f}q\coloneqq \sum_{I\in p(1)}q[fI]\,\yon^{p[I]}.
+\end{equation}
+This satisfies the following indexed-adjunction formula:
+\begin{equation}
+	\poly(p,q\tri r)\cong\sum_{f\colon p(1)\to q(1)}\poly(p\cocl{f}q,r)
+\end{equation}
+Given $\varphi\colon p\to q\tri r$, we denote its image by $(\varphi.1,\varphi.2)$, where $\varphi.1\colon p(1)\to q(1)$ and $\varphi.2\colon (p\cocl{\varphi.1}q)\to r$.
+
+The indexed coclosure is a very well-behaved structure.
+\begin{align*}
+	p\cocl{!}\yon^A&\cong Ap\\
+	p\cocl{\id}p&\cong\dot{p}\yon\\
+	(p+p')\cocl{(f,f')}q&\cong(p\cocl{f}q)+(p'\cocl{f'}q)\\
+	p\cocl{(f,g)}(q\times q')&\cong(p\cocl{f}q)+(p\cocl{g}q')\\
+	(p\cocl{f}q)\times p'&\cong(p\times p')\cocl{(p\times!)\then f}q\\
+	(p\cocl{f}q)\tri p'&\cong(p\tri p')\cocl{(p\tri!)\then f}q\\
+	p\cocl{f}(q\tri r)&\cong(p\cocl{f.1}q)\cocl{f.2}r\\
+	(p\otimes p')\cocl{f\tri f'}(q\otimes q')&\cong(p\cocl{f}q)\otimes(p'\cocl{f'}q')\\
+\end{align*}
+Above, $\dot{p}$ is the derivative of $p$.
+
+There is a functor
+\begin{equation}
+\begin{aligned}
+	\frown\colon\poly&\to\Span(\poly)\\
+	p&\mapsto\dot{p}\yon\\
+	(p\To{\varphi}q)&\mapsto\big(\dot{p}\yon\from(p\cocl{\varphi_1}q)\to\dot{q}\yon\big)
+\end{aligned}
+\end{equation}
+That is, for any $p\To{\varphi}q\To{\psi}r$, there is an isomorphism
+\begin{equation}
+	(p\cocl{\varphi_1}q)\times_{\dot{q}\yon}(q\cocl{\psi_1}r)\cong p\cocl{\varphi_1\then\psi_1}r
+\end{equation}
+This functor is strong monoidal with respect to both $+$ and $\otimes$.
+
+%-------- Chapter --------%
+\chapter{Adjunctions, monads, and comonads on $\poly$}
+
+There are adjunctions between $\poly$ and $\smset$ and between $\poly$ and $\smset\op$, each labeled by where they send $p\in\poly$ and $A\in\smset$:
+\begin{equation}
+\begin{tikzcd}[column sep=60pt]
+  \poly
+  	\ar[from=r, shift left=8pt, "A" description]
+		\ar[from=r, shift left=-24pt, "A\yon"']&
+  \smset
+  	\ar[from=l, shift right=24pt, "p(0)"']
+  	\ar[from=l, shift right=-8pt, "p(1)" description]
+	\ar[from=l, phantom, "\scriptstyle\bot"]
+	\ar[from=l, phantom, shift left=16pt, "\scriptstyle\bot"]
+	\ar[from=l, phantom, shift right=16pt, "\scriptstyle\bot"]
+\end{tikzcd}
+\hspace{1in}
+\begin{tikzcd}[column sep=60pt]
+	\poly
+  	\ar[from=r, shift left=8pt, "\yon^A"]
+		\ar[from=r, phantom, "\scriptstyle\bot"]
+  	&
+	\smset\op
+		\ar[from=l, shift right=-8pt, "\Gamma(p)"]
+\end{tikzcd}
+\end{equation}
+
+In particular, the product of two of the above forms an interesting functor
+\begin{equation}
+\begin{tikzcd}[column sep=60pt]
+	\poly
+  	\ar[from=r, shift left=8pt, "B\yon^A"]
+		\ar[from=r, phantom, "\scriptstyle\bot"]
+  	&
+	\smset\times\smset\op
+		\ar[from=l, shift right=-8pt, "{\big(p(1)\,,\,\Gamma(p)\big)}"]
+\end{tikzcd}
+\end{equation}
+This functor is comonadic. It is also strong monoidal with respect to coproduct and $\otimes$. To say so requires us to mention that $\smset\times\smset\op$ has a coproduct structure and to specify an $\otimes$ structure on $\smset\times\smset\op$:
+\begin{align}
+ (A_1,B_1)+(A_2,B_2)&\coloneqq(A_1+A_2\,,\,B_1\times B_2)\\
+  (A_1,B_1)\otimes(A_2,B_2)&\coloneqq(A_1\times A_2\,,\,B_1^{A_2}\times B_2^{A_1})
+\end{align}
+
+There is a cofree $\tri$-comonoid (often called the free comonad) construction on $\poly$:
+\begin{equation}
+\begin{tikzcd}[column sep=60pt]
+	\Cat{Comon}(\poly)
+  	\ar[from=r, shift left=8pt, "\mathfrak{c}"]
+		\ar[from=r, phantom, "\scriptstyle\bot"]
+  	&
+	\poly
+		\ar[from=l, shift right=-8pt, "U"]
+\end{tikzcd}
+\end{equation}
+where $U$ is the forgetful functor that sends a comonoid to its carrier. The cofree comonoid $\mathfrak{c}_p$ on $p\in\poly$ is carried by the colimit
+\begin{equation}
+\mathfrak{c}_p\coloneqq\lim(\cdots\to p_{n+1}\To{f_n} p_n\to\cdots\to p_1\To{f_0} p_0)
+\end{equation}
+where the $p_k$ are defined inductively as follows:
+\begin{align}
+	p_0&\coloneqq\yon&p_{k+1}&\coloneqq (p\tri p_k)\times\yon\\
+\intertext{and the maps $f_k\colon p_{k+1}\to p_k$ are defined inductively as follows:}
+	p_1=p\times\yon&\To{f_0\coloneqq\pi}\yon=p_0&p_{k+2}=(p\tri p_{k+1})\times\yon&\To{f_{k+1}\coloneqq(p\tri f_k)\times\yon}(p\tri p_{k})\times\yon=p_{k+1}
+\end{align}
+
+The cofree comonad is lax monoidal with respect to $\otimes$:
+\begin{equation}
+  \mathfrak{c}_p\otimes\mathfrak{c}_q\to\mathfrak{c}_{p\otimes q}.
+\end{equation}
+
+There is a free $\tri$-monoid (often called the free monad) construction on $\poly$
+\begin{equation}
+\begin{tikzcd}[column sep=60pt]
+	\poly
+  	\ar[from=r, shift left=8pt, "U"]
+		\ar[from=r, phantom, "\scriptstyle\bot"]
+  	&
+	\Cat{Mon}(\poly)
+		\ar[from=l, shift right=-8pt, "\mathfrak{m}"]
+\end{tikzcd}
+\end{equation}
+where $U$ is the forgetful functor that sends a monoid to its carrier. The free $\tri$-monoid $\mathfrak{m}_p$ on $p\in\poly$ is constructed in two steps. For any finitary polynomial $q$---one for which each $q[J]$ is a finite set---the free $\tri$-monoid on $q$ can be constructed in one step, namely as the colimit:
+\begin{equation}
+	\mathfrak{m}_q\coloneqq\colim(\cdots\from q_{n+1}\From{g_n}q_n\from\cdots\from q_1\From{g_0} q_0)
+\end{equation}
+where the $q_k$ are defined inductively as follows:
+\begin{align}
+	q_0&\coloneqq 0&q_{k+1}&\coloneqq \yon+(q\tri q_k)\\
+\intertext{and the maps $g_k\colon q_{k}\to q_{k+1}$ are defined inductively as follows:}
+	q_0=0&\To{f_0\coloneqq!}\yon+q\tri 0=q_1&q_{k+1}=\yon+(q\tri q_{k})&\To{g_{k+1}\coloneqq\yon+(q\tri g_k)}\yon+(q\tri q_{k+1})=q_{k+2}
+\end{align}
+An arbitrary polynomial $p$ can be written as the filtered limit of its vertical projections $p\to p^{j}$ onto finitary polynomials: that is, for each sum-component $I\in p(1)$, just replace $p[I]$ by an arbitrary finite subset of it, and take the limit of all such things under component-wise projection. That limit is isomorphic to $p$, and we write $p\cong\lim_{j\in J_p}p^{(j)}$. By construction, each of these $p^{(j)}$ is finitary, so let $\mathfrak{m}_p^{(j)}$ denote the free monad on it, constructed as above. Then finally we have
+\begin{equation}
+	\mathfrak{m}_p\coloneqq\lim_{j\in J_p}\mathfrak{m}_p^{(j)}.
+\end{equation}
 
 
-For any polynomial monad $(m,\eta,\mu)$, the corresponding Lawvere theory is
+
+
+
 
 %-------- Chapter --------%
 \clearpage\appendix
 \chapter{Background}\label{chap.background}
 
 
-The main purpose of this section is to fix notation and provide a brief overview of polynomial functors in one variable. More extensive background material can be found in \cite{spivak2022poly} and \cite{kock2012polynomial}. 
+The main purpose of this short section is to fix notation and provide a brief overview of polynomial functors in one variable. More extensive background material can be found in \cite{spivak2022poly} and \cite{kock2012polynomial}. 
 
 \begin{definition}[Polynomial functor]\label{def.poly}
 Given a set $S$, we denote the corresponding representable functor by
