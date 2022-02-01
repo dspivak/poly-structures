@@ -332,6 +332,26 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 
 \newcommand{\cocl}[1]{\overset{#1}{\frown}}
 
+\makeatletter
+% \xnearrow[<below>]{<above>}
+\newcommand*{\xnearrow}[2][]{%
+  \mathchoice
+  {\@xnearrow\scriptstyle{#1}{#2}}%
+  {\@xnearrow\scriptstyle{#1}{#2}}%
+  {\@xnearrow\scriptscriptstyle{#1}{#2}}%
+  {\@xnearrow\scriptscriptstyle{#1}{#2}}%
+}
+% #1: math style
+% #2: text below arrow
+% #3: text above arrow
+\newcommand*{\@xnearrow}[3]{%
+  \rotatebox[origin=c]{30}{%
+    $#1\xrightarrow[{#2}]{#3}\m@th$%
+  }%
+}
+\makeatother
+
+\newcommand{\hyper}[1]{\xnearrow{#1}}
 
 
 \newcommand{\qand}{\quad\text{and}\quad}
@@ -361,16 +381,16 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 %--------------- Document ---------------%
 \begin{document}
 
-\title{A zoo of categorical structures on $\poly$}
+\title{A reference for categorical structures on $\poly$}
 
 \author{David I. Spivak}
 
-\date{Last updated: \today}
+%\date{Last updated: \today}
 
 \maketitle
 
 \begin{abstract}
-In this document, we collect a list of categorical structures on the category $\poly$ of polynomial functors. There is no implied claim that this list is in any way complete. It includes: eight monoidal structures, seven of which are symmetric, two of which are closed, several of which distribute, several of which are duoidal; it also includes a right-coclosure and an indexed left coclosure for the nonsymmetric monoidal structure $\tri$; it also includes various adjunctions of which $\poly$ is a part, including the free monad and cofree comonad. 
+In this document, we collect a list of categorical structures on the category $\poly$ of polynomial functors. There is no implied claim that this list is in any way complete. It includes: eight monoidal structures, seven of which are symmetric, two of which are closed, several of which distribute, several of which interact duoidally; it also includes a right-coclosure and two indexed left coclosures; it also includes various adjunctions of which $\poly$ is a part, including the free monad and cofree comonad and their lax monoidal structures. 
 \end{abstract}
 
 
@@ -429,7 +449,7 @@ which has unit $0$. These lead to the following symmetric monoidal products on $
 \begin{align}
 	p\times q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]+ q[J]}\\
 	p\otimes q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\times q[J]}\\
-	p\ovee q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\vee q[J]}
+	p\ovee q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\vee q[J]}\label{eqn.ovee}
 \end{align}
 The first two are highly relevant: the first is the categorical product, and the second is the \emph{Dirichlet} product, both of which come up often in practice. So far we have not seen a use for $\ovee$.
 
@@ -510,13 +530,14 @@ Comonoids with respect to $\tri$ are exactly categories. Monoids with respect to
 
 
 %-------- Chapter --------%
-\chapter{Coclosures for substitution product}
+\chapter{Coclosures for substitution and Dirichlet product}
 
 For any $p,q\in\poly$, define
 \begin{equation}
 \cocr{p}{p'}\coloneqq\sum_{I\in p(1)}\yon^{p'\tri (p[I])}
 \end{equation}
-This satisfies the following universal property of a right-coclosure:
+This satisfies the following universal property of a right-coclosure:%
+\footnote{I learned the right-coclosure from Josh Meyers.}
 \begin{equation}
 	\poly\left(\cocr{p}{p'},q\right)\cong\poly\left(p,q\tri p'\right).
 \end{equation}
@@ -574,6 +595,50 @@ That is, for any $p\To{\varphi}q\To{\psi}r$, there is an isomorphism
 	(p\cocl{\varphi_1}q)\times_{\dot{q}\yon}(q\cocl{\psi_1}r)\cong p\cocl{\varphi_1\then\psi_1}r
 \end{equation}
 This functor is strong monoidal with respect to both $+$ and $\otimes$.
+
+There is an indexed coclosure for $\otimes$.%
+\footnote{I learned about this indexed coclosure for $\otimes$ from Nelson Niu.}
+For any function $f\colon p(1)\to q(1)$, define
+\begin{equation}
+p \hyper{f} q\coloneqq\sum_{I\in p(1)}\yon^{\left(p[I]^{q[fI]}\right)}
+\end{equation}
+This satisfied the following indexed-adjunction formula:
+\begin{equation}
+	\poly(p,q\otimes r)\cong\sum_{f\colon p(1)\to q(1)}\poly(p\hyper{f}q,r)
+\end{equation}
+
+%-------- Chapter --------%
+\chapter{Other monoidal structures}
+
+Of the following monoidal structures, only the first one ($\vee$) appears to be interesting; it will appear prominently in the section on free monads.
+
+There is a symmetric monoidal structure on $\poly$ with unit $0$ and product given by
+\begin{equation}
+  p\vee q\coloneqq p+(p\otimes q)+q.
+\end{equation}
+The functor $(p\mapsto p\yon)$ is strong monoidal $(\poly,0,\vee)\to(\poly,\yon,\otimes)$, i.e. there is a natural isomorphism
+\begin{equation}
+	(p+\yon)\otimes(q+\yon)\cong (p\vee q)+\yon.
+\end{equation}
+The identity functor $\poly\to\poly$ has a lax monoidal structure,
+\begin{equation}
+	p+q\to p\vee q.
+\end{equation}
+There are two duoidal structures for $\vee$, one with $\tri$ and one with $\otimes$:
+\begin{align*}
+	(p_1\tri p_2)\vee(q_1\tri q_2)&\to(p_1\vee q_1)\tri(p_2\vee q_2)\\
+	(p_1\otimes p_2)\vee(q_1\otimes q_2)&\to(p_1\vee q_1)\otimes(p_2\vee q_2)
+\end{align*}
+
+There are two other symmetric monoidal structures we know of, though we currently know of no interesting uses of them, so we do not even give them symbols. We are simply using the fact that if a symmetric monoidal product distributes over $+$ then we can follow the pattern we learned from Garner; see \eqref{eqn.ovee}.
+\begin{align}
+	(p,q)&\mapsto p+(p\times q)+q\\
+	(p,q)&\mapsto p+(p\ovee q)+q
+\end{align}
+Their units are both $0$. 
+
+We do not recommend reserving the symbol $\odot$ for the monoidal product in \eqref{eqn.odot}. The main purpose of this section was to introduce $\vee$, and to simply mention that we know of eight total monoidal products on $\poly$.
+
 
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}
@@ -672,8 +737,20 @@ An arbitrary polynomial $p$ can be written as the filtered limit of its vertical
 	\mathfrak{m}_p\coloneqq\lim_{j\in J_p}\mathfrak{m}_p^{(j)}.
 \end{equation}
 
-
-
+The free monad monad $\mathfrak{m}\colon\poly\to\poly$ is not lax monoidal with respect to $\otimes$ on both sides, but it is lax monoidal with $\vee$ in many ways:
+\begin{align}
+	\mathfrak{m}&\colon(\poly,0,\vee)\to(\poly,0,+)\\
+	\mathfrak{m}&\colon(\poly,0,\vee)\to(\poly,\yon,\otimes)\\
+	\mathfrak{m}&\colon(\poly,0,\vee)\to(\poly,\yon,\tri)\\
+	\mathfrak{m}&\colon(\poly,0,\vee)\to(\poly,0,\vee)
+\end{align}
+That is, there are natural and coherent maps
+\begin{align}
+	\mathfrak{m}_p+\mathfrak{m}_q&\to\mathfrak{m}_{p\vee q}\\
+	\mathfrak{m}_p\otimes\mathfrak{m}_q&\to\mathfrak{m}_{p\vee q}\\
+	\mathfrak{m}_p\tri\mathfrak{m}_q&\to\mathfrak{m}_{p\vee q}\\
+	\mathfrak{m}_p\vee\mathfrak{m}_q&\to\mathfrak{m}_{p\vee q}
+\end{align}
 
 
 
