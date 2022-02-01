@@ -373,10 +373,12 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 In this document, we collect a list of categorical structures on the category $\poly$ of polynomial functors. There is no implied claim that this list is in any way complete. It includes: eight monoidal structures, seven of which are symmetric, two of which are closed, several of which distribute, several of which are duoidal; it also includes a right-coclosure and an indexed left coclosure for the nonsymmetric monoidal structure $\tri$; it also includes various adjunctions of which $\poly$ is a part, including the free monad and cofree comonad. 
 \end{abstract}
 
-This document is only meant as a reference; we do not supply proofs, but we have written about most of it elsewhere; see \cite{spivak2022poly}, \cite{spivak2021functorial}, and \cite{spivak2022polynomial}. 
- For everything else written here, one can consider it to be only ``conjecture'', especially if they wish to prove it and get ``priority''. In particular, we wish to claim no credit for originality of anything here, though most of it was discovered independently by the author, so we also do not supply additional references. 
 
+\tableofcontents*
 \bigskip
+
+This document is only meant as a reference; we do not supply proofs, but we have written about most of it elsewhere; see \cite{spivak2022poly}, \cite{spivak2021functorial}, and \cite{spivak2022polynomial}. 
+ For everything else written here, one can consider it to be only ``conjecture'', as we are not supplying a proof; if one wishes to prove something here and get ``priority'', please feel free. In particular, we wish to claim no credit for originality of anything here, though most of it was discovered independently by the author, so we also do not supply additional references. 
 
 A polynomial functor $p\colon\smset\to\smset$ is any functor that's isomorphic to a coproduct of representables
 \[
@@ -401,11 +403,11 @@ p+q\coloneqq\sum_{I\in p(1)}\yon^{p[I]}+\sum_{J\in q(1)}\yon^{q[J]}
 \end{equation}
 If one wants the formula to be in standard form, use case logic in the exponent:
 \begin{equation}
-p+q\cong\sum_{X\in p(1)+q(1)}\yon^{
+p+q\cong\sum_{X\in p(1)+q(1)}\yon^{\fontsize{8pt}{8pt}\selectfont
 	\begin{cases}
   	p[X]&\tn{ if }X\in p(1)\\
   	q[X]&\tn{ if }X\in q(1)
-	\end{cases}
+	\end{cases}\normalsize
 	}
 \end{equation}
 
@@ -494,6 +496,13 @@ The monoidal structure $\tri$ is duoidal with $\otimes$, i.e.\ there is a natura
 \begin{equation}
 	(p_1\tri p_2)\otimes(q_1\tri q_2)\too(p_1\otimes q_1)\tri(p_2\tri q_2).
 \end{equation}
+
+The identity functor $\poly\to\poly$ is lax monoidal as a functor $(\poly,\yon,\tri)\to(\poly,\yon,\otimes)$, i.e.\ for every $p,q$ a map of polynomials
+\begin{equation}
+	p\otimes q\to p\tri q
+\end{equation}
+satisfying the usual laws.
+
 
 Comonoids with respect to $\tri$ are exactly categories. Monoids with respect to $\tri$ generalize plain operads. Bicomodules with respect to $\tri$ are parametric right adjoints between copresheaf categories.
 
@@ -667,7 +676,8 @@ An arbitrary polynomial $p$ can be written as the filtered limit of its vertical
 
 
 %-------- Chapter --------%
-\clearpage\appendix
+%\clearpage
+\appendix
 \chapter{Background}\label{chap.background}
 
 
