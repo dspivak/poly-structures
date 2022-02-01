@@ -384,7 +384,9 @@ A polynomial functor $p\colon\smset\to\smset$ is any functor that's isomorphic t
 \[
 p\coloneqq\sum_{I\in p(1)}\yon^{p[I]},
 \]
-and a morphism between them is a natural transformation; the associated category is denoted $\poly$. For more, see \cref{chap.background}. We will typically use the above notation---which we call \emph{standard form}---appropriately modified for $p'$, $p_1$, or $q$, e.g.
+and a morphism between them is a natural transformation; the associated category is denoted $\poly$. 
+%For more, see \cref{chap.background}. 
+We will typically use the above notation---which we call \emph{standard form}---appropriately modified for $p'$, $p_1$, or $q$, e.g.
 \[
 p'\coloneqq\sum_{I'\in p'(1)}\yon^{p'[I']}
 \qqor
@@ -677,51 +679,51 @@ An arbitrary polynomial $p$ can be written as the filtered limit of its vertical
 
 %-------- Chapter --------%
 %\clearpage
-\appendix
-\chapter{Background}\label{chap.background}
-
-
-The main purpose of this short section is to fix notation and provide a brief overview of polynomial functors in one variable. More extensive background material can be found in \cite{spivak2022poly} and \cite{kock2012polynomial}. 
-
-\begin{definition}[Polynomial functor]\label{def.poly}
-Given a set $S$, we denote the corresponding representable functor by
-\[\yon^S\coloneqq\smset(S,-)\colon\smset\to\smset,\]
-e.g. $\yon^S(X)\coloneqq X^S$. In particular $\yon=\yon^1$ is the identity and $\yon^0=1$ is constant singleton.
-
-A \emph{polynomial functor} is a functor $p\colon\smset\to\smset$ that is isomorphic to a sum of representables, i.e.\ for which there exists a set $T$, a set $p[t]\in\smset$ for each $t\in T$, and an isomorphism
-\[
-p\cong\sum_{t\in T}\yon^{p[t]}.
-\]
-We call $T$ the set of \emph{$p$-types}, and for each type $t\in T$ we call $p[t]$ the set of \emph{$p$-terms of type $t$}.%
-
-A \emph{morphism} $\varphi\colon p\to p'$ of polynomial functors is simply a natural transformation between them. It is called \emph{cartesian} if for every map of sets $f\colon S\to S'$, the naturality square
-\[
-\begin{tikzcd}
-  p(S)\ar[r, "p(f)"]\ar[d, "\varphi(S)"']&p(S)\ar[d, "\varphi(S')"]\\
-  p'(S')\ar[r, "p'(f)"']&p'(S')\ar[ul, phantom, very near end, "\lrcorner"]
-\end{tikzcd}
-\]
-is a pullback of sets. We denote the category of polynomial functors by $\poly$ and the wide subcategory of polynomials and cartesian maps by $\polycart$.\end{definition}
-
-For any polynomial $p=\sum_{t\in T}\yon^{p[t]}$, we have a canonical isomorphism $p(1)\cong T$; hence from now on we will denote $p$ by
-\begin{equation}\label{eqn.poly_notation}
-p=\sum_{I\in p(1)}\yon^{p[I]}
-\end{equation}
-so that the $p$-types are written with upper-case letters, e.g. $I\in p(1)$, and its terms are written with corresponding lower-case letters, e.g. $i\in p[I]$.
-
-\begin{remark}\label{rem.positions_and_directions}
-Using the Yoneda lemma, we can understand a morphism $p\to q$ in $\poly$ to consist of two parts $(\varphi_1,\varphi^\sharp)$ as follows:
-\begin{equation}\label{eqn.mapsharp}
-  \varphi_1\colon p(1)\to q(1)
-  \qqand
-  \varphi^\sharp_I\colon q[J]\to p[I],
-\end{equation}
-where $J\coloneqq\varphi_1(I)$. That is, $\varphi_1$ is a function from $p$-types to $q$-types, and $\varphi^\sharp_i$ is a function on terms that \emph{depends on a choice of position $I\in p(1)$}. We refer to $\varphi_1$ as the \emph{on-types function} and to $\varphi^\sharp$ as the \emph{backwards on-terms} function.
-
-One can check that a map $\varphi\colon p\to q$ is cartesian iff the backwards-on-terms function $\varphi^\sharp_I$ is a bijection $p[I]\cong q[\varphi_1I]$ for each type $I\in p(1)$.
-\end{remark}
-
-
+%\appendix
+%\chapter{Background}\label{chap.background}
+%
+%
+%The main purpose of this short section is to fix notation and provide a brief overview of polynomial functors in one variable. More extensive background material can be found in \cite{spivak2022poly} and \cite{kock2012polynomial}. 
+%
+%\begin{definition}[Polynomial functor]\label{def.poly}
+%Given a set $S$, we denote the corresponding representable functor by
+%\[\yon^S\coloneqq\smset(S,-)\colon\smset\to\smset,\]
+%e.g. $\yon^S(X)\coloneqq X^S$. In particular $\yon=\yon^1$ is the identity and $\yon^0=1$ is constant singleton.
+%
+%A \emph{polynomial functor} is a functor $p\colon\smset\to\smset$ that is isomorphic to a sum of representables, i.e.\ for which there exists a set $T$, a set $p[t]\in\smset$ for each $t\in T$, and an isomorphism
+%\[
+%p\cong\sum_{t\in T}\yon^{p[t]}.
+%\]
+%We call $T$ the set of \emph{$p$-types}, and for each type $t\in T$ we call $p[t]$ the set of \emph{$p$-terms of type $t$}.%
+%
+%A \emph{morphism} $\varphi\colon p\to p'$ of polynomial functors is simply a natural transformation between them. It is called \emph{cartesian} if for every map of sets $f\colon S\to S'$, the naturality square
+%\[
+%\begin{tikzcd}
+%  p(S)\ar[r, "p(f)"]\ar[d, "\varphi(S)"']&p(S)\ar[d, "\varphi(S')"]\\
+%  p'(S')\ar[r, "p'(f)"']&p'(S')\ar[ul, phantom, very near end, "\lrcorner"]
+%\end{tikzcd}
+%\]
+%is a pullback of sets. We denote the category of polynomial functors by $\poly$ and the wide subcategory of polynomials and cartesian maps by $\polycart$.\end{definition}
+%
+%For any polynomial $p=\sum_{t\in T}\yon^{p[t]}$, we have a canonical isomorphism $p(1)\cong T$; hence from now on we will denote $p$ by
+%\begin{equation}\label{eqn.poly_notation}
+%p=\sum_{I\in p(1)}\yon^{p[I]}
+%\end{equation}
+%so that the $p$-types are written with upper-case letters, e.g. $I\in p(1)$, and its terms are written with corresponding lower-case letters, e.g. $i\in p[I]$.
+%
+%\begin{remark}\label{rem.positions_and_directions}
+%Using the Yoneda lemma, we can understand a morphism $p\to q$ in $\poly$ to consist of two parts $(\varphi_1,\varphi^\sharp)$ as follows:
+%\begin{equation}\label{eqn.mapsharp}
+%  \varphi_1\colon p(1)\to q(1)
+%  \qqand
+%  \varphi^\sharp_I\colon q[J]\to p[I],
+%\end{equation}
+%where $J\coloneqq\varphi_1(I)$. That is, $\varphi_1$ is a function from $p$-types to $q$-types, and $\varphi^\sharp_i$ is a function on terms that \emph{depends on a choice of position $I\in p(1)$}. We refer to $\varphi_1$ as the \emph{on-types function} and to $\varphi^\sharp$ as the \emph{backwards on-terms} function.
+%
+%One can check that a map $\varphi\colon p\to q$ is cartesian iff the backwards-on-terms function $\varphi^\sharp_I$ is a bijection $p[I]\cong q[\varphi_1I]$ for each type $I\in p(1)$.
+%\end{remark}
+%
+%
 
 
 \printbibliography 
