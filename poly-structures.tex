@@ -366,7 +366,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 %--------------- Document ---------------%
 \begin{document}
 
-\title{A reference for categorical structures on $\poly$}
+\title{A summary of categorical structures in $\poly$}
 
 \author{David I. Spivak}
 
@@ -375,15 +375,16 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \maketitle
 
 \begin{abstract}
-In this document, we collect a list of categorical structures on the category $\poly$ of polynomial functors. There is no implied claim that this list is in any way complete. It includes: eight monoidal structures, seven of which are symmetric, two of which are closed, several of which distribute, several of which interact duoidally; it also includes a right-coclosure and two indexed left coclosures; it also includes various adjunctions of which $\poly$ is a part, including the free monad and cofree comonad and their lax monoidal structures. 
+In this document, we collect a list of categorical structures on the category $\poly$ of polynomial functors. There is no implied claim that this list is in any way complete. It includes: eight monoidal structures, seven of which are symmetric, two of which are closed, several of which distribute, several of which interact duoidally; it also includes a right-coclosure and two indexed left coclosures; it also includes various adjunctions of which $\poly$ is a part, including the free monad and cofree comonad and their interaction with various monoidal structures. 
 \end{abstract}
 
 
 \tableofcontents*
 \bigskip
 
-This document is only meant as a reference; we do not supply proofs, but we have written about most of it elsewhere; see \cite{spivak2022poly}, \cite{spivak2021functorial}, and \cite{spivak2022polynomial}. 
- For everything else written here, one can consider it to be only ``conjecture'', as we are not supplying a proof; if one wishes to prove something here and get ``priority'', please feel free and encouraged to do so. In particular, we wish to claim no credit for originality of anything here, though most of it was discovered independently by the author, so we also do not supply additional references. 
+This document is only meant as a handy guide to the abundance of structure in $\poly$. In particular, we do not supply proofs, though we have written about most of these structures elsewhere; see \cite{spivak2022poly}, \cite{spivak2021functorial}, and \cite{spivak2022polynomial}. For everything else written here, one can consider it to be only conjecture, since in some cases we have not checked all the details. Hence, if someone proves something written here---something which has not been proven elsewhere---that person should be taken to have the professional ``priority'' and credit. In particular, we wish to claim no credit for originality of anything contained in this document, though most of it was discovered independently by the author, so we also do not supply additional references. We also make absolutely no claim of completeness.
+
+\bigskip
 
 A polynomial functor $p\colon\smset\to\smset$ is any functor that's isomorphic to a coproduct of representables
 \[
@@ -391,7 +392,7 @@ p\coloneqq\sum_{I\in p(1)}\yon^{p[I]},
 \]
 and a morphism between them is a natural transformation; the associated category is denoted $\poly$. 
 %For more, see \cref{chap.background}. 
-We will typically use the above notation---which we call \emph{standard form}---appropriately modified for $p'$, $p_1$, or $q$, e.g.
+We will typically use the above notation---which we call \emph{standard form}---appropriately modified for $p'$, $q$, etc., e.g.
 \[
 p'\coloneqq\sum_{I'\in p'(1)}\yon^{p'[I']}
 \qqor
@@ -438,9 +439,9 @@ The first two are highly relevant: the first ($\times$) is the categorical produ
 
 \chapter{Monoidal closures}
 
-Both $\times$ and $\otimes$ are monoidal closed; the associated closures are given by
+Both $\times$ and $\otimes$ have associated closures, given by
 \begin{align}
-  q^p&\coloneqq \prod_{I\in p(1)}q(p[I]+\yon)\\
+  q^p&\coloneqq \prod_{I\in p(1)}q(p[I]+\yon)\label{eqn.cart_cl}\\
   [p,q]&\coloneqq\prod_{I\in p(1)}q(p[I]\times\yon)
 \end{align}
 These satisfy the defining universal properties:
@@ -483,10 +484,10 @@ p\tri q\coloneqq\sum_{I\in p(1)}\sum_{J\colon p[I]\to q(1)}\yon^{\sum\limits_{i\
 \end{equation}
 
 This monoidal structure is left distributive with respect to $+$ and $\times$:
-\begin{align*}
-	(p+p')\tri q\cong (p\tri q)+(p'\tri q)\\
-	(p\times p')\tri q\cong (p\tri q)\times(p'\tri q)
-\end{align*}
+\begin{align}
+	(p+p')\tri q\cong (p\tri q)+(p'\tri q)\label{eqn.comp_plus}\\
+	(p\times p')\tri q\cong (p\tri q)\times(p'\tri q)\label{eqn.comp_times}
+\end{align}
 The monoidal structure $\tri$ preserves all limits in the left-variable, and it preserves connected limits in the right variable. If $p$ is finitary (all $p[I]$ are finite) then for any diagram $q\colon J\to\poly$ with $J\in\smcat$ filtered, the natural map
 \begin{equation}
 \colim_{j\in J}\poly(p,q_j)\to\poly(p,\colim_{j\in J}q_j)
@@ -499,8 +500,9 @@ is an isomorphism.
 
 The monoidal structure $\tri$ is duoidal with $\otimes$, i.e.\ there is a natural transformation
 \begin{equation}
-	(p_1\tri p_2)\otimes(q_1\tri q_2)\too(p_1\otimes q_1)\tri(p_2\tri q_2).
+	(p_1\tri p_2)\otimes(q_1\tri q_2)\too(p_1\otimes q_1)\tri(p_2\tri q_2)
 \end{equation}
+satisfying the usual laws.
 
 The identity functor $\poly\to\poly$ is lax monoidal as a functor $(\poly,\yon,\tri)\to(\poly,\yon,\otimes)$, i.e.\ for every $p,q$ a map of polynomials
 \begin{equation}
@@ -524,11 +526,12 @@ This satisfies the following universal property of a right-coclosure:%
 \begin{equation}
 	\poly\left(\cocr{p}{p'},q\right)\cong\poly\left(p,q\tri p'\right).
 \end{equation}
-This interacts with $\otimes$ via natural maps
+It interacts with $\otimes$ via natural maps
 \begin{equation}
 	\cocr{p_1\otimes p_2}{q_1\otimes q_2}\to\cocr{p_1}{q_1}\otimes\cocr{p_2}{q_2}
 \end{equation}
-For any set $A$, we have
+
+For any set $A$, we have $\yon^A\times p\cong\cocr{p}{\yon^A}$ by \eqref{eqn.cart_cl}. More importantly we have
 \begin{equation}\label{eqn.left_adjoints}
   \cocr{p}{A\yon}\cong p\tri\yon^A
   \qqand
@@ -563,14 +566,14 @@ The indexed coclosure is a very well-behaved structure.
 	p\cocl{f}(q\tri r)&\cong(p\cocl{f.1}q)\cocl{f.2}r\\
 	(p\otimes p')\cocl{f\tri f'}(q\otimes q')&\cong(p\cocl{f}q)\otimes(p'\cocl{f'}q')\\
 \end{align}
-In \eqref{eqn.deriv}, $\dot{p}$ is the derivative of $p$.
+In \eqref{eqn.deriv}, $\dot{p}$ is the derivative of $p$. One can prove the Leibniz rule from the above equations; on the other hand, we have not yet proven the chain rule, so we are probably missing something here.\goodbreak
 
 There is a functor
 \begin{align}
 	\frown\colon\poly&\to\Span(\poly)\\
 	p&\mapsto\dot{p}\yon\\
 	(p\To{\varphi}q)&\mapsto\big(\dot{p}\yon\from(p\cocl{\varphi_1}q)\to\dot{q}\yon\big)
-\end{align}
+\end{align}\goodbreak
 That is, for any $p\To{\varphi}q\To{\psi}r$, there is an isomorphism
 \begin{equation}
 	(p\cocl{\varphi_1}q)\times_{\dot{q}\yon}(q\cocl{\psi_1}r)\cong p\cocl{\varphi_1\then\psi_1}r
@@ -587,7 +590,7 @@ This satisfies the following indexed-adjunction formula:
 \begin{equation}
 	\poly(p,q\otimes r)\cong\sum_{f\colon p(1)\to q(1)}\poly(p\hyper{f}q,r)
 \end{equation}
-It satisfies the following:
+It also satisfies the following:
 \begin{align}
 	(p_1+p_2)\hyper{(f_1,f_2)}q&\cong(p_1\hyper{f_1}q)+(p_2\hyper{f_2}q)\\
 	p\hyper{(f_1,f_2)}(q_1\otimes q_2)&\cong (p\hyper{f_1}q_1)\hyper{f_2}q_2
@@ -628,7 +631,7 @@ Their units are both $0$. The main purpose of this section was to introduce $\ve
 \chapter{Adjunctions, monads, and comonads on $\poly$}
 
 There are adjunctions between $\poly$ and $\smset$ and between $\poly$ and $\smset\op$, each labeled by where they send $p\in\poly$ and $A\in\smset$:
-\begin{equation}
+\begin{equation}\label{eqn.adjunctions}
 \begin{tikzcd}[column sep=60pt]
   \poly
   	\ar[from=r, shift left=8pt, "A" description]
@@ -650,9 +653,26 @@ There are adjunctions between $\poly$ and $\smset$ and between $\poly$ and $\sms
 		\ar[from=l, shift right=-8pt, "\Gamma(p)"]
 \end{tikzcd}
 \end{equation}
-
-In particular, the product of two of the above forms an interesting functor
+We write $A$ to denote $A\yon^0$. All the leftward maps in \eqref{eqn.adjunctions} are fully faithful, and all the rightward maps are essentially surjective. The leftward maps from $\smset$ are also rig monoidal
+\begin{align}
+	A\yon+B\yon&\cong(A+B)\yon&
+	A\yon\otimes B\yon&\cong(A\times B)\yon\\
+	A\yon^0+B\yon^0&\cong(A+B)\yon^0&
+	A\yon^0\otimes B\yon^0&\cong(A\times B)\yon^0
+\end{align}
+The rightward maps to $\smset$ are also distributive monoidal; indeed by \cref{eqn.comp_plus,eqn.comp_times}, the following hold for any $A\in\smset$, in particular for $A\in\{0,1\}$.
 \begin{equation}
+	p(A)+q(A)\cong(p+q)(A)
+	\qqand
+	p(A)\times q(A)\cong(p\times q)(A)
+\end{equation}
+The functor $\Gamma$ preserves coproducts, since coproducts in $\smset\op$ are products in $\smset$:
+\begin{equation}
+	\Gamma(p+q)\cong\Gamma(p)\times\Gamma(q)
+\end{equation}
+
+We can say more about $\Gamma$ if we package it with $p\mapsto p(1)$; i.e.\ there is an interesting functor
+\begin{equation}\label{eqn.rectangle}
 \begin{tikzcd}[column sep=60pt]
 	\poly
   	\ar[from=r, shift left=8pt, "B\yon^A"]
@@ -662,10 +682,15 @@ In particular, the product of two of the above forms an interesting functor
 		\ar[from=l, shift right=-8pt, "{\big(p(1)\,,\,\Gamma(p)\big)}"]
 \end{tikzcd}
 \end{equation}
-This functor is comonadic. It is also strong monoidal with respect to coproduct and $\otimes$. To say so requires us to mention that $\smset\times\smset\op$ has a coproduct structure and to specify an $\otimes$ structure on $\smset\times\smset\op$:
+This functor is comonadic. It is also strong monoidal with respect to coproduct and $\otimes$. To say so requires us to mention that $\smset\times\smset\op$ has a coproduct structure and to specify an $\otimes$ structure on $\smset\times\smset\op$; they are given as follows:
 \begin{align}
  (A_1,B_1)+(A_2,B_2)&\coloneqq(A_1+A_2\,,\,B_1\times B_2)\\
   (A_1,B_1)\otimes(A_2,B_2)&\coloneqq(A_1\times A_2\,,\,B_1^{A_2}\times B_2^{A_1})
+\end{align}
+Returning to our point, the left adjoint in \eqref{eqn.rectangle} is rig monoidal (preserves $+$ and $\otimes$):
+\begin{align}
+	(p(1),\Gamma(p))+(q(1),\Gamma(q))&\cong((p+q)(1),\Gamma(p+q))\\
+	(p(1),\Gamma(p))\otimes(q(1),\Gamma(q))&\cong((p\otimes q)(1),\Gamma(p\otimes q))
 \end{align}
 
 There is a cofree $\tri$-comonoid (often called the free comonad) construction on $\poly$:
@@ -716,7 +741,7 @@ where the $q_k$ are defined inductively as follows:
 \intertext{and the maps $g_k\colon q_{k}\to q_{k+1}$ are defined inductively as follows:}
 	q_0=0&\To{f_0\coloneqq!}\yon+q\tri 0=q_1&q_{k+1}=\yon+(q\tri q_{k})&\To{g_{k+1}\coloneqq\yon+(q\tri g_k)}\yon+(q\tri q_{k+1})=q_{k+2}
 \end{align}
-An arbitrary polynomial $p$ can be written as the filtered limit of its vertical projections $p\to p^{j}$ onto finitary polynomials: that is, for each sum-component $I\in p(1)$, just replace $p[I]$ by an arbitrary finite subset of it, and take the limit of all such things under component-wise projection. That limit is isomorphic to $p$, and we write $p\cong\lim_{j\in J_p}p^{(j)}$. By construction, each of these $p^{(j)}$ is finitary, so let $\mathfrak{m}_p^{(j)}\coloneqq\mathfrak{m}_{p^{(j)}}$ denote the free monad on it, constructed as above. Then finally we have
+An arbitrary polynomial $p$ can be written as the filtered limit of its vertical projections $p\to p^{j}$ onto finitary polynomials: that is, for each sum-component $I\in p(1)$, just replace $p[I]$ by an arbitrary finite subset of it, and take the limit of all such things under component-wise projection. That limit is isomorphic to $p$, and we write $p\cong\lim_{j\in J_p}p^{(j)}$. By construction, each of these $p^{(j)}$ is finitary, so let $\mathfrak{m}_p^{(j)}\coloneqq\mathfrak{m}_{p^{(j)}}$ denote the free monad on it, constructed as above. Then finally we construct the free monad $\mathfrak{m}_p$ on $p$ as their filtered limit:
 \begin{equation}
 	\mathfrak{m}_p\coloneqq\lim_{j\in J_p}\mathfrak{m}_p^{(j)}.
 \end{equation}
@@ -788,7 +813,8 @@ That is, there are natural and coherent maps
 %
 
 
-
+\section*{Acknowledgments}
+This material is based upon work supported by the Air Force Office of Scientific Research under award number FA9550-20-1-0348.
 
 \printbibliography 
 \end{document}
