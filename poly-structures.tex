@@ -566,7 +566,7 @@ The indexed coclosure is a very well-behaved structure.
 	p\cocl{f}(q\tri r)&\cong(p\cocl{f.1}q)\cocl{f.2}r\\
 	(p\otimes p')\cocl{f\tri f'}(q\otimes q')&\cong(p\cocl{f}q)\otimes(p'\cocl{f'}q')\\
 \end{align}
-In \eqref{eqn.deriv}, $\dot{p}$ is the derivative of $p$. One can prove the Leibniz rule from the above equations; on the other hand, we have not yet proven the chain rule, so we are probably missing something here.\goodbreak
+In \eqref{eqn.deriv}, $\dot{p}$ is the derivative of $p$. 
 
 There is a functor
 \begin{align}
@@ -578,7 +578,14 @@ That is, for any $p\To{\varphi}q\To{\psi}r$, there is an isomorphism
 \begin{equation}
 	(p\cocl{\varphi_1}q)\times_{\dot{q}\yon}(q\cocl{\psi_1}r)\cong p\cocl{\varphi_1\then\psi_1}r
 \end{equation}
-This functor is strong monoidal with respect to both $+$ and $\otimes$.
+This functor is strong monoidal with respect to both $+$ and $\otimes$. One may think of it as representing the bundle view of $\poly$. Indeed, for any $p\in\poly$ we have a counit map $\epsilon_p\colon\dot{p}\yon\to p$, and given $\varphi\colon p\to q$, there is an induced span
+\begin{equation}
+\begin{tikzcd}
+	\dot{p}\yon\ar[d]&p\cocl{\varphi_1}q\ar[d]\ar[l]\ar[r]&\dot{q}\yon\ar[d]\\
+	p\ar[r, equal]&p\ar[r,"\varphi"']&q
+\end{tikzcd}
+\end{equation}
+and evaluating at $1$ returns the usual bundle picture, since $(p\cocl{\varphi_1}q)(1)\cong p(1)\times_{q(1)}\dot{q}(1)$.
 
 There is an indexed coclosure for $\otimes$.%
 \footnote{I learned about this indexed coclosure $\hyper{}$ for $\otimes$ from Nelson Niu.}
