@@ -499,7 +499,7 @@ is an isomorphism. For any filtered diagram $p\colon J\to\polycart$ of cartesian
 is an isomorphism.
 
 The monoidal structure $\tri$ is duoidal with $\otimes$, i.e.\ there is a natural transformation
-\begin{equation}
+\begin{equation}\label{duoidal}
 	(p_1\tri p_2)\otimes(q_1\tri q_2)\too(p_1\otimes q_1)\tri(p_2\tri q_2)
 \end{equation}
 satisfying the usual laws.
@@ -508,10 +508,9 @@ The identity functor $\poly\to\poly$ is lax monoidal as a functor $(\poly,\yon,\
 \begin{equation}
 	p\otimes q\to p\tri q
 \end{equation}
-satisfying the usual laws.
+satisfying the usual laws. This map is derived from \eqref{duoidal} by taking $p_1\coloneqq p$, $q_1\coloneqq\yon$, $p_2\coloneqq\yon$, and $q_2\coloneqq q$. 
 
-
-Comonoids with respect to $\tri$ are exactly categories. Monoids with respect to $\tri$ generalize plain operads. Bicomodules with respect to $\tri$ are parametric right adjoints between copresheaf categories.
+Monoids with respect to $\tri$ generalize $\Sigma$-free operads. Comonoids with respect to $\tri$ are exactly categories. Bicomodules with respect to $\tri$ are parametric right adjoints between copresheaf categories.
 
 
 %-------- Chapter --------%
@@ -519,7 +518,7 @@ Comonoids with respect to $\tri$ are exactly categories. Monoids with respect to
 
 For any $p,q\in\poly$, define
 \begin{equation}
-\cocr{p}{p'}\coloneqq\sum_{I\in p(1)}\yon^{p'\tri (p[I])}
+\cocr{p}{p'}\coloneqq\sum_{I\in p(1)}\yon^{p'\tri\; (p[I])}
 \end{equation}
 This satisfies the following universal property of a right-coclosure:%
 \footnote{I learned the right-coclosure from Josh Meyers.}
@@ -537,13 +536,13 @@ For any set $A$, we have $\yon^A\times p\cong\cocr{p}{\yon^A}$ by \eqref{eqn.car
   \qqand
   A\yon\tri\cocr{p}{q}\cong\cocr{A\yon\tri p}{q}
 \end{equation}
-We include \eqref{eqn.left_adjoints} because these equations generalize to bicomodules---namely $A\yon$ and $\yon^A$ can be replaced by any pair of adjoint bicomodules---even though that is beyond the scope of this document. Indeed, a great deal of the structures in this document generalize.
+We include \eqref{eqn.left_adjoints} because these equations generalize to bicomodules---namely $A\yon$ and $\yon^A$ can be replaced by any pair of left and right adjoint bicomodules---even though that is beyond the scope of this document. Indeed, a great deal of the structures in this document generalize.
 
 For any polynomial monad $(m,\eta,\mu)$, the corresponding Lawvere theory is the $\tri$-comonad (category)
 \begin{equation}
 	\text{Law}(m)\cong\cocr{u}{u\tri m}
 \end{equation}
-where $u\coloneqq\sum_{N\in\nn}\yon^N$. In other words, $\cocr{u}{u\tri m}$ is a compact representation of what usually has a long description: the full subcategory of (the opposite of (the Kleisli category for $m$ on $\smset$)), spanned by the finite sets.
+where $u\coloneqq\sum_{N\in\nn}\yon^N$. In other words, $\cocr{u}{u\tri m}$ is a compact representation of what usually has a long description: ``the full subcategory of (the opposite of (the Kleisli category for $m$ on $\smset$)), spanned by the finite sets.''
 
 There is also an \emph{indexed} left $\tri$-coclosure. That is, for any function $f\colon p(1)\to q(1)$, define
 \begin{equation}
@@ -660,7 +659,7 @@ There are adjunctions between $\poly$ and $\smset$ and between $\poly$ and $\sms
 		\ar[from=l, shift right=-8pt, "\Gamma(p)"]
 \end{tikzcd}
 \end{equation}
-We write $A$ to denote $A\yon^0$. All the leftward maps in \eqref{eqn.adjunctions} are fully faithful, and all the rightward maps are essentially surjective. The leftward maps from $\smset$ are also rig monoidal
+We write $A$ to denote $A\yon^0$. All the leftward maps in \eqref{eqn.adjunctions} are fully faithful, and all the rightward maps are essentially surjective. The leftward maps from $\smset$ are also rig monoidal (i.e.\ strong monoidal with respect to $+$ and $\otimes$):
 \begin{align}
 	A\yon+B\yon&\cong(A+B)\yon&
 	A\yon\otimes B\yon&\cong(A\times B)\yon\\
@@ -678,7 +677,7 @@ The functor $\Gamma$ preserves coproducts, since coproducts in $\smset\op$ are p
 	\Gamma(p+q)\cong\Gamma(p)\times\Gamma(q)
 \end{equation}
 
-We can say more about $\Gamma$ if we package it with $p\mapsto p(1)$; i.e.\ there is an interesting functor
+We can say more about $\Gamma$ if we package it with $p\mapsto p(1)$; i.e.\ there is an adjunction
 \begin{equation}\label{eqn.rectangle}
 \begin{tikzcd}[column sep=60pt]
 	\poly
@@ -721,7 +720,10 @@ where the $p_k$ are defined inductively as follows:
 \intertext{and the maps $f_k\colon p_{k+1}\to p_k$ are defined inductively as follows:}
 	p_1=p\times\yon&\To{f_0\coloneqq\pi}\yon=p_0&p_{k+2}=(p\tri p_{k+1})\times\yon&\To{f_{k+1}\coloneqq(p\tri f_k)\times\yon}(p\tri p_{k})\times\yon=p_{k+1}
 \end{align}
-The map $\mathfrak{c}\to\yon$ is easy and the map $\mathfrak{c}\to\mathfrak{c}\tri\mathfrak{c}$ is given by maps $p_{m+n}\to p_m\tri p_n$, which themselves arise by induction on $n$, properties of $\frown$, and maps $p\tri p_m\to p_m\tri p$ that  arise by induction on $m$.
+The map $\mathfrak{c}\to\yon$ is easy and the map $\mathfrak{c}\to\mathfrak{c}\tri\mathfrak{c}$ is given by maps $p_{m+n}\to p_m\tri p_n$, which themselves arise by induction on $n$, properties of $\frown$, and maps $p\tri p_m\to p_m\tri p$ that  arise by induction on $m$. There is an isomorphism of polynomials
+\begin{equation}
+	\mathfrak{c}_p\To{\cong} (p\tri\mathfrak{c}_p)\times\yon.
+\end{equation}
 
 The cofree comonad is lax monoidal with respect to $\otimes$:
 \begin{equation}
@@ -753,6 +755,11 @@ An arbitrary polynomial $p$ can be written as the filtered limit of its vertical
 \begin{equation}
 	\mathfrak{m}_p\coloneqq\lim_{j\in J_p}\mathfrak{m}_p^{(j)}.
 \end{equation}
+There is an isomorphism of polynomials
+\begin{equation}
+	 \yon+(p\tri\mathfrak{m}_p)\To{\cong}\mathfrak{m}_p.
+	\end{equation}
+
 
 The free monad monad $\mathfrak{m}\colon\poly\to\poly$ is not lax monoidal with respect to $\otimes$ on both sides, but it is lax monoidal with $\vee$ in many ways:
 \begin{align}\label{eqn.vees}
