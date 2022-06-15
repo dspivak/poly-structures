@@ -534,9 +534,13 @@ The coclosure $\cocr{p}{q}$ is covariant in $p$ and contravariant in $q$:
     \Infer2{\cocr{p}{q}\to\cocr{p'}{q'}}
   \end{prooftree}
 \end{equation}
-It interacts with $\tri$ by
+and if $p\to p'$ is vertical or cartesian, then so is $\cocr{p}{q}\to\cocr{p'}{q}$, respectively.
+
+The coclosure interacts with $\tri$ by
 \begin{equation}
-	\cocr{\cocr{p}{q}}{r}\cong\cocr{p}{r\tri q}
+	\cocr{\cocr{p}{q}}{q'}\cong\cocr{p}{q'\tri q}
+	\qqand
+	p\cong\cocr{p}{\yon}
 \end{equation}
 
 Just like evaluation is the most common use of a closure, co-evaluation is the most common use of this coclosure: for any $p,q\in\poly$ one has
