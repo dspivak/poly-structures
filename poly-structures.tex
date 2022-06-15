@@ -526,22 +526,25 @@ This satisfies the following universal property of a right-coclosure:%
 \begin{equation}
 	\poly\left(\cocr{p}{p'},q\right)\cong\poly\left(p,q\tri p'\right).
 \end{equation}
+The coclosure $\cocr{p}{q}$ is covariant in $p$ and contravariant in $q$:
+\begin{equation}
+  \begin{prooftree}
+  	\Hypo{p\to p'}
+  	\Hypo{q\from q'}
+    \Infer2{\cocr{p}{q}\to\cocr{p'}{q'}}
+  \end{prooftree}
+\end{equation}
+It interacts with $\tri$ by
+\begin{equation}
+	\cocr{\cocr{p}{q}}{r}\cong\cocr{p}{r\tri q}
+\end{equation}
 
 Just like evaluation is the most common use of a closure, co-evaluation is the most common use of this coclosure: for any $p,q\in\poly$ one has
 \begin{equation}
 p\to\cocr{p}{q}\tri q
 \end{equation}
-For example, one similarly shows that or any $p,q,r$ there is a map
-\begin{equation}
-	\cocr{p}{q}\to\cocr{p}{r\tri p}\tri r
-\end{equation}
-From this we get a derivation rule: 
-\begin{equation}
-  \begin{prooftree}
-  	\Hypo{\cocr{p}{q}\to\cocr{p'}{q'}}
-    \Infer1{\cocr{p}{r\tri q}\to\cocr{p'}{r\tri q'}}
-  \end{prooftree}
-\end{equation}
+
+
 
 The coclosure interacts with $\otimes$ via natural maps
 \begin{equation}
