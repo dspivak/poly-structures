@@ -33,6 +33,7 @@ citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode]{hyperr
 \usepackage{fontawesome}
 \usepackage{ebproof}
 \usepackage{stmaryrd}
+\usepackage{ebproof}
 
 
 % cleveref %
@@ -525,7 +526,24 @@ This satisfies the following universal property of a right-coclosure:%
 \begin{equation}
 	\poly\left(\cocr{p}{p'},q\right)\cong\poly\left(p,q\tri p'\right).
 \end{equation}
-It interacts with $\otimes$ via natural maps
+
+Just like evaluation is the most common use of a closure, co-evaluation is the most common use of this coclosure: for any $p,q\in\poly$ one has
+\begin{equation}
+p\to\cocr{p}{q}\tri q
+\end{equation}
+For example, one similarly shows that or any $p,q,r$ there is a map
+\begin{equation}
+	\cocr{p}{q}\to\cocr{p}{r\tri p}\tri r
+\end{equation}
+From this we get a derivation rule: 
+\begin{equation}
+  \begin{prooftree}
+  	\Hypo{\cocr{p}{q}\to\cocr{p'}{q'}}
+    \Infer1{\cocr{p}{r\tri q}\to\cocr{p'}{r\tri q'}}
+  \end{prooftree}
+\end{equation}
+
+The coclosure interacts with $\otimes$ via natural maps
 \begin{equation}
 	\cocr{p_1\otimes p_2}{q_1\otimes q_2}\to\cocr{p_1}{q_1}\otimes\cocr{p_2}{q_2}
 \end{equation}
@@ -760,6 +778,14 @@ There is an isomorphism of polynomials
 	 \yon+(p\tri\mathfrak{m}_p)\To{\cong}\mathfrak{m}_p.
 	\end{equation}
 
+
+For any polynomial $p\in\poly$ and set $X\in\smset$, there is a natural bijection
+\begin{equation}
+  \mathfrak{m}_p\tri X
+  \cong
+	\mathfrak{m}_{p+X}\tri 0  
+\end{equation}
+and each is isomorphic to the free $p$-algebra on the set $X$.
 
 The free monad monad $\mathfrak{m}\colon\poly\to\poly$ is not lax monoidal with respect to $\otimes$ on both sides, but it is lax monoidal with $\vee$ in many ways:
 \begin{align}\label{eqn.vees}
