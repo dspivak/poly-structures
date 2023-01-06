@@ -389,16 +389,17 @@ This document is only meant as a handy guide to the abundance of structure in $\
 
 A polynomial functor $p\colon\smset\to\smset$ is any functor that's isomorphic to a coproduct of representables
 \[
-p\coloneqq\sum_{I\in p(1)}\yon^{p[I]},
+p\coloneqq\sum_{I\in p(1)}\yon^{p[I]}.
 \]
-and a morphism between them is a natural transformation; the associated category is denoted $\poly$. 
-%For more, see \cref{chap.background}. 
 We will typically use the above notation---which we call \emph{standard form}---appropriately modified for $p'$, $q$, etc., e.g.
 \[
 p'\coloneqq\sum_{I'\in p'(1)}\yon^{p'[I']}
 \qqor
 q\coloneqq\sum_{J\in q(1)}\yon^{q[J]}.
 \]
+
+We refer to elements of $p(1)$ as \emph{positions} of $p$ and, for each $I\in p(1)$, we refer to the elements of $p[I]$ as \emph{directions} at $I$. A morphism between polynomials is a natural transformation $\varphi\colon p\to q$; by the Yoneda lemma and universal property of coproducts, it consists of a function $\varphi_1\colon p(1)\to q(1)$ and, for each $I\in p(1)$ a function $\varphi^\sharp_I\colon q[\varphi_1(I)]\to p[I]$. The associated category of polynomial functors and morphisms between them is denoted $\poly$. 
+%For more, see \cref{chap.background}. 
 
 
 %-------- Chapter --------%
@@ -472,9 +473,14 @@ The Dirichlet closure has only some of the analogous properties:
 	[\yon,p]\cong p,\qquad
 	[p\otimes q,r]\cong[p,[q,r]]
 \end{gather}
-
 We also have $[\yon^A,\yon]\cong A\yon$ and $[A\yon,\yon]\cong\yon^A$ for any $A\in\smset$.
 
+There is a somewhat surprising interaction between $+$, $\times$, and the internal hom for $\otimes$:
+\begin{equation}
+1\To{\cong}[0,0]
+\qqand
+[p,q]\times[p',q']\to [p+p', q+q']
+\end{equation}
 
 %-------- Chapter --------%
 \chapter{Substitution product}
@@ -794,6 +800,14 @@ For any polynomial $p\in\poly$ and set $X\in\smset$, there is a natural bijectio
 \end{equation}
 and each is isomorphic to the free $p$-algebra on the set $X$.
 
+For any polynomial $p\in\poly$ and set $X\in\smset$, there is a natural bijection
+\begin{equation}
+  \mathfrak{m}_p\tri X
+  \cong
+	\mathfrak{m}_{p+X}\tri 0  
+\end{equation}
+and each is isomorphic to the free $p$-algebra on the set $X$.
+
 The free monad monad $\mathfrak{m}\colon\poly\to\poly$ is not lax monoidal with respect to $\otimes$ on both sides, but it is lax monoidal with $\vee$ in many ways:
 \begin{align}\label{eqn.vees}
 	\mathfrak{m}&\colon(\poly,0,\vee)\to(\poly,0,+)\\
@@ -811,54 +825,65 @@ That is, there are natural and coherent maps
 
 
 
+\chapter{*-Bifibration over $\smset$ and factorization systems}
 
-%-------- Chapter --------%
-%\clearpage
-%\appendix
-%\chapter{Background}\label{chap.background}
-%
-%
-%The main purpose of this short section is to fix notation and provide a brief overview of polynomial functors in one variable. More extensive background material can be found in \cite{spivak2022poly} and \cite{kock2012polynomial}. 
-%
-%\begin{definition}[Polynomial functor]\label{def.poly}
-%Given a set $S$, we denote the corresponding representable functor by
-%\[\yon^S\coloneqq\smset(S,-)\colon\smset\to\smset,\]
-%e.g. $\yon^S(X)\coloneqq X^S$. In particular $\yon=\yon^1$ is the identity and $\yon^0=1$ is constant singleton.
-%
-%A \emph{polynomial functor} is a functor $p\colon\smset\to\smset$ that is isomorphic to a sum of representables, i.e.\ for which there exists a set $T$, a set $p[t]\in\smset$ for each $t\in T$, and an isomorphism
-%\[
-%p\cong\sum_{t\in T}\yon^{p[t]}.
-%\]
-%We call $T$ the set of \emph{$p$-types}, and for each type $t\in T$ we call $p[t]$ the set of \emph{$p$-terms of type $t$}.%
-%
-%A \emph{morphism} $\varphi\colon p\to p'$ of polynomial functors is simply a natural transformation between them. It is called \emph{cartesian} if for every map of sets $f\colon S\to S'$, the naturality square
-%\[
-%\begin{tikzcd}
-%  p(S)\ar[r, "p(f)"]\ar[d, "\varphi(S)"']&p(S)\ar[d, "\varphi(S')"]\\
-%  p'(S')\ar[r, "p'(f)"']&p'(S')\ar[ul, phantom, very near end, "\lrcorner"]
-%\end{tikzcd}
-%\]
-%is a pullback of sets. We denote the category of polynomial functors by $\poly$ and the wide subcategory of polynomials and cartesian maps by $\polycart$.\end{definition}
-%
-%For any polynomial $p=\sum_{t\in T}\yon^{p[t]}$, we have a canonical isomorphism $p(1)\cong T$; hence from now on we will denote $p$ by
-%\begin{equation}\label{eqn.poly_notation}
-%p=\sum_{I\in p(1)}\yon^{p[I]}
-%\end{equation}
-%so that the $p$-types are written with upper-case letters, e.g. $I\in p(1)$, and its terms are written with corresponding lower-case letters, e.g. $i\in p[I]$.
-%
-%\begin{remark}\label{rem.positions_and_directions}
-%Using the Yoneda lemma, we can understand a morphism $p\to q$ in $\poly$ to consist of two parts $(\varphi_1,\varphi^\sharp)$ as follows:
-%\begin{equation}\label{eqn.mapsharp}
-%  \varphi_1\colon p(1)\to q(1)
-%  \qqand
-%  \varphi^\sharp_I\colon q[J]\to p[I],
-%\end{equation}
-%where $J\coloneqq\varphi_1(I)$. That is, $\varphi_1$ is a function from $p$-types to $q$-types, and $\varphi^\sharp_i$ is a function on terms that \emph{depends on a choice of position $I\in p(1)$}. We refer to $\varphi_1$ as the \emph{on-types function} and to $\varphi^\sharp$ as the \emph{backwards on-terms} function.
-%
-%One can check that a map $\varphi\colon p\to q$ is cartesian iff the backwards-on-terms function $\varphi^\sharp_I$ is a bijection $p[I]\cong q[\varphi_1I]$ for each type $I\in p(1)$.
-%\end{remark}
-%
-%
+The functor
+\begin{equation}\label{eqn.bifib}
+\big(p\mapsto p(1)\big)\colon\poly\to\smset
+\end{equation}
+is a *-bifibration. In particular, for any function $f\colon A\to B$, there is an adjoint triple $f_!\dashv f^*\dashv f_*$ :
+\begin{equation}
+\begin{tikzcd}[column sep=50pt]
+	\poly_A
+		\ar[r, shift left=16pt, "f_!"]
+		\ar[r, shift right=16pt, "f_*"']
+		\ar[from=r, "f^*" description]
+		\ar[r, phantom, shift left=8pt, "\Rightarrow"]
+		\ar[r, phantom, shift right=8pt, "\Leftarrow"]
+	&
+	\poly_B
+\end{tikzcd}
+\end{equation}
+where $\poly_X$ is the category of polynomials with positions $p(1)=X$. The images under the functors $f_!$ and $f_*$ of $p\in\poly_A$ are given by
+\begin{equation}
+	f_!(p)\coloneqq\sum_{b\in B}\yon^{\;\prod\limits_{b=fa}p[a]}
+	\qqand
+	f_*(p)\coloneqq\sum_{b\in B}\yon^{\;\sum\limits_{b=fa}p[a]}
+\end{equation}
+and the image under the functor $f^*$ of $q\in\poly_B$ is given by
+\begin{equation}
+	f^*(q)\coloneqq\sum_{a\in A}\yon^{q[fa]}
+\end{equation}
+For any $p\in\poly_A$ and $q\in\poly_B$ there are natural maps
+\begin{equation}
+	p\to f_!(p)
+	\qqand
+	f^*(q)\to q.
+\end{equation}
+
+A morphism $\varphi\colon p\to q$ can be identified with a diagram of the form
+\begin{equation}\label{eqn.poly_map}
+\begin{tikzcd}
+	p(1)\ar[d, "\varphi_1"']\ar[r, "{p[-]}", ""' name=p]&
+	\smset\\
+	q(1)\ar[ur, bend right, "{q[-]}"', "" name=q]
+	\ar[to=p, from=q-|p, Rightarrow, shorten=3pt, "\varphi^\sharp"]
+\end{tikzcd}
+\end{equation}
+The $p\mapsto p(1)$ bifibration \eqref{eqn.bifib} gives us the terms \emph{vertical, cartesian, \text{and} op-cartesian} for a map $\varphi\colon p\to q$ in $\poly$. That is, taking $f\coloneqq\varphi_1$, we have that $\varphi$ is vertical if it is contained in a fiber of the bifibration \eqref{eqn.bifib}, it is cartesian if $p\to f^*(q)$ is an isomorphism, and it is op-cartesian if $f_!(p)\to q$ is an isomorphism. Here are alternative ways to define these notions: $\varphi$ is 
+\begin{itemize}
+	\item \emph{vertical} if $\varphi_1\colon p(1)\to q(1)$ is an identity in $\smset$,
+	\item \emph{cartesian} if $\varphi^\sharp$ is a natural isomorphism, and
+	\item \emph{op-cartesian} if the diagram \eqref{eqn.poly_map} is a right Kan extension.
+\end{itemize}
+More explicitly, $\varphi$ is cartesian iff for each $I\in p(1)$, the function $\varphi^\sharp_I\colon p[I]\to q[\varphi_1I]$ is a bijection. It is op-cartesian if for each $J\in q(1)$ the map $q[J]\to\prod\limits_{\varphi_1(I)=J}p[I]$ is a bijection.
+
+There are at least three factorization systems on $\poly$:
+\begin{itemize}
+	\item (epi, mono),
+	\item (vertical, cartesian), and
+	\item (op-cartesian, vertical).
+\end{itemize}
 
 
 \section*{Acknowledgments}
