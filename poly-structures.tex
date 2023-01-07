@@ -313,7 +313,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\jump}{\pi}
 \newcommand{\jumpmap}{\ol{\jump}}
 \newcommand{\founds}{\Yleft}
-
+\newcommand{\cofree}{\mathfrak{c}}
 
 % lenses
 \newcommand{\bigcocl}[2]{
@@ -437,7 +437,7 @@ which has unit $0$. These lead to the following symmetric monoidal products on $
 	p\otimes q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\times q[J]}\\
 	p\ovee q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\vee q[J]}\label{eqn.ovee}
 \end{align}
-The first two are highly relevant: the first ($\times$) is the categorical product, and the second ($\otimes$) is the \emph{Dirichlet} product, both of which come up often in practice. So far we have not seen a use for $\ovee$.
+The first two are highly relevant: the first ($\times$) is the categorical product, and the second ($\otimes$) is the \emph{Dirichlet} product, both of which come up often in practice. The third has so far appeared less useful.
 
 \chapter{Monoidal closures}
 
@@ -509,7 +509,12 @@ The monoidal structure $\tri$ is duoidal with $\otimes$, i.e.\ there is a natura
 \begin{equation}\label{duoidal}
 	(p_1\tri p_2)\otimes(q_1\tri q_2)\too(p_1\otimes q_1)\tri(p_2\tri q_2)
 \end{equation}
-satisfying the usual laws.
+satisfying the usual laws. This in turn induces natural maps
+\begin{equation}
+	[p,q]\to[r\tri p, r\tri q]
+	\qqand
+	[p,q]\to[p\tri r, q\tri r]
+\end{equation}
 
 The identity functor $\poly\to\poly$ is lax monoidal as a functor $(\poly,\yon,\tri)\to(\poly,\yon,\otimes)$, i.e.\ for every $p,q$ a map of polynomials
 \begin{equation}
@@ -734,16 +739,16 @@ There is a cofree $\tri$-comonoid (often called the free comonad) construction o
 \begin{equation}
 \begin{tikzcd}[column sep=60pt]
 	\Cat{Comon}(\poly)
-  	\ar[from=r, shift left=8pt, "\mathfrak{c}"]
+  	\ar[from=r, shift left=8pt, "\cofree"]
 		\ar[from=r, phantom, "\scriptstyle\bot"]
   	&
 	\poly
 		\ar[from=l, shift right=-8pt, "U"]
 \end{tikzcd}
 \end{equation}
-where $U$ is the forgetful functor that sends a comonoid to its carrier. The cofree comonoid $\mathfrak{c}_p$ on $p\in\poly$ is carried by the colimit
+where $U$ is the forgetful functor that sends a comonoid to its carrier. The cofree comonoid $\cofree_p$ on $p\in\poly$ is carried by the colimit
 \begin{equation}
-\mathfrak{c}_p\coloneqq\lim(\cdots\to p_{n+1}\To{f_n} p_n\to\cdots\to p_1\To{f_0} p_0)
+\cofree_p\coloneqq\lim(\cdots\to p_{n+1}\To{f_n} p_n\to\cdots\to p_1\To{f_0} p_0)
 \end{equation}
 where the $p_k$ are defined inductively as follows:
 \begin{align}
@@ -751,15 +756,19 @@ where the $p_k$ are defined inductively as follows:
 \intertext{and the maps $f_k\colon p_{k+1}\to p_k$ are defined inductively as follows:}
 	p_1=p\times\yon&\To{f_0\coloneqq\pi}\yon=p_0&p_{k+2}=(p\tri p_{k+1})\times\yon&\To{f_{k+1}\coloneqq(p\tri f_k)\times\yon}(p\tri p_{k})\times\yon=p_{k+1}
 \end{align}
-The map $\mathfrak{c}\to\yon$ is easy and the map $\mathfrak{c}\to\mathfrak{c}\tri\mathfrak{c}$ is given by maps $p_{m+n}\to p_m\tri p_n$, which themselves arise by induction on $n$, properties of $\frown$, and maps $p\tri p_m\to p_m\tri p$ that  arise by induction on $m$. There is an isomorphism of polynomials
+The map $\cofree\to\yon$ is easy and the map $\cofree\to\cofree\tri\cofree$ is given by maps $p_{m+n}\to p_m\tri p_n$, which themselves arise by induction on $n$, properties of $\frown$, and maps $p\tri p_m\to p_m\tri p$ that  arise by induction on $m$. There is an isomorphism of polynomials
 \begin{equation}
-	\mathfrak{c}_p\To{\cong} (p\tri\mathfrak{c}_p)\times\yon.
+	\cofree_p\To{\cong} (p\tri\cofree_p)\times\yon.
 \end{equation}
+For any $A\in\smset$, we have $\cofree_{A\yon}\cong(A\yon)^\nn$.
 
 The cofree comonad is lax monoidal with respect to $\otimes$:
 \begin{equation}
-  \mathfrak{c}_p\otimes\mathfrak{c}_q\to\mathfrak{c}_{p\otimes q}.
+  \yon\to\cofree_\yon
+  \qqand
+  \cofree_p\otimes\cofree_q\to\cofree_{p\otimes q}.
 \end{equation}
+
 
 There is a free $\tri$-monoid (often called the free monad) construction on $\poly$
 \begin{equation}
