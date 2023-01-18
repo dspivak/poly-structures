@@ -522,18 +522,25 @@ The identity functor $\poly\to\poly$ is lax monoidal as a functor $(\poly,\yon,\
 \end{equation}
 satisfying the usual laws. This map is derived from \eqref{duoidal} by taking $p_1\coloneqq p$, $q_1\coloneqq\yon$, $p_2\coloneqq\yon$, and $q_2\coloneqq q$. 
 
+There are natural maps that combine $\tri, \times,$ and $\otimes$:
+\begin{equation}
+	1\to\yon\tri 1
+	\qqand
+	(p\tri q)\times(p'\tri q')\to (p\otimes p')\tri (q\times q')
+\end{equation}
+
 Monoids with respect to $\tri$ generalize $\Sigma$-free operads. Comonoids with respect to $\tri$ are exactly categories. Bicomodules with respect to $\tri$ are parametric right adjoints between copresheaf categories.
 
 
 %-------- Chapter --------%
 \chapter{Coclosures for substitution and Dirichlet product}
 
-For any $p,q\in\poly$, define
+The left Kan extension of a polynomial functor $p$ along another polynomial functor $q$ is again a polynomial functor, which we denote
 \begin{equation}
 \cocr{p}{p'}\coloneqq\sum_{I\in p(1)}\yon^{p'\tri\; (p[I])}
 \end{equation}
-This satisfies the following universal property of a right-coclosure:%
-\footnote{I learned the right-coclosure from Josh Meyers.}
+This satisfies the following universal property of a Kan extension, i.e.\ a right-coclosure:%
+\footnote{I learned the right-coclosure from Josh Meyers. I learned the in-retrospect-obvious fact that it is the same as a left Kan extension from Todd Trimble.}
 \begin{equation}
 	\poly\left(\cocr{p}{p'},q\right)\cong\poly\left(p,q\tri p'\right).
 \end{equation}
@@ -563,6 +570,8 @@ p\to\cocr{p}{q}\tri q
 
 The coclosure interacts with $\otimes$ via natural maps
 \begin{equation}
+	\cocr{\yon}{\yon}\cong\yon
+	\qqand
 	\cocr{p_1\otimes p_2}{q_1\otimes q_2}\to\cocr{p_1}{q_1}\otimes\cocr{p_2}{q_2}
 \end{equation}
 
@@ -768,6 +777,11 @@ The cofree comonad is lax monoidal with respect to $\otimes$:
   \qqand
   \cofree_p\otimes\cofree_q\to\cofree_{p\otimes q}.
 \end{equation}
+It also has natural comonoid homomorphisms of the form
+\begin{equation}
+	\cofree_{[p,q]}\otimes\cofree_{[p',q']}\to\cofree_{[p+p',q+q']}
+\end{equation}
+that arise from the counits of any comonoid, as well as the distributivity of $\otimes$ over $+$.
 
 
 There is a free $\tri$-monoid (often called the free monad) construction on $\poly$
