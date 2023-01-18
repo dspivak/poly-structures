@@ -526,7 +526,7 @@ There are natural maps that combine $\tri, \times,$ and $\otimes$:
 \begin{equation}
 	1\to\yon\tri 1
 	\qqand
-	(p\tri q)\times(p'\tri q')\to (p\otimes p')\tri (q\times q')
+	(p_1\tri p_2)\times(q_1\tri q_2)\to (p_1\otimes q_1)\tri (p_2\times q_2)
 \end{equation}
 
 Monoids with respect to $\tri$ generalize $\Sigma$-free operads. Comonoids with respect to $\tri$ are exactly categories. Bicomodules with respect to $\tri$ are parametric right adjoints between copresheaf categories.
@@ -610,9 +610,13 @@ The indexed coclosure is a very well-behaved structure.
 	p\cocl{f}(q\tri r)&\cong(p\cocl{f.1}q)\cocl{f.2}r\\
 	(p\otimes p')\cocl{f\tri f'}(q\otimes q')&\cong(p\cocl{f}q)\otimes(p'\cocl{f'}q')\\
 \end{align}
-In \eqref{eqn.deriv}, $\dot{p}$ is the derivative of $p$. 
+In \eqref{eqn.deriv}, $\dot{p}$ is the derivative of $p$. We find
+\begin{equation}
+p_*\coloneqq\dot{p}\yon=p\cocl{\id}p=\sum_{I\in p(1)}p[I]\yon^{p[I]}
+\end{equation}
+to be a much more fundamental construction than the derivative itself. For example, the bundle representation of a polynomial $p$ is $p_*(1)\to p(1)$. There are natural maps $p_*\to p$ and $p_*\to\yon$.
 
-There is a functor
+While $p\mapsto p_*$ is not functorial in $\poly$, it is functorial in the Cartesian morphisms $\poly^{\text{cart}}$. It is also functorial as a map $\poly\to\Span(\poly)$:
 \begin{align}
 	\frown\colon\poly&\to\Span(\poly)\\
 	p&\mapsto\dot{p}\yon\\
