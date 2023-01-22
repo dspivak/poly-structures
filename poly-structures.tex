@@ -376,7 +376,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \maketitle
 
 \begin{abstract}
-In this document, we collect a list of categorical structures on the category $\poly$ of polynomial functors. There is no implied claim that this list is in any way complete. It includes: eight monoidal structures, seven of which are symmetric, two of which are closed, several of which distribute, several of which interact duoidally; it also includes a right-coclosure and two indexed left coclosures; it also includes various adjunctions of which $\poly$ is a part, including the free monad and cofree comonad and their interaction with various monoidal structures. 
+In this document, we collect a list of categorical structures on the category $\poly$ of polynomial functors. There is no implied claim that this list is in any way complete. It includes: ten monoidal structures, eight of which are symmetric, two of which are closed, several of which distribute, several of which interact duoidally; it also includes a right-coclosure and two indexed left coclosures; it also includes various adjunctions of which $\poly$ is a part, including the free monad and cofree comonad and their interaction with various monoidal structures. 
 \end{abstract}
 
 
@@ -439,49 +439,6 @@ which has unit $0$. These lead to the following symmetric monoidal products on $
 \end{align}
 The first two are highly relevant: the first ($\times$) is the categorical product, and the second ($\otimes$) is the \emph{Dirichlet} product, both of which come up often in practice. The third has so far appeared less useful.
 
-\chapter{Monoidal closures}
-
-Both $\times$ and $\otimes$ have associated closures, given by
-\begin{align}
-  q^p&\coloneqq \prod_{I\in p(1)}q(p[I]+\yon)\label{eqn.cart_cl}\\
-  [p,q]&\coloneqq\prod_{I\in p(1)}q(p[I]\times\yon)
-\end{align}
-These satisfy the defining universal properties:
-\begin{align}
-  \poly(p',q^p)&\cong\poly(p'\times p,q)\\
-  \poly(p',[p,q])&\cong\poly(p'\otimes p,q)
-\end{align}
-The first one, $q^p$, is the Cartesian closure; its standard form is not particularly enlightening. The second one, $[p,q]$, is what we call the \emph{Dirichlet closure}; it has a very nice standard form:
-\[
-[p,q]\cong\sum_{\varphi\in\poly(p,q)}\yon^{\sum\limits_{I\in p(1)}q[\varphi_1I]}
-\]
-where $\varphi_1\colon p(1)\to q(1)$ is the $1$-component of the natural transformation $\varphi$.
-
-The cartesian closure satisfies all the usual arithmetic properties:
-\begin{gather}
-	p^0\cong1,\quad
-	p^{q_1+q_2}\cong (p^{q_1})\times(p^{q_2}),\quad
-	1^p\cong 1,\quad
-	(p_1\times p_2)^q\cong p_1^q\times p_2^q,\quad
-	p^1\cong p,\quad
-	p^{q\times r}\cong (p^q)^r
-\end{gather}
-The Dirichlet closure has only some of the analogous properties:
-\begin{gather}
-	[0,p]\cong1,\qquad
-	[q_1+q_2,p]\cong [q_1,p]\times[q_2,p],\qquad
-	[\yon,p]\cong p,\qquad
-	[p\otimes q,r]\cong[p,[q,r]]
-\end{gather}
-We also have $[\yon^A,\yon]\cong A\yon$ and $[A\yon,\yon]\cong\yon^A$ for any $A\in\smset$.
-
-There is a somewhat surprising interaction between $+$, $\times$, and the internal hom for $\otimes$:
-\begin{equation}
-1\To{\cong}[0,0]
-\qqand
-[p,q]\times[p',q']\to [p+p', q+q']
-\end{equation}
-
 %-------- Chapter --------%
 \chapter{Substitution product}
 
@@ -507,7 +464,7 @@ is an isomorphism.
 
 The monoidal structure $\tri$ is duoidal with $\otimes$, i.e.\ there is a natural transformation
 \begin{equation}\label{duoidal}
-	(p_1\tri p_2)\otimes(q_1\tri q_2)\too(p_1\otimes q_1)\tri(p_2\tri q_2)
+	(p_1\tri p_2)\otimes(q_1\tri q_2)\too(p_1\otimes q_1)\tri(p_2\otimes q_2)
 \end{equation}
 satisfying the usual laws. This in turn induces natural maps
 \begin{equation}
@@ -520,7 +477,10 @@ The identity functor $\poly\to\poly$ is lax monoidal as a functor $(\poly,\yon,\
 \begin{equation}
 	p\otimes q\to p\tri q
 \end{equation}
-satisfying the usual laws. This map is derived from \eqref{duoidal} by taking $p_1\coloneqq p$, $q_1\coloneqq\yon$, $p_2\coloneqq\yon$, and $q_2\coloneqq q$. 
+satisfying the usual laws. This map is derived from \eqref{duoidal} by taking $p_1\coloneqq p$, $q_1\coloneqq\yon$, $p_2\coloneqq\yon$, and $q_2\coloneqq q$. For any $r:\poly$, duoidality $(r\tri p)\otimes x\to r\tri(p\otimes x)$ gives rise to a natural map
+\begin{equation}
+	[p,q]\to[r\tri p, r\tri q].
+\end{equation}
 
 There are natural maps that combine $\tri, \times,$ and $\otimes$:
 \begin{equation}
@@ -530,6 +490,55 @@ There are natural maps that combine $\tri, \times,$ and $\otimes$:
 \end{equation}
 
 Monoids with respect to $\tri$ generalize $\Sigma$-free operads. Comonoids with respect to $\tri$ are exactly categories. Bicomodules with respect to $\tri$ are parametric right adjoints between copresheaf categories.
+
+\chapter{Monoidal closures}
+
+Both $\times$ and $\otimes$ have associated closures, given by
+\begin{align}
+  q^p&\coloneqq \prod_{I\in p(1)}q\tri(p[I]+\yon)\label{eqn.cart_cl}\\
+  [p,q]&\coloneqq\prod_{I\in p(1)}q\tri(p[I]\times\yon)
+\end{align}
+These satisfy the defining universal properties:
+\begin{align}
+  \poly(p',q^p)&\cong\poly(p'\times p,q)\\
+  \poly(p',[p,q])&\cong\poly(p'\otimes p,q)
+\end{align}
+The first one, $q^p$, is the Cartesian closure; its standard form is not particularly enlightening. The second one, $[p,q]$, is what we call the \emph{Dirichlet closure}; it has a very nice standard form:
+\[
+[p,q]\cong\sum_{\varphi\in\poly(p,q)}\yon^{\sum\limits_{I\in p(1)}q[\varphi_1I]}
+\]
+where $\varphi_1\colon p(1)\to q(1)$ is the $1$-component of the natural transformation $\varphi$. Another nice representation is
+\begin{equation}
+[p,q]\cong\prod_{I\in p(1)}\sum_{J\in q(1)}\prod_{j\in q[J]}\sum_{i\in p[I]}\yon
+\end{equation}
+
+The cartesian closure satisfies all the usual arithmetic properties:
+\begin{gather}
+	q^0\cong1,\quad
+	q^{p_1+p_2}\cong (q^{p_1})\times(q^{p_2}),\quad
+	1^p\cong 1,\quad
+	(q_1\times q_2)^p\cong q_1^p\times q_2^p,\quad
+	q^1\cong q,\quad
+	q^{p_1\times p_2}\cong (q^{p_2})^{p_1}
+\end{gather}
+The Dirichlet closure has only some of the analogous properties:
+\begin{gather}
+	[0,p]\cong1,\qquad
+	[p_1+p_2,q]\cong [p_1,q]\times[p_2,q],\qquad
+	[\yon,q]\cong q,\qquad
+	[p_1\otimes p_2,q]\cong[p_1,[p_2,q]]
+\end{gather}
+
+Mapping into $\yon$ is often of interest; we have the following maps and isomorphisms:
+\begin{align}
+	[\yon,\yon]&\cong\yon\\
+  [p,\yon]\times[q,\yon]&\cong[p+q,\yon]\\
+  \yon^A&\cong[A\yon,\yon]\\
+  [p,\yon]+[q,\yon]&\to[pq,\yon]\\
+  A\yon&\cong[\yon^A,\yon]\\
+	[p,\yon]\otimes[q,\yon]&\to[p\otimes q,\yon]\\
+	[p,\yon]\tri[q,\yon]&\to[p\tri q,\yon]
+\end{align}
 
 
 %-------- Chapter --------%
@@ -660,7 +669,7 @@ There is a symmetric monoidal structure on $\poly$ with unit $0$ and product giv
 \begin{equation}
   p\vee q\coloneqq p+(p\otimes q)+q.
 \end{equation}
-The functor $(p\mapsto p\yon)$ is strong monoidal $(\poly,0,\vee)\to(\poly,\yon,\otimes)$, i.e. there is a natural isomorphism
+The functor $(p\mapsto p+\yon)$ is strong monoidal $(\poly,0,\vee)\to(\poly,\yon,\otimes)$, i.e. there is a natural isomorphism
 \begin{equation}
 	(p+\yon)\otimes(q+\yon)\cong (p\vee q)+\yon.
 \end{equation}
@@ -674,12 +683,20 @@ There are two duoidal structures for $\vee$, one with $\tri$ and one with $\otim
 	(p_1\otimes p_2)\vee(q_1\otimes q_2)&\to(p_1\vee q_1)\otimes(p_2\vee q_2)
 \end{align*}
 
-There are two other symmetric monoidal structures we know of, though we currently know of no interesting uses of them, so we do not even give them symbols. We are simply using the fact that if a symmetric monoidal product distributes over $+$ then we can follow the pattern we learned from Garner; see \eqref{eqn.ovee}.
+Here are two other symmetric monoidal structures, though we currently know of no interesting uses of them, so we do not even give them symbols. We are simply using the fact that if a symmetric monoidal product distributes over $+$ then we can follow the pattern we learned from Garner; see \eqref{eqn.ovee}.
 \begin{align}
 	(p,q)&\mapsto p+(p\times q)+q\\
 	(p,q)&\mapsto p+(p\ovee q)+q
 \end{align}
-Their units are both $0$. The main purpose of this section was to introduce $\vee$, and to simply mention that we know of eight total monoidal products on $\poly$.
+Their units are both $0$. 
+
+We know of two more monoidal products $(\yon,\dagger)$ and $(\yon, \ddagger)$ from Nelson Niu, who cites de Paiva's notion of \emph{cross product} as inspiration for $\dagger$:
+\begin{align}
+	p\dagger q\coloneqq\sum_{I\in p(1)}\sum_{J\in q(1)}\prod_{i\in p[I]}\prod_{j\colon p(1)\to q[J]}\yon\\
+	p\ddagger q\coloneqq\sum_{I\in p(1)}\sum_{J\in q(1)}\prod_{i\colon q(1)\to p[I]}\prod_{j\colon p(1)\to q[J]}\yon
+\end{align}
+E.g.\ in the case of monomials we have $I\yon^A\dagger J\yon^B\cong IJ\yon^{AB^I}$ and $I\yon^A\ddagger J\yon^B\cong IJ\yon^{A^JB^I}$.
+
 
 
 %-------- Chapter --------%
@@ -767,7 +784,7 @@ where the $p_k$ are defined inductively as follows:
 \begin{align}
 	p_0&\coloneqq\yon&p_{k+1}&\coloneqq (p\tri p_k)\times\yon\\
 \intertext{and the maps $f_k\colon p_{k+1}\to p_k$ are defined inductively as follows:}
-	p_1=p\times\yon&\To{f_0\coloneqq\pi}\yon=p_0&p_{k+2}=(p\tri p_{k+1})\times\yon&\To{f_{k+1}\coloneqq(p\tri f_k)\times\yon}(p\tri p_{k})\times\yon=p_{k+1}
+	p_1=p\times\yon&\To{f_0\coloneqq\tn{proj}}\yon=p_0&p_{k+2}=(p\tri p_{k+1})\times\yon&\To{f_{k+1}\coloneqq(p\tri f_k)\times\yon}(p\tri p_{k})\times\yon=p_{k+1}
 \end{align}
 The map $\cofree\to\yon$ is easy and the map $\cofree\to\cofree\tri\cofree$ is given by maps $p_{m+n}\to p_m\tri p_n$, which themselves arise by induction on $n$, properties of $\frown$, and maps $p\tri p_m\to p_m\tri p$ that  arise by induction on $m$. There is an isomorphism of polynomials
 \begin{equation}
@@ -805,15 +822,15 @@ where $U$ is the forgetful functor that sends a monoid to its carrier. The free 
 \end{equation}
 where the $q_k$ are defined inductively as follows:
 \begin{align}
-	q_0&\coloneqq 0&q_{k+1}&\coloneqq \yon+(q\tri q_k)\\
+	q_0&\coloneqq \yon&q_{k+1}&\coloneqq \yon+(q\tri q_k)\\
 \intertext{and the maps $g_k\colon q_{k}\to q_{k+1}$ are defined inductively as follows:}
-	q_0=0&\To{f_0\coloneqq!}\yon+q\tri 0=q_1&q_{k+1}=\yon+(q\tri q_{k})&\To{g_{k+1}\coloneqq\yon+(q\tri g_k)}\yon+(q\tri q_{k+1})=q_{k+2}
+	q_0=\yon&\To{g_0\coloneqq\tn{incl}}\yon+q=q_1&q_{k+1}=\yon+(q\tri q_{k})&\To{g_{k+1}\coloneqq\yon+(q\tri g_k)}\yon+(q\tri q_{k+1})=q_{k+2}
 \end{align}
 An arbitrary polynomial $p$ can be written as the filtered limit of its vertical projections $p\to p^{j}$ onto finitary polynomials: that is, for each sum-component $I\in p(1)$, just replace $p[I]$ by an arbitrary finite subset of it, and take the limit of all such things under component-wise projection. That limit is isomorphic to $p$, and we write $p\cong\lim_{j\in J_p}p^{(j)}$. By construction, each of these $p^{(j)}$ is finitary, so let $\mathfrak{m}_p^{(j)}\coloneqq\mathfrak{m}_{p^{(j)}}$ denote the free monad on it, constructed as above. Then finally we construct the free monad $\mathfrak{m}_p$ on $p$ as their filtered limit:
 \begin{equation}
 	\mathfrak{m}_p\coloneqq\lim_{j\in J_p}\mathfrak{m}_p^{(j)}.
 \end{equation}
-There is an isomorphism of polynomials
+Analogous to \cref{eqn.cofree_iso} there is an isomorphism of polynomials
 \begin{equation}
 	 \yon+(p\tri\mathfrak{m}_p)\To{\cong}\mathfrak{m}_p.
 	\end{equation}
