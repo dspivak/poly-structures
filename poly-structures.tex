@@ -472,12 +472,17 @@ satisfying the usual laws. This in turn induces natural maps
 	\qqand
 	[p,q]\to[p\tri r, q\tri r]
 \end{equation}
-
-The identity functor $\poly\to\poly$ is lax monoidal as a functor $(\poly,\yon,\tri)\to(\poly,\yon,\otimes)$, i.e.\ for every $p,q$ a map of polynomials
-\begin{equation}
+Many things follow from duoidality. In particular, the identity functor $\poly\to\poly$ is lax monoidal as a functor $(\poly,\yon,\tri)\to(\poly,\yon,\otimes)$, i.e.\ for every $p,q$ a map of polynomials
+\begin{equation}\label{eqn.indep}
 	p\otimes q\to p\tri q
 \end{equation}
-satisfying the usual laws. This map is derived from \eqref{duoidal} by taking $p_1\coloneqq p$, $q_1\coloneqq\yon$, $p_2\coloneqq\yon$, and $q_2\coloneqq q$. For any $r:\poly$, duoidality $(r\tri p)\otimes x\to r\tri(p\otimes x)$ gives rise to a natural map
+satisfying the usual laws. This map is derived from \eqref{duoidal} by taking $p_1\coloneqq p$, $q_1\coloneqq\yon$, $p_2\coloneqq\yon$, and $q_2\coloneqq q$. Note that if $p$ is linear or $q$ is representable, then \eqref{eqn.indep} is an isomorphism:
+\begin{equation}
+  A\yon\otimes q\cong A\yon\tri q
+  \qqand
+  p\otimes\yon^A\cong p\tri \yon^A
+\end{equation}
+Also, for any $r:\poly$, duoidality $(r\tri p)\otimes x\to r\tri(p\otimes x)$ gives rise to a natural map
 \begin{equation}
 	[p,q]\to[r\tri p, r\tri q].
 \end{equation}
@@ -584,7 +589,7 @@ The coclosure interacts with $\otimes$ via natural maps
 	\cocr{p_1\otimes p_2}{q_1\otimes q_2}\to\cocr{p_1}{q_1}\otimes\cocr{p_2}{q_2}
 \end{equation}
 
-For any set $A$, we have $\yon^A\times p\cong\cocr{p}{\yon^A}$ by \eqref{eqn.cart_cl}. More importantly we have
+For any set $A$, we have $\yon^A\times p\cong\cocr{p}{\yon+A}$ by \eqref{eqn.cart_cl}. More importantly we have
 \begin{equation}\label{eqn.left_adjoints}
   \cocr{p}{A\yon}\cong p\tri\yon^A
   \qqand
