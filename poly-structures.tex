@@ -30,6 +30,7 @@ citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode]{hyperr
 \usepackage[varg,bigdelims]{newpxmath}
 \usepackage{mathrsfs}
 \usepackage{dutchcal}
+\usepackage{mathalfa}
 \usepackage{fontawesome}
 \usepackage{ebproof}
 \usepackage{stmaryrd}
@@ -185,6 +186,24 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \DeclareFontSubstitution{U}{mathx}{m}{n}
 \DeclareMathAccent{\widecheck}{0}{mathx}{"71}
 
+\ExplSyntaxOn
+\NewDocumentEnvironment{sequation}{O{\fontsize{16pt}{16pt}\selectfont
+}b}
+ {
+  \yufip_sequation:nnn {equation}{#1}{#2}
+ }{}
+\NewDocumentEnvironment{sequation*}{O{\fontsize{16pt}{16pt}\selectfont
+}b}
+ {
+  \yufip_sequation:nnn {equation*}{#1}{#2}
+ }{}
+\cs_new_protected:Nn \yufip_sequation:nnn
+ {
+  \begin{#1}
+  \mbox{#2$\displaystyle#3$}
+  \end{#1}
+ }
+\ExplSyntaxOff
 
 %-------- Renewed commands --------%
 
@@ -211,6 +230,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \DeclareMathOperator{\ob}{Ob}
 \DeclareMathOperator{\Tr}{Tr}
 \DeclareMathOperator{\el}{El}
+\DeclareMathOperator{\votimes}{\varotimes}
 
 
 
@@ -314,6 +334,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\jumpmap}{\ol{\jump}}
 \newcommand{\founds}{\Yleft}
 \newcommand{\cofree}{\mathfrak{c}}
+\newcommand{\free}{\mathfrak{m}}
 
 % lenses
 \newcommand{\bigcocl}[2]{
@@ -453,17 +474,17 @@ The monoidal structure $\tri$ is left distributive with respect to $+$ and $\tim
 	0\tri q&\cong 0&&(p+p')\tri q\cong (p\tri q)+(p'\tri q)\label{eqn.comp_plus}\\
 	1\tri q&\cong 1&&(p\times p')\tri q\cong (p\tri q)\times(p'\tri q)\label{eqn.comp_times}
 \end{align}
-In fact, $\tri$ preserves all limits in the left-variable, and it preserves connected limits in the right variable. If $p$ is finitary (each $p[I]$ is a finite set) then for any sifted (e.g.\ filtered) category $J$ and diagram $q\colon J\to\poly$, the natural map
+In fact, $\tri$ preserves all limits in the left-variable, and it preserves connected limits in the right variable. If $p$ is finitary (each $p[I]$ is a finite set) then for any sifted (e.g.\ filtered) category $\cat{J}$ and diagram $q\colon \cat{J}\to\poly$, the natural map
 \begin{equation}\label{eqn.finitary_tri_sifted}
-  \colim_{j\in J}(p\tri q_j)
+  \colim_{j\in \cat{J}}(p\tri q_j)
   \To{\cong}
-	p\tri\colim_{j\in J}q_j
+	p\tri\colim_{j\in \cat{J}}q_j
 \end{equation}
-is an isomorphism. For any category $I$, diagram $p\colon I\to\polycart$ of cartesian maps, and polynomial $q:\poly$, the natural map
+is an isomorphism. For any category $\cat{I}$, diagram $p\colon \cat{I}\to\polycart$ of cartesian maps, and polynomial $q:\poly$, the natural map
 \begin{equation}\label{eqn.cart_tri}
-	\colim_{i\in I}(p_i\tri q)
+	\colim_{i\in \cat{I}}(p_i\tri q)
 	\To{\cong}
-	(\colim_{i\in I}p_i)\tri q
+	(\colim_{i\in \cat{I}}p_i)\tri q
 \end{equation}
 is an isomorphism. 
 
@@ -625,7 +646,7 @@ Given $\varphi\colon p\to q\tri r$, we denote its image by $(\varphi.1,\varphi.2
 The indexed coclosure is a very well-behaved structure.
 \begin{align}
 	p\cocl{!}\yon^A&\cong Ap\\
-	p\cocl{\id}p&\cong\dot{p}\yon\label{eqn.deriv}\\
+	p\cocl{\id}p&\cong p_*\label{eqn.deriv}\\
 	(p+p')\cocl{(f,f')}q&\cong(p\cocl{f}q)+(p'\cocl{f'}q)\\
 	p\cocl{(f,g)}(q\times q')&\cong(p\cocl{f}q)+(p\cocl{g}q')\\
 	(p\cocl{f}q)\times p'&\cong(p\times p')\cocl{(p\times!)\then f}q\\
@@ -635,24 +656,24 @@ The indexed coclosure is a very well-behaved structure.
 \end{align}
 In \eqref{eqn.deriv}, $\dot{p}$ is the derivative of $p$. We find
 \begin{equation}
-p_*\coloneqq\dot{p}\yon=p\cocl{\id}p=\sum_{I\in p(1)}p[I]\yon^{p[I]}
+p_*\coloneqq \dot{p}\yon=p\cocl{\id}p=\sum_{I\in p(1)}p[I]\yon^{p[I]}
 \end{equation}
 to be a much more fundamental construction than the derivative itself. For example, the bundle representation of a polynomial $p$ is $p_*(1)\to p(1)$. There are natural maps $p_*\to p$ and $p_*\to\yon$.
 
 While $p\mapsto p_*$ is not functorial in $\poly$, it is functorial in the Cartesian morphisms $\poly^{\text{cart}}$. It is also functorial as a map $\poly\to\Span(\poly)$:
 \begin{align}
 	\frown\colon\poly&\to\Span(\poly)\\
-	p&\mapsto\dot{p}\yon\\
-	(p\To{\varphi}q)&\mapsto\big(\dot{p}\yon\from(p\cocl{\varphi_1}q)\to\dot{q}\yon\big)
+	p&\mapsto p_*\\
+	(p\To{\varphi}q)&\mapsto\big( p_*\from(p\cocl{\varphi_1}q)\to q_*\big)
 \end{align}\goodbreak
 That is, for any $p\To{\varphi}q\To{\psi}r$, there is an isomorphism
 \begin{equation}
-	(p\cocl{\varphi_1}q)\times_{\dot{q}\yon}(q\cocl{\psi_1}r)\cong p\cocl{\varphi_1\then\psi_1}r
+	(p\cocl{\varphi_1}q)\times_{ q_*}(q\cocl{\psi_1}r)\cong p\cocl{\varphi_1\then\psi_1}r
 \end{equation}
-This functor is strong monoidal with respect to both $+$ and $\otimes$. One may think of it as representing the bundle view of $\poly$. Indeed, for any $p\in\poly$ we have a counit map $\epsilon_p\colon\dot{p}\yon\to p$, and given $\varphi\colon p\to q$, there is an induced span
+This functor is strong monoidal with respect to both $+$ and $\otimes$. One may think of it as representing the bundle view of $\poly$. Indeed, for any $p\in\poly$ we have a counit map $\epsilon_p\colon p_*\to p$, and given $\varphi\colon p\to q$, there is an induced span
 \begin{equation}
 \begin{tikzcd}
-	\dot{p}\yon\ar[d]&p\cocl{\varphi_1}q\ar[d]\ar[l]\ar[r]&\dot{q}\yon\ar[d]\\
+	 p_*\ar[d]&p\cocl{\varphi_1}q\ar[d]\ar[l]\ar[r]& q_*\ar[d]\\
 	p\ar[r, equal]&p\ar[r,"\varphi"']&q
 \end{tikzcd}
 \end{equation}
@@ -827,12 +848,12 @@ There is a free $\tri$-monoid (often called the free monad) construction on $\po
 		\ar[from=r, phantom, "\scriptstyle\bot"]
   	&
 	\Cat{Mon}(\poly)
-		\ar[from=l, shift right=-8pt, "\mathfrak{m}"]
+		\ar[from=l, shift right=-8pt, "\free"]
 \end{tikzcd}
 \end{equation}
-where $U$ is the forgetful functor that sends a monoid to its carrier. The free $\tri$-monoid $\mathfrak{m}_p$ on $p\in\poly$ is constructed in two steps. For any finitary polynomial $q$---one for which each $q[J]$ is a finite set---the free $\tri$-monoid on $q$ can be constructed in one step, namely as the colimit:
+where $U$ is the forgetful functor that sends a monoid to its carrier. The free $\tri$-monoid $\free_p$ on $p\in\poly$ is constructed in two steps. For any finitary polynomial $q$---one for which each $q[J]$ is a finite set---the free $\tri$-monoid on $q$ can be constructed in one step, namely as the colimit:
 \begin{equation}
-	\mathfrak{m}_q\coloneqq\colim(\cdots\from q_{n+1}\From{g_n}q_n\from\cdots\from q_1\From{g_0} q_0)
+	\free_q\coloneqq\colim(\cdots\from q_{n+1}\From{g_n}q_n\from\cdots\from q_1\From{g_0} q_0)
 \end{equation}
 where the $q_k$ are defined inductively as follows:
 \begin{align}
@@ -840,49 +861,76 @@ where the $q_k$ are defined inductively as follows:
 \intertext{and the maps $g_k\colon q_{k}\to q_{k+1}$ are defined inductively as follows:}
 	q_0=\yon&\To{g_0\coloneqq\tn{incl}}\yon+q=q_1&q_{k+1}=\yon+(q\tri q_{k})&\To{g_{k+1}\coloneqq\yon+(q\tri g_k)}\yon+(q\tri q_{k+1})=q_{k+2}
 \end{align}
-An arbitrary polynomial $p$ can be written as the filtered limit of its vertical projections $p\to p^{j}$ onto finitary polynomials: that is, for each sum-component $I\in p(1)$, just replace $p[I]$ by an arbitrary finite subset of it, and take the limit of all such things under component-wise projection. That limit is isomorphic to $p$, and we write $p\cong\lim_{j\in J_p}p^{(j)}$. By construction, each of these $p^{(j)}$ is finitary, so let $\mathfrak{m}_p^{(j)}\coloneqq\mathfrak{m}_{p^{(j)}}$ denote the free monad on it, constructed as above. Then finally we construct the free monad $\mathfrak{m}_p$ on $p$ as their filtered limit:
+An arbitrary polynomial $p$ can be written as the filtered limit of its vertical projections $p\to p^{j}$ onto finitary polynomials: that is, for each sum-component $I\in p(1)$, just replace $p[I]$ by an arbitrary finite subset of it, and take the limit of all such things under component-wise projection. That limit is isomorphic to $p$, and we write $p\cong\lim_{j\in J_p}p^{(j)}$. By construction, each of these $p^{(j)}$ is finitary, so let $\free_p^{(j)}\coloneqq\free_{p^{(j)}}$ denote the free monad on it, constructed as above. Then finally we construct the free monad $\free_p$ on $p$ as their filtered limit:
 \begin{equation}
-	\mathfrak{m}_p\coloneqq\lim_{j\in J_p}\mathfrak{m}_p^{(j)}.
+	\free_p\coloneqq\lim_{j\in J_p}\free_p^{(j)}.
 \end{equation}
 The proof uses \cref{eqn.finitary_tri_sifted,eqn.cart_tri}.
 
 Analogous to \cref{eqn.cofree_iso} there is an isomorphism of polynomials
 \begin{equation}
-	 \yon+(p\tri\mathfrak{m}_p)\To{\cong}\mathfrak{m}_p.
+	 \yon+(p\tri\free_p)\To{\cong}\free_p.
 	\end{equation}
 
 
 For any polynomial $p\in\poly$ and set $X\in\smset$, there is a natural bijection
 \begin{equation}
-  \mathfrak{m}_p\tri X
+  \free_p\tri X
   \cong
-	\mathfrak{m}_{p+X}\tri 0  
+	\free_{p+X}\tri 0  
 \end{equation}
 and each is isomorphic to the free $p$-algebra on the set $X$.
 
 For any polynomial $p\in\poly$ and set $X\in\smset$, there is a natural bijection
 \begin{equation}
-  \mathfrak{m}_p\tri X
+  \free_p\tri X
   \cong
-	\mathfrak{m}_{p+X}\tri 0  
+	\free_{p+X}\tri 0  
 \end{equation}
 and each is isomorphic to the free $p$-algebra on the set $X$.
 
-The free monad monad $\mathfrak{m}\colon\poly\to\poly$ is not lax monoidal with respect to $\otimes$ on both sides, but it is lax monoidal with $\vee$ in many ways:
+The free monad monad $\free\colon\poly\to\poly$ is not lax monoidal with respect to $\otimes$ on both sides, but it is lax monoidal with $\vee$ in many ways:
 \begin{align}\label{eqn.vees}
-	\mathfrak{m}&\colon(\poly,0,\vee)\to(\poly,0,+)\\
-	\mathfrak{m}&\colon(\poly,0,\vee)\to(\poly,\yon,\otimes)\\
-	\mathfrak{m}&\colon(\poly,0,\vee)\to(\poly,\yon,\tri)\\
-	\mathfrak{m}&\colon(\poly,0,\vee)\to(\poly,0,\vee)
+	\free&\colon(\poly,0,\vee)\to(\poly,0,+)\\
+	\free&\colon(\poly,0,\vee)\to(\poly,\yon,\otimes)\\
+	\free&\colon(\poly,0,\vee)\to(\poly,\yon,\tri)\\
+	\free&\colon(\poly,0,\vee)\to(\poly,0,\vee)
 \end{align}
 That is, there are natural and coherent maps
 \begin{align}
-	\mathfrak{m}_p+\mathfrak{m}_q&\to\mathfrak{m}_{p\vee q}\\
-	\mathfrak{m}_p\otimes\mathfrak{m}_q&\to\mathfrak{m}_{p\vee q}\\
-	\mathfrak{m}_p\tri\mathfrak{m}_q&\to\mathfrak{m}_{p\vee q}\\
-	\mathfrak{m}_p\vee\mathfrak{m}_q&\to\mathfrak{m}_{p\vee q}
+	\free_p+\free_q&\to\free_{p\vee q}\\
+	\free_p\otimes\free_q&\to\free_{p\vee q}\\
+	\free_p\tri\free_q&\to\free_{p\vee q}\\
+	\free_p\vee\free_q&\to\free_{p\vee q}
 \end{align}
 
+For any $p,q:\poly$ there is a map $\free_p\otimes\cofree_q\to\free_{p\otimes q}$ inducing a monad homomorphism:
+\begin{equation}
+	\free_p\to[\cofree_q,\free_{p\otimes q}].
+\end{equation}
+More generally, for any finite set $I$ and polynomials $p,q\colon I\to\poly$, there is a monad homomorphism (shown in larger font for the reader's convenience):
+\begin{sequation}
+\free_{\bigvee_{\!i:I}\,p_i}
+\to
+\Big[
+\,
+	\underset{\mbox{\small$i{:}I$}}{\votimes}\,\cofree_{q_i}
+\,,\,
+	\free_{\bigvee_{\!i:I}\;(p_i\otimes q_i)}
+\,
+\Big]
+\end{sequation}
+%\fontsize{16pt}{16pt}\selectfont
+%\[
+%\free_{\bigvee_{\!i:I}\,p_i}
+%\to
+%\left[
+%	\underset{\mbox{\small$i{:}I$}}{\votimes}\,\cofree_{q_i},
+%	\free_{\bigvee_{\!i:I}\;(p_i\otimes q_i)}
+%\right]
+%\]
+%\normalsize
+e.g.\ there is a monad map $\free_{p\vee p'}\to\left[\cofree_{q}\otimes\cofree_{q'}\;,\;\free_{(p\otimes q)\vee(p'\otimes q')}\right]$.
 
 
 \chapter{*-Bifibration over $\smset$ and factorization systems}
