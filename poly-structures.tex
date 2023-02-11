@@ -446,19 +446,18 @@ There is a nonsymmetric monoidal structure on $\poly$ given by composing polynom
 \begin{equation}
 p\tri q\coloneqq\sum_{I\in p(1)}\sum_{J\colon p[I]\to q(1)}\yon^{\sum\limits_{i\in p[I]}q[Ji]}
 \end{equation}
+If $p\to p'$ and $q\to q'$ are cartesian, then so is $p\tri q\to p'\tri q'$. If $q\to q'$ is vertical, then so is $p\tri q\to p\tri q'$.
 
-This monoidal structure is left distributive with respect to $+$ and $\times$:
+The monoidal structure $\tri$ is left distributive with respect to $+$ and $\times$:
 \begin{align}
-	(p+p')\tri q\cong (p\tri q)+(p'\tri q)\label{eqn.comp_plus}\\
-	(p\times p')\tri q\cong (p\tri q)\times(p'\tri q)\label{eqn.comp_times}
+	0\tri q&\cong 0&&(p+p')\tri q\cong (p\tri q)+(p'\tri q)\label{eqn.comp_plus}\\
+	1\tri q&\cong 1&&(p\times p')\tri q\cong (p\tri q)\times(p'\tri q)\label{eqn.comp_times}
 \end{align}
-The monoidal structure $\tri$ preserves all limits in the left-variable, and it preserves connected limits in the right variable. If $p$ is finitary (all $p[I]$ are finite) then for any diagram $q\colon J\to\poly$ with $J\in\smcat$ filtered, the natural map
-\begin{equation}
-\colim_{j\in J}\poly(p,q_j)\to\poly(p,\colim_{j\in J}q_j)
-\end{equation}
-is an isomorphism. For any filtered diagram $p\colon J\to\polycart$ of cartesian maps and any $q\in\poly$, the natural map
-\begin{equation}
-\poly(\colim_{j\in J}p_j,q)\to\lim_{j\in J}\poly(p_j,q)
+In fact, $\tri$ preserves all limits in the left-variable, and it preserves connected limits in the right variable. If $p$ is finitary (all $p[I]$ are finite) then for any sifted (e.g.\ filtered) category $J$ and diagram $q\colon J\to\polycart$ of cartesian maps, the natural map
+\begin{equation}\label{eqn.tri_sifted}
+  \colim_{j\in J}(p\tri q_j)
+  \To{\cong}
+	p\tri\colim_{j\in J}q_j
 \end{equation}
 is an isomorphism.
 
@@ -576,7 +575,7 @@ The coclosure interacts with $\tri$ by
 \end{equation}
 and
 \begin{equation}
-	\cocr{p\tri p'}{q\tri q'}\to\cocr{p\;\tri\;\cocr{p'}{q'}}{q}
+	\cocr{p'\tri p}{q'\tri q}\to\cocr{p'\;\tri\;\cocr{p}{q}}{q'}
 \end{equation}
 
 Just like evaluation is the most common use of a closure, co-evaluation is the most common use of this coclosure: for any $p,q\in\poly$ one has
