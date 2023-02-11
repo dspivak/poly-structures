@@ -453,13 +453,19 @@ The monoidal structure $\tri$ is left distributive with respect to $+$ and $\tim
 	0\tri q&\cong 0&&(p+p')\tri q\cong (p\tri q)+(p'\tri q)\label{eqn.comp_plus}\\
 	1\tri q&\cong 1&&(p\times p')\tri q\cong (p\tri q)\times(p'\tri q)\label{eqn.comp_times}
 \end{align}
-In fact, $\tri$ preserves all limits in the left-variable, and it preserves connected limits in the right variable. If $p$ is finitary (all $p[I]$ are finite) then for any sifted (e.g.\ filtered) category $J$ and diagram $q\colon J\to\polycart$ of cartesian maps, the natural map
-\begin{equation}\label{eqn.tri_sifted}
+In fact, $\tri$ preserves all limits in the left-variable, and it preserves connected limits in the right variable. If $p$ is finitary (each $p[I]$ is a finite set) then for any sifted (e.g.\ filtered) category $J$ and diagram $q\colon J\to\poly$, the natural map
+\begin{equation}\label{eqn.finitary_tri_sifted}
   \colim_{j\in J}(p\tri q_j)
   \To{\cong}
 	p\tri\colim_{j\in J}q_j
 \end{equation}
-is an isomorphism.
+is an isomorphism. For any category $I$, diagram $p\colon I\to\polycart$ of cartesian maps, and polynomial $q:\poly$, the natural map
+\begin{equation}\label{eqn.cart_tri}
+	\colim_{i\in I}(p_i\tri q)
+	\To{\cong}
+	(\colim_{i\in I}p_i)\tri q
+\end{equation}
+is an isomorphism. 
 
 The monoidal structure $\tri$ is duoidal with $\otimes$, i.e.\ there is a natural transformation
 \begin{equation}\label{duoidal}
@@ -795,7 +801,7 @@ where the $p_k$ are defined inductively as follows:
 	p_1=p\times\yon&\To{f_0\coloneqq\tn{proj}}\yon=p_0&p_{k+2}=(p\tri p_{k+1})\times\yon&\To{f_{k+1}\coloneqq(p\tri f_k)\times\yon}(p\tri p_{k})\times\yon=p_{k+1}
 \end{align}
 The map $\cofree\to\yon$ is easy and the map $\cofree\to\cofree\tri\cofree$ is given by maps $p_{m+n}\to p_m\tri p_n$, which themselves arise by induction on $n$, properties of $\frown$, and maps $p\tri p_m\to p_m\tri p$ that  arise by induction on $m$. There is an isomorphism of polynomials
-\begin{equation}
+\begin{equation}\label{eqn.cofree_iso}
 	\cofree_p\To{\cong} (p\tri\cofree_p)\times\yon.
 \end{equation}
 For any $A\in\smset$, we have $\cofree_{A\yon}\cong(A\yon)^\nn$.
@@ -838,6 +844,8 @@ An arbitrary polynomial $p$ can be written as the filtered limit of its vertical
 \begin{equation}
 	\mathfrak{m}_p\coloneqq\lim_{j\in J_p}\mathfrak{m}_p^{(j)}.
 \end{equation}
+The proof uses \cref{eqn.finitary_tri_sifted,eqn.cart_tri}.
+
 Analogous to \cref{eqn.cofree_iso} there is an isomorphism of polynomials
 \begin{equation}
 	 \yon+(p\tri\mathfrak{m}_p)\To{\cong}\mathfrak{m}_p.
