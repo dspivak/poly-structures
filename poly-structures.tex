@@ -187,7 +187,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \DeclareMathAccent{\widecheck}{0}{mathx}{"71}
 
 \ExplSyntaxOn
-\NewDocumentEnvironment{sequation}{O{\fontsize{16pt}{16pt}\selectfont
+\NewDocumentEnvironment{sequation}{O{\fontsize{15pt}{15pt}\selectfont
 }b}
  {
   \yufip_sequation:nnn {equation}{#1}{#2}
@@ -406,7 +406,7 @@ In this document, we collect a list of categorical structures on the category $\
 
 This document is only meant as a handy guide to the abundance of structure in $\poly$. In particular, we do not supply proofs, though we have written about most of these structures elsewhere; see \cite{spivak2022poly}, \cite{spivak2021functorial}, and \cite{spivak2022polynomial}. For everything else written here, one can consider it to be only conjecture, since in some cases we have not checked all the details. Hence, if someone proves something written here---something which has not been proven elsewhere---that person should be taken to have the professional ``priority'' and credit. In particular, we wish to claim no credit for originality of anything contained in this document, though most of it was discovered independently by the author, so we also do not supply additional references. We also make absolutely no claim of completeness.
 
-\bigskip
+\chapter{Background and notation}
 
 A polynomial functor $p\colon\smset\to\smset$ is any functor that's isomorphic to a coproduct of representables
 \[
@@ -419,7 +419,9 @@ p'\coloneqq\sum_{I'\in p'(1)}\yon^{p'[I']}
 q\coloneqq\sum_{J\in q(1)}\yon^{q[J]}.
 \]
 
-We refer to elements of $p(1)$ as \emph{positions} of $p$ and, for each $I\in p(1)$, we refer to the elements of $p[I]$ as \emph{directions} at $I$. A morphism between polynomials is a natural transformation $\varphi\colon p\to q$; by the Yoneda lemma and universal property of coproducts, it consists of a function $\varphi_1\colon p(1)\to q(1)$ and, for each $I\in p(1)$ a function $\varphi^\sharp_I\colon q[\varphi_1(I)]\to p[I]$. The associated category of polynomial functors and morphisms between them is denoted $\poly$. 
+We refer to elements of $p(1)$ as \emph{positions} of $p$ and, for each $I\in p(1)$, we refer to the elements of $p[I]$ as \emph{directions} at $I$. A morphism between polynomials is a natural transformation $\varphi\colon p\to q$; by the Yoneda lemma and universal property of coproducts, it consists of a function $\varphi_1\colon p(1)\to q(1)$ and, for each $I\in p(1)$ a function $\varphi^\sharp_I\colon q[\varphi_1(I)]\to p[I]$. A map $\varphi$ is called \emph{vertical} if $\varphi_1$ is identity on positions; it is called \emph{cartesian} if for each $I\in p(1)$ the function $\varphi_I^\sharp$ is a bijection; see \cref{chap.bifib} for more on this. 
+
+The category of polynomial functors and morphisms between them is denoted $\poly$; the wide subcategory of polynomial functors and cartesian morphisms between them is denoted $\polycart$. The forgetful functor $\poly\to\Cat{Fun}(\smset,\smset)$ preserves limits and coproducts. The forgetful functor $\polycart\to\Cat{Fun}(\smset,\smset)$ preserves all limits and colimits.
 %For more, see \cref{chap.background}. 
 
 
@@ -460,6 +462,20 @@ which has unit $0$. These lead to the following symmetric monoidal products on $
 \end{align}
 The first two are highly relevant: the first ($\times$) is the categorical product, and the second ($\otimes$) is the \emph{Dirichlet} product, both of which come up often in practice. The third has so far appeared less useful.
 
+The dirichlet product commutes with connected limits in either variable: for any connected category $\cat{J}$, functor $p\colon\cat{J}\to\poly$, and polynomial $q$, the induced map
+\begin{equation}
+	\left(\lim_{j\in\cat{J}}p_j\right)\otimes q
+	\To{\cong}
+	\lim_{j\in\cat{J}}(p_j\otimes q)
+\end{equation}
+is an isomorphism. It commutes with all colimits in either variable: for any category $\cat{J}$, functor $p\colon\cat{J}\to\poly$, and polynomial $q$, the induced map
+\begin{equation}
+	\colim_{j\in\cat{J}}(p_j\otimes q)
+	\To{\cong}
+	\left(\colim_{j\in\cat{J}}p_j\right)\otimes q
+\end{equation}
+is an isomorphism.
+
 %-------- Chapter --------%
 \chapter{Substitution product}
 
@@ -486,7 +502,7 @@ is an isomorphism. For any category $\cat{I}$, diagram $p\colon \cat{I}\to\polyc
 	\To{\cong}
 	(\colim_{i\in \cat{I}}p_i)\tri q
 \end{equation}
-is an isomorphism. 
+is an isomorphism.
 
 The monoidal structure $\tri$ is duoidal with $\otimes$, i.e.\ there is a natural transformation
 \begin{equation}\label{duoidal}
@@ -536,7 +552,7 @@ These satisfy the defining universal properties:
 \end{align}
 The first one, $q^p$, is the Cartesian closure; its standard form is not particularly enlightening. The second one, $[p,q]$, is what we call the \emph{Dirichlet closure}; it has a very nice standard form:
 \[
-[p,q]\cong\sum_{\varphi\in\poly(p,q)}\yon^{\sum\limits_{I\in p(1)}q[\varphi_1I]}
+[p,q]\cong\sum_{\varphi:\poly(p,q)}\yon^{\sum\limits_{I\in p(1)}q[\varphi_1I]}
 \]
 where $\varphi_1\colon p(1)\to q(1)$ is the $1$-component of the natural transformation $\varphi$. Another nice representation is
 \begin{equation}
@@ -605,7 +621,7 @@ and
 	\cocr{p'\tri p}{q'\tri q}\to\cocr{p'\;\tri\;\cocr{p}{q}}{q'}
 \end{equation}
 
-Just like evaluation is the most common use of a closure, co-evaluation is the most common use of this coclosure: for any $p,q\in\poly$ one has
+Just like evaluation is the most common use of a closure, co-evaluation is the most common use of this coclosure: for any $p,q:\poly$ one has
 \begin{equation}
 p\to\cocr{p}{q}\tri q
 \end{equation}
@@ -670,7 +686,7 @@ That is, for any $p\To{\varphi}q\To{\psi}r$, there is an isomorphism
 \begin{equation}
 	(p\cocl{\varphi_1}q)\times_{ q_*}(q\cocl{\psi_1}r)\cong p\cocl{\varphi_1\then\psi_1}r
 \end{equation}
-This functor is strong monoidal with respect to both $+$ and $\otimes$. One may think of it as representing the bundle view of $\poly$. Indeed, for any $p\in\poly$ we have a counit map $\epsilon_p\colon p_*\to p$, and given $\varphi\colon p\to q$, there is an induced span
+This functor is strong monoidal with respect to both $+$ and $\otimes$. One may think of it as representing the bundle view of $\poly$. Indeed, for any $p:\poly$ we have a counit map $\epsilon_p\colon p_*\to p$, and given $\varphi\colon p\to q$, there is an induced span
 \begin{equation}
 \begin{tikzcd}
 	 p_*\ar[d]&p\cocl{\varphi_1}q\ar[d]\ar[l]\ar[r]& q_*\ar[d]\\
@@ -737,7 +753,7 @@ E.g.\ in the case of monomials we have $I\yon^A\dagger J\yon^B\cong IJ\yon^{AB^I
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}
 
-There are adjunctions between $\poly$ and $\smset$ and between $\poly$ and $\smset\op$, each labeled by where they send $p\in\poly$ and $A\in\smset$:
+There are adjunctions between $\poly$ and $\smset$ and between $\poly$ and $\smset\op$, each labeled by where they send $p:\poly$ and $A\in\smset$:
 \begin{equation}\label{eqn.adjunctions}
 \begin{tikzcd}[column sep=60pt]
   \poly
@@ -811,7 +827,7 @@ There is a cofree $\tri$-comonoid (often called the free comonad) construction o
 		\ar[from=l, shift right=-8pt, "U"]
 \end{tikzcd}
 \end{equation}
-where $U$ is the forgetful functor that sends a comonoid to its carrier. The cofree comonoid $\cofree_p$ on $p\in\poly$ is carried by the colimit
+where $U$ is the forgetful functor that sends a comonoid to its carrier. The cofree comonoid $\cofree_p$ on $p:\poly$ is carried by the limit
 \begin{equation}
 \cofree_p\coloneqq\lim(\cdots\to p_{n+1}\To{f_n} p_n\to\cdots\to p_1\To{f_0} p_0)
 \end{equation}
@@ -828,7 +844,7 @@ The map $\cofree\to\yon$ is easy and the map $\cofree\to\cofree\tri\cofree$ is g
 For any $A\in\smset$, we have $\cofree_{A\yon}\cong(A\yon)^\nn$.
 
 The cofree comonad is lax monoidal with respect to $\otimes$:
-\begin{equation}
+\begin{equation}\label{cofree_lax_monoidal}
   \yon\to\cofree_\yon
   \qqand
   \cofree_p\otimes\cofree_q\to\cofree_{p\otimes q}.
@@ -851,7 +867,7 @@ There is a free $\tri$-monoid (often called the free monad) construction on $\po
 		\ar[from=l, shift right=-8pt, "\free"]
 \end{tikzcd}
 \end{equation}
-where $U$ is the forgetful functor that sends a monoid to its carrier. The free $\tri$-monoid $\free_p$ on $p\in\poly$ is constructed in two steps. For any finitary polynomial $q$---one for which each $q[J]$ is a finite set---the free $\tri$-monoid on $q$ can be constructed in one step, namely as the colimit:
+where $U$ is the forgetful functor that sends a monoid to its carrier. The free $\tri$-monoid $\free_p$ on $p:\poly$ is constructed in two steps. For any finitary polynomial $q$---one for which each $q[J]$ is a finite set---the free $\tri$-monoid on $q$ can be constructed in one step, namely as the colimit:
 \begin{equation}
 	\free_q\coloneqq\colim(\cdots\from q_{n+1}\From{g_n}q_n\from\cdots\from q_1\From{g_0} q_0)
 \end{equation}
@@ -873,7 +889,7 @@ Analogous to \cref{eqn.cofree_iso} there is an isomorphism of polynomials
 	\end{equation}
 
 
-For any polynomial $p\in\poly$ and set $X\in\smset$, there is a natural bijection
+For any polynomial $p:\poly$ and set $X\in\smset$, there is a natural bijection
 \begin{equation}
   \free_p\tri X
   \cong
@@ -881,7 +897,7 @@ For any polynomial $p\in\poly$ and set $X\in\smset$, there is a natural bijectio
 \end{equation}
 and each is isomorphic to the free $p$-algebra on the set $X$.
 
-For any polynomial $p\in\poly$ and set $X\in\smset$, there is a natural bijection
+For any polynomial $p:\poly$ and set $X\in\smset$, there is a natural bijection
 \begin{equation}
   \free_p\tri X
   \cong
@@ -889,7 +905,15 @@ For any polynomial $p\in\poly$ and set $X\in\smset$, there is a natural bijectio
 \end{equation}
 and each is isomorphic to the free $p$-algebra on the set $X$.
 
-The free monad monad $\free\colon\poly\to\poly$ is not lax monoidal with respect to $\otimes$ on both sides, but it is lax monoidal with $\vee$ in many ways:
+The free monad monad $\free\colon\poly\to\poly$ is not lax monoidal with respect to $\otimes$ on both sides,%
+\footnote{For example, there is no map of polynomials 
+$
+  \free_1\otimes\free_0\cong\yon+1
+  \To{??}
+  \yon\cong\free_0\
+$.
+}
+but it is lax monoidal with $\vee$ in many ways:
 \begin{align}\label{eqn.vees}
 	\free&\colon(\poly,0,\vee)\to(\poly,0,+)\\
 	\free&\colon(\poly,0,\vee)\to(\poly,\yon,\otimes)\\
@@ -904,22 +928,44 @@ That is, there are natural and coherent maps
 	\free_p\vee\free_q&\to\free_{p\vee q}
 \end{align}
 
-For any $p,q:\poly$ there is a map $\free_p\otimes\cofree_q\to\free_{p\otimes q}$ inducing a monad homomorphism:
-\begin{equation}
-	\free_p\to[\cofree_q,\free_{p\otimes q}].
+The functor $\free_-\colon\poly\to\poly$ is itself a monad and the functor $\cofree_-\colon\poly\to\poly$ is itself a comonad. Moreover, the former is a module over the latter, i.e.\ for any $p,q:\poly$ there is a natural map
+\begin{equation}\label{module_easy}
+  \free_p\otimes\cofree_q\to\free_{p\otimes q}
 \end{equation}
-More generally, for any finite set $I$ and polynomials $p,q\colon I\to\poly$, there is a monad homomorphism (shown in larger font for the reader's convenience):
-\begin{sequation}
-\free_{\bigvee_{\!i:I}\,p_i}
-\to
-\Big[
-\,
-	\underset{\mbox{\small$i{:}I$}}{\votimes}\,\cofree_{q_i}
-\,,\,
-	\free_{\bigvee_{\!i:I}\;(p_i\otimes q_i)}
-\,
-\Big]
-\end{sequation}
+satisfying the action laws for the maps from \cref{cofree_lax_monoidal} as well as coherence for $\free$ as a monad and $\cofree$ as a comonad:
+\[
+\begin{tikzcd}
+  p\otimes\cofree_q\ar[r]\ar[d]&p\otimes q\ar[d]\\
+  \free_p\otimes\cofree_q\ar[r]&\free_{p\otimes q}
+\end{tikzcd}
+\hspace{.6in}
+\begin{tikzcd}
+	\free_{\free_p}\otimes\cofree_q\ar[d]\ar[r]&
+	\free_{\free_p}\otimes\cofree_{\cofree_q}\ar[r]&
+	\free_{\free_p\otimes\cofree_q}\ar[r]&
+	\free_{\free_{p\otimes q}}\ar[d]\\
+	\free_p\otimes\cofree_q\ar[rrr]&&&
+	\free_{p\otimes q}
+\end{tikzcd}
+\]
+More generally, the functor $\free_{-\vee -}\colon\poly\times\poly\to\poly$ is a module over $\cofree_-$, i.e.\ for any $p,p',q:\poly$ there is a natural map
+\begin{equation}
+  \free_{p\vee p'}\otimes\cofree_q\to\free_{(p\otimes q)\vee p'}
+\end{equation}
+satisfying the action laws and monad-comonad coherence.
+%for any finite set $I$ and polynomials $p,q\colon I\to\poly$, there is a monad homomorphism:%
+%\footnote{\cref{eqn.free_cofree} has double subscripts and is thus shown in larger font for the reader's convenience.}
+%\begin{sequation}\label{eqn.free_cofree}
+%\free_{\bigvee_{\!i:I}\,p_i}
+%\to
+%\Big[
+%\,
+%	\underset{\mbox{\small$i{:}I$}}{\votimes}\,\cofree_{q_i}
+%\,,\,
+%	\free_{\bigvee_{\!i:I}\;(p_i\otimes q_i)}
+%\,
+%\Big]
+%\end{sequation}
 %\fontsize{16pt}{16pt}\selectfont
 %\[
 %\free_{\bigvee_{\!i:I}\,p_i}
@@ -930,10 +976,15 @@ More generally, for any finite set $I$ and polynomials $p,q\colon I\to\poly$, th
 %\right]
 %\]
 %\normalsize
-e.g.\ there is a monad map $\free_{p\vee p'}\to\left[\cofree_{q}\otimes\cofree_{q'}\;,\;\free_{(p\otimes q)\vee(p'\otimes q')}\right]$.
+%In particular, there is a natural map
+%\begin{equation}
+%\free_{p\vee p'}\otimes\cofree_{q}\otimes\cofree_{q'}
+%\to
+%\free_{(p\otimes q)\vee(p'\otimes q')}.
+%\end{equation}
 
 
-\chapter{*-Bifibration over $\smset$ and factorization systems}
+\chapter{*-Bifibration over $\smset$ and factorization systems}\label{chap.bifib}
 
 The functor
 \begin{equation}\label{eqn.bifib}
@@ -952,17 +1003,17 @@ is a *-bifibration. In particular, for any function $f\colon A\to B$, there is a
 	\poly_B
 \end{tikzcd}
 \end{equation}
-where $\poly_X$ is the category of polynomials with positions $p(1)=X$. The images under the functors $f_!$ and $f_*$ of $p\in\poly_A$ are given by
+where $\poly_X$ is the category of polynomials with positions $p(1)=X$. The images under the functors $f_!$ and $f_*$ of $p:\poly_A$ are given by
 \begin{equation}
 	f_!(p)\coloneqq\sum_{b\in B}\yon^{\;\prod\limits_{b=fa}p[a]}
 	\qqand
 	f_*(p)\coloneqq\sum_{b\in B}\yon^{\;\sum\limits_{b=fa}p[a]}
 \end{equation}
-and the image under the functor $f^*$ of $q\in\poly_B$ is given by
+and the image under the functor $f^*$ of $q:\poly_B$ is given by
 \begin{equation}
 	f^*(q)\coloneqq\sum_{a\in A}\yon^{q[fa]}
 \end{equation}
-For any $p\in\poly_A$ and $q\in\poly_B$ there are natural maps
+For any $p:\poly_A$ and $q:\poly_B$ there are natural maps
 \begin{equation}
 	p\to f_!(p)
 	\qqand
