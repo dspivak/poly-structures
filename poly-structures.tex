@@ -452,8 +452,8 @@ It always distributes over $+$:
 p\odot(q_1+q_2)\cong (p\odot q_1)+(p\odot q_2).
 \end{equation}
 
-We know of three symmetric monoidal products on $\smset$, namely $+$, $\times$, and $A\vee B\coloneqq A+(A\times B)+B$,%
-\footnote{I learned this $\vee$ monoidal structure from Richard Garner.}
+We know of three symmetric monoidal products on $\smset$, namely $+$, $\times$, and $(A\vee B\coloneqq A+(A\times B)+B$,%
+\footnote{I learned this $\vee$ monoidal structure on $\smset$ from Richard Garner. Later in \eqref{eqn.vee} we will reuse the symbol $\vee$ to denote an analogous and surprisingly interesting monoidal structure on $\poly$, given by $p\vee q\coloneqq p+(p\otimes q)+q$.}
 which has unit $0$. These lead to the following symmetric monoidal products on $\poly$:
 \begin{align}
 	p\times q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]+ q[J]}\\
@@ -714,10 +714,10 @@ It also satisfies the following:
 %-------- Chapter --------%
 \chapter{Other monoidal structures}
 
-Of the following three monoidal structures, only the first one ($\vee$) appears to be interesting; it will appear prominently in the section on free monads; e.g.\ see \eqref{eqn.vees}.
+Of the following three monoidal structures, only the first one ($\vee$) appears to be interesting; it will appear prominently in \cref{chap.adj_mon_com}.
 
 There is a symmetric monoidal structure on $\poly$ with unit $0$ and product given by
-\begin{equation}
+\begin{equation}\label{eqn.vee}
   p\vee q\coloneqq p+(p\otimes q)+q.
 \end{equation}
 The functor $(p\mapsto p+\yon)$ is strong monoidal $(\poly,0,\vee)\to(\poly,\yon,\otimes)$, i.e. there is a natural isomorphism
@@ -733,6 +733,7 @@ There are two duoidal structures for $\vee$, one with $\tri$ and one with $\otim
 	(p_1\tri p_2)\vee(q_1\tri q_2)&\to(p_1\vee q_1)\tri(p_2\vee q_2)\\
 	(p_1\otimes p_2)\vee(q_1\otimes q_2)&\to(p_1\vee q_1)\otimes(p_2\vee q_2)
 \end{align*}
+We will see in \cref{eqn.vee1,eqn.vee2,eqn.vee3,eqn.vee4} that $\vee$ is surprisingly useful when it comes to free monads.
 
 Here are two other symmetric monoidal structures, though we currently know of no interesting uses of them, so we do not even give them symbols. We are simply using the fact that if a symmetric monoidal product distributes over $+$ then we can follow the pattern we learned from Garner; see \eqref{eqn.ovee}.
 \begin{align}
@@ -751,7 +752,7 @@ E.g.\ in the case of monomials we have $I\yon^A\dagger J\yon^B\cong IJ\yon^{AB^I
 
 
 %-------- Chapter --------%
-\chapter{Adjunctions, monads, and comonads on $\poly$}
+\chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
 
 There are adjunctions between $\poly$ and $\smset$ and between $\poly$ and $\smset\op$, each labeled by where they send $p:\poly$ and $A\in\smset$:
 \begin{equation}\label{eqn.adjunctions}
@@ -843,12 +844,14 @@ The map $\cofree\to\yon$ is easy and the map $\cofree\to\cofree\tri\cofree$ is g
 \end{equation}
 For any $A\in\smset$, we have $\cofree_{A\yon}\cong(A\yon)^\nn$.
 
-The cofree comonad is lax monoidal with respect to $\otimes$:
-\begin{equation}\label{cofree_lax_monoidal}
-  \yon\to\cofree_\yon
-  \qqand
-  \cofree_p\otimes\cofree_q\to\cofree_{p\otimes q}.
-\end{equation}
+In many different ways, the cofree comonad functor $\cofree\colon\poly\to\poly$ is lax monoidal as it maps into the $(\yon,\otimes)$ monoidal structure:%
+\footnote{Recall from \eqref{eqn.ovee} that $p\ovee q\coloneqq \sum_{(I,J): p(1)\times q(1)}\yon^{p[I]+p[I]\times q[J]+q[J]}$.}
+\begin{align}\label{cofree_lax_monoidal}
+  \cofree_p\otimes\cofree_q&\to\cofree_{p\times q}\\
+  \cofree_p\otimes\cofree_q&\to\cofree_{p\otimes q}\\
+  \cofree_p\otimes\cofree_q&\to\cofree_{p\tri q}\\
+	\cofree_p\otimes\cofree_q&\to\cofree_{p\ovee q}  
+\end{align}
 It also has natural comonoid homomorphisms of the form
 \begin{equation}
 	\cofree_{[p,q]}\otimes\cofree_{[p',q']}\to\cofree_{[p+p',q+q']}
@@ -913,18 +916,15 @@ $
   \yon\cong\free_0\
 $.
 }
-but it is lax monoidal with $\vee$ in many ways:
-\begin{align}\label{eqn.vees}
-	\free&\colon(\poly,0,\vee)\to(\poly,0,+)\\
-	\free&\colon(\poly,0,\vee)\to(\poly,\yon,\otimes)\\
-	\free&\colon(\poly,0,\vee)\to(\poly,\yon,\tri)\\
-	\free&\colon(\poly,0,\vee)\to(\poly,0,\vee)
-\end{align}
-That is, there are natural and coherent maps
+but in many different ways, the free monad functor is lax monoidal as it maps out of the $(0,\vee)$ monoidal structure from \eqref{eqn.vee}:
 \begin{align}
+\label{eqn.vee1}
 	\free_p+\free_q&\to\free_{p\vee q}\\
+\label{eqn.vee2}
 	\free_p\otimes\free_q&\to\free_{p\vee q}\\
+\label{eqn.vee3}
 	\free_p\tri\free_q&\to\free_{p\vee q}\\
+\label{eqn.vee4}
 	\free_p\vee\free_q&\to\free_{p\vee q}
 \end{align}
 
