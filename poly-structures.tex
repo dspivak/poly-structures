@@ -453,7 +453,7 @@ p\odot(q_1+q_2)\cong (p\odot q_1)+(p\odot q_2).
 \end{equation}
 
 We know of three symmetric monoidal products on $\smset$, namely $+$, $\times$, and $(A\vee B\coloneqq A+(A\times B)+B$,%
-\footnote{I learned this $\vee$ monoidal structure on $\smset$ from Richard Garner. Later in \eqref{eqn.vee} we will reuse the symbol $\vee$ to denote an analogous and surprisingly interesting monoidal structure on $\poly$, given by $p\vee q\coloneqq p+(p\otimes q)+q$.}
+\footnote{I learned this $\vee$ monoidal structure on $\smset$ from Richard Garner, and Solomon Bothwell later informed me that it's called \href{https://hackage.haskell.org/package/these}{\texttt{These}} in Haskell. Later in \eqref{eqn.vee} we will reuse the symbol $\vee$ to denote an analogous and surprisingly interesting monoidal structure on $\poly$, given by $p\vee q\coloneqq p+(p\otimes q)+q$.}
 which has unit $0$. These lead to the following symmetric monoidal products on $\poly$:
 \begin{align}
 	p\times q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]+ q[J]}\\
