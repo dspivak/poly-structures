@@ -529,12 +529,18 @@ Also, for any $r:\poly$, duoidality $(r\tri p)\otimes x\to r\tri(p\otimes x)$ gi
 	[p,q]\to[r\tri p, r\tri q].
 \end{equation}
 
-There are natural maps that combine $\tri, \times,$ and $\otimes$:
+There are natural maps that combine $\tri$, $\times,$ and $\otimes$:
 \begin{equation}
 	1\to\yon\tri 1
 	\qqand
 	(p_1\tri p_2)\times(q_1\tri q_2)\to (p_1\otimes q_1)\tri (p_2\times q_2)
 \end{equation}
+There are also natural maps that combine $\tri$, $\times$, and $+$.
+\[
+	1\to1\tri 0
+	\qqand
+	(p_1\tri p_2)\times (q_1\tri q_2)\to (p_1\times q_1)\tri(p_2+q_2)
+\]
 
 Monoids with respect to $\tri$ generalize $\Sigma$-free operads. Comonoids with respect to $\tri$ are exactly categories. Bicomodules with respect to $\tri$ are parametric right adjoints between copresheaf categories.
 
@@ -668,7 +674,7 @@ The indexed coclosure is a very well-behaved structure.
 	(p\cocl{f}q)\times p'&\cong(p\times p')\cocl{(p\times!)\then f}q\\
 	(p\cocl{f}q)\tri p'&\cong(p\tri p')\cocl{(p\tri!)\then f}q\\
 	p\cocl{f}(q\tri r)&\cong(p\cocl{f.1}q)\cocl{f.2}r\\
-	(p\otimes p')\cocl{(f,f')}(q\otimes q')&\cong(p\cocl{f}q)\otimes(p'\cocl{f'}q')\\
+	(p\otimes p')\cocl{f\otimes f'}(q\otimes q')&\cong(p\cocl{f}q)\otimes(p'\cocl{f'}q')\\
 \end{align}
 In \eqref{eqn.deriv}, $p_*$ is defined as follows.
 \begin{equation}
@@ -846,8 +852,9 @@ For any $A\in\smset$, we have $\cofree_{A\yon}\cong(A\yon)^\nn$.
 
 In many different ways, the cofree comonad functor $\cofree\colon\poly\to\poly$ is lax monoidal as it maps into the $(\yon,\otimes)$ monoidal structure:%
 \footnote{Recall from \eqref{eqn.ovee} that $p\ovee q\coloneqq \sum_{(I,J): p(1)\times q(1)}\yon^{p[I]+p[I]\times q[J]+q[J]}$.}
-\begin{align}\label{cofree_lax_monoidal}
+\begin{align}
   \cofree_p\otimes\cofree_q&\to\cofree_{p\times q}\\
+  \label{cofree_lax_monoidal}
   \cofree_p\otimes\cofree_q&\to\cofree_{p\otimes q}\\
   \cofree_p\otimes\cofree_q&\to\cofree_{p\tri q}\\
 	\cofree_p\otimes\cofree_q&\to\cofree_{p\ovee q}  
@@ -928,12 +935,24 @@ but in many different ways, the free monad functor is lax monoidal as it maps ou
 	\free_p\vee\free_q&\to\free_{p\vee q}
 \end{align}
 
-The functor $\free_-\colon\poly\to\poly$ is itself a monad and the functor $\cofree_-\colon\poly\to\poly$ is itself a comonad. Moreover, the former is a module over the latter, i.e.\ for any $p,q:\poly$ there is a natural map
+The functor $\free_-\colon\poly\to\poly$ is itself a monad
+\begin{equation}
+	p\to\free_p
+	\qqand
+	\free_{\free_p}\to\free_p
+\end{equation}
+and the functor $\cofree_-\colon\poly\to\poly$ is itself a comonad
+\begin{equation}
+	\cofree_p\to p
+	\qqand
+	\cofree_p\to\cofree_{\cofree_p}. 
+\end{equation}
+Moreover, the former is a module over the latter, i.e.\ for any $p,q:\poly$ there is a natural map
 \begin{equation}\label{module_easy}
   \free_p\otimes\cofree_q\to\free_{p\otimes q}
 \end{equation}
 satisfying the action laws for the maps from \cref{cofree_lax_monoidal} as well as coherence for $\free$ as a monad and $\cofree$ as a comonad:
-\[
+\begin{equation}\label{eqn.monad_comonad_coherence}
 \begin{tikzcd}
   p\otimes\cofree_q\ar[r]\ar[d]&p\otimes q\ar[d]\\
   \free_p\otimes\cofree_q\ar[r]&\free_{p\otimes q}
@@ -947,41 +966,17 @@ satisfying the action laws for the maps from \cref{cofree_lax_monoidal} as well 
 	\free_p\otimes\cofree_q\ar[rrr]&&&
 	\free_{p\otimes q}
 \end{tikzcd}
-\]
-More generally, the functor $\free_{-\vee -}\colon\poly\times\poly\to\poly$ is a module over $\cofree_-$, i.e.\ for any $p,p',q:\poly$ there is a natural map
-\begin{equation}
-  \free_{p\vee p'}\otimes\cofree_q\to\free_{(p\otimes q)\vee p'}
 \end{equation}
-satisfying the action laws and monad-comonad coherence.
-%for any finite set $I$ and polynomials $p,q\colon I\to\poly$, there is a monad homomorphism:%
-%\footnote{\cref{eqn.free_cofree} has double subscripts and is thus shown in larger font for the reader's convenience.}
-%\begin{sequation}\label{eqn.free_cofree}
-%\free_{\bigvee_{\!i:I}\,p_i}
-%\to
-%\Big[
-%\,
-%	\underset{\mbox{\small$i{:}I$}}{\votimes}\,\cofree_{q_i}
-%\,,\,
-%	\free_{\bigvee_{\!i:I}\;(p_i\otimes q_i)}
-%\,
-%\Big]
-%\end{sequation}
-%\fontsize{16pt}{16pt}\selectfont
-%\[
-%\free_{\bigvee_{\!i:I}\,p_i}
-%\to
-%\left[
-%	\underset{\mbox{\small$i{:}I$}}{\votimes}\,\cofree_{q_i},
-%	\free_{\bigvee_{\!i:I}\;(p_i\otimes q_i)}
-%\right]
-%\]
-%\normalsize
-%In particular, there is a natural map
+This induces maps $\free_{[p,\yon]}\to [\cofree_p,\yon]$ and $\cofree_{[p,\yon]}\to[\free_p,\yon]$ and similarly for any monad in place of $\yon$. In particular for $p=\yon^A$ we have an isomorphism
+\begin{equation}
+	\free_{A\yon}\To{\cong}[\cofree_{\yon^A},\yon]
+\end{equation}
+
+%More generally, the functor $\free_{-\vee -}\colon\poly\times\poly\to\poly$ is a module over $\cofree_-$, i.e.\ for any $p,p',q:\poly$ there is a natural map
 %\begin{equation}
-%\free_{p\vee p'}\otimes\cofree_{q}\otimes\cofree_{q'}
-%\to
-%\free_{(p\otimes q)\vee(p'\otimes q')}.
+%  \free_{p\vee p'}\otimes\cofree_q\to\free_{(p\otimes q)\vee p'}
 %\end{equation}
+%satisfying the action laws and monad-comonad coherence, analogous to \eqref{eqn.monad_comonad_coherence}.
 
 
 \chapter{*-Bifibration over $\smset$ and factorization systems}\label{chap.bifib}
