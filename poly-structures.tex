@@ -456,11 +456,21 @@ We know of three symmetric monoidal products on $\smset$, namely $+$, $\times$, 
 \footnote{I learned this $\vee$ monoidal structure on $\smset$ from Richard Garner, and Solomon Bothwell later informed me that it's called \href{https://hackage.haskell.org/package/these}{\texttt{These}} in Haskell. Later in \eqref{eqn.vee} we will reuse the symbol $\vee$ to denote an analogous and surprisingly interesting monoidal structure on $\poly$, given by $p\vee q\coloneqq p+(p\otimes q)+q$.}
 which has unit $0$. These lead to the following symmetric monoidal products on $\poly$:
 \begin{align}
+\label{eqn.times}
 	p\times q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]+ q[J]}\\
+\label{eqn.otimes}
 	p\otimes q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\times q[J]}\\
-	p\ovee q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\vee q[J]}\label{eqn.ovee}
-\end{align}
-The first two are highly relevant: the first ($\times$) is the categorical product, and the second ($\otimes$) is the \emph{Dirichlet} product, both of which come up often in practice. The third has so far appeared less useful.
+\label{eqn.ovee}
+	p\ovee q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\vee q[J]}\end{align}
+The first two are highly relevant: the first ($\times$) is the categorical product, and the second ($\otimes$) is the \emph{Dirichlet} product, both of which come up often in practice. The third has so far appeared less useful, though note that there is a pullback square in $\poly$
+\begin{equation}
+\begin{tikzcd}
+	p\ovee q\ar[r]\ar[d]&
+	p\times q\ar[d]\\
+	p\otimes q\ar[r]&
+	p(1)\times q(1)\ar[ul, phantom, very near end, "\lrcorner"]
+\end{tikzcd}
+\end{equation}
 
 The dirichlet product commutes with connected limits in either variable: for any connected category $\cat{J}$, functor $p\colon\cat{J}\to\poly$, and polynomial $q$, the induced map
 \begin{equation}
@@ -546,17 +556,19 @@ Monoids with respect to $\tri$ generalize $\Sigma$-free operads. Comonoids with 
 
 \chapter{Monoidal closures}
 
-Both $\times$ and $\otimes$ have associated closures, given by
+There are closures for $\times$, $\otimes$, and $\ovee$ (\cref{eqn.times,eqn.otimes,eqn.ovee}), given by
 \begin{align}
   q^p&\coloneqq \prod_{I\in p(1)}q\tri(p[I]+\yon)\label{eqn.cart_cl}\\
-  [p,q]&\coloneqq\prod_{I\in p(1)}q\tri(p[I]\times\yon)
+  [p,q]&\coloneqq\prod_{I\in p(1)}q\tri(p[I]\times\yon)\\
+  \present{p,q}&\coloneqq\prod_{I\in p(1)}q\tri(p[I]+p[I]\yon+\yon)
 \end{align}
 These satisfy the defining universal properties:
 \begin{align}
   \poly(p',q^p)&\cong\poly(p'\times p,q)\\
-  \poly(p',[p,q])&\cong\poly(p'\otimes p,q)
+  \poly(p',[p,q])&\cong\poly(p'\otimes p,q)\\
+  \poly(p',\present{p,q})&\cong\poly(p'\ovee p,q)
 \end{align}
-The first one, $q^p$, is the Cartesian closure; its standard form is not particularly enlightening. The second one, $[p,q]$, is what we call the \emph{Dirichlet closure}; it has a very nice standard form:
+The first one, $q^p$, is the Cartesian closure; its standard form is not particularly enlightening, and neither is that of the third one, $\present{p,q}$. The second one, $[p,q]$, is what we call the \emph{Dirichlet closure}; it has a very nice standard form:
 \[
 [p,q]\cong\sum_{\varphi:\poly(p,q)}\yon^{\sum\limits_{I\in p(1)}q[\varphi_1I]}
 \]
