@@ -452,9 +452,22 @@ It always distributes over $+$:
 p\odot(q_1+q_2)\cong (p\odot q_1)+(p\odot q_2).
 \end{equation}
 
-We know of three symmetric monoidal products on $\smset$, namely $+$, $\times$, and $(A\vee B\coloneqq A+(A\times B)+B$,%
-\footnote{I learned this $\vee$ monoidal structure on $\smset$ from Richard Garner, and Solomon Bothwell later informed me that it's called \href{https://hackage.haskell.org/package/these}{\texttt{These}} in Haskell. Later in \eqref{eqn.vee} we will reuse the symbol $\vee$ to denote an analogous and surprisingly interesting monoidal structure on $\poly$, given by $p\vee q\coloneqq p+(p\otimes q)+q$.}
-which has unit $0$. These lead to the following symmetric monoidal products on $\poly$:
+There are infinite families of monoidal structures on $\smset$. We will only consider four, namely $+$, $\times$,%
+\footnote{
+	We sometimes denote products using juxtaposition, $AB\coloneqq A\times B$. We may also do this for polynomials $pq\coloneqq p\times q$.
+}
+$A\vee B\coloneqq A+(A\times B)+B$,%
+\footnote{I learned th $\vee$ monoidal structure (pronounced ``or'') on $\smset$ from Richard Garner, and Solomon Bothwell later informed me that it's called \href{https://hackage.haskell.org/package/these}{\texttt{These}} in Haskell. I learned the $!$ monoidal structure from \href{https://abuseofnotation.github.io/category-theory-illustrated/}{mathoverlow}.}
+which has unit $0$, and the following
+\begin{equation}
+	A!B\coloneqq
+	\begin{cases}
+		A&\tn{ if }B=0\\
+		B&\tn{ if }A=0\\
+		1&\tn{ if }1\leq AB
+  \end{cases}
+\end{equation}
+which has unit $1$. These lead to the following symmetric monoidal products on $\poly$:
 \begin{align}
 \label{eqn.times}
 	p\times q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]+ q[J]}\\
@@ -594,6 +607,19 @@ The Dirichlet closure has only some of the analogous properties:
 	[p_1\otimes p_2,q]\cong[p_1,[p_2,q]]
 \end{gather}
 
+The cartesian closure also interacts with substitution as follows:
+\begin{equation}
+	r\tri (q^p)\to (r\tri q)^p
+\end{equation}
+and this map is an isomorphism in case $p\cong\yon^A$ for some $A:\smset$. The diagonal $p\to p\times p$ induces a map
+\begin{equation}
+	q^p\to (pq)^p
+\end{equation}
+For $p=A\yon^B$ there is an isomorphism
+\begin{equation}
+	q^{\left(A\yon^B\right)}\cong \yon^A\tri q\tri(B+\yon)
+\end{equation}
+
 Mapping into $\yon$ is often of interest; we have the following maps and isomorphisms:
 \begin{align}
 	[\yon,\yon]&\cong\yon\\
@@ -732,26 +758,26 @@ It also satisfies the following:
 %-------- Chapter --------%
 \chapter{Other monoidal structures}
 
-Of the following three monoidal structures, only the first one ($\vee$) appears to be interesting; it will appear prominently in \cref{chap.adj_mon_com}.
+Of the following three monoidal structures, only the first one ($\curlyvee$) appears to be interesting; it will appear prominently in \cref{chap.adj_mon_com}.
 
 There is a symmetric monoidal structure on $\poly$ with unit $0$ and product given by
 \begin{equation}\label{eqn.vee}
-  p\vee q\coloneqq p+(p\otimes q)+q.
+  p\curlyvee q\coloneqq p+(p\otimes q)+q.
 \end{equation}
-The functor $(p\mapsto p+\yon)$ is strong monoidal $(\poly,0,\vee)\to(\poly,\yon,\otimes)$, i.e. there is a natural isomorphism
+The functor $(p\mapsto p+\yon)$ is strong monoidal $(\poly,0,\curlyvee)\to(\poly,\yon,\otimes)$, i.e.\ there is a natural isomorphism
 \begin{equation}
-	(p+\yon)\otimes(q+\yon)\cong (p\vee q)+\yon.
+	(p+\yon)\otimes(q+\yon)\cong (p\curlyvee q)+\yon.
 \end{equation}
 The identity functor $\poly\to\poly$ has a lax monoidal structure,
 \begin{equation}
-	p+q\to p\vee q.
+	p+q\to p\curlyvee q.
 \end{equation}
-There are two duoidal structures for $\vee$, one with $\tri$ and one with $\otimes$:
+There are two duoidal structures for $\curlyvee$, one with $\tri$ and one with $\otimes$:
 \begin{align*}
-	(p_1\tri p_2)\vee(q_1\tri q_2)&\to(p_1\vee q_1)\tri(p_2\vee q_2)\\
-	(p_1\otimes p_2)\vee(q_1\otimes q_2)&\to(p_1\vee q_1)\otimes(p_2\vee q_2)
+	(p_1\tri p_2)\curlyvee(q_1\tri q_2)&\to(p_1\curlyvee q_1)\tri(p_2\curlyvee q_2)\\
+	(p_1\otimes p_2)\curlyvee(q_1\otimes q_2)&\to(p_1\curlyvee q_1)\otimes(p_2\curlyvee q_2)
 \end{align*}
-We will see in \cref{eqn.vee1,eqn.vee2,eqn.vee3,eqn.vee4} that $\vee$ is surprisingly useful when it comes to free monads.
+We will see in \cref{eqn.vee1,eqn.vee2,eqn.vee3,eqn.vee4} that $\curlyvee$ is surprisingly useful when it comes to free monads.
 
 Here are two other symmetric monoidal structures, though we currently know of no interesting uses of them, so we do not even give them symbols. We are simply using the fact that if a symmetric monoidal product distributes over $+$ then we can follow the pattern we learned from Garner; see \eqref{eqn.ovee}.
 \begin{align}
@@ -860,7 +886,8 @@ The map $\cofree\to\yon$ is easy and the map $\cofree\to\cofree\tri\cofree$ is g
 \begin{equation}\label{eqn.cofree_iso}
 	\cofree_p\To{\cong} (p\tri\cofree_p)\times\yon.
 \end{equation}
-For any $A\in\smset$, we have $\cofree_{A\yon}\cong(A\yon)^\nn$.
+%For any $A\in\smset$, we have $\cofree_{A\yon}\cong(A\yon)^\nn$. 
+If $p\to q$ is cartesian, so is $\cofree_p\to\cofree_q$.
 
 In many different ways, the cofree comonad functor $\cofree\colon\poly\to\poly$ is lax monoidal as it maps into the $(\yon,\otimes)$ monoidal structure:%
 \footnote{Recall from \eqref{eqn.ovee} that $p\ovee q\coloneqq \sum_{(I,J): p(1)\times q(1)}\yon^{p[I]+p[I]\times q[J]+q[J]}$.}
@@ -935,16 +962,16 @@ $
   \yon\cong\free_0\
 $.
 }
-but in many different ways, the free monad functor is lax monoidal as it maps out of the $(0,\vee)$ monoidal structure from \eqref{eqn.vee}:
+but in many different ways, the free monad functor is lax monoidal as it maps out of the $(0,\curlyvee)$ monoidal structure from \eqref{eqn.vee}:
 \begin{align}
 \label{eqn.vee1}
-	\free_p+\free_q&\to\free_{p\vee q}\\
+	\free_p+\free_q&\to\free_{p\curlyvee q}\\
 \label{eqn.vee2}
-	\free_p\otimes\free_q&\to\free_{p\vee q}\\
+	\free_p\otimes\free_q&\to\free_{p\curlyvee q}\\
 \label{eqn.vee3}
-	\free_p\tri\free_q&\to\free_{p\vee q}\\
+	\free_p\tri\free_q&\to\free_{p\curlyvee q}\\
 \label{eqn.vee4}
-	\free_p\vee\free_q&\to\free_{p\vee q}
+	\free_p\curlyvee\free_q&\to\free_{p\curlyvee q}
 \end{align}
 
 The functor $\free_-\colon\poly\to\poly$ is itself a monad
@@ -984,9 +1011,9 @@ This induces maps $\free_{[p,\yon]}\to [\cofree_p,\yon]$ and $\cofree_{[p,\yon]}
 	\free_{A\yon}\To{\cong}[\cofree_{\yon^A},\yon]
 \end{equation}
 
-%More generally, the functor $\free_{-\vee -}\colon\poly\times\poly\to\poly$ is a module over $\cofree_-$, i.e.\ for any $p,p',q:\poly$ there is a natural map
+%More generally, the functor $\free_{-\curlyvee -}\colon\poly\times\poly\to\poly$ is a module over $\cofree_-$, i.e.\ for any $p,p',q:\poly$ there is a natural map
 %\begin{equation}
-%  \free_{p\vee p'}\otimes\cofree_q\to\free_{(p\otimes q)\vee p'}
+%  \free_{p\curlyvee p'}\otimes\cofree_q\to\free_{(p\otimes q)\curlyvee p'}
 %\end{equation}
 %satisfying the action laws and monad-comonad coherence, analogous to \eqref{eqn.monad_comonad_coherence}.
 
