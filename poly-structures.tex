@@ -452,22 +452,25 @@ It always distributes over $+$:
 p\odot(q_1+q_2)\cong (p\odot q_1)+(p\odot q_2).
 \end{equation}
 
-There are infinite families of monoidal structures on $\smset$. We will only consider four, namely $+$, $\times$,%
+There are infinite families of monoidal structures on $\smset$. We will only consider three, namely $+$, $\times$,%
 \footnote{
 	We sometimes denote products using juxtaposition, $AB\coloneqq A\times B$. We may also do this for polynomials $pq\coloneqq p\times q$.
 }
-$A\vee B\coloneqq A+(A\times B)+B$,%
+and $A\vee B\coloneqq A+(A\times B)+B$,%
 \footnote{I learned th $\vee$ monoidal structure (pronounced ``or'') on $\smset$ from Richard Garner, and Solomon Bothwell later informed me that it's called \href{https://hackage.haskell.org/package/these}{\texttt{These}} in Haskell. I learned the $!$ monoidal structure from \href{https://abuseofnotation.github.io/category-theory-illustrated/}{mathoverlow}.}
-which has unit $0$, and the following
-\begin{equation}
-	A!B\coloneqq
-	\begin{cases}
-		A&\tn{ if }B=0\\
-		B&\tn{ if }A=0\\
-		1&\tn{ if }1\leq AB
-  \end{cases}
-\end{equation}
-which has unit $1$. These lead to the following symmetric monoidal products on $\poly$:
+which has unit $0$%
+.
+%, and the following
+%\begin{equation}
+%	A!B\coloneqq
+%	\begin{cases}
+%		A&\tn{ if }B=0\\
+%		B&\tn{ if }A=0\\
+%		1&\tn{ if }1\leq AB
+%  \end{cases}
+%\end{equation}
+%which has unit $1$. 
+These lead to the following symmetric monoidal products on $\poly$:
 \begin{align}
 \label{eqn.times}
 	p\times q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]+ q[J]}\\
