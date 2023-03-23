@@ -609,6 +609,12 @@ The Dirichlet closure has only some of the analogous properties:
 	[\yon,q]\cong q,\qquad
 	[p_1\otimes p_2,q]\cong[p_1,[p_2,q]]
 \end{gather}
+The following is true of any monoidal closure, but we include it for convenience:
+\begin{equation}
+	q_1^{p_1}\times q_2^{p_2}\to (q_1q_2)^{p_1p_2}
+	\qqand
+	[p_1,q_1]\otimes[p_2,q_2]\to[p_1\otimes p_2,q_1\otimes q_2]
+\end{equation}
 
 The cartesian closure also interacts with substitution as follows:
 \begin{equation}
@@ -623,7 +629,15 @@ For $p=A\yon^B$ there is an isomorphism
 	q^{\left(A\yon^B\right)}\cong \yon^A\tri q\tri(B+\yon)
 \end{equation}
 
-Mapping into $\yon$ is often of interest; we have the following maps and isomorphisms:
+The cartesian closure interacts with coproducts and products via maps
+\begin{equation}
+  q^p\to(q+r)^{p+r}
+  \qqand
+	q^p\to(qr)^{pr}
+\end{equation}
+natural in $p:\poly\op$, $q:\poly$, and dinatural in $r$.
+
+Dirichlet-mapping into $\yon$ is often of interest; we have the following maps and isomorphisms:
 \begin{align}
 	[\yon,\yon]&\cong\yon\\
   [p,\yon]\times[q,\yon]&\cong[p+q,\yon]\\
