@@ -654,12 +654,12 @@ Dirichlet-mapping into $\yon$ is often of interest; we have the following maps a
 
 The left Kan extension of a polynomial functor $p$ along another polynomial functor $q$ is again a polynomial functor, which we denote
 \begin{equation}
-\lens{p}{p'}\coloneqq\sum_{I\in p(1)}\yon^{p'\tri\; (p[I])}
+\lens{p}{q}\coloneqq\sum_{I\in p(1)}\yon^{q\tri\; (p[I])}
 \end{equation}
 This satisfies the following universal property of a Kan extension, i.e.\ a right-coclosure:%
 \footnote{I learned the right-coclosure from Josh Meyers. I learned the in-retrospect-obvious fact that it is the same as a left Kan extension from Todd Trimble.}
 \begin{equation}
-	\poly\left(\lens{p}{p'},q\right)\cong\poly\left(p,q\tri p'\right).
+	\poly\left(\lens{p}{q},p'\right)\cong\poly\left(p,p'\tri q\right).
 \end{equation}
 The coclosure $\lens{p}{q}$ is covariant in $p$ and contravariant in $q$:
 \begin{equation}
@@ -671,15 +671,21 @@ The coclosure $\lens{p}{q}$ is covariant in $p$ and contravariant in $q$:
 \end{equation}
 and if $p\to p'$ is vertical or cartesian, then so is $\lens{p}{q}\to\lens{p'}{q}$, respectively.
 
+Since $\lens{-}{q}$ is a left adjoint, it interacts with $+$ by
+\begin{equation}
+	\lens{0}{q}=0
+	\qqand
+	\lens{p+p'}{q}\cong\lens{p}{q}+\lens{p'}{q}.
+\end{equation}
+
 The coclosure interacts with $\tri$ by
 \begin{equation}
 	\lens{\lens{p}{q}}{q'}\cong\lens{p}{q'\tri q}
 	\qqand
 	p\cong\lens{p}{\yon}
 \end{equation}
-and
 \begin{equation}
-	\lens{p'\tri p}{q'\tri q}\to\lens{p'\;\tri\;\lens{p}{q}}{q'}
+	\lens{p\tri p'}{q}\to p\tri\lens{p'}{q}
 \end{equation}
 
 Just like evaluation is the most common use of a closure, co-evaluation is the most common use of this coclosure: for any $p,q:\poly$ one has
