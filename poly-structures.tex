@@ -361,6 +361,11 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 	\end{tikzpicture}
 }
 
+\newcommand{\othis}[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt] (char) {\tiny #1};}}
+\newcommand{\bang}{\,\mathbin{!}\,}
+\newcommand{\obang}{\mathbin{\othis{!}}}
+
 \newcommand{\qand}{\quad\text{and}\quad}
 \newcommand{\qqand}{\qquad\text{and}\qquad}
 \newcommand{\qor}{\quad\text{or}\quad}
@@ -477,8 +482,11 @@ These lead to the following symmetric monoidal products on $\poly$:
 \label{eqn.otimes}
 	p\otimes q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\times q[J]}\\
 \label{eqn.ovee}
-	p\ovee q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\vee q[J]}\end{align}
-The first two are highly relevant: the first ($\times$) is the categorical product, and the second ($\otimes$) is the \emph{Dirichlet} product, both of which come up often in practice. The third has so far appeared less useful, though note that there is a pullback square in $\poly$
+	p\ovee q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\vee q[J]}\\
+\label{eqn.obang}
+	p\obang q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\bang p[J]}
+\end{align}
+The first two are highly relevant: the first ($\times$) is the categorical product, and the second ($\otimes$) is the \emph{Dirichlet} product, both of which come up often in practice. Note that there is a pullback square in $\poly$
 \begin{equation}
 \begin{tikzcd}
 	p\ovee q\ar[r]\ar[d]&
@@ -624,9 +632,11 @@ and this map is an isomorphism in case $p\cong\yon^A$ for some $A:\smset$. The d
 \begin{equation}
 	q^p\to (pq)^p
 \end{equation}
-For $p=A\yon^B$ there is an isomorphism
+The functor $\yon^-\colon(\poly,1,\times)\op\to(\poly,\yon,\tri)$ is lax monoidal
 \begin{equation}
-	q^{\left(A\yon^B\right)}\cong \yon^A\tri q\tri(B+\yon)
+	\yon\cong\yon
+	\qqand
+	\yon^p\tri\yon^q\to\yon^{p\times q}
 \end{equation}
 
 The cartesian closure interacts with coproducts and products via maps
