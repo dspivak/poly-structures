@@ -482,9 +482,10 @@ These lead to the following symmetric monoidal products on $\poly$:
 \label{eqn.otimes}
 	p\otimes q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\times q[J]}\\
 \label{eqn.ovee}
-	p\ovee q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\vee q[J]}\\
-\label{eqn.obang}
-	p\obang q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\bang p[J]}
+	p\ovee q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\vee q[J]}
+%\\
+%\label{eqn.obang}
+%	p\obang q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\bang p[J]}
 \end{align}
 The first two are highly relevant: the first ($\times$) is the categorical product, and the second ($\otimes$) is the \emph{Dirichlet} product, both of which come up often in practice. Note that there is a pullback square in $\poly$
 \begin{equation}
@@ -542,13 +543,19 @@ The monoidal structure $\tri$ is duoidal with $\otimes$, i.e.\ there is a natura
 \begin{equation}\label{duoidal}
 	(p_1\tri p_2)\otimes(q_1\tri q_2)\too(p_1\otimes q_1)\tri(p_2\otimes q_2)
 \end{equation}
-satisfying the usual laws. This in turn induces natural maps
+satisfying the usual laws. Using $\yon$ in place of $p_1$, $p_2$, $q_1$, or $q_2$, \eqref{duoidal} induces natural maps
 \begin{equation}
 	[p,q]\to[r\tri p, r\tri q]
 	\qqand
 	[p,q]\to[p\tri r, q\tri r]
 \end{equation}
-Many things follow from duoidality. In particular, the identity functor $\poly\to\poly$ is lax monoidal as a functor $(\poly,\yon,\tri)\to(\poly,\yon,\otimes)$, i.e.\ for every $p,q$ a map of polynomials
+and
+\begin{equation}
+	r\tri[p,q]\to[p,r\tri q]
+	\qqand
+	[p,q]\tri r\to [p,q\tri r].
+\end{equation}
+The identity functor $\poly\to\poly$ is lax monoidal as a functor $(\poly,\yon,\tri)\to(\poly,\yon,\otimes)$, i.e.\ for every $p,q$ a map of polynomials
 \begin{equation}\label{eqn.indep}
 	p\otimes q\to p\tri q
 \end{equation}
@@ -556,18 +563,15 @@ satisfying the usual laws. This map is derived from \eqref{duoidal} by taking $p
 \begin{equation}
   A\yon\otimes q\cong A\yon\tri q
   \qqand
-  p\otimes\yon^A\cong p\tri \yon^A
+  p\otimes\yon^A\cong p\tri \yon^A.
 \end{equation}
-Also, for any $r:\poly$, duoidality $(r\tri p)\otimes x\to r\tri(p\otimes x)$ gives rise to a natural map
-\begin{equation}
-	[p,q]\to[r\tri p, r\tri q].
-\end{equation}
+
 
 There are natural maps that combine $\tri$, $\times,$ and $\otimes$:
 \begin{equation}
 	1\to\yon\tri 1
 	\qqand
-	(p_1\tri p_2)\times(q_1\tri q_2)\to (p_1\otimes q_1)\tri (p_2\times q_2)
+	(p_1\tri p_2)\times(q_1\tri q_2)\to (p_1\otimes q_1)\tri (p_2\times q_2).
 \end{equation}
 There are also natural maps that combine $\tri$, $\times$, and $+$.
 \[
