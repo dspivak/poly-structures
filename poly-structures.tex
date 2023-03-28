@@ -651,6 +651,15 @@ The cartesian closure interacts with coproducts and products via maps
 \end{equation}
 natural in $p:\poly\op$, $q:\poly$, and dinatural in $r$.
 
+Because of duoidality \eqref{duoidal}, $\otimes$-closure interacts with substitution:%
+\footnote{This was pointed out to me by Brandon Shapiro.}
+\begin{equation}
+	\yon\cong[\yon,\yon]
+	\qqand
+	[p_1,q_1]\tri[p_2,q_2]\to [p_1\tri p_2,q_1\tri q_2]
+\end{equation}
+
+
 Dirichlet-mapping into $\yon$ is often of interest; we have the following maps and isomorphisms:
 \begin{align}
 	[\yon,\yon]&\cong\yon\\
@@ -683,7 +692,12 @@ The coclosure $\lens{p}{q}$ is covariant in $p$ and contravariant in $q$:
     \Infer2{\lens{p}{q}\to\lens{p'}{q'}}
   \end{prooftree}
 \end{equation}
-and if $p\to p'$ is vertical or cartesian, then so is $\lens{p}{q}\to\lens{p'}{q}$, respectively.
+and if $p\to p'$ is vertical or cartesian, then so is $\lens{p}{q}\to\lens{p'}{q}$, respectively. 
+
+Just like evaluation is the most common use of a closure, co-evaluation is the most common use of this coclosure: for any $p,q:\poly$ one has
+\begin{equation}
+p\to\lens{p}{q}\tri q
+\end{equation}
 
 Since $\lens{-}{q}$ is a left adjoint, it interacts with $+$ by
 \begin{equation}
@@ -702,12 +716,6 @@ The coclosure interacts with $\tri$ by
 	\lens{p\tri p'}{q}\to p\tri\lens{p'}{q}
 \end{equation}
 
-Just like evaluation is the most common use of a closure, co-evaluation is the most common use of this coclosure: for any $p,q:\poly$ one has
-\begin{equation}
-p\to\lens{p}{q}\tri q
-\end{equation}
-
-
 
 The coclosure interacts with $\otimes$ via natural maps
 \begin{equation}
@@ -715,6 +723,11 @@ The coclosure interacts with $\otimes$ via natural maps
 	\qqand
 	\lens{p_1\otimes p_2}{q_1\otimes q_2}\to\lens{p_1}{q_1}\otimes\lens{p_2}{q_2}
 \end{equation}
+It interacts with the $\otimes$-closure (Dirichlet-hom) by
+\begin{equation}
+	\left[\lens{p}{q},p'\right]\to[p,p'\tri q]
+\end{equation}
+Note that this is not generally an isomorphism.
 
 For any set $A$, we have $\yon^A\times p\cong\lens{p}{\yon+A}$ by \eqref{eqn.cart_cl}. More importantly we have
 \begin{equation}\label{eqn.left_adjoints}
