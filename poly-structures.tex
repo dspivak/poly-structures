@@ -954,12 +954,6 @@ It also has natural comonoid homomorphisms of the form
 \end{equation}
 that arise from the counits of any comonoid, as well as the distributivity of $\otimes$ over $+$.
 
-For $p:\poly$ and $A:\smset$ there is a natural map
-\begin{equation}
-	\cofree_{p\tri A\yon}\to\cofree_p\tri\cofree_{A\yon}.
-\end{equation}
-
-
 There is a free $\tri$-monoid (often called the free monad) construction on $\poly$
 \begin{equation}
 \begin{tikzcd}[column sep=60pt]
@@ -1071,6 +1065,12 @@ This induces maps $\free_{[p,\yon]}\to [\cofree_p,\yon]$ and $\cofree_{[p,\yon]}
 %  \free_{p\curlyvee p'}\otimes\cofree_q\to\free_{(p\otimes q)\curlyvee p'}
 %\end{equation}
 %satisfying the action laws and monad-comonad coherence, analogous to \eqref{eqn.monad_comonad_coherence}.
+
+For $p:\poly$ and $A:\smset$ there is a natural map
+\begin{equation}
+	\cofree_{p\tri A\yon}\to\cofree_p\tri\free_{A\yon}.
+\end{equation}
+
 
 
 \chapter{*-Bifibration over $\smset$ and factorization systems}\label{chap.bifib}
