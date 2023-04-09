@@ -569,16 +569,25 @@ satisfying the usual laws. This map is derived from \eqref{duoidal} by taking $p
 
 There are natural maps that combine $\tri$, $\times,$ and $\otimes$:
 \begin{equation}
-	1\to\yon\tri 1
+	(p_1\tri p_2)\times(q_1\tri q_2)\to (p_1\otimes q_1)\tri (p_2\times q_2)
 	\qqand
-	(p_1\tri p_2)\times(q_1\tri q_2)\to (p_1\otimes q_1)\tri (p_2\times q_2).
+	1\to\yon\tri 1.
 \end{equation}
 There are also natural maps that combine $\tri$, $\times$, and $+$.
 \[
-	1\to1\tri 0
-	\qqand
 	(p_1\tri p_2)\times (q_1\tri q_2)\to (p_1\times q_1)\tri(p_2+q_2)
+	\qqand
+	1\to1\tri 0.
 \]
+%These lead to interesting maps, e.g.\ $pq\to p\tri (q\yon)$ and $p(1)q\to p\tri q$.
+Together these assemble into maps that sandwich a single $\times$ between arbitrary-length layers of $\otimes$'s and $+$'s, i.e.\ of the following form for any $i,j:\nn$ and $2(i+1+j)$-many polynomials denoted $p_{-i},q_{-i}\ldots,p_{-1},q_{-1},p_0,q_0,p_1,q_1,\ldots,p_j,q_j:\poly$,
+\begin{multline*}
+	(p_{-i}\tri\cdots\tri p_{-1}\tri p_0\tri p_1\tri\cdots\tri p_j)
+	\times
+	(q_{-i}\tri\cdots\tri q_{-1}\tri p_0\tri q_1\tri\cdots\tri q_j)
+	\to\\
+	(p_{-i}\otimes q_{-i})\tri\cdots\tri(p_{-1}\otimes q_{-1})\tri(p_0\times q_0)\tri(p_1+q_1)\tri\cdots\tri(p_j+q_j)
+\end{multline*}
 
 Monoids with respect to $\tri$ generalize $\Sigma$-free operads. Comonoids with respect to $\tri$ are exactly categories. Bicomodules with respect to $\tri$ are parametric right adjoints between copresheaf categories.
 
