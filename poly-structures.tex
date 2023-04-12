@@ -36,6 +36,10 @@ citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode]{hyperr
 \usepackage{stmaryrd}
 \usepackage{ebproof}
 
+% xcolor %
+	\newcommand{\myred}[1]{{\color{red!60!black}#1}}
+	\newcommand{\myyellow}[1]{{\color{yellow!60!black}#1}}
+	\newcommand{\mygreen}[1]{{\color{green!40!black}#1}}
 
 % cleveref %
   \newcommand{\creflastconjunction}{, and\nobreakspace} % serial comma
@@ -573,7 +577,7 @@ satisfying the usual laws. This map is derived from \eqref{duoidal} by taking $p
 \end{equation}
 
 
-There are natural maps that combine $\tri$, $\times,$ and $\otimes$:
+There are some natural maps that combine $\tri$, $\times,$ and $\otimes$. Firstly we have
 \begin{equation}
 	(p_1\tri p_2)\times(q_1\tri q_2)\to (p_1\otimes q_1)\tri (p_2\times q_2)
 	\qqand
@@ -586,16 +590,25 @@ There are also natural maps that combine $\tri$, $\times$, and $+$.
 	1\to1\tri 0.
 \]
 %These lead to interesting maps, e.g.\ $pq\to p\tri (q\yon)$ and $p(1)q\to p\tri q$.
-Together these assemble into maps that sandwich a single $\times$ between arbitrary-length layers of $\otimes$'s and $+$'s, i.e.\ of the following form for any $i,j:\nn$ and $2(i+1+j)$-many polynomials denoted $p_{-i},q_{-i}\ldots,p_{-1},q_{-1},p_0,q_0,p_1,q_1,\ldots,p_j,q_j:\poly$,
-\begin{multline*}
-	(p_{-i}\tri\cdots\tri p_{-1}\tri p_0\tri p_1\tri\cdots\tri p_j)
+Together these assemble into maps that sandwich a single $\times$ between arbitrary-length layers of $\otimes$'s and $+$'s, i.e.\ of the following form for any $i,j:\nn$ and $2(i+1+j)$-many polynomials denoted $\myred{p_{-i}},\myred{q_{-i}}\ldots,\myred{p_{-1}},\myred{q_{-1}},p_0,\mygreen{q_0}
+,\mygreen{p_1},\mygreen{q_1},\ldots,\mygreen{p_j},\mygreen{q_j}:\poly$,
+\begin{multline}
+	(\myred{p_{-i}}\tri\cdots\tri \myred{p_{-1}}\tri p_0\tri \mygreen{p_1}\tri\cdots\tri \mygreen{p_j})
 	\times
-	(q_{-i}\tri\cdots\tri q_{-1}\tri p_0\tri q_1\tri\cdots\tri q_j)
+	(\myred{q_{-i}}\tri\cdots\tri \myred{q_{-1}}\tri q_0\tri \mygreen{q_1}\tri\cdots\tri \mygreen{q_j})
 	\to\\
-	(p_{-i}\otimes q_{-i})\tri\cdots\tri(p_{-1}\otimes q_{-1})\tri(p_0\times q_0)\tri(p_1+q_1)\tri\cdots\tri(p_j+q_j)
-\end{multline*}
+	(\myred{p_{-i}}\otimes \myred{q_{-i}})\tri\cdots\tri\myred{p_{-1}}\otimes \myred{q_{-1}})\tri(p_0\times q_0)\tri(\mygreen{p_1}+\mygreen{q_1})\tri\cdots\tri(\mygreen{p_j}+\mygreen{q_j})
+\end{multline}
+We secondly have a refinement of it,
+\begin{multline}
+	(\myred{p_{-i}}\otimes\cdots\otimes \myred{p_{-1}}\otimes p_0\otimes \mygreen{p_1}\otimes\cdots\otimes \mygreen{p_j})
+	\times
+	(\myred{q_{-i}}\otimes\cdots\otimes \myred{q_{-1}}\otimes q_0\otimes \mygreen{q_1}\otimes\cdots\otimes \mygreen{q_j})
+	\to\\
+	(\myred{p_{-i}}\otimes \myred{q_{-i}}\otimes\cdots\otimes\myred{p_{-1}}\otimes \myred{q_{-1}})\otimes(p_0\times q_0)\tri(\mygreen{p_1}+\mygreen{p_1})\tri\cdots\tri(\mygreen{q_j}+\mygreen{q_j})
+\end{multline}
 
-Monoids with respect to $\tri$ generalize $\Sigma$-free operads. Comonoids with respect to $\tri$ are exactly categories. Bicomodules with respect to $\tri$ are parametric right adjoints between copresheaf categories.
+There are other interesting aspects of the substitution product $\tri$. In particular, monoids with respect to $\tri$ generalize $\Sigma$-free operads. Comonoids with respect to $\tri$ are exactly categories. Bicomodules with respect to $\tri$ are parametric right adjoints between copresheaf categories.
 
 \chapter{Monoidal closures}
 
