@@ -324,7 +324,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\poly}{\Cat{Poly}}
 \newcommand{\Span}{\Cat{Span}}
 \newcommand{\rect}{\Set{Rect}}
-\newcommand{\polycart}{\poly^{\Cat{Cart}}}
+\newcommand{\polycart}{\poly^{\tn{cart}}}
 \newcommand{\hh}{\mathcal{h}}
 \newcommand{\ppoly}{\mathbb{P}\Cat{oly}}
 \newcommand{\0}{\textsf{0}}
@@ -549,7 +549,7 @@ is an isomorphism. For any category $\cat{I}$, diagram $p\colon \cat{I}\to\polyc
 \end{equation}
 is an isomorphism.
 
-The monoidal structure $\tri$ is duoidal with $\otimes$, i.e.\ there is a natural transformation
+The monoidal structure $\tri$ is normal duoidal with $\otimes$, i.e.\ they have the same unit, $\yon$, and there is a natural transformation
 \begin{equation}\label{duoidal}
 	(p_1\tri p_2)\otimes(q_1\tri q_2)\too(p_1\otimes q_1)\tri(p_2\otimes q_2)
 \end{equation}
@@ -583,7 +583,7 @@ There are some natural maps that combine $\tri$, $\times,$ and $\otimes$. Firstl
 	\qqand
 	1\to\yon\tri 1.
 \end{equation}
-There are also natural maps that combine $\tri$, $\times$, and $+$.
+These commute with the duoidality maps \eqref{duoidal}. There are also natural maps that combine $\tri$, $\times$, and $+$.
 \[
 	(p_1\tri p_2)\times (q_1\tri q_2)\to (p_1\times q_1)\tri(p_2+q_2)
 	\qqand
@@ -599,7 +599,6 @@ Together these assemble into maps that sandwich a single $\times$ between arbitr
 	\to\\
 	(\myred{p_{-i}}\otimes \myred{q_{-i}})\tri\cdots\tri\myred{p_{-1}}\otimes \myred{q_{-1}})\tri(p_0\times q_0)\tri(\mygreen{p_1}+\mygreen{q_1})\tri\cdots\tri(\mygreen{p_j}+\mygreen{q_j})
 \end{multline}
-
 
 There are other interesting aspects of the substitution product $\tri$. In particular, monoids with respect to $\tri$ generalize $\Sigma$-free operads. Comonoids with respect to $\tri$ are exactly categories. Bicomodules with respect to $\tri$ are parametric right adjoints between copresheaf categories.
 
@@ -767,13 +766,13 @@ There is also an \emph{indexed} left $\tri$-coclosure. That is, for any function
 \begin{equation}
 	p\cocl{f}q\coloneqq \sum_{I\in p(1)}q[fI]\,\yon^{p[I]}.
 \end{equation}
-This satisfies the following indexed-adjunction formula:
-\begin{equation}
+This satisfies the following indexed-adjunction formula:%
+\footnote{Note that the indexed adjunction \eqref{indexed_adjunction} is not natural in $q:\poly$, but it is natural in $q:\polycart$.}
+\begin{equation}\label{indexed_adjunction}
 	\poly(p,q\tri r)\cong\sum_{f\colon p(1)\to q(1)}\poly(p\cocl{f}q,r)
 \end{equation}
-Given $\varphi\colon p\to q\tri r$, we denote its image by $(\varphi.1,\varphi.2)$, where $\varphi.1\colon p(1)\to q(1)$ and $\varphi.2\colon (p\cocl{\varphi.1}q)\to r$.
 
-The indexed coclosure is a very well-behaved structure.
+Given $\varphi\colon p\to q\tri r$, we denote its image by $(\varphi.1,\varphi.2)$, where $\varphi.1\colon p(1)\to q(1)$ and $\varphi.2\colon (p\cocl{\varphi.1}q)\to r$. The indexed coclosure is a very well-behaved structure.
 \begin{align}
 	p\cocl{!}\yon^A&\cong Ap\\
 	p\cocl{\id}p&\cong p_*\label{eqn.deriv}\\
@@ -788,9 +787,19 @@ In \eqref{eqn.deriv}, $p_*$ is defined as follows.
 \begin{equation}
 p_*\coloneqq \dot{p}\yon=p\cocl{\id}p=\sum_{I\in p(1)}p[I]\yon^{p[I]}
 \end{equation}
-Though it can be defined in terms of the derivative $\dot{p}$ of $p$, we find it to be a much more fundamental construction than the derivative itself. For example, the bundle representation of a polynomial $p$ is $p_*(1)\to p(1)$. There are natural maps $p_*\to p$ and $p_*\to\yon$.
+Though it can be defined in terms of the derivative $\dot{p}$ of $p$, we find $p_*$ to be a much more fundamental construction than the derivative. For example, the bundle representation of a polynomial $p$ is $p_*(1)\to p(1)$. The operation $p\mapsto p_*$ is a comonad on $\poly$, i.e.\ $p_*\to p$ and $p_*\to (p_*)_*$, and each $p_*$ has the structure of a comonad, i.e.\ $p_*\to\yon$ and $p_*\to p_*\tri p_*$. 
 
-While $p\mapsto p_*$ is not functorial in $\poly$, it is functorial in the Cartesian morphisms $\poly^{\text{cart}}$. It is also functorial as a map $\poly\to\Span(\poly)$:
+Given a map $\varphi\colon p\to p'$ and a function $g\colon q(1)\to q'(1)$, there is a Cartesian map
+\begin{equation}
+	(p\cocl{\varphi\tri1}p')\tri(q\cocl{g}q')\to
+	(p\tri q)\cocl{\varphi\tri g}(p'\tri q'),
+\end{equation}
+natural in $p,q:\poly$ and $p',q':\polycart$. In particular, there is a Cartesian map
+\begin{equation}
+	p_*\tri q_*\to(p\tri q)_*.
+\end{equation}
+
+While $p\mapsto p_*$ is not functorial in $\poly$, it is functorial in the Cartesian morphisms $\polycart$. It is also functorial as a map $\poly\to\Span(\poly)$:
 \begin{align}
 	\frown\colon\poly&\to\Span(\poly)\\
 	p&\mapsto p_*\\
@@ -807,7 +816,7 @@ This functor is strong monoidal with respect to both $+$ and $\otimes$. One may 
 	p\ar[r, equal]&p\ar[r,"\varphi"']&q
 \end{tikzcd}
 \end{equation}
-and evaluating at $1$ returns the usual bundle picture, since $(p\cocl{\varphi_1}q)(1)\cong p(1)\times_{q(1)}\dot{q}(1)$.
+and evaluating at $1$ returns the usual bundle picture, since $(p\cocl{\varphi_1}q)(1)\cong p(1)\times_{q(1)}q_*(1)$.
 
 There is an indexed coclosure for $\otimes$.%
 \footnote{I learned about this indexed coclosure $\hyper{}$ for $\otimes$ from Nelson Niu.}
