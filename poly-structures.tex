@@ -2,7 +2,7 @@
 
 
 \settrims{0pt}{0pt} % page and stock same size
-\settypeblocksize{*}{35.5pc}{*} % {height}{width}{ratio}
+\settypeblocksize{*}{36.5pc}{*} % {height}{width}{ratio}
 \setlrmargins{*}{*}{1} % {spine}{edge}{ratio}
 \setulmarginsandblock{.98in}{.98in}{*} % height of typeblock computed
 \setheadfoot{\onelineskip}{2\onelineskip} % {headheight}{footskip}
@@ -419,16 +419,16 @@ This document is only meant as a handy guide to the abundance of structure in $\
 
 A polynomial functor $p\colon\smset\to\smset$ is any functor that's isomorphic to a coproduct of representables
 \[
-p\coloneqq\sum_{I\in p(1)}\yon^{p[I]}.
+p\coloneqq\sum_{I: p(1)}\yon^{p[I]}.
 \]
 We will typically use the above notation---which we call \emph{standard form}---appropriately modified for $p'$, $q$, etc., e.g.
 \[
-p'\coloneqq\sum_{I'\in p'(1)}\yon^{p'[I']}
+p'\coloneqq\sum_{I': p'(1)}\yon^{p'[I']}
 \qqor
-q\coloneqq\sum_{J\in q(1)}\yon^{q[J]}.
+q\coloneqq\sum_{J: q(1)}\yon^{q[J]}.
 \]
 
-We refer to elements of $p(1)$ as \emph{positions} of $p$ and, for each $I\in p(1)$, we refer to the elements of $p[I]$ as \emph{directions} at $I$. A morphism between polynomials is a natural transformation $\varphi\colon p\to q$; by the Yoneda lemma and universal property of coproducts, it consists of a function $\varphi_1\colon p(1)\to q(1)$ and, for each $I\in p(1)$ a function $\varphi^\sharp_I\colon q[\varphi_1(I)]\to p[I]$. A map $\varphi$ is called \emph{vertical} if $\varphi_1$ is identity on positions; it is called \emph{cartesian} if for each $I\in p(1)$ the function $\varphi_I^\sharp$ is a bijection; see \cref{chap.bifib} for more on this. 
+We refer to elements of $p(1)$ as \emph{positions} of $p$ and, for each $I: p(1)$, we refer to the elements of $p[I]$ as \emph{directions} at $I$. A morphism between polynomials is a natural transformation $\varphi\colon p\to q$; by the Yoneda lemma and universal property of coproducts, it consists of a function $\varphi_1\colon p(1)\to q(1)$ and, for each $I: p(1)$ a function $\varphi^\sharp_I\colon q[\varphi_1(I)]\to p[I]$. A map $\varphi$ is called \emph{vertical} if $\varphi_1$ is identity on positions; it is called \emph{cartesian} if for each $I: p(1)$ the function $\varphi_I^\sharp$ is a bijection; see \cref{chap.bifib} for more on this. 
 
 The category of polynomial functors and morphisms between them is denoted $\poly$; the wide subcategory of polynomial functors and cartesian morphisms between them is denoted $\polycart$. The forgetful functor $\poly\to\Cat{Fun}(\smset,\smset)$ preserves limits and coproducts. The forgetful functor $\polycart\to\Cat{Fun}(\smset,\smset)$ preserves all limits and colimits.
 %For more, see \cref{chap.background}. 
@@ -439,11 +439,11 @@ The category of polynomial functors and morphisms between them is denoted $\poly
 
 The category $\poly$ has coproducts, given by the following formula:
 \begin{equation}
-p+q\coloneqq\sum_{I\in p(1)}\yon^{p[I]}+\sum_{J\in q(1)}\yon^{q[J]}
+p+q\coloneqq\sum_{I: p(1)}\yon^{p[I]}+\sum_{J: q(1)}\yon^{q[J]}
 \end{equation}
 If one wants the formula to be in standard form, use case logic in the exponent:
 \begin{equation}
-p+q\cong\sum_{X\in p(1)+q(1)}\yon^{\fontsize{8pt}{8pt}\selectfont
+p+q\cong\sum_{X: p(1)+q(1)}\yon^{\fontsize{8pt}{8pt}\selectfont
 	\begin{cases}
   	p[X]&\tn{ if }X\in p(1)\\
   	q[X]&\tn{ if }X\in q(1)
@@ -454,20 +454,22 @@ p+q\cong\sum_{X\in p(1)+q(1)}\yon^{\fontsize{8pt}{8pt}\selectfont
 For any symmetric monoidal product $(I,\cdot)$ on $\smset$, there is a corresponding symmetric monoidal structure $(\yon^I,\odot)$ on $\poly$, where the monoidal product given as follows:%
 \footnote{The symmetric monoidal structure $\odot$ on $\poly$ is the Day convolution of the $\cdot$ structure on $\smset$.}
 \begin{equation}
-p\odot q\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\cdot q[J]}.
+p\odot q\coloneqq\sum_{(I,J): p(1)\times q(1)}\yon^{p[I]\cdot q[J]}.
 \end{equation}
 It always distributes over $+$:
 \begin{equation}
 p\odot(q_1+q_2)\cong (p\odot q_1)+(p\odot q_2).
 \end{equation}
 
-There are infinite families of monoidal structures on $\smset$. We will only consider three, namely $+$, $\times$,%
+For any set $S$, there is a monoidal structure $(0,\vee_S)$ on $\smset$,\footnote{I learned the $\vee_1$ monoidal structure (pronounced ``or'') on $\smset$ from Richard Garner, and Solomon Bothwell later informed me that it's called \href{https://hackage.haskell.org/package/these}{\texttt{These}} in Haskell. I learned the $\vee_S$ and others from \href{https://mathoverflow.net/questions/155939/what-other-monoidal-structures-exist-on-the-category-of-sets}{mathoverflow}.}
+ where
+\begin{equation}
+	A\vee_SB\coloneqq A+A\times S\times B + B.
+\end{equation}
+We denote the $S=1$ case simply by $\vee\coloneqq\vee_1$. When $S=0$ this is the usual coproduct, $A\vee_0B\cong A+B$, which we will treat seperately since it is very important. The other important monoidal product on $\smset$ for us is $\times$%
 \footnote{
 	We sometimes denote products using juxtaposition, $AB\coloneqq A\times B$. We may also do this for polynomials $pq\coloneqq p\times q$.
-}
-and $A\vee B\coloneqq A+(A\times B)+B$,%
-\footnote{I learned th $\vee$ monoidal structure (pronounced ``or'') on $\smset$ from Richard Garner, and Solomon Bothwell later informed me that it's called \href{https://hackage.haskell.org/package/these}{\texttt{These}} in Haskell. I learned the $!$ monoidal structure from \href{https://abuseofnotation.github.io/category-theory-illustrated/}{mathoverflow}.}
-which has unit $0$%
+}%
 .
 %, and the following
 %\begin{equation}
@@ -482,16 +484,16 @@ which has unit $0$%
 These lead to the following symmetric monoidal products on $\poly$:
 \begin{align}
 \label{eqn.times}
-	p\times q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]+ q[J]}\\
+	p\times q&\coloneqq\sum_{(I,J): p(1)\times q(1)}\yon^{p[I]+ q[J]}\\
 \label{eqn.otimes}
-	p\otimes q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\times q[J]}\\
+	p\otimes q&\coloneqq\sum_{(I,J): p(1)\times q(1)}\yon^{p[I]\times q[J]}\\
 \label{eqn.ovee}
-	p\ovee q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\vee q[J]}
+	p\ovee_S q&\coloneqq\sum_{(I,J): p(1)\times q(1)}\yon^{p[I]\vee_S q[J]}
 %\\
 %\label{eqn.obang}
-%	p\obang q&\coloneqq\sum_{(I,J)\in p(1)\times q(1)}\yon^{p[I]\bang p[J]}
+%	p\obang q&\coloneqq\sum_{(I,J): p(1)\times q(1)}\yon^{p[I]\bang p[J]}
 \end{align}
-The first two are highly relevant: the first ($\times$) is the categorical product, and the second ($\otimes$) is the \emph{Dirichlet} product, both of which come up often in practice. Note that there is a pullback square in $\poly$
+The first two are highly relevant: the first ($\times$) is the categorical product, and the second ($\otimes$) is the \emph{Dirichlet} product, both of which come up often in practice. Writing $\ovee\coloneqq\ovee_1$, note that there is a pullback square in $\poly$:
 \begin{equation}
 \begin{tikzcd}
 	p\ovee q\ar[r]\ar[d]&
@@ -503,15 +505,15 @@ The first two are highly relevant: the first ($\times$) is the categorical produ
 
 The dirichlet product commutes with connected limits in either variable: for any connected category $\cat{J}$, functor $p\colon\cat{J}\to\poly$, and polynomial $q$, the induced map
 \begin{equation}
-	\left(\lim_{j\in\cat{J}}p_j\right)\otimes q
+	\left(\lim_{j:\cat{J}}p_j\right)\otimes q
 	\To{\cong}
-	\lim_{j\in\cat{J}}(p_j\otimes q)
+	\lim_{j:\cat{J}}(p_j\otimes q)
 \end{equation}
 is an isomorphism. It commutes with all colimits in either variable: for any category $\cat{J}$, functor $p\colon\cat{J}\to\poly$, and polynomial $q$, the induced map
 \begin{equation}
-	\colim_{j\in\cat{J}}(p_j\otimes q)
+	\colim_{j:\cat{J}}(p_j\otimes q)
 	\To{\cong}
-	\left(\colim_{j\in\cat{J}}p_j\right)\otimes q
+	\left(\colim_{j:\cat{J}}p_j\right)\otimes q
 \end{equation}
 is an isomorphism.
 
@@ -526,7 +528,7 @@ p\times(q\otimes r)\to (p\times q)\otimes r.
 
 There is a nonsymmetric monoidal structure on $\poly$ given by composing polynomials. Its unit is $\yon$ and its monoidal product is given by the following formula:
 \begin{equation}
-p\tri q\coloneqq\sum_{I\in p(1)}\sum_{J\colon p[I]\to q(1)}\yon^{\sum\limits_{i\in p[I]}q[Ji]}
+p\tri q\coloneqq\sum_{I: p(1)}\sum_{J\colon p[I]\to q(1)}\yon^{\sum\limits_{i: p[I]}q[Ji]}
 \end{equation}
 If $p\to p'$ and $q\to q'$ are cartesian, then so is $p\tri q\to p'\tri q'$. If $q\to q'$ is vertical, then so is $p\tri q\to p\tri q'$.
 
@@ -537,15 +539,15 @@ The monoidal structure $\tri$ is left distributive with respect to $+$ and $\tim
 \end{align}
 In fact, $\tri$ preserves all limits in the left-variable, and it preserves connected limits in the right variable. If $p$ is finitary (each $p[I]$ is a finite set) then for any sifted (e.g.\ filtered) category $\cat{J}$ and diagram $q\colon \cat{J}\to\poly$, the natural map
 \begin{equation}\label{eqn.finitary_tri_sifted}
-  \colim_{j\in \cat{J}}(p\tri q_j)
+  \colim_{j: \cat{J}}(p\tri q_j)
   \To{\cong}
-	p\tri\colim_{j\in \cat{J}}q_j
+	p\tri\colim_{j: \cat{J}}q_j
 \end{equation}
 is an isomorphism. For any category $\cat{I}$, diagram $p\colon \cat{I}\to\polycart$ of cartesian maps, and polynomial $q:\poly$, the natural map
 \begin{equation}\label{eqn.cart_tri}
-	\colim_{i\in \cat{I}}(p_i\tri q)
+	\colim_{i: \cat{I}}(p_i\tri q)
 	\To{\cong}
-	(\colim_{i\in \cat{I}}p_i)\tri q
+	(\colim_{i: \cat{I}}p_i)\tri q
 \end{equation}
 is an isomorphism.
 
@@ -604,25 +606,26 @@ There are other interesting aspects of the substitution product $\tri$. In parti
 
 \chapter{Monoidal closures}
 
-There are closures for $\times$, $\otimes$, and $\ovee$ (\cref{eqn.times,eqn.otimes,eqn.ovee}), given by
+There are closures for $\times$, $\otimes$, and $\ovee_S$ for each $S:\smset$ (\cref{eqn.times,eqn.otimes,eqn.ovee}),%
+given by
 \begin{align}
-  q^p&\coloneqq \prod_{I\in p(1)}q\tri(p[I]+\yon)\label{eqn.cart_cl}\\
-  [p,q]&\coloneqq\prod_{I\in p(1)}q\tri(p[I]\times\yon)\\
-  \present{p,q}&\coloneqq\prod_{I\in p(1)}q\tri(p[I]+p[I]\yon+\yon)
+  q^p&\coloneqq \prod_{I: p(1)}q\tri(p[I]+\yon)\label{eqn.cart_cl}\\
+  [p,q]&\coloneqq\prod_{I: p(1)}q\tri(p[I]\times\yon)\\
+  \present{p,q}_S&\coloneqq\prod_{I: p(1)}q\tri(p[I]+p[I]\times S\yon+\yon)
 \end{align}
 These satisfy the defining universal properties:
 \begin{align}
   \poly(p',q^p)&\cong\poly(p'\times p,q)\\
   \poly(p',[p,q])&\cong\poly(p'\otimes p,q)\\
-  \poly(p',\present{p,q})&\cong\poly(p'\ovee p,q)
+  \poly(p',\present{p,q}_S)&\cong\poly(p'\ovee_S p,q)
 \end{align}
 The first one, $q^p$, is the Cartesian closure; its standard form is not particularly enlightening, and neither is that of the third one, $\present{p,q}$. The second one, $[p,q]$, is what we call the \emph{Dirichlet closure}; it has a very nice standard form:
 \[
-[p,q]\cong\sum_{\varphi:\poly(p,q)}\yon^{\sum\limits_{I\in p(1)}q[\varphi_1I]}
+[p,q]\cong\sum_{\varphi:\poly(p,q)}\yon^{\sum\limits_{I: p(1)}q[\varphi_1I]}
 \]
 where $\varphi_1\colon p(1)\to q(1)$ is the $1$-component of the natural transformation $\varphi$. Another nice representation is
 \begin{equation}
-[p,q]\cong\prod_{I\in p(1)}\sum_{J\in q(1)}\prod_{j\in q[J]}\sum_{i\in p[I]}\yon
+[p,q]\cong\prod_{I: p(1)}\sum_{J: q(1)}\prod_{j: q[J]}\sum_{i: p[I]}\yon
 \end{equation}
 
 The cartesian closure satisfies all the usual arithmetic properties:
@@ -697,7 +700,7 @@ Dirichlet-mapping into $\yon$ is often of interest; we have the following maps a
 
 The left Kan extension of a polynomial functor $p$ along another polynomial functor $q$ is again a polynomial functor, which we denote
 \begin{equation}
-\lens{p}{q}\coloneqq\sum_{I\in p(1)}\yon^{q\tri\; (p[I])}
+\lens{p}{q}\coloneqq\sum_{I: p(1)}\yon^{q\tri\; (p[I])}
 \end{equation}
 This satisfies the following universal property of a Kan extension, i.e.\ a right-coclosure:%
 \footnote{I learned the right-coclosure from Josh Meyers. I learned the in-retrospect-obvious fact that it is the same as a left Kan extension from Todd Trimble.}
@@ -760,11 +763,11 @@ For any polynomial monad $(m,\eta,\mu)$, the corresponding Lawvere theory is the
 \begin{equation}
 	\text{Law}(m)\cong\lens{u}{u\tri m}
 \end{equation}
-where $u\coloneqq\sum_{N\in\nn}\yon^N$. In other words, $\lens{u}{u\tri m}$ is a compact representation of what usually has a long description: ``the full subcategory of (the opposite of (the Kleisli category for $m$ on $\smset$)), spanned by the finite sets.''
+where $u\coloneqq\sum_{N:\nn}\yon^N$. In other words, $\lens{u}{u\tri m}$ is a compact representation of what usually has a long description: ``the full subcategory of (the opposite of (the Kleisli category for $m$ on $\smset$)), spanned by the finite sets.''
 
 There is also an \emph{indexed} left $\tri$-coclosure. That is, for any function $f\colon p(1)\to q(1)$, define
 \begin{equation}
-	p\cocl{f}q\coloneqq \sum_{I\in p(1)}q[fI]\,\yon^{p[I]}.
+	p\cocl{f}q\coloneqq \sum_{I: p(1)}q[fI]\,\yon^{p[I]}.
 \end{equation}
 This satisfies the following indexed-adjunction formula:%
 \footnote{Note that the indexed adjunction \eqref{indexed_adjunction} is not natural in $q:\poly$, but it is natural in $q:\polycart$.}
@@ -785,7 +788,7 @@ Given $\varphi\colon p\to q\tri r$, we denote its image by $(\varphi.1,\varphi.2
 \end{align}
 In \eqref{eqn.deriv}, $p_*$ is defined as follows.
 \begin{equation}
-p_*\coloneqq \dot{p}\yon=p\cocl{\id}p=\sum_{I\in p(1)}p[I]\yon^{p[I]}
+p_*\coloneqq \dot{p}\yon=p\cocl{\id}p=\sum_{I: p(1)}p[I]\yon^{p[I]}
 \end{equation}
 Though it can be defined in terms of the derivative $\dot{p}$ of $p$, we find $p_*$ to be a much more fundamental construction than the derivative. For example, the bundle representation of a polynomial $p$ is $p_*(1)\to p(1)$. The operation $p\mapsto p_*$ is a comonad on $\poly$, i.e.\ $p_*\to p$ and $p_*\to (p_*)_*$, and each $p_*$ has the structure of a comonad, i.e.\ $p_*\to\yon$ and $p_*\to p_*\tri p_*$. 
 
@@ -822,7 +825,7 @@ There is an indexed coclosure for $\otimes$.%
 \footnote{I learned about this indexed coclosure $\hyper{}$ for $\otimes$ from Nelson Niu.}
 For any function $f\colon p(1)\to q(1)$, define
 \begin{equation}
-p \hyper{f} q\coloneqq\sum_{I\in p(1)}\yon^{\left(p[I]^{q[fI]}\right)}
+p \hyper{f} q\coloneqq\sum_{I: p(1)}\yon^{\left(p[I]^{q[fI]}\right)}
 \end{equation}
 This satisfies the following indexed-adjunction formula:
 \begin{equation}
@@ -867,8 +870,8 @@ Their units are both $0$.
 
 We know of two more monoidal products $(\yon,\dagger)$ and $(\yon, \ddagger)$ from Nelson Niu, who cites de Paiva's notion of \emph{cross product} as inspiration for $\dagger$:
 \begin{align}
-	p\dagger q\coloneqq\sum_{I\in p(1)}\sum_{J\in q(1)}\prod_{i\in p[I]}\prod_{j\colon p(1)\to q[J]}\yon\\
-	p\ddagger q\coloneqq\sum_{I\in p(1)}\sum_{J\in q(1)}\prod_{i\colon q(1)\to p[I]}\prod_{j\colon p(1)\to q[J]}\yon
+	p\dagger q\coloneqq\sum_{I: p(1)}\sum_{J: q(1)}\prod_{i: p[I]}\prod_{j\colon p(1)\to q[J]}\yon\\
+	p\ddagger q\coloneqq\sum_{I: p(1)}\sum_{J: q(1)}\prod_{i\colon q(1)\to p[I]}\prod_{j\colon p(1)\to q[J]}\yon
 \end{align}
 E.g.\ in the case of monomials we have $I\yon^A\dagger J\yon^B\cong IJ\yon^{AB^I}$ and $I\yon^A\ddagger J\yon^B\cong IJ\yon^{A^JB^I}$.
 
@@ -877,7 +880,7 @@ E.g.\ in the case of monomials we have $I\yon^A\dagger J\yon^B\cong IJ\yon^{AB^I
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
 
-There are adjunctions between $\poly$ and $\smset$ and between $\poly$ and $\smset\op$, each labeled by where they send $p:\poly$ and $A\in\smset$:
+There are adjunctions between $\poly$ and $\smset$ and between $\poly$ and $\smset\op$, each labeled by where they send $p:\poly$ and $A:\smset$:
 \begin{equation}\label{eqn.adjunctions}
 \begin{tikzcd}[column sep=60pt]
   \poly
@@ -907,7 +910,7 @@ We write $A$ to denote $A\yon^0$. All the leftward maps in \eqref{eqn.adjunction
 	A\yon^0+B\yon^0&\cong(A+B)\yon^0&
 	A\yon^0\otimes B\yon^0&\cong(A\times B)\yon^0
 \end{align}
-The rightward maps to $\smset$ are also distributive monoidal; indeed by \cref{eqn.comp_plus,eqn.comp_times}, the following hold for any $A\in\smset$, in particular for $A\in\{0,1\}$.
+The rightward maps to $\smset$ are also distributive monoidal; indeed by \cref{eqn.comp_plus,eqn.comp_times}, the following hold for any $A:\smset$, in particular for $A:\{0,1\}$.
 \begin{equation}
 	p(A)+q(A)\cong(p+q)(A)
 	\qqand
@@ -965,7 +968,7 @@ The map $\cofree\to\yon$ is easy and the map $\cofree\to\cofree\tri\cofree$ is g
 \begin{equation}\label{eqn.cofree_iso}
 	\cofree_p\To{\cong} (p\tri\cofree_p)\times\yon.
 \end{equation}
-%For any $A\in\smset$, we have $\cofree_{A\yon}\cong(A\yon)^\nn$. 
+%For any $A:\smset$, we have $\cofree_{A\yon}\cong(A\yon)^\nn$. 
 If $p\to q$ is cartesian, so is $\cofree_p\to\cofree_q$.
 
 In many different ways, the cofree comonad functor $\cofree\colon\poly\to\poly$ is lax monoidal as it maps into the $(\yon,\otimes)$ monoidal structure:%
@@ -1004,9 +1007,9 @@ where the $q_k$ are defined inductively as follows:
 \intertext{and the maps $g_k\colon q_{k}\to q_{k+1}$ are defined inductively as follows:}
 	q_0=\yon&\To{g_0\coloneqq\tn{incl}}\yon+q=q_1&q_{k+1}=\yon+(q\tri q_{k})&\To{g_{k+1}\coloneqq\yon+(q\tri g_k)}\yon+(q\tri q_{k+1})=q_{k+2}
 \end{align}
-An arbitrary polynomial $p$ can be written as the filtered limit of its vertical projections $p\to p^{j}$ onto finitary polynomials: that is, for each sum-component $I\in p(1)$, just replace $p[I]$ by an arbitrary finite subset of it, and take the limit of all such things under component-wise projection. That limit is isomorphic to $p$, and we write $p\cong\lim_{j\in J_p}p^{(j)}$. By construction, each of these $p^{(j)}$ is finitary, so let $\free_p^{(j)}\coloneqq\free_{p^{(j)}}$ denote the free monad on it, constructed as above. Then finally we construct the free monad $\free_p$ on $p$ as their filtered limit:
+An arbitrary polynomial $p$ can be written as the filtered limit of its vertical projections $p\to p^{j}$ onto finitary polynomials: that is, for each sum-component $I: p(1)$, just replace $p[I]$ by an arbitrary finite subset of it, and take the limit of all such things under component-wise projection. That limit is isomorphic to $p$, and we write $p\cong\lim_{j: J_p}p^{(j)}$. By construction, each of these $p^{(j)}$ is finitary, so let $\free_p^{(j)}\coloneqq\free_{p^{(j)}}$ denote the free monad on it, constructed as above. Then finally we construct the free monad $\free_p$ on $p$ as their filtered limit:
 \begin{equation}
-	\free_p\coloneqq\lim_{j\in J_p}\free_p^{(j)}.
+	\free_p\coloneqq\lim_{j: J_p}\free_p^{(j)}.
 \end{equation}
 The proof uses \cref{eqn.finitary_tri_sifted,eqn.cart_tri}.
 
@@ -1016,7 +1019,7 @@ Analogous to \cref{eqn.cofree_iso} there is an isomorphism of polynomials
 	\end{equation}
 
 
-For any polynomial $p:\poly$ and set $X\in\smset$, there is a natural bijection
+For any polynomial $p:\poly$ and set $X:\smset$, there is a natural bijection
 \begin{equation}
   \free_p\tri X
   \cong
@@ -1024,7 +1027,7 @@ For any polynomial $p:\poly$ and set $X\in\smset$, there is a natural bijection
 \end{equation}
 and each is isomorphic to the free $p$-algebra on the set $X$.
 
-For any polynomial $p:\poly$ and set $X\in\smset$, there is a natural bijection
+For any polynomial $p:\poly$ and set $X:\smset$, there is a natural bijection
 \begin{equation}
   \free_p\tri X
   \cong
@@ -1123,13 +1126,13 @@ is a *-bifibration. In particular, for any function $f\colon A\to B$, there is a
 \end{equation}
 where $\poly_X$ is the category of polynomials with positions $p(1)=X$. The images under the functors $f_!$ and $f_*$ of $p:\poly_A$ are given by
 \begin{equation}
-	f_!(p)\coloneqq\sum_{b\in B}\yon^{\;\prod\limits_{b=fa}p[a]}
+	f_!(p)\coloneqq\sum_{b: B}\yon^{\;\prod\limits_{b=fa}p[a]}
 	\qqand
-	f_*(p)\coloneqq\sum_{b\in B}\yon^{\;\sum\limits_{b=fa}p[a]}
+	f_*(p)\coloneqq\sum_{b: B}\yon^{\;\sum\limits_{b=fa}p[a]}
 \end{equation}
 and the image under the functor $f^*$ of $q:\poly_B$ is given by
 \begin{equation}
-	f^*(q)\coloneqq\sum_{a\in A}\yon^{q[fa]}
+	f^*(q)\coloneqq\sum_{a: A}\yon^{q[fa]}
 \end{equation}
 For any $p:\poly_A$ and $q:\poly_B$ there are natural maps
 \begin{equation}
@@ -1153,7 +1156,7 @@ The $p\mapsto p(1)$ bifibration \eqref{eqn.bifib} gives us the terms \emph{verti
 	\item \emph{cartesian} if $\varphi^\sharp$ is a natural isomorphism, and
 	\item \emph{op-cartesian} if the diagram \eqref{eqn.poly_map} is a right Kan extension.
 \end{itemize}
-More explicitly, $\varphi$ is cartesian iff for each $I\in p(1)$, the function $\varphi^\sharp_I\colon p[I]\to q[\varphi_1I]$ is a bijection. It is op-cartesian if for each $J\in q(1)$ the map $q[J]\to\prod\limits_{\varphi_1(I)=J}p[I]$ is a bijection.
+More explicitly, $\varphi$ is cartesian iff for each $I: p(1)$, the function $\varphi^\sharp_I\colon p[I]\to q[\varphi_1I]$ is a bijection. It is op-cartesian if for each $J: q(1)$ the map $q[J]\to\prod\limits_{\varphi_1(I)=J}p[I]$ is a bijection.
 
 There are at least three factorization systems on $\poly$:
 \begin{itemize}
