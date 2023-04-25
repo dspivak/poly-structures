@@ -804,7 +804,7 @@ natural in $p,q:\poly$ and $p',q':\polycart$. In particular, there is a Cartesia
 
 While $p\mapsto p_*$ is not functorial in $\poly$, it is functorial in the Cartesian morphisms $\polycart$. It is also functorial as a map $\poly\to\Span(\poly)$:
 \begin{align}
-	\frown\colon\poly&\to\Span(\poly)\\
+	\cocl{}\colon\poly&\to\Span(\poly)\\
 	p&\mapsto p_*\\
 	(p\To{\varphi}q)&\mapsto\big( p_*\from(p\cocl{\varphi_1}q)\to q_*\big)
 \end{align}\goodbreak
@@ -836,6 +836,26 @@ It also satisfies the following:
 	(p_1+p_2)\hyper{(f_1,f_2)}q&\cong(p_1\hyper{f_1}q)+(p_2\hyper{f_2}q)\\
 	p\hyper{(f_1,f_2)}(q_1\otimes q_2)&\cong (p\hyper{f_1}q_1)\hyper{f_2}q_2
 \end{align}
+and for any $f\colon p(1)\to (q_1\tri q_2)(1)$, there is a natural map coming from duoidality \eqref{duoidal}:
+\begin{equation}
+	(p\cocl{f_1}q_1)\hyper{f_2}q_2\to
+	p\hyper{f}(q_1\tri q_2)
+\end{equation}
+
+For any polynomial $p$, let $\ol{p}\coloneqq p(1)\yon$. For any $p,q:\poly$ there is an isomorphism
+\begin{equation}
+	p\cocl{}\left(\lens{\ol{p}}{q}\hyper{}p\right)\cong p\tri\ol{q}
+\end{equation}
+where the unwritten indices of $\cocl{}$ and $\hyper{}$ are both the identity on $p(1)$.
+
+For any $q:\poly$ and $A:\smset$, let $q\coalg[A]:\smset$ denote the set $\smset(A,q(A))$ of $q$-coalgebra structures on $A$. For a polynomial $p$, let $q\coalg_p\coloneqq\sum_{I:p(1)}\yon^{q\coalg[p[I]]}$. Then there is an isomorphism
+\begin{equation}
+	q\coalg_p
+	\cong
+	\lens{p}{q}\hyper{}p
+\end{equation}
+where the unwritten index of $\hyper{}$ is the identity on $p(1)$.
+
 
 %-------- Chapter --------%
 \chapter{Other monoidal structures}
@@ -964,7 +984,7 @@ where the $p_k$ are defined inductively as follows:
 \intertext{and the maps $f_k\colon p_{k+1}\to p_k$ are defined inductively as follows:}
 	p_1=p\times\yon&\To{f_0\coloneqq\tn{proj}}\yon=p_0&p_{k+2}=(p\tri p_{k+1})\times\yon&\To{f_{k+1}\coloneqq(p\tri f_k)\times\yon}(p\tri p_{k})\times\yon=p_{k+1}
 \end{align}
-The map $\cofree\to\yon$ is easy and the map $\cofree\to\cofree\tri\cofree$ is given by maps $p_{m+n}\to p_m\tri p_n$, which themselves arise by induction on $n$, properties of $\frown$, and maps $p\tri p_m\to p_m\tri p$ that  arise by induction on $m$. There is an isomorphism of polynomials
+The map $\cofree\to\yon$ is easy and the map $\cofree\to\cofree\tri\cofree$ is given by maps $p_{m+n}\to p_m\tri p_n$, which themselves arise by induction on $n$, properties of $\cocl{}$, and maps $p\tri p_m\to p_m\tri p$ that  arise by induction on $m$. There is an isomorphism of polynomials
 \begin{equation}\label{eqn.cofree_iso}
 	\cofree_p\To{\cong} (p\tri\cofree_p)\times\yon.
 \end{equation}
