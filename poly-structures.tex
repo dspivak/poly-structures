@@ -461,7 +461,7 @@ It always distributes over $+$:
 p\odot(q_1+q_2)\cong (p\odot q_1)+(p\odot q_2).
 \end{equation}
 
-For any set $S$, there is a monoidal structure $(0,\vee_S)$ on $\smset$,\footnote{I learned the $\vee_1$ monoidal structure (pronounced ``or'') on $\smset$ from Richard Garner, and Solomon Bothwell later informed me that it's called \href{https://hackage.haskell.org/package/these}{\texttt{These}} in Haskell. I learned the $\vee_S$ and others from \href{https://mathoverflow.net/questions/155939/what-other-monoidal-structures-exist-on-the-category-of-sets}{mathoverflow}.}
+For any set $S$, there is a monoidal structure $(0,\vee_S)$ on $\smset$,\footnote{I learned the $\vee_1$ monoidal structure (pronounced ``or'') on $\smset$ from Richard Garner, and Solomon Bothwell later informed me that it's called \href{https://hackage.haskell.org/package/these}{\texttt{These}} in Haskell. I learned the $\vee_S$ for $S\geq 2$, as well as other monoidal structures, from \href{https://mathoverflow.net/questions/155939/what-other-monoidal-structures-exist-on-the-category-of-sets}{mathoverflow}.}
  where
 \begin{equation}
 	A\vee_SB\coloneqq A+A\times S\times B + B.
@@ -518,8 +518,8 @@ is an isomorphism. It commutes with all colimits in either variable: for any cat
 is an isomorphism.
 
 The $\otimes$ and $\times$ operation together form a linearly distributive category,%
-\footnote{I discovered this fact with Brandon Shapiro.}
-\begin{equation}
+\footnote{This fact \eqref{eqn.shapiro_0}, along with \cref{eqn.shapiro_1,eqn.shapiro_2}, were discovered either by or in conjunction with Brandon Shapiro.}
+\begin{equation}\label{eqn.shapiro_0}
 p\times(q\otimes r)\to (p\times q)\otimes r.
 \end{equation}
 
@@ -674,9 +674,8 @@ The cartesian closure interacts with coproducts and products via maps
 \end{equation}
 natural in $p:\poly\op$, $q:\poly$, and dinatural in $r$.
 
-Because of duoidality \eqref{duoidal}, $\otimes$-closure interacts with substitution:%
-\footnote{This was pointed out to me by Brandon Shapiro.}
-\begin{equation}
+Because of duoidality \eqref{duoidal}, $\otimes$-closure interacts with substitution:
+\begin{equation}\label{eqn.shapiro_1}
 	\yon\cong[\yon,\yon]
 	\qqand
 	[p_1,q_1]\tri[p_2,q_2]\to [p_1\tri p_2,q_1\tri q_2]
@@ -751,7 +750,7 @@ It interacts with the $\otimes$-closure (Dirichlet-hom) by a vertical map
 	\left[\lens{p}{q},p'\right]\to[p,p'\tri q]
 \end{equation}
 and a map
-\begin{equation}
+\begin{equation}\label{eqn.shapiro_2}
 	\lens{p\otimes p'}{q}\to\lens{p}{[p',q]}.
 \end{equation}
 
