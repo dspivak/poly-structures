@@ -35,6 +35,7 @@ citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode]{hyperr
 \usepackage{ebproof}
 \usepackage{stmaryrd}
 \usepackage{ebproof}
+\usepackage{graphicx}
 
 % xcolor %
 	\newcommand{\myred}[1]{{\color{red!60!black}#1}}
@@ -355,13 +356,15 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
   \fi
 }
 
-\newcommand{\cocl}[1]{\overset{#1}{\frown}}
-
+\newcommand{\indexcoclscale}[1]{\scalebox{.7}{#1}}
+\newcommand{\cocl}[1]{
+	\scriptsize\overset{\,\indexcoclscale{$#1$}}{\frown}\normalsize
+}
 \newcommand{\hyper}[1]{
 	\begin{tikzpicture}[y=.5cm, font=\scriptsize, baseline=(base)]
 		\node[rotate=-15] (ar) {$\nearrow$};
 		\coordinate[below=3pt] (base) at (ar);
-		\node[above=-7pt of ar] (f) {$#1$};
+		\node[above right=-2pt and 1pt of ar.west] (f) {\indexcoclscale{$#1$}};
 	\end{tikzpicture}
 }
 
@@ -754,13 +757,17 @@ and a map
 	\lens{p\otimes p'}{q}\to\lens{p}{[p',q]}.
 \end{equation}
 
-For any set $A$, we have $\yon^A\times p\cong\lens{p}{\yon+A}$ by \eqref{eqn.cart_cl}. More importantly we have
+For any set $A$, we have $\lens{p}{\yon+A}\cong p\times\yon^A$ by \eqref{eqn.cart_cl}. More importantly we have
 \begin{equation}\label{eqn.left_adjoints}
-  \lens{p}{A\yon}\cong p\tri\yon^A
+  \lens{p}{A\yon}\cong 
+  p\tri\yon^A\cong 
+  p\otimes\yon^A
   \qqand
-  A\yon\tri\lens{p}{q}\cong\lens{A\yon\tri p}{q}
+  A\yon\otimes\lens{p}{q}\cong
+  A\yon\tri\lens{p}{q}\cong
+	\lens{A\yon\tri p}{q}
 \end{equation}
-We include \eqref{eqn.left_adjoints} because these equations generalize to bicomodules---namely $A\yon$ and $\yon^A$ can be replaced by any pair of left and right adjoint bicomodules---even though that is beyond the scope of this document. Indeed, a great deal of the structures in this document generalize.
+\cref{eqn.left_adjoints} generalize to bicomodules---namely $A\yon$ and $\yon^A$ can be replaced by any pair of left and right adjoint bicomodules---even though that is beyond the scope of this document. Indeed, quite a few of the structures in this document generalize to the bicomodule setting.
 
 For any polynomial monad $(m,\eta,\mu)$, the corresponding Lawvere theory is the $\tri$-comonad (category)
 \begin{equation}
@@ -788,6 +795,7 @@ Given $\varphi\colon p\to q\tri r$, we denote its image by $(\varphi.1,\varphi.2
 	(p\cocl{f}q)\tri p'&\cong(p\tri p')\cocl{(p\tri!)\then f}q\\
 	p\cocl{f}(q\tri r)&\cong(p\cocl{f.1}q)\cocl{f.2}r\\
 	(p\otimes p')\cocl{f\otimes f'}(q\otimes q')&\cong(p\cocl{f}q)\otimes(p'\cocl{f'}q')\\
+	[p,q\tri r]&\cong\sum_{f\colon p(1)\to q(1)}[p\cocl{f}q,r]
 \end{align}
 In \eqref{eqn.deriv}, $p_*$ is defined as follows.
 \begin{equation}
@@ -805,7 +813,9 @@ natural in $p,q:\poly$ and $p',q':\polycart$. In particular, there is a Cartesia
 	p_*\tri q_*\to(p\tri q)_*.
 \end{equation}
 
-While $p\mapsto p_*$ is not functorial in $\poly$, it is functorial in the Cartesian morphisms $\polycart$. It is also functorial as a map $\poly\to\Span(\poly)$:
+
+
+Returning to $p\mapsto p_*$, it is not functorial in $\poly$, it is functorial in the Cartesian morphisms $\polycart$. It is also functorial as a map $\poly\to\Span(\poly)$:
 \begin{align}
 	\cocl{}\colon\poly&\to\Span(\poly)\\
 	p&\mapsto p_*\\
@@ -842,7 +852,11 @@ It also satisfies the following:
 and for any $f\colon p(1)\to (q_1\tri q_2)(1)$, there is a natural map coming from duoidality \eqref{duoidal}:
 \begin{equation}
 	(p\cocl{f_1}q_1)\hyper{f_2}q_2\to
-	p\hyper{f}(q_1\tri q_2)
+	p\hyper{f}(q_1\tri q_2).
+\end{equation}
+For any $f\colon p(1)\to p'(1)$ there is a natural map
+\begin{equation}
+\lens{p}{q\tri p'}\to\lens{p\hyper{f}p'}{q}.
 \end{equation}
 
 For any polynomial $p$, let $\ol{p}\coloneqq p(1)\yon$. For any $p,q:\poly$ there is an isomorphism
