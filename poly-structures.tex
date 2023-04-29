@@ -815,7 +815,7 @@ natural in $p,q:\poly$ and $p',q':\polycart$. In particular, there is a Cartesia
 
 
 
-Returning to $p\mapsto p_*$, it is not functorial in $\poly$, it is functorial in the Cartesian morphisms $\polycart$. It is also functorial as a map $\poly\to\Span(\poly)$:
+Returning to $p\mapsto p_*$, it is not functorial in $\poly$, but it is functorial in the Cartesian morphisms $\polycart$. It is also functorial as a map $\poly\to\Span(\poly)$:
 \begin{align}
 	\cocl{}\colon\poly&\to\Span(\poly)\\
 	p&\mapsto p_*\\
@@ -823,7 +823,7 @@ Returning to $p\mapsto p_*$, it is not functorial in $\poly$, it is functorial i
 \end{align}\goodbreak
 That is, for any $p\To{\varphi}q\To{\psi}r$, there is an isomorphism
 \begin{equation}
-	(p\cocl{\varphi_1}q)\times_{ q_*}(q\cocl{\psi_1}r)\cong p\cocl{\varphi_1\then\psi_1}r
+	(p\cocl{\varphi_1}q)\times_{ q_*}(q\cocl{\psi_1}r)\cong p\cocl{(\varphi\then\psi)_1}r
 \end{equation}
 This functor is strong monoidal with respect to both $+$ and $\otimes$. One may think of it as representing the bundle view of $\poly$. Indeed, for any $p:\poly$ we have a counit map $\epsilon_p\colon p_*\to p$, and given $\varphi\colon p\to q$, there is an induced span
 \begin{equation}
