@@ -1035,7 +1035,7 @@ There is a free $\tri$-monoid (often called the free monad) construction on $\po
 		\ar[from=l, shift right=-8pt, "\free"]
 \end{tikzcd}
 \end{equation}
-where $U$ is the forgetful functor that sends a monoid to its carrier. The free $\tri$-monoid $\free_p$ on $p:\poly$ is constructed in two steps. For any finitary polynomial $q$---one for which each $q[J]$ is a finite set---the free $\tri$-monoid on $q$ can be constructed in one step, namely as the colimit:
+where $U$ is the forgetful functor that sends a monoid to its carrier. We only consider free monads on finitary polynomials $q$, i.e.\ ones for which $q[J]$ is finite for all $J:q(1)$; for the more general story see \href{https://arxiv.org/abs/0906.4931}{Gambino-Kock}. The free $\tri$-monoid on $q$ can be constructed as the colimit:
 \begin{equation}
 	\free_q\coloneqq\colim(\cdots\from q_{n+1}\From{g_n}q_n\from\cdots\from q_1\From{g_0} q_0)
 \end{equation}
@@ -1045,11 +1045,7 @@ where the $q_k$ are defined inductively as follows:
 \intertext{and the maps $g_k\colon q_{k}\to q_{k+1}$ are defined inductively as follows:}
 	q_0=\yon&\To{g_0\coloneqq\tn{incl}}\yon+q=q_1&q_{k+1}=\yon+(q\tri q_{k})&\To{g_{k+1}\coloneqq\yon+(q\tri g_k)}\yon+(q\tri q_{k+1})=q_{k+2}
 \end{align}
-An arbitrary polynomial $p$ can be written as the filtered limit of its vertical projections $p\to p^{j}$ onto finitary polynomials: that is, for each sum-component $I: p(1)$, just replace $p[I]$ by an arbitrary finite subset of it, and take the limit of all such things under component-wise projection. That limit is isomorphic to $p$, and we write $p\cong\lim_{j: J_p}p^{(j)}$. By construction, each of these $p^{(j)}$ is finitary, so let $\free_p^{(j)}\coloneqq\free_{p^{(j)}}$ denote the free monad on it, constructed as above. Then finally we construct the free monad $\free_p$ on $p$ as their filtered limit:
-\begin{equation}
-	\free_p\coloneqq\lim_{j: J_p}\free_p^{(j)}.
-\end{equation}
-The proof uses \cref{eqn.finitary_tri_sifted,eqn.cart_tri}.
+
 
 Analogous to \cref{eqn.cofree_iso} there is an isomorphism of polynomials
 \begin{equation}
@@ -1105,7 +1101,7 @@ and the functor $\cofree_-\colon\poly\to\poly$ is itself a comonad
 	\qqand
 	\cofree_p\to\cofree_{\cofree_p}. 
 \end{equation}
-Moreover, the former is a module over the latter, i.e.\ for any $p,q:\poly$ there is a natural map
+Moreover, the former is a module over the latter, i.e.\ for any finitary $p,q$ there is a natural map
 \begin{equation}\label{module_easy}
   \free_p\otimes\cofree_q\to\free_{p\otimes q}
 \end{equation}
