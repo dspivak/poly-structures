@@ -600,7 +600,6 @@ There are surprising natural maps that combine the four main monoidal products: 
 %	(\myred{p_{-i}}\otimes \myred{q_{-i}})\tri\cdots\tri(\myred{p_{-1}}\otimes \myred{q_{-1}})\tri(p_0\times q_0)\tri(\mygreen{p_1}+\mygreen{q_1})\tri\cdots\tri(\mygreen{p_j}+\mygreen{q_j})
 %\end{multline}
 
-There are other interesting aspects of the substitution product $\tri$. In particular, monoids with respect to $\tri$ generalize $\Sigma$-free operads. Comonoids with respect to $\tri$ are exactly categories. Bicomodules with respect to $\tri$ are parametric right adjoints between copresheaf categories.
 
 \chapter{Monoidal closures}
 
@@ -915,6 +914,36 @@ We know of two more monoidal products $(\yon,\dagger)$ and $(\yon, \ddagger)$ fr
 E.g.\ in the case of monomials we have $I\yon^A\dagger J\yon^B\cong IJ\yon^{AB^I}$ and $I\yon^A\ddagger J\yon^B\cong IJ\yon^{A^JB^I}$.
 
 
+%-------- Chapter --------%
+\chapter{Polynomial monads and comonads}
+
+A polynomial monad is a monoid in $(\poly,\yon,\tri)$, i.e.\ a tuple $(t,\eta,\mu)$ where $t:\poly$ and where $\eta\colon\yon\to t$ and $\mu\colon t\tri t\to t$ satisfy the monoid laws. Note that the maps $\eta$ and $\mu$ are often asked to be Cartesian; we refer to these as \emph{Cartesian monads}. Finitary Cartesian monads can be identified with $\Sigma$-free (one-object) operads: $t(1)$ is the set of operations and for each $T:t(1)$ the set $t[T]$ is its arity; the unit and multiplication $(\eta,\mu)$ correspond to the identity and composition respectively. Morphisms between $(\tri)$-monoids are functors between operads.
+
+A polynomial comonad is a comonoid in $(\poly,\yon,\tri)$, i.e.\ a tuple $(c,\epsilon,\delta)$ where $c:\poly$ and where $\epsilon\colon c\to\yon$ and $\delta\colon c\to c\tri c$ satisfy the comonoid laws. Polynomial comonads can be identified with categories: $c(1)$ is the set of objects, and for each $C:c(1)$ the set $c[C]$ is the set of outgoing arrows from that object; the counit corresponds to the identities and the comultiplication corresponds to the codomain and composition information. Morphisms of $(\tri)$-comonoids are not functors, but cofunctors: we leave this to the reader to investigate.
+
+The category of $(\tri)$-comonoids has finite sums and products, with units $0$ and $\yon$ respectively; it also has another monoidal product $\otimes$ with unit $\yon$, which agrees with the usual Cartesian product of categories. The forgetful functor to $\poly$ is strong monoidal with respect to $(0,+)$ and $(\yon,\otimes)$; we will discuss its right adjoint $\cofree$ in \cref{chap.adj_mon_com}.
+
+The category of $(\tri)$-monoids has products; the terminal object is $(1,!,!)$, and the product $t\times t'$ has unit $(\eta,\eta')$, and its multiplication arises from \eqref{eqn.comp_times} and projection. The forgetful functor to $\poly$ is strong monoidal with respect to $\times$. We will discuss its left adjoint in \cref{chap.adj_mon_com}.
+
+For any polynomial monad $t$, exponentiating with base $t$ gives a surprising lax monoidal functor $(\poly,\yon,\tri)\op\to(\poly,1,\times)$:
+\begin{equation}
+	1\to t^\yon
+	\qqand
+	t^p\times t^q\to t^{p\tri q}.
+\end{equation}
+This makes use of the maps \eqref{eqn.allfour}. In particular, for any monad $t$ and comonad (category) $c$, the polynomial $t^c$ has a natural $(\times)$-monoid structure
+\begin{equation}
+  1\to t^c
+  \qqand
+  t^c\times t^c\to t^c.
+\end{equation}
+Exponentiating with base $t$ also gives a lax monoidal functor $(\poly,1,\times)\op\to(\poly,\yon,\tri)$:
+\begin{equation}
+	\yon\to t^1
+	\qqand
+	t^p\tri t^q\to t^{p\times q}.
+\end{equation}
+In particular, $t^p$ is a monad for any $p:\poly$.
 
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
@@ -1154,18 +1183,7 @@ This monad distributes with the free monad monad
 	\free_{p^e}\to(\free_p)^e
 \end{equation}
 
-For any polynomial monad $t$, exponentiating with base $t$ gives a surprising lax monoidal functor $(\poly,1,\times)\op\to(\poly,\yon,\tri)$:
-\begin{equation}
-	1\to t^\yon
-	\qqand
-	t^p\times t^q\to t^{p\tri q}.
-\end{equation}
-This makes use of the maps \eqref{eqn.allfour}. In particular, for any monad $t$ and comonad (category) $c$, the polynomial $t^c$ has a natural $(\times)$-monoid structure
-\begin{equation}
-  1\to t^c
-  \qqand
-  t^c\times t^c\to t^c.
-\end{equation}
+
 
 \chapter{*-Bifibration over $\smset$ and factorization systems}\label{chap.bifib}
 
