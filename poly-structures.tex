@@ -292,6 +292,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\wc}[1]{\widecheck{#1}}
 \newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
 
+\newcommand{\lin}[1]{\hspace{1pt}\ol{\hspace{-1pt}#1\hspace{-1pt}}\hspace{1pt}}
 
 
 \newcommand{\bb}{\mathbb{B}}
@@ -336,7 +337,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\indep}{\Fun{Indep}}
 \newcommand{\duoid}{\Fun{Duoid}}
 \newcommand{\jump}{\pi}
-\newcommand{\jumpmap}{\ol{\jump}}
+\newcommand{\jumpmap}{\lin{\jump}}
 \newcommand{\founds}{\Yleft}
 \newcommand{\cofree}{\mathfrak{c}}
 \newcommand{\free}{\mathfrak{m}}
@@ -583,28 +584,21 @@ satisfying the usual laws. This map is derived from \eqref{duoidal} by taking $p
 \end{equation}
 
 
-There are some natural maps that combine $\tri$, $\times,$ and $\otimes$. Firstly we have
-\begin{equation}
-	(p_1\tri p_2)\times(q_1\tri q_2)\to (p_1\otimes q_1)\tri (p_2\times q_2)
-	\qqand
-	1\to\yon\tri 1.
+There are surprising natural maps that combine the four main monoidal products: $\tri$, $\otimes$, $\times$, and $+$:
+\begin{equation}\label{eqn.allfour}
+	(p_1\tri p_2\tri p_3)\times(q_1\tri q_2\tri q_3)\to (p_1\otimes q_1)\tri (p_2\times q_2)\tri(p_3+q_3)
 \end{equation}
-These commute with the duoidality maps \eqref{duoidal}. There are also natural maps that combine $\tri$, $\times$, and $+$.
-\[
-	(p_1\tri p_2)\times (q_1\tri q_2)\to (p_1\times q_1)\tri(p_2+q_2)
-	\qqand
-	1\to1\tri 0.
-\]
+%These commute with the duoidality maps \eqref{duoidal}.
 %These lead to interesting maps, e.g.\ $pq\to p\tri (q\yon)$ and $p(1)q\to p\tri q$.
-Together these assemble into maps that sandwich a single $\times$ between arbitrary-length layers of $\otimes$'s and $+$'s, i.e.\ of the following form for any $i,j:\nn$ and $2(i+1+j)$-many polynomials denoted $\myred{p_{-i}},\myred{q_{-i}}\ldots,\myred{p_{-1}},\myred{q_{-1}},p_0,\mygreen{q_0}
-,\mygreen{p_1},\mygreen{q_1},\ldots,\mygreen{p_j},\mygreen{q_j}:\poly$,
-\begin{multline}
-	(\myred{p_{-i}}\tri\cdots\tri \myred{p_{-1}}\tri p_0\tri \mygreen{p_1}\tri\cdots\tri \mygreen{p_j})
-	\times
-	(\myred{q_{-i}}\tri\cdots\tri \myred{q_{-1}}\tri q_0\tri \mygreen{q_1}\tri\cdots\tri \mygreen{q_j})
-	\to\\
-	(\myred{p_{-i}}\otimes \myred{q_{-i}})\tri\cdots\tri(\myred{p_{-1}}\otimes \myred{q_{-1}})\tri(p_0\times q_0)\tri(\mygreen{p_1}+\mygreen{q_1})\tri\cdots\tri(\mygreen{p_j}+\mygreen{q_j})
-\end{multline}
+%Together these assemble into maps that sandwich a single $\times$ between arbitrary-length layers of $\otimes$'s and $+$'s, i.e.\ of the following form for any $i,j:\nn$ and $2(i+1+j)$-many polynomials denoted $\myred{p_{-i}},\myred{q_{-i}}\ldots,\myred{p_{-1}},\myred{q_{-1}},p_0,\mygreen{q_0}
+%,\mygreen{p_1},\mygreen{q_1},\ldots,\mygreen{p_j},\mygreen{q_j}:\poly$,
+%\begin{multline}
+%	(\myred{p_{-i}}\tri\cdots\tri \myred{p_{-1}}\tri p_0\tri \mygreen{p_1}\tri\cdots\tri \mygreen{p_j})
+%	\times
+%	(\myred{q_{-i}}\tri\cdots\tri \myred{q_{-1}}\tri q_0\tri \mygreen{q_1}\tri\cdots\tri \mygreen{q_j})
+%	\to\\
+%	(\myred{p_{-i}}\otimes \myred{q_{-i}})\tri\cdots\tri(\myred{p_{-1}}\otimes \myred{q_{-1}})\tri(p_0\times q_0)\tri(\mygreen{p_1}+\mygreen{q_1})\tri\cdots\tri(\mygreen{p_j}+\mygreen{q_j})
+%\end{multline}
 
 There are other interesting aspects of the substitution product $\tri$. In particular, monoids with respect to $\tri$ generalize $\Sigma$-free operads. Comonoids with respect to $\tri$ are exactly categories. Bicomodules with respect to $\tri$ are parametric right adjoints between copresheaf categories.
 
@@ -648,7 +642,13 @@ The Dirichlet closure has only some of the analogous properties:
 	[\yon,q]\cong q,\qquad
 	[p_1\otimes p_2,q]\cong[p_1,[p_2,q]]
 \end{gather}
-The following is true of any monoidal closure, but we include it for convenience:
+The Dirichlet closure also satisfies the following relation with $(1,\times)$:
+\begin{equation}
+  [p,1]\cong 1
+  \qqand
+  [p,q_1\times q_2]\cong[p,q_1]\times[p,q_2].
+\end{equation}
+The following pattern holds for any monoidal closure, but we include it for $\times$ and $\otimes$ in case it's convenient:
 \begin{equation}
 	q_1^{p_1}\times q_2^{p_2}\to (q_1q_2)^{p_1p_2}
 	\qqand
@@ -659,22 +659,23 @@ The cartesian closure also interacts with substitution as follows:
 \begin{equation}
 	r\tri (q^p)\to (r\tri q)^p
 \end{equation}
-and this map is an isomorphism in case $p\cong\yon^A$ for some $A:\smset$. The diagonal $p\to p\times p$ induces a map
-\begin{equation}
-	q^p\to (pq)^p
-\end{equation}
-The functor $\yon^-\colon(\poly,1,\times)\op\to(\poly,\yon,\tri)$ is lax monoidal
+and this map is an isomorphism in case $p\cong\yon^A$ for some $A:\smset$. 
+%The diagonal $p\to p\times p$ induces a map
+%\begin{equation}
+%	q^p\to (pq)^p
+%\end{equation}
+The representation functor $\yon^-\colon(\poly,1,\times)\op\to(\poly,\yon,\tri)$ is strong monoidal
 \begin{equation}
 	\yon\cong\yon
 	\qqand
-	\yon^p\tri\yon^q\to\yon^{p\times q}
+	\yon^p\tri\yon^q\cong\yon^{p\times q}.
 \end{equation}
 
 The cartesian closure interacts with coproducts and products via maps
 \begin{equation}
   q^p\to(q+r)^{p+r}
   \qqand
-	q^p\to(qr)^{pr}
+	q^p\to(qr)^{pr},
 \end{equation}
 natural in $p:\poly\op$, $q:\poly$, and dinatural in $r$.
 
@@ -682,7 +683,7 @@ Because of duoidality \eqref{duoidal}, $\otimes$-closure interacts with substitu
 \begin{equation}\label{eqn.shapiro_1}
 	\yon\cong[\yon,\yon]
 	\qqand
-	[p_1,q_1]\tri[p_2,q_2]\to [p_1\tri p_2,q_1\tri q_2]
+	[p_1,q_1]\tri[p_2,q_2]\to [p_1\tri p_2,q_1\tri q_2].
 \end{equation}
 
 
@@ -799,7 +800,7 @@ Given $\varphi\colon p\to q\tri r$, we denote its image by $(\varphi.1,\varphi.2
 	[p,q\tri r]&\cong\sum_{f\colon p(1)\to q(1)}[p\cocl{f}q,r]
 \end{align}
 In \eqref{eqn.deriv}, $p_*$ is defined as follows.
-\begin{equation}
+\begin{equation}\label{eqn.p_star}
 p_*\coloneqq \dot{p}\yon=p\cocl{\id}p=\sum_{I: p(1)}p[I]\yon^{p[I]}
 \end{equation}
 Though it can be defined in terms of the derivative $\dot{p}$ of $p$, we find $p_*$ to be a much more fundamental construction than the derivative. For example, the bundle representation of a polynomial $p$ is $p_*(1)\to p(1)$. The operation $p\mapsto p_*$ is a comonad on $\poly$, i.e.\ $p_*\to p$ and $p_*\to (p_*)_*$, and each $p_*$ has the structure of a comonad, i.e.\ $p_*\to\yon$ and $p_*\to p_*\tri p_*$. 
@@ -860,9 +861,9 @@ For any $f\colon p(1)\to p'(1)$ there is a natural map
 \lens{p}{q\tri p'}\to\lens{p\hyper{f}p'}{q}.
 \end{equation}
 
-For any polynomial $p$, let $\ol{p}\coloneqq p(1)\yon$. For any $p,q:\poly$ there is an isomorphism
+For any polynomial $p$, let $\lin{p}\coloneqq p(1)\yon$. For any $p,q:\poly$ there is an isomorphism
 \begin{equation}
-	p\cocl{}\left(\lens{\ol{p}}{q}\hyper{}p\right)\cong p\tri\ol{q}
+	p\cocl{}\left(\lens{\lin{p}}{q}\hyper{}p\right)\cong p\tri\lin{q}
 \end{equation}
 where the unwritten indices of $\cocl{}$ and $\hyper{}$ are both the identity on $p(1)$.
 
@@ -954,6 +955,8 @@ The rightward maps to $\smset$ are also distributive monoidal; indeed by \cref{e
 	\qqand
 	p(A)\times q(A)\cong(p\times q)(A)
 \end{equation}
+We denote the idempotent comonad $p\mapsto p(1)\yon$ by $\lin{p}$. It is strong monoidal with respect to $+,\otimes$ and lax monoidal with respect to $\tri$. 
+
 The functor $\Gamma$ preserves coproducts, since coproducts in $\smset\op$ are products in $\smset$:
 \begin{equation}
 	\Gamma(p+q)\cong\Gamma(p)\times\Gamma(q)
@@ -980,6 +983,9 @@ Returning to our point, the left adjoint in \eqref{eqn.rectangle} is rig monoida
 	(p(1),\Gamma(p))+(q(1),\Gamma(q))&\cong((p+q)(1),\Gamma(p+q))\\
 	(p(1),\Gamma(p))\otimes(q(1),\Gamma(q))&\cong((p\otimes q)(1),\Gamma(p\otimes q))
 \end{align}
+
+The map $p\mapsto p_*$ from \cref{eqn.p_star} forms an idempotent comonad on $\polycart$. It is strong monoidal with respect to $\otimes,+$. There is an isomorphism $\lin{p}_*\cong \lin{p}$.
+% A quiver can be identified with a pair $(a,\tau)$, where $a:\poly$ and $\tau\colon \lin{a_*}\to a$ are arrows and their targets.
 
 There is a cofree $\tri$-comonoid (often called the free comonad) construction on $\poly$:
 \begin{equation}
@@ -1137,7 +1143,29 @@ For $p:\poly$ and $A:\smset$ there is a natural map
 	\cofree_{p\tri A\yon}\to\cofree_p\tri\free_{A\yon}.
 \end{equation}
 
+For any polynomial $e:\poly$, exponentiation by $e$ is a monad on $\poly$:
+\begin{equation}
+	p\to p^e
+	\qqand
+	(p^e)^e\to p^e
+\end{equation}
+This monad distributes with the free monad monad
+\begin{equation}
+	\free_{p^e}\to(\free_p)^e
+\end{equation}
 
+For any polynomial monad $t$, exponentiating with base $t$ gives a surprising lax monoidal functor $(\poly,1,\times)\op\to(\poly,\yon,\tri)$:
+\begin{equation}
+	1\to t^\yon
+	\qqand
+	t^p\times t^q\to t^{p\tri q}.
+\end{equation}
+This makes use of the maps \eqref{eqn.allfour}. In particular, for any monad $t$ and comonad (category) $c$, the polynomial $t^c$ has a natural $(\times)$-monoid structure
+\begin{equation}
+  1\to t^c
+  \qqand
+  t^c\times t^c\to t^c.
+\end{equation}
 
 \chapter{*-Bifibration over $\smset$ and factorization systems}\label{chap.bifib}
 
