@@ -866,13 +866,14 @@ For any polynomial $p$, let $\lin{p}\coloneqq p(1)\yon$. For any $p,q:\poly$ the
 \end{equation}
 where the unwritten indices of $\cocl{}$ and $\hyper{}$ are both the identity on $p(1)$.
 
-For any $q:\poly$ and $A:\smset$, let $q\coalg[A]:\smset$ denote the set $\smset(A,q(A))$ of $q$-coalgebra structures on $A$. For a polynomial $p$, let $q\coalg_p\coloneqq\sum_{I:p(1)}\yon^{q\coalg[p[I]]}$. Then there is an isomorphism
-\begin{equation}
+For any $q:\poly$ and $A:\smset$, let $q\coalg[A]:\smset$ denote the set $\smset(A,q(A))$ of $q$-coalgebra structures on $A$. For a polynomial $p$, let $q\coalg_p\coloneqq\sum_{I:p(1)}\yon^{q\coalg[p[I]]}$. Then there is an isomorphism%
+\footnote{As usual, the unwritten index of $\hyper{}$ in \cref{eqn.hyper_coalg} is the identity on $p(1)$.}
+\begin{equation}\label{eqn.hyper_coalg}
 	q\coalg_p
 	\cong
 	\lens{p}{q}\hyper{}p
 \end{equation}
-where the unwritten index of $\hyper{}$ is the identity on $p(1)$.
+For example, $\yon^{q\coalg[A]}\cong\lens{\yon^A}{q}\hyper{}\yon^A$.
 
 
 %-------- Chapter --------%
@@ -888,6 +889,8 @@ The functor $(p\mapsto p+\yon)$ is strong monoidal $(\poly,0,\curlyvee)\to(\poly
 \begin{equation}
 	(p+\yon)\otimes(q+\yon)\cong (p\curlyvee q)+\yon.
 \end{equation}
+Note that although there is an inclusion $p\otimes q\to p\curlyvee q$, there is no map $\yon\to0$, so the identity on $\poly$ is neither lax nor colax as a map $(\poly,0,\curlyvee)\to(\poly,\yon,\otimes)$.
+
 The identity functor $\poly\to\poly$ has a lax monoidal structure,
 \begin{equation}
 	p+q\to p\curlyvee q.
@@ -1070,7 +1073,7 @@ There is a free $\tri$-monoid (often called the free monad) construction on $\po
 		\ar[from=l, shift right=-8pt, "\free"]
 \end{tikzcd}
 \end{equation}
-where $U$ is the forgetful functor that sends a monoid to its carrier. We only consider free monads on finitary polynomials $q$, i.e.\ ones for which $q[J]$ is finite for all $J:q(1)$; for the more general story see \href{https://arxiv.org/abs/0906.4931}{Gambino-Kock}. The free $\tri$-monoid on $q$ can be constructed as the colimit:
+where $U$ is the forgetful functor that sends a monoid to its carrier. We only consider free monads on finitary polynomials $q$, i.e.\ ones for which $q[J]$ is finite for all $J:q(1)$; for the more general story see \cite[Section 4.2]{kock2012polynomial}. The free $\tri$-monoid on $q$ can be constructed as the colimit:
 \begin{equation}
 	\free_q\coloneqq\colim(\cdots\from q_{n+1}\From{g_n}q_n\from\cdots\from q_1\From{g_0} q_0)
 \end{equation}
@@ -1087,14 +1090,6 @@ Analogous to \cref{eqn.cofree_iso} there is an isomorphism of polynomials
 	 \yon+(p\tri\free_p)\To{\cong}\free_p.
 	\end{equation}
 
-
-For any polynomial $p:\poly$ and set $X:\smset$, there is a natural bijection
-\begin{equation}
-  \free_p\tri X
-  \cong
-	\free_{p+X}\tri 0  
-\end{equation}
-and each is isomorphic to the free $p$-algebra on the set $X$.
 
 For any polynomial $p:\poly$ and set $X:\smset$, there is a natural bijection
 \begin{equation}
