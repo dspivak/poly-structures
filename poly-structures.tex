@@ -341,6 +341,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\founds}{\Yleft}
 \newcommand{\cofree}{\mathfrak{c}}
 \newcommand{\free}{\mathfrak{m}}
+\newcommand{\uu}{\mathit{list}}
 
 % lenses
 \newcommand{\biglens}[2]{
@@ -775,12 +776,6 @@ For any set $A$, we have $\lens{p}{\yon+A}\cong p\times\yon^A$ by \eqref{eqn.car
 \end{equation}
 \cref{eqn.left_adjoints} generalize to bicomodules---namely $A\yon$ and $\yon^A$ can be replaced by any pair of left and right adjoint bicomodules---even though that is beyond the scope of this document. Indeed, quite a few of the structures in this document generalize to the bicomodule setting.
 
-For any polynomial monad $(m,\eta,\mu)$, the corresponding Lawvere theory is the $\tri$-comonad (category)
-\begin{equation}
-	\text{Law}(m)\cong\lens{u}{u\tri m}
-\end{equation}
-where $u\coloneqq\sum_{N:\nn}\yon^N$. In other words, $\lens{u}{u\tri m}$ is a compact representation of what usually has a long description: ``the full subcategory of (the opposite of (the Kleisli category for $m$ on $\smset$)), spanned by the finite sets.''
-
 There is also an \emph{indexed} left $\tri$-coclosure. That is, for any function $f\colon p(1)\to q(1)$, define
 \begin{equation}
 	p\cocl{f}q\coloneqq \sum_{I: p(1)}q[fI]\,\yon^{p[I]}.
@@ -933,6 +928,12 @@ The category of $(\tri)$-comonoids has finite sums and products, with units $0$ 
 
 The category of $(\tri)$-monoids has products; the terminal object is $(1,!,!)$, and the product $t\times t'$ has unit $(\eta,\eta')$, and its multiplication arises from \eqref{eqn.comp_times} and projection. The forgetful functor to $\poly$ is strong monoidal with respect to $\times$. We will discuss its left adjoint in \cref{chap.adj_mon_com}.
 
+For any polynomial monad $t$, the corresponding Lawvere theory is the $\tri$-comonad (category)
+\begin{equation}
+	\text{Law}(m)\cong\lens{\uu}{\uu\tri m}
+\end{equation}
+where $\uu\coloneqq\sum_{N:\nn}\yon^N$. In other words, $\lens{\uu}{\uu\tri m}$ is a compact representation of what usually has a long description: ``the full subcategory of (the opposite of (the Kleisli category for $t$ on $\smset$)), spanned by the finite sets.''
+
 Using the maps \eqref{eqn.allfour} have interesting consequences for exponentiating with base $t$, where $t$ is a monad. First, it gives a surprising lax monoidal functor $(\poly,\yon,\tri)\op\to(\poly,1,\times)$:
 \begin{equation}
 	1\to t^\yon
@@ -958,7 +959,7 @@ For any monad $t$ and comonad $c$, their Dirichlet hom $[c,t]$ also has a monad 
 	&\qqand
 	[c,t]\tri[c,t]\to[c,t].
 \end{align}
-The isomorphism $[c,t]\tri 1\cong t^c\tri 0$ induces a natural map of monads $[c,t]\to t^c$.
+The isomorphism $[c,t]\tri 1\cong t^c\tri 0$ induces a natural map of polynomials $[c,t]\to t^c$, but it does not respect monad multiplication.
 
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
