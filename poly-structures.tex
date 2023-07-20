@@ -928,32 +928,31 @@ The category of $(\tri)$-comonoids has finite sums and products, with units $0$ 
 
 The category of $(\tri)$-monoids has products; the terminal object is $(1,!,!)$, and the product $t\times t'$ has unit $(\eta,\eta')$, and its multiplication arises from \eqref{eqn.comp_times} and projection. The forgetful functor to $\poly$ is strong monoidal with respect to $\times$. We will discuss its left adjoint in \cref{chap.adj_mon_com}.
 
-For any polynomial monad $t$, exponentiating with base $t$ gives a surprising lax monoidal functor $(\poly,\yon,\tri)\op\to(\poly,1,\times)$:
+Using the maps \eqref{eqn.allfour} have interesting consequences for exponentiating with base $t$, where $t$ is a monad. First, it gives a surprising lax monoidal functor $(\poly,\yon,\tri)\op\to(\poly,1,\times)$:
 \begin{equation}
 	1\to t^\yon
 	\qqand
 	t^p\times t^q\to t^{p\tri q}.
 \end{equation}
-This makes use of the maps \eqref{eqn.allfour}. In particular, for any monad $t$ and comonad (category) $c$, the polynomial $t^c$ has a natural $(\times)$-monoid structure
-\begin{equation}
-  1\to t^c
-  \qqand
-  t^c\times t^c\to t^c.
-\end{equation}
-Exponentiating with base $t$ also gives a lax monoidal functor $(\poly,1,\times)\op\to(\poly,\yon,\tri)$:
+It also gives a lax monoidal functor $(\poly,1,\times)\op\to(\poly,\yon,\tri)$:
 \begin{equation}
 	\yon\to t^1
 	\qqand
 	t^p\tri t^q\to t^{p\times q}.
 \end{equation}
-In particular, $t^p$ is a monad for any $p:\poly$.
-
-For any monad $t$ and comonad $c$, their Dirichlet hom $[c,t]$ has a monad structure by duoidality:
-\begin{equation}
+In particular, $t^p$ is a monad for any $p:\poly$. In fact, when $c$ is a comonoid, the polynomial $t^c$ has a monoid structure for several monoidal structures:
+\begin{align}
+  0\to t^c &\qqand t^c + t^c\to t^c,\\
+  1\to t^c &\qqand t^c\times t^c\to t^c,\\
+  \yon\to t^c &\qqand t^c\otimes t^c\to t^c,\\
+  \yon\to t^c &\qqand t^c\tri t^c\to t^c.
+\intertext{
+For any monad $t$ and comonad $c$, their Dirichlet hom $[c,t]$ also has a monad structure by duoidality:
+}
 	\yon\to[c,t]
-	\qqand
+	&\qqand
 	[c,t]\tri[c,t]\to[c,t].
-\end{equation}
+\end{align}
 
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
