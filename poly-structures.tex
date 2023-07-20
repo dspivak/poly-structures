@@ -588,6 +588,11 @@ There are surprising natural maps that combine the four main monoidal products: 
 \begin{equation}\label{eqn.allfour}
 	(p_1\tri p_2\tri p_3)\times(q_1\tri q_2\tri q_3)\to (p_1\otimes q_1)\tri (p_2\times q_2)\tri(p_3+q_3)
 \end{equation}
+In particular, for any $p_1,p_2,q_1,q_2$ there are maps
+\begin{align}
+	(p_1\tri p_2)\times(q_1\tri q_2)&\to (p_1\otimes q_1)\tri (p_2\times q_2)\\
+	(p_1\tri p_2)\times(q_1\tri q_2)&\to (p_2\times q_2)\tri(p_3+q_3)
+\end{align}
 %These commute with the duoidality maps \eqref{duoidal}.
 %These lead to interesting maps, e.g.\ $pq\to p\tri (q\yon)$ and $p(1)q\to p\tri q$.
 %Together these assemble into maps that sandwich a single $\times$ between arbitrary-length layers of $\otimes$'s and $+$'s, i.e.\ of the following form for any $i,j:\nn$ and $2(i+1+j)$-many polynomials denoted $\myred{p_{-i}},\myred{q_{-i}}\ldots,\myred{p_{-1}},\myred{q_{-1}},p_0,\mygreen{q_0}
@@ -953,6 +958,7 @@ For any monad $t$ and comonad $c$, their Dirichlet hom $[c,t]$ also has a monad 
 	&\qqand
 	[c,t]\tri[c,t]\to[c,t].
 \end{align}
+The isomorphism $[c,t]\tri 1\cong t^c\tri 0$ induces a natural map of monads $[c,t]\to t^c$.
 
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
