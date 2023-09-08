@@ -562,6 +562,12 @@ is an isomorphism. For any category $\cat{I}$, diagram $p\colon \cat{I}\to\polyc
 is an isomorphism. For any $p:\poly$ the operation $(p\tri -)$ preserves monomorphisms and epimorphisms in $\poly$. For any $q:\poly$, the operation $(-\tri q)$ preserves monomorphisms and if $q\neq 0$ then it also preserves epimorphisms.%
 \footnote{The unique map $\yon\to 1 $ is an epimorphism, but $\yon\tri 0\to 1\tri 0$ is not.}
 
+All functors $\smset\to\smset$ have a \emph{$\times$-strength}; this is expressed for any $p:\poly$ by the data of natural maps
+\begin{equation}
+	(p\tri q)\times r\to p\tri(q\times r).
+\end{equation}
+
+
 The monoidal structure $\tri$ is normal duoidal with $\otimes$, i.e.\ they have the same unit, $\yon$, and there is a natural transformation
 \begin{equation}\label{duoidal}
 	(p_1\tri p_2)\otimes(q_1\tri q_2)\too(p_1\otimes q_1)\tri(p_2\otimes q_2)
