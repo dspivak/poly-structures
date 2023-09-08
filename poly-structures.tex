@@ -456,8 +456,7 @@ p+q\cong\sum_{X: p(1)+q(1)}\yon^{\fontsize{8pt}{8pt}\selectfont
 	}
 \end{equation}
 
-For any symmetric monoidal product $(\mathbb{I},\cdot)$ on $\smset$, there is a corresponding symmetric monoidal structure $(\yon^\mathbb{I},\odot)$ on $\poly$, where the monoidal product given as follows:%
-\footnote{The symmetric monoidal structure $\odot$ on $\poly$ is the Day convolution of the $\cdot$ structure on $\smset$.}
+For any symmetric monoidal product $(\mathbb{I},\cdot)$ on $\smset$, there is a corresponding symmetric monoidal structure $(\yon^\mathbb{I},\odot)$ on $\poly$, where the monoidal product given as follows:
 \begin{equation}
 p\odot q\coloneqq\sum_{(I,J): p(1)\times q(1)}\yon^{p[I]\cdot q[J]}.
 \end{equation}
@@ -465,6 +464,11 @@ It always distributes over $+$:
 \begin{equation}
 p\odot(q_1+q_2)\cong (p\odot q_1)+(p\odot q_2).
 \end{equation}
+The symmetric monoidal structure $\odot$ on $\poly$ is the Day convolution of the $\cdot$ structure on $\smset$. This means we have maps
+\begin{equation}\label{eqn.Day}
+	p(A)\times q(B)\to (p\odot q)(A\cdot B)
+\end{equation}
+natural in $A,B:\smset$. 
 
 For any set $S$, there is a monoidal structure $(0,\vee_S)$ on $\smset$,\footnote{I learned the $\vee_1$ monoidal structure (pronounced ``or'') on $\smset$ from Richard Garner, and Solomon Bothwell later informed me that it's called \href{https://hackage.haskell.org/package/these}{\texttt{These}} in Haskell. I learned the $\vee_S$ for $S\geq 2$, as well as other monoidal structures, from \href{https://mathoverflow.net/questions/155939/what-other-monoidal-structures-exist-on-the-category-of-sets}{mathoverflow}.}
  where
@@ -507,6 +511,7 @@ The first two are highly relevant: the first ($\times$) is the categorical produ
 	p(1)\times q(1)\ar[ul, phantom, very near end, "\lrcorner"]
 \end{tikzcd}
 \end{equation}
+
 
 The dirichlet product commutes with connected limits in either variable: for any connected category $\cat{J}$, functor $p\colon\cat{J}\to\poly$, and polynomial $q$, the induced map
 \begin{equation}
@@ -584,16 +589,15 @@ satisfying the usual laws. This map is derived from \eqref{duoidal} by taking $p
   p\otimes\yon^A\cong p\tri \yon^A.
 \end{equation}
 
-
-There are surprising natural maps that combine the four main monoidal products: $\tri$, $\otimes$, $\times$, and $+$:
+The natural maps \eqref{eqn.Day}, defining $\times$ and $\otimes$ as Day convolutions of $+,\times$, can be extended from sets to polynomials. That is, we have maps:
+\begin{align}
+	(p_1\tri p_2)\times(q_1\tri q_2)&\to(p_1\otimes q_1)\tri(p_2\times q_2)\\
+	(p_1\tri p_2)\times(q_1\tri q_2)&\to(p_1\times q_1)\tri(p_2+q_2)
+\end{align}
+Thus we obtain a natural map combining all four of the main monoidal products: $\tri$, $\otimes$, $\times$, and $+$:
 \begin{equation}\label{eqn.allfour}
 	(p_1\tri p_2\tri p_3)\times(q_1\tri q_2\tri q_3)\to (p_1\otimes q_1)\tri (p_2\times q_2)\tri(p_3+q_3)
 \end{equation}
-In particular, for any $p_1,p_2,q_1,q_2$ there are maps
-\begin{align}
-	(p_1\tri p_2)\times(q_1\tri q_2)&\to (p_1\otimes q_1)\tri (p_2\times q_2)\\
-	(p_1\tri p_2)\times(q_1\tri q_2)&\to (p_2\times q_2)\tri(p_3+q_3)
-\end{align}
 %These commute with the duoidality maps \eqref{duoidal}.
 %These lead to interesting maps, e.g.\ $pq\to p\tri (q\yon)$ and $p(1)q\to p\tri q$.
 %Together these assemble into maps that sandwich a single $\times$ between arbitrary-length layers of $\otimes$'s and $+$'s, i.e.\ of the following form for any $i,j:\nn$ and $2(i+1+j)$-many polynomials denoted $\myred{p_{-i}},\myred{q_{-i}}\ldots,\myred{p_{-1}},\myred{q_{-1}},p_0,\mygreen{q_0}
