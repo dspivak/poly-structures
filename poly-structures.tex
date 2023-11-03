@@ -948,15 +948,15 @@ A polynomial monad is a monoid in $(\poly,\yon,\tri)$, i.e.\ a tuple $(t,\eta,\m
 
 A polynomial comonad is a comonoid in $(\poly,\yon,\tri)$, i.e.\ a tuple $(c,\epsilon,\delta)$ where $c:\poly$ and where $\epsilon\colon c\to\yon$ and $\delta\colon c\to c\tri c$ satisfy the comonoid laws. Polynomial comonads can be identified with categories: $c(1)$ is the set of objects, and for each $C:c(1)$ the set $c[C]$ is the set of outgoing arrows from that object; the counit corresponds to the identities and the comultiplication corresponds to the codomain and composition information. Morphisms of $(\tri)$-comonoids are not functors, but cofunctors: we leave this to the reader to investigate.
 
-The category of $(\tri)$-comonoids has finite sums and products, with units $0$ and $\yon$ respectively; it also has another monoidal product $\otimes$ with unit $\yon$, which agrees with the usual Cartesian product of categories. The forgetful functor to $\poly$ is strong monoidal with respect to $(0,+)$ and $(\yon,\otimes)$; we will discuss its right adjoint $\cofree$ in \cref{chap.adj_mon_com}.
+The category of $(\tri)$-comonoids has finite sums and products, with units $0$ and $\yon$ respectively; it also has another monoidal product $\otimes$ with unit $\yon$, which agrees with the usual Cartesian product of categories. The forgetful functor from $\tri$-comonoids to $\poly$ is strong monoidal with respect to $(0,+)$ and $(\yon,\otimes)$; we will discuss its right adjoint $\cofree$ below.
 
-The category of $(\tri)$-monoids has products; the terminal object is $(1,!,!)$, and the product $t\times t'$ has unit $(\eta,\eta')$, and its multiplication arises from \eqref{eqn.comp_times} and projection. The forgetful functor to $\poly$ is strong monoidal with respect to $\times$. We will discuss its left adjoint in \cref{chap.adj_mon_com}.
+The category of $(\tri)$-monoids has products; the terminal object is $(1,!,!)$, and the product $t\times t'$ has unit $(\eta,\eta')$, and its multiplication arises from \eqref{eqn.comp_times} and projection. The forgetful functor from $\tri$-monoids to $\poly$ is strong monoidal with respect to $\times$. 
 
 For any polynomial monad $t$, the corresponding Lawvere theory is the $\tri$-comonad (category)
 \begin{equation}
-	\text{Law}(m)\cong\lens{\uu}{\uu\tri m}
+	\text{Law}(t)\cong\lens{\uu}{\uu\tri t}
 \end{equation}
-where $\uu\coloneqq\sum_{N:\nn}\yon^N$. In other words, $\lens{\uu}{\uu\tri m}$ is a compact representation of what usually has a long description: ``the full subcategory of (the opposite of (the Kleisli category for $t$ on $\smset$)), spanned by the finite sets.''
+where $\uu\coloneqq\sum_{N:\nn}\yon^N$. In other words, $\lens{\uu}{\uu\tri t}$ is a compact representation of what usually has a long description: ``the full subcategory of (the opposite of (the Kleisli category for $t$ on $\smset$)), spanned by the finite sets.''
 
 Using the maps \eqref{eqn.allfour} have interesting consequences for exponentiating with base $t$, where $t$ is a monad. First, it gives a surprising lax monoidal functor $(\poly,\yon,\tri)\op\to(\poly,1,\times)$:
 \begin{equation}
