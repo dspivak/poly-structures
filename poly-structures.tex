@@ -575,7 +575,10 @@ For any filtered category $\cat{I}$, diagram $p\colon \cat{I}\to\polycart$ of ca
 	\To{\cong}
 	(\colim_{i: \cat{I}}p_i)\tri q
 \end{equation}
-is an isomorphism. For any $p:\poly$ the operation $(p\tri -)$ preserves monomorphisms and epimorphisms in $\poly$. For any $q:\poly$, the operation $(-\tri q)$ preserves monomorphisms and if $q\neq 0$ then it also preserves epimorphisms.%
+is an isomorphism.%
+\footnote{The functor $(-\tri q)$ does not preserve coequalizers of cartesian maps and also does not preserve filtered colimits of arbitrary maps. A counterexample of the first is that the coequalizer of the two distinct maps $\yon^2\tto\yon^2$ is $1$, but the corresponding coequalizer of $\yon^2\tri Q\tto \yon^2\tri Q$ is isomorphic to $Q$. A counterexample of the second is that the filtered diagram $\yon^\nn\to\yon^\nn\to\cdots$ given by maps $(n\mapsto n+1)\colon\nn\to\nn$ has $1$ as its colimit, but the corresponding colimit of $\yon^\nn\tri Q$ is only $1$ for $Q=1$; for example when $Q=0$ this colimit is clearly $0$. These counterexamples were found in collaboration with Sophie Libkind.
+}
+ For any $p:\poly$ the operation $(p\tri -)$ preserves monomorphisms and epimorphisms in $\poly$. For any $q:\poly$, the operation $(-\tri q)$ preserves monomorphisms and if $q\neq 0$ then it also preserves epimorphisms.%
 \footnote{The unique map $\yon\to 1 $ is an epimorphism, but $\yon\tri 0\to 1\tri 0$ is not.}
 
 All functors $\smset\to\smset$ have a \emph{$\times$-strength}; this is expressed for any $p:\poly$ by the data of natural maps
