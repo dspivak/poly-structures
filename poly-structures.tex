@@ -976,6 +976,8 @@ For any polynomial monad $t$, the corresponding Lawvere theory is the $\tri$-com
 \end{equation}
 where $\uu\coloneqq\sum_{N:\nn}\yon^N$. In other words, $\lens{\uu}{\uu\tri t}$ is a compact representation of what usually has a long description: ``the full subcategory of (the opposite of (the Kleisli category for $t$ on $\smset$)), spanned by the finite sets.''
 
+For any $s:\poly$ and comonad $(c,\epsilon,\delta)$, the polynomial $\lens{s\tri c}{s}$ also carries a comonad structure. These were called \emph{selection categories} and discussed \href{https://topos.site/blog/2021/12/creating-new-categories-from-old-selection-categories/}{here}.
+
 Using the maps \eqref{eqn.allfour} have interesting consequences for exponentiating with base $t$, where $t$ is a monad. First, it gives a surprising lax monoidal functor $(\poly,\yon,\tri)\op\to(\poly,1,\times)$:
 \begin{equation}
 	1\to t^\yon
