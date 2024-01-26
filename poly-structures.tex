@@ -1076,29 +1076,28 @@ There is a free $\tri$-monoid (often called the free monad) construction on $\po
 		\ar[from=l, shift right=-8pt, "\free"]
 \end{tikzcd}
 \end{equation}
-where $U$ is the forgetful functor that sends a monoid to its carrier. We only consider free monads on finitary polynomials $q:\poly_f$, i.e.\ ones for which $q[J]$ is finite for all $J:q(1)$; for the more general story see \cite[Section 4.2]{kock2012polynomial}. Thus we consider only
-\begin{equation}\label{eqn.free_monad_finitary}
-\begin{tikzcd}[column sep=60pt]
-	\poly_f
-  	\ar[from=r, shift left=8pt, "U"]
-		\ar[from=r, phantom, "\scriptstyle\bot"]
-  	&
-	\Cat{Mon}(\poly_f)
-		\ar[from=l, shift right=-8pt, "\free"]
-\end{tikzcd}
-\end{equation}
+where $U$ is the forgetful functor that sends a monoid to its carrier. 
 The free $\tri$-monoid on $q$ can be constructed as the colimit:
 \begin{equation}
-	\free_q\coloneqq\colim(\cdots\from q_{n+1}\From{g_n}q_n\from\cdots\from q_1\From{g_0} q_0)
+	\free_q\coloneqq\colim_{\alpha<\kappa}(\cdots\from q_{\alpha+1}\From{g_\alpha}q_\alpha\from\cdots\from q_1\From{g_0} q_0)
 \end{equation}
-where the $q_k$ are defined inductively as follows:
-\begin{align}
-	q_0&\coloneqq \yon&q_{k+1}&\coloneqq \yon+(q\tri q_k)\\
-\intertext{and the maps $g_k\colon q_{k}\to q_{k+1}$ are defined inductively as follows:}
-	q_0=\yon&\To{g_0\coloneqq\tn{incl}}\yon+q=q_1&q_{k+1}=\yon+(q\tri q_{k})&\To{g_{k+1}\coloneqq\yon+(q\tri g_k)}\yon+(q\tri q_{k+1})=q_{k+2}
-\end{align}
-Note that each map $g_k$ is Cartesian. Note also that each $q_k$ is finitary, by which it follows that $\free_q$, their colimit under the $g_k$'s, is also finitary.
-
+where $\kappa$ is any upper bound on the cardinalities of $(q[J])_{J\in q(1)}$ and where the $q_\alpha$ are defined inductively as follows:
+\begin{equation}
+	q_0\coloneqq \yon
+	\qqand
+	q_{\alpha+1}\coloneqq \yon+(q\tri q_k)
+	\qqand
+	q_\beta\coloneqq\colim_{\alpha<\beta}q_\alpha
+\end{equation}
+where $\beta$ is any limit ordinal, and where the maps $g_k\colon q_{\alpha}\to q_{\alpha+1}$ are defined inductively as follows:
+\begin{equation}
+	q_0=\yon
+	\To{g_0\coloneqq\tn{incl}}\yon+q=q_1
+	\qqand
+	q_{\alpha+1}=\yon+(q\tri q_{\alpha})
+	\To{g_{\alpha+1}\coloneqq\yon+(q\tri g_\alpha)}\yon+(q\tri q_{\alpha+1})=q_{\alpha+2}
+\end{equation}
+The maps into $q_\beta$ are just the colimit inclusions when $\beta$ is a limit ordinal. Note that each map $g_\alpha$ is Cartesian. 
 
 Analogous to \cref{eqn.cofree_iso} there is an isomorphism of polynomials
 \begin{equation}
@@ -1106,7 +1105,7 @@ Analogous to \cref{eqn.cofree_iso} there is an isomorphism of polynomials
 	\end{equation}
 
 
-For any finitary polynomial $p:\poly_f$ and set $X:\smset$, there is a natural bijection
+For any polynomial $p:\poly$ and set $X:\smset$, there is a natural bijection
 \begin{equation}
   \free_p\tri X
   \cong
@@ -1114,7 +1113,7 @@ For any finitary polynomial $p:\poly_f$ and set $X:\smset$, there is a natural b
 \end{equation}
 and each is isomorphic to the free $p$-algebra on the set $X$.
 
-The free monad functor $\free\colon\poly_f\to\poly_f$ is not lax monoidal with respect to $\otimes$ on both sides,%
+The free monad functor $\free\colon\poly\to\poly$ is not lax monoidal with respect to $\otimes$ on both sides,%
 \footnote{For example, there is no map of polynomials 
 $
   \free_1\otimes\free_0\cong\yon+1
@@ -1133,7 +1132,6 @@ but in many different ways, the free monad functor is lax monoidal as it maps ou
 \label{eqn.vee4}
 	\free_p\curlyvee\free_q&\to\free_{p\curlyvee q}
 \end{align}
-
 
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
@@ -1206,7 +1204,7 @@ Returning to our point, the left adjoint in \eqref{eqn.rectangle} is rig monoida
 The map $p\mapsto p_*$ from \cref{eqn.p_star} forms an idempotent comonad on $\polycart$. It is strong monoidal with respect to $\otimes,+$. There is an isomorphism $\lin{p}_*\cong \lin{p}$.
 % A quiver can be identified with a pair $(a,\tau)$, where $a:\poly$ and $\tau\colon \lin{a_*}\to a$ are arrows and their targets.
 
-The endofunctor $\free_-\colon\poly_f\to\poly_f$ on finitary polynomials from \cref{eqn.free_monad_finitary} is itself a monad
+The endofunctor $\free_-\colon\poly\to\poly$ from \cref{eqn.free_monad} is itself a monad
 \begin{equation}
 	p\to\free_p
 	\qqand
@@ -1218,26 +1216,26 @@ and the functor $\cofree_-\colon\poly\to\poly$ from \cref{eqn.cofree} is itself 
 	\qqand
 	\cofree_p\to\cofree_{\cofree_p}. 
 \end{equation}
-%Moreover, the former is a module over the latter, i.e.\ for any finitary $p,q$ there is a natural map
-%\begin{equation}\label{module_easy}
-%  \free_p\otimes\cofree_q\to\free_{p\otimes q}
-%\end{equation}
-%satisfying the action laws for the maps from \cref{cofree_lax_monoidal} as well as coherence for $\free$ as a monad and $\cofree$ as a comonad:
-%\begin{equation}\label{eqn.monad_comonad_coherence}
-%\begin{tikzcd}
-%  p\otimes\cofree_q\ar[r]\ar[d]&p\otimes q\ar[d]\\
-%  \free_p\otimes\cofree_q\ar[r]&\free_{p\otimes q}
-%\end{tikzcd}
-%\hspace{.6in}
-%\begin{tikzcd}
-%	\free_{\free_p}\otimes\cofree_q\ar[d]\ar[r]&
-%	\free_{\free_p}\otimes\cofree_{\cofree_q}\ar[r]&
-%	\free_{\free_p\otimes\cofree_q}\ar[r]&
-%	\free_{\free_{p\otimes q}}\ar[d]\\
-%	\free_p\otimes\cofree_q\ar[rrr]&&&
-%	\free_{p\otimes q}
-%\end{tikzcd}
-%\end{equation}
+Moreover, the former is a module over the latter, i.e.\ for any finitary $p,q$ there is a natural map
+\begin{equation}\label{module_easy}
+  \free_p\otimes\cofree_q\to\free_{p\otimes q}
+\end{equation}
+satisfying the action laws for the maps from \cref{cofree_lax_monoidal} as well as coherence for $\free$ as a monad and $\cofree$ as a comonad:
+\begin{equation}\label{eqn.monad_comonad_coherence}
+\begin{tikzcd}
+  p\otimes\cofree_q\ar[r]\ar[d]&p\otimes q\ar[d]\\
+  \free_p\otimes\cofree_q\ar[r]&\free_{p\otimes q}
+\end{tikzcd}
+\hspace{.6in}
+\begin{tikzcd}
+	\free_{\free_p}\otimes\cofree_q\ar[d]\ar[r]&
+	\free_{\free_p}\otimes\cofree_{\cofree_q}\ar[r]&
+	\free_{\free_p\otimes\cofree_q}\ar[r]&
+	\free_{\free_{p\otimes q}}\ar[d]\\
+	\free_p\otimes\cofree_q\ar[rrr]&&&
+	\free_{p\otimes q}
+\end{tikzcd}
+\end{equation}
 %This induces maps $\free_{[p,\yon]}\to [\cofree_p,\yon]$ and $\cofree_{[p,\yon]}\to[\free_p,\yon]$ and similarly for any monad in place of $\yon$. In particular for $p=\yon^A$ we have an isomorphism
 %\begin{equation}
 %	\free_{A\yon}\To{\cong}[\cofree_{\yon^A},\yon]
@@ -1260,7 +1258,7 @@ For any polynomial $e:\poly$, exponentiation by $e$ is a monad on $\poly$:
 	\qqand
 	(p^e)^e\to p^e
 \end{equation}
-This monad distributes with the free monad monad
+This monad distributes over the free monad monad
 \begin{equation}
 	\free_{p^e}\to(\free_p)^e
 \end{equation}
