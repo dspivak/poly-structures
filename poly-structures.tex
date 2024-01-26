@@ -979,18 +979,25 @@ where $\uu\coloneqq\sum_{N:\nn}\yon^N$. In other words, $\lens{\uu}{\uu\tri t}$ 
 For any $s:\poly$ and comonad $(c,\epsilon,\delta)$, the polynomial $\lens{s\tri c}{s}$ also carries a comonad structure. These were called \emph{selection categories} and discussed \href{https://topos.site/blog/2021/12/creating-new-categories-from-old-selection-categories/}{here}.
 
 Using the maps \eqref{eqn.allfour} have interesting consequences for exponentiating with base $t$, where $t$ is a monad. First, it gives a surprising lax monoidal functor $(\poly,\yon,\tri)\op\to(\poly,1,\times)$:
-\begin{equation}
+\begin{equation}\label{eqn.monad_times}
 	1\to t^\yon
 	\qqand
 	t^p\times t^q\to t^{p\tri q}.
 \end{equation}
 It also gives a lax monoidal functor $(\poly,1,\times)\op\to(\poly,\yon,\tri)$:
-\begin{equation}
+\begin{equation}\label{eqn.monad_tri}
 	\yon\to t^1
 	\qqand
 	t^p\tri t^q\to t^{p\times q}.
 \end{equation}
-In particular, $t^p$ is a monad for any $p:\poly$. In fact, when $c$ is a comonoid, the polynomial $t^c$ has a monoid structure for several monoidal structures:
+
+Thus we find a $(\poly,1,\times)$-enrichment of the Kleisli category $\smset_t$ for any polynomial monad $t$. Indeed, between any two sets $A,B:\smset$ the hom-polynomial is $t^{A\yon^B}\cong \yon^A\tri t\tri(\yon+B)$. The underlying category has its homsets given by maps from the monoidal unit, $\poly(1,t^{A\yon^B})\cong\yon^A\tri t\tri B=\smset(A,t(B))$ as desired. The composition map
+\begin{equation}
+	t^{A\yon^B}\times t^{B\yon^C}\to t^{A\yon^C}
+\end{equation}
+arises from \eqref{eqn.monad_times} via the obvious map $A\yon^C\to A\yon^B\tri B\yon^C$.
+
+From \eqref{eqn.monad_tri} it follows that $t^p$ is a monad for any $p:\poly$. In addition, when $c$ is a comonoid, the polynomial $t^c$ has a monoid structure for several monoidal structures:
 \begin{align}
   0\to t^c &\qqand t^c + t^c\to t^c,\\
   1\to t^c &\qqand t^c\times t^c\to t^c,\\
