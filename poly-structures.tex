@@ -960,7 +960,7 @@ E.g.\ in the case of monomials we have $I\yon^A\dagger J\yon^B\cong IJ\yon^{AB^I
 
 
 %-------- Chapter --------%
-\chapter{Polynomial monads and comonads}
+\chapter{Polynomial monads and comonads}\label{chap.monad_comonad}
 
 A polynomial monad is a monoid in $(\poly,\yon,\tri)$, i.e.\ a tuple $(t,\eta,\mu)$ where $t:\poly$ and where $\eta\colon\yon\to t$ and $\mu\colon t\tri t\to t$ satisfy the monoid laws. Note that the maps $\eta$ and $\mu$ are often asked to be Cartesian; we refer to these as \emph{Cartesian monads}. Finitary Cartesian monads can be identified with $\Sigma$-free (one-object) operads: $t(1)$ is the set of operations and for each $T:t(1)$ the set $t[T]$ is its arity; the unit and multiplication $(\eta,\mu)$ correspond to the identity and composition respectively. Morphisms between $(\tri)$-monoids are functors between operads.
 
@@ -1132,6 +1132,30 @@ but in many different ways, the free monad functor is lax monoidal as it maps ou
 \label{eqn.vee4}
 	\free_p\curlyvee\free_q&\to\free_{p\curlyvee q}
 \end{align}
+
+\chapter{Monoids and comonoids}
+
+We can consider monoids and comonoids in other monoidal structures on $\smset$. 
+
+\paragraph{$(\tri)$-monoids and comonoids.} These were discussed in \cref{chap.monad_comonad}.
+\paragraph{$(+)$-monoids and comonoids.}
+Every polynomial is a $(+)$-monoid in a unique way, and the only object that is a $(+)$-comonoid is $0$.
+
+\paragraph{$(\times)$-monoids and comonoids.}
+Every polynomial is a $(\times)$-comonoid in a unique way.
+
+The free $(\times)$-monoid is $\uu$, for which the unit $1\to\uu$ is the empty list and $\uu\uu\to\uu$ is list concatenation. A representable $\yon^S$ carries a monoid structure iff $S=0$, in which case it is the terminal monoid. Suppose that $m,n$ are $(\times)$-monoids, $a$ is a $(\otimes)$-monoid, and $p$ is any polynomial; then the :
+\begin{align}
+	m+p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
+	mn&\quad\tn{carries the structure of a $(\times)$-monoid}\\
+	m\tri p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
+	[p,m]&\quad\tn{carries the structure of a $(\times)$-monoid}\\
+	m^p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
+	a\tri m&\quad\tn{carries the structure of a $(\times)$-monoid}	
+\end{align}
+
+\paragraph{$(\otimes)$-monoids and comonoids.}
+
 
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
