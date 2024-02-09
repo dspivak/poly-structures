@@ -855,6 +855,26 @@ p_*\coloneqq \dot{p}\yon=p\cocl{\id}p=\sum_{I: p(1)}p[I]\yon^{p[I]}
 \end{equation}
 Though it can be defined in terms of the derivative $\dot{p}$ of $p$, we find $p_*$ to be a much more fundamental construction than the derivative. For example, the bundle representation of a polynomial $p$ is $p_*(1)\to p(1)$. The operation $p\mapsto p_*$ is a comonad on $\poly$, i.e.\ $p_*\to p$ and $p_*\to (p_*)_*$, and each $p_*$ has the structure of a comonad, i.e.\ $p_*\to\yon$ and $p_*\to p_*\tri p_*$. 
 
+The assignment $p\mapsto p_*$, it is not functorial in $\poly$, but it is functorial in the Cartesian morphisms
+\begin{equation}
+	(p\mapsto p_*)\colon\polycart\to\polycart
+\end{equation}
+In fact, this is strong monoidal with respect to $\otimes$:
+\begin{equation}
+	\yon_*\cong\yon
+	\qqand
+	(p\otimes q)_*\cong p_*\otimes q_*.
+\end{equation}
+It extends to a comonad $p_*\to p$ and $p_*\to (p_*)_*$ on $\polycart$; note that there is a $\poly$-map $p_*\to\yon$, but $p_*$ is in general not itself a $(\tri)$-comonad. 
+
+The sum, product, chain rules from calculus extend to isomorphisms
+\begin{equation}
+	(p+q)_*\cong p_*+q_*
+	\qqand
+	(pq)_*\cong p_*q+pq_*
+	\qqand
+	(p\tri q)_*\cong(\dot{p}\tri q)q_*.
+\end{equation}
 Given a map $\varphi\colon p\to p'$ and a function $g\colon q(1)\to q'(1)$, there is a Cartesian map
 \begin{equation}
 	(p\cocl{\varphi\tri1}p')\tri(q\cocl{g}q')\to
@@ -865,9 +885,7 @@ natural in $p,q:\poly$ and $p',q':\polycart$. In particular, there is a Cartesia
 	p_*\tri q_*\to(p\tri q)_*.
 \end{equation}
 
-
-
-Returning to $p\mapsto p_*$, it is not functorial in $\poly$, but it is functorial in the Cartesian morphisms $\polycart$. It is also functorial as a map $\poly\to\Span(\poly)$:
+The assignment $p\mapsto p_*$ is also functorial as a map $\poly\to\Span(\poly)$:
 \begin{align}
 	\cocl{}\colon\poly&\to\Span(\poly)\\
 	p&\mapsto p_*\\
@@ -1153,6 +1171,8 @@ Every polynomial is a $(+)$-monoid in a unique way, and the only object that is 
 \paragraph{$(\times)$-monoids and comonoids.}
 Every polynomial is a $(\times)$-comonoid in a unique way.
 
+A $(\times)$-monoid can be identified with a polynomial functor $p\colon\smset\to\smset$ that factors as $\smset\to\Cat{Monoid}\To{U}\smset$, where $U$ takes a monoid to its underlying set.
+
 The free $(\times)$-monoid is $\uu$, for which the unit $1\to\uu$ is the empty list and $\uu\uu\to\uu$ is list concatenation. A representable $\yon^S$ carries a monoid structure iff $S=0$, in which case it is the terminal monoid. Suppose that $m,n$ are $(\times)$-monoids, $a$ is a $(\otimes)$-monoid, $t$ is a $(\tri)$-monoid, and $p$ is any polynomial; then the :
 \begin{align}
 	mn&\quad\tn{carries the structure of a $(\times)$-monoid}\\
@@ -1165,7 +1185,15 @@ The free $(\times)$-monoid is $\uu$, for which the unit $1\to\uu$ is the empty l
 \end{align}
 
 \paragraph{$(\otimes)$-monoids and comonoids.}
+The $(\otimes)$-monoids
+\begin{equation}
+	\yon\To{\eta} p
+	\qqand
+	p\otimes p\To{\mu} p
+\end{equation}
+are precisely the lax monoidal polynomial functors $\smset\to\smset$, sometimes called \emph{applicatives}; indeed, by Day convolution we have $(p\tri A)\times (p\tri B)\To{\text{Day}} (p\otimes p)\tri(AB)\To{\mu}p(A\times B)$. Any $(\tri)$-monoid has an underlying $(\otimes)$-monoid structure. 
 
+The $(\otimes)$-comonoids $(p,\epsilon,\delta)$ are ``sets of monoids'', i.e.\ for each position $I:p(1)$ the direction set $p[I]$ carries a monoid structure, where $\epsilon$ provides the unit and $\delta$ provides the multiplication; conversely, for any $P:\smset$ and functor $P\to\Cat{Monoid}$, there is an associated $(\otimes)$-comonoid.
 
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
