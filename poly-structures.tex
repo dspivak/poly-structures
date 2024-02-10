@@ -853,28 +853,37 @@ In \eqref{eqn.deriv}, $p_*$ is defined as follows.
 \begin{equation}\label{eqn.p_star}
 p_*\coloneqq \dot{p}\yon=p\cocl{\id}p=\sum_{I: p(1)}p[I]\yon^{p[I]}
 \end{equation}
-Though it can be defined in terms of the derivative $\dot{p}$ of $p$, we find $p_*$ to be a much more fundamental construction than the derivative. For example, the bundle representation of a polynomial $p$ is $p_*(1)\to p(1)$. The operation $p\mapsto p_*$ is a comonad on $\poly$, i.e.\ $p_*\to p$ and $p_*\to (p_*)_*$, and each $p_*$ has the structure of a comonad, i.e.\ $p_*\to\yon$ and $p_*\to p_*\tri p_*$. 
-
-The assignment $p\mapsto p_*$, it is not functorial in $\poly$, but it is functorial in the Cartesian morphisms
+Note that the derivative $p\mapsto\dot{p}$ is an adjoint in $\polycart$:
+\begin{equation}
+  \polycart(q\yon,p)\cong
+  \polycart(q,\dot{p})
+\end{equation}
+Just like $p\mapsto\dot{p}$, the assignment $p\mapsto p_*$ is not functorial in $\poly$, though it is functorial in the Cartesian morphisms
 \begin{equation}
 	(p\mapsto p_*)\colon\polycart\to\polycart
 \end{equation}
-In fact, this is strong monoidal with respect to $\otimes$:
-\begin{equation}
+In fact, this is strong monoidal with respect to $+$, $\otimes$, and hence $\curlyvee$:%
+\footnote{Although there is a map of polynomials $\dot{p}\otimes\dot{q}\to\dot{(p\otimes q)}$, it is not Cartesian, and hence does not constitute any sort of lax monoidal structure on $p\mapsto\dot{p}$.}
+\begin{align}
+	0_*\cong 0
+	&\qqand
+	(p+q)_*\cong p_*+q_*\\
 	\yon_*\cong\yon
-	\qqand
-	(p\otimes q)_*\cong p_*\otimes q_*.
-\end{equation}
-It extends to a comonad $p_*\to p$ and $p_*\to (p_*)_*$ on $\polycart$; note that there is a $\poly$-map $p_*\to\yon$, but $p_*$ is in general not itself a $(\tri)$-comonad. 
+	&\qqand
+	(p\otimes q)_*\cong p_*\otimes q_*\\
+	0_*\cong0
+	&\qqand
+	(p\curlyvee q)_*\cong p_*\curlyvee q_*
+\end{align}
+It extends to a comonad $p_*\to p$ and $p_*\to (p_*)_*$ on $\polycart$; note that there is a $\poly$-map $p_*\to\yon$, but $p_*$ is in general not itself a $(\tri)$-comonad. The bundle representation of a polynomial $p$ is $p_*(1)\to p(1)$. 
 
-The sum, product, chain rules from calculus extend to isomorphisms
+The product and chain rules from calculus extend to isomorphisms
 \begin{equation}\label{eqn.calculus}
-	(p+q)_*\cong p_*+q_*
-	\qqand
 	(pq)_*\cong p_*q+pq_*
 	\qqand
 	(p\tri q)_*\cong(\dot{p}\tri q)q_*.
 \end{equation}
+
 Given a map $\varphi\colon p\to p'$ and a function $g\colon q(1)\to q'(1)$, there is a Cartesian map
 \begin{equation}
 	(p\cocl{\varphi\tri1}p')\tri(q\cocl{g}q')\to
@@ -1147,7 +1156,7 @@ Using induction, \cref{eqn.cofree_iso,eqn.calculus,eqn.unfolding_list}, one can 
 \begin{equation}
 	\cofree_p\to\cofree_p\tri\uu\tri p_*
 \end{equation}
-which extends to a map $(\cofree_p)_*\to\uu\tri p_*$, which relates the cofree comonad $p\mapsto\cofree_p$, the copointing $p\mapsto p_*$ from \eqref{eqn.p_star}, and the free $(\times)$-monoid $\uu$.
+which extends to a map $(\cofree_p)_*\to\uu\tri p_*$, and relates the cofree comonad $p\mapsto\cofree_p$, the copointing $p\mapsto p_*$, and the free $(\times)$-monoid $\uu$.
 
 There is a free $\tri$-monoid (often called the free monad) construction on $\poly$
 \begin{equation}\label{eqn.free_monad}
