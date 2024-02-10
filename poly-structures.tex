@@ -1029,6 +1029,7 @@ arise from \eqref{eqn.monad_times} via the obvious maps $A\yon^A\to\yon$ and $A\
 From \eqref{eqn.monad_tri} it follows that $t^p$ is a monad for any $p:\poly$. In addition, when $c$ is a comonoid, the polynomial $t^c$ has a monoid structure for several monoidal structures:
 \begin{align}
   0\to t^c &\qqand t^c + t^c\to t^c,\\
+  \label{eqn.t^c_times_monoid}
   1\to t^c &\qqand t^c\times t^c\to t^c,\\
   \yon\to t^c &\qqand t^c\otimes t^c\to t^c,\\
   \yon\to t^c &\qqand t^c\tri t^c\to t^c.
@@ -1173,7 +1174,9 @@ Every polynomial is a $(\times)$-comonoid in a unique way.
 
 A $(\times)$-monoid can be identified with a polynomial functor $p\colon\smset\to\smset$ that factors as $\smset\to\Cat{Monoid}\To{U}\smset$, where $U$ takes a monoid to its underlying set.
 
-The free $(\times)$-monoid is $\uu$, for which the unit $1\to\uu$ is the empty list and $\uu\uu\to\uu$ is list concatenation. A representable $\yon^S$ carries a monoid structure iff $S=0$, in which case it is the terminal monoid. Suppose that $m,n$ are $(\times)$-monoids, $a$ is a $(\otimes)$-monoid, $t$ is a $(\tri)$-monoid, and $p$ is any polynomial; then the :
+The free $(\times)$-monoid is $\uu$, for which the unit $1\to\uu$ is the empty list and $\uu\uu\to\uu$ is list concatenation. A representable $\yon^S$ carries a monoid structure iff $S=0$, in which case it is the terminal monoid. We know from \eqref{eqn.t^c_times_monoid} that $t^c$ carries a $(\times)$-monoid structure for any polynomial monad $t$ and comonad $c$.
+
+Suppose that $m,n$ are $(\times)$-monoids, $a$ is a $(\otimes)$-monoid, $t$ is a $(\tri)$-monoid, and $p$ is any polynomial; then:
 \begin{align}
 	mn&\quad\tn{carries the structure of a $(\times)$-monoid}\\
 	m+p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
@@ -1181,7 +1184,6 @@ The free $(\times)$-monoid is $\uu$, for which the unit $1\to\uu$ is the empty l
 	[p,m]&\quad\tn{carries the structure of a $(\times)$-monoid}\\
 	m^p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
 	a\tri m&\quad\tn{carries the structure of a $(\times)$-monoid}\\
-	t^m&\quad\tn{carries the structure of a $(\times)$-monoid}
 \end{align}
 
 \paragraph{$(\otimes)$-monoids and comonoids.}
