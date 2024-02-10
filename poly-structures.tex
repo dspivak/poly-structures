@@ -868,7 +868,7 @@ In fact, this is strong monoidal with respect to $\otimes$:
 It extends to a comonad $p_*\to p$ and $p_*\to (p_*)_*$ on $\polycart$; note that there is a $\poly$-map $p_*\to\yon$, but $p_*$ is in general not itself a $(\tri)$-comonad. 
 
 The sum, product, chain rules from calculus extend to isomorphisms
-\begin{equation}
+\begin{equation}\label{eqn.calculus}
 	(p+q)_*\cong p_*+q_*
 	\qqand
 	(pq)_*\cong p_*q+pq_*
@@ -985,6 +985,56 @@ We know of two more monoidal products $(\yon,\dagger)$ and $(\yon, \ddagger)$ fr
 \end{align}
 E.g.\ in the case of monomials we have $I\yon^A\dagger J\yon^B\cong IJ\yon^{AB^I}$ and $I\yon^A\ddagger J\yon^B\cong IJ\yon^{A^JB^I}$.
 
+\chapter{Monoids and comonoids}
+
+We can consider monoids and comonoids in other monoidal structures on $\smset$. 
+
+\paragraph{$(+)$-monoids and comonoids.}
+Every polynomial is a $(+)$-monoid in a unique way, and the only object that is a $(+)$-comonoid is $0$.
+
+\paragraph{$(\times)$-monoids and comonoids.}
+Every polynomial is a $(\times)$-comonoid in a unique way.
+
+A $(\times)$-monoid $(p,\eta,\mu)$ can be identified with a polynomial functor $p\colon\smset\to\smset$ that factors as
+\begin{equation}
+	\smset\To{(p,\eta,\mu)}\Cat{Monoid}\To{U}\smset
+\end{equation}
+where $U$ takes a monoid to its underlying set.
+
+The free $(\times)$-monoid is $\uu$, defined as follows
+\begin{equation}\label{eqn.list}
+\uu\coloneqq\sum_{N:\nn}\yon^N\cong 1+\yon+\yon^2+\yon^3+\cdots
+\end{equation}
+The unit $1\to\uu$ is the empty list and $\uu\uu\to\uu$ is list concatenation. For any $p:\poly$ there is an isomorphism
+\begin{equation}\label{eqn.unfolding_list}
+\uu\tri p\cong 1+p\times(\uu\tri p).
+\end{equation}
+
+A representable $\yon^S$ carries a monoid structure iff $S=0$, in which case it is the terminal monoid. We know from \eqref{eqn.t^c_times_monoid} that $t^c$ carries a $(\times)$-monoid structure for any polynomial monad $t$ and comonad $c$.
+
+Suppose that $m,n$ are $(\times)$-monoids, $a$ is a $(\otimes)$-monoid, $t$ is a $(\tri)$-monoid, and $p$ is any polynomial; then:
+\begin{align}
+	mn&\quad\tn{carries the structure of a $(\times)$-monoid}\\
+	m+p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
+	m\tri p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
+	[p,m]&\quad\tn{carries the structure of a $(\times)$-monoid}\\
+	m^p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
+	a\tri m&\quad\tn{carries the structure of a $(\times)$-monoid}\\
+\end{align}
+
+\paragraph{$(\otimes)$-monoids and comonoids.}
+The $(\otimes)$-monoids
+\begin{equation}
+	\yon\To{\eta} p
+	\qqand
+	p\otimes p\To{\mu} p
+\end{equation}
+are precisely the lax monoidal polynomial functors $\smset\to\smset$, sometimes called \emph{applicatives}; indeed, by Day convolution we have $(p\tri A)\times (p\tri B)\To{\text{Day}} (p\otimes p)\tri(AB)\To{\mu}p(A\times B)$. Any $(\tri)$-monoid has an underlying $(\otimes)$-monoid structure. 
+
+The $(\otimes)$-comonoids $(p,\epsilon,\delta)$ are ``sets of monoids'', i.e.\ for each position $I:p(1)$ the direction set $p[I]$ carries a monoid structure, where $\epsilon$ provides the unit and $\delta$ provides the multiplication; conversely, for any $P:\smset$ and functor $P\to\Cat{Monoid}$, there is an associated $(\otimes)$-comonoid.
+
+\paragraph{$(\tri)$-monoids and comonoids.} These will be discussed in \cref{chap.monad_comonad}.
+
 
 %-------- Chapter --------%
 \chapter{Polynomial monads and comonads}\label{chap.monad_comonad}
@@ -1001,7 +1051,7 @@ For any polynomial monad $t$, the corresponding Lawvere theory is the $\tri$-com
 \begin{equation}
 	\text{Law}(t)\cong\lens{\uu}{\uu\tri t}
 \end{equation}
-where $\uu\coloneqq\sum_{N:\nn}\yon^N$. In other words, $\lens{\uu}{\uu\tri t}$ is a compact representation of what usually has a long description: ``the full subcategory of (the opposite of (the Kleisli category for $t$ on $\smset$)), spanned by the finite sets.''
+where $\uu$ is as in \eqref{eqn.list}. In other words, $\lens{\uu}{\uu\tri t}$ is a compact representation of what usually has a long description: ``the full subcategory of (the opposite of (the Kleisli category for $t$ on $\smset$)), spanned by the finite sets.''
 
 For any $s:\poly$ and comonad $(c,\epsilon,\delta)$, the polynomial $\lens{s\tri c}{s}$ also carries a comonad structure. These were called \emph{selection categories} and discussed \href{https://topos.site/blog/2021/12/creating-new-categories-from-old-selection-categories/}{here}.
 
@@ -1050,7 +1100,7 @@ For monads, but more generally for pointed endofunctors $\yon\to t$, the map $t\
 \end{equation}
 
 
-There is a cofree $\tri$-comonoid (often called the free comonad) construction on $\poly$:
+There is a cofree $\tri$-comonoid (often called the cofree comonad) construction on $\poly$:
 \begin{equation}\label{eqn.cofree}
 \begin{tikzcd}[column sep=60pt]
 	\Cat{Comon}(\poly)
@@ -1092,6 +1142,12 @@ It also has natural comonoid homomorphisms of the form
 	\cofree_{[p,q]}\otimes\cofree_{[p',q']}\to\cofree_{[p+p',q+q']}
 \end{equation}
 that arise from the counits of any comonoid, as well as the distributivity of $\otimes$ over $+$.
+
+Using induction, \cref{eqn.cofree_iso,eqn.calculus,eqn.unfolding_list}, one can construct a ``counterfactuals'' map 
+\begin{equation}
+	\cofree_p\to\cofree_p\tri\uu\tri p_*
+\end{equation}
+which extends to a map $(\cofree_p)_*\to\uu\tri p_*$, which relates the cofree comonad $p\mapsto\cofree_p$, the copointing $p\mapsto p_*$ from \eqref{eqn.p_star}, and the free $(\times)$-monoid $\uu$.
 
 There is a free $\tri$-monoid (often called the free monad) construction on $\poly$
 \begin{equation}\label{eqn.free_monad}
@@ -1160,42 +1216,6 @@ but in many different ways, the free monad functor is lax monoidal as it maps ou
 \label{eqn.vee4}
 	\free_p\curlyvee\free_q&\to\free_{p\curlyvee q}
 \end{align}
-
-\chapter{Monoids and comonoids}
-
-We can consider monoids and comonoids in other monoidal structures on $\smset$. 
-
-\paragraph{$(\tri)$-monoids and comonoids.} These were discussed in \cref{chap.monad_comonad}.
-\paragraph{$(+)$-monoids and comonoids.}
-Every polynomial is a $(+)$-monoid in a unique way, and the only object that is a $(+)$-comonoid is $0$.
-
-\paragraph{$(\times)$-monoids and comonoids.}
-Every polynomial is a $(\times)$-comonoid in a unique way.
-
-A $(\times)$-monoid can be identified with a polynomial functor $p\colon\smset\to\smset$ that factors as $\smset\to\Cat{Monoid}\To{U}\smset$, where $U$ takes a monoid to its underlying set.
-
-The free $(\times)$-monoid is $\uu$, for which the unit $1\to\uu$ is the empty list and $\uu\uu\to\uu$ is list concatenation. A representable $\yon^S$ carries a monoid structure iff $S=0$, in which case it is the terminal monoid. We know from \eqref{eqn.t^c_times_monoid} that $t^c$ carries a $(\times)$-monoid structure for any polynomial monad $t$ and comonad $c$.
-
-Suppose that $m,n$ are $(\times)$-monoids, $a$ is a $(\otimes)$-monoid, $t$ is a $(\tri)$-monoid, and $p$ is any polynomial; then:
-\begin{align}
-	mn&\quad\tn{carries the structure of a $(\times)$-monoid}\\
-	m+p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
-	m\tri p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
-	[p,m]&\quad\tn{carries the structure of a $(\times)$-monoid}\\
-	m^p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
-	a\tri m&\quad\tn{carries the structure of a $(\times)$-monoid}\\
-\end{align}
-
-\paragraph{$(\otimes)$-monoids and comonoids.}
-The $(\otimes)$-monoids
-\begin{equation}
-	\yon\To{\eta} p
-	\qqand
-	p\otimes p\To{\mu} p
-\end{equation}
-are precisely the lax monoidal polynomial functors $\smset\to\smset$, sometimes called \emph{applicatives}; indeed, by Day convolution we have $(p\tri A)\times (p\tri B)\To{\text{Day}} (p\otimes p)\tri(AB)\To{\mu}p(A\times B)$. Any $(\tri)$-monoid has an underlying $(\otimes)$-monoid structure. 
-
-The $(\otimes)$-comonoids $(p,\epsilon,\delta)$ are ``sets of monoids'', i.e.\ for each position $I:p(1)$ the direction set $p[I]$ carries a monoid structure, where $\epsilon$ provides the unit and $\delta$ provides the multiplication; conversely, for any $P:\smset$ and functor $P\to\Cat{Monoid}$, there is an associated $(\otimes)$-comonoid.
 
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
