@@ -745,14 +745,20 @@ Because of duoidality \eqref{duoidal}, $\otimes$-closure interacts with substitu
 
 Dirichlet-mapping into $\yon$ is often of interest; we have the following maps and isomorphisms:
 \begin{align}
-	[\yon,\yon]&\cong\yon\\
-  [p,\yon]\times[q,\yon]&\cong[p+q,\yon]\\
+\label{eqn.homy2}
   \yon^A&\cong[A\yon,\yon]\\
-  [p,\yon]+[q,\yon]&\to[pq,\yon]\\
+\label{eqn.homy4}
   A\yon&\cong[\yon^A,\yon]\\
+\label{eqn.homy1}
+  [p,\yon]\times[q,\yon]&\cong[p+q,\yon]\\
+\label{eqn.homy3}
+  [p,\yon]+[q,\yon]&\to[pq,\yon]\\
+\label{eqn.homy5}
 	[p,\yon]\otimes[q,\yon]&\to[p\otimes q,\yon]\\
+\label{eqn.homy6}
 	[p,\yon]\tri[q,\yon]&\to[p\tri q,\yon]
 \end{align}
+\cref{eqn.homy1,eqn.homy3} hold for any $r:\poly$ in place of $\yon$, and \cref{eqn.homy5,eqn.homy6} hold for any $(\otimes)$-monoid in place of $\yon$; see \cref{eqn.otimes_monoids}.
 
 
 %-------- Chapter --------%
@@ -994,7 +1000,7 @@ We know of two more monoidal products $(\yon,\dagger)$ and $(\yon, \ddagger)$ fr
 \end{align}
 E.g.\ in the case of monomials we have $I\yon^A\dagger J\yon^B\cong IJ\yon^{AB^I}$ and $I\yon^A\ddagger J\yon^B\cong IJ\yon^{A^JB^I}$.
 
-\chapter{Monoids and comonoids}
+\chapter{Polynomial monoids and comonoids}
 
 We can consider monoids and comonoids in other monoidal structures on $\smset$. 
 
@@ -1014,10 +1020,11 @@ The free $(\times)$-monoid is $\uu$, defined as follows
 \begin{equation}\label{eqn.list}
 \uu\coloneqq\sum_{N:\nn}\yon^N\cong 1+\yon+\yon^2+\yon^3+\cdots
 \end{equation}
-The unit $1\to\uu$ is the empty list and $\uu\uu\to\uu$ is list concatenation. For any $p:\poly$ there is an isomorphism
+The unit $1\to\uu$ is the empty list and $\uu\times\uu\to\uu$ is list concatenation. For any $p:\poly$ there is an isomorphism
 \begin{equation}\label{eqn.unfolding_list}
-\uu\tri p\cong 1+p\times(\uu\tri p).
+\uu\tri p\cong 1+p\times(\uu\tri p)
 \end{equation}
+and this is the free $(\times)$-monoid on $p$.
 
 A representable $\yon^S$ carries a monoid structure iff $S=0$, in which case it is the terminal monoid. We know from \eqref{eqn.t^c_times_monoid} that $t^c$ carries a $(\times)$-monoid structure for any polynomial monad $t$ and comonad $c$.
 
@@ -1033,12 +1040,21 @@ Suppose that $m,n$ are $(\times)$-monoids, $a$ is a $(\otimes)$-monoid, $t$ is a
 
 \paragraph{$(\otimes)$-monoids and comonoids.}
 The $(\otimes)$-monoids
-\begin{equation}
+\begin{equation}\label{eqn.otimes_monoids}
 	\yon\To{\eta} p
 	\qqand
 	p\otimes p\To{\mu} p
 \end{equation}
-are precisely the lax monoidal polynomial functors $\smset\to\smset$, sometimes called \emph{applicatives}; indeed, by Day convolution we have $(p\tri A)\times (p\tri B)\To{\text{Day}} (p\otimes p)\tri(AB)\To{\mu}p(A\times B)$. Any $(\tri)$-monoid has an underlying $(\otimes)$-monoid structure. 
+are precisely the lax monoidal polynomial functors $\smset\to\smset$, sometimes called \emph{applicatives}; indeed, by Day convolution we have $(p\tri A)\times (p\tri B)\To{\text{Day}} (p\otimes p)\tri(AB)\To{\mu}p(A\times B)$. Any $(\tri)$-monoid has an underlying $(\otimes)$-monoid structure.
+
+The free $(\otimes)$-monoid on $p$ is
+\begin{equation}
+	\sum_{N:\nn}p^{\otimes N}=\sum_{N:\nn}\sum_{i\colon N\to p(1)}\yon^{\prod_{n:N}p[i(n)]}
+\end{equation}
+
+If $m,n$ are $(\otimes)$-monoids, then so are $m\otimes n$, $m\times n$, and $m\tri n$. 
+
+
 
 The $(\otimes)$-comonoids $(p,\epsilon,\delta)$ are ``sets of monoids'', i.e.\ for each position $I:p(1)$ the direction set $p[I]$ carries a monoid structure, where $\epsilon$ provides the unit and $\delta$ provides the multiplication; conversely, for any $P:\smset$ and functor $P\to\Cat{Monoid}$, there is an associated $(\otimes)$-comonoid.
 
