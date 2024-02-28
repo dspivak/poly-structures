@@ -1234,13 +1234,19 @@ but in many different ways, the free monad functor is lax monoidal as it maps ou
 \begin{align}
 \label{eqn.vee1}
 	\free_p+\free_q&\to\free_{p\curlyvee q}\\
-\label{eqn.vee2}
-	\free_p\otimes\free_q&\to\free_{p\curlyvee q}\\
 \label{eqn.vee3}
 	\free_p\tri\free_q&\to\free_{p\curlyvee q}\\
+\label{eqn.vee2}
+	\free_p\otimes\free_q&\to\free_{p\curlyvee q}\\
 \label{eqn.vee4}
 	\free_p\curlyvee\free_q&\to\free_{p\curlyvee q}
 \end{align}
+There are also lax monoidal structures factoring \cref{eqn.vee1,eqn.vee3}:
+\begin{align}
+	\free_p+\free_q&\to\free_{p+q}\\
+	\free_p\tri\free_q&\to\free_{p+q}
+\end{align}
+
 
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
