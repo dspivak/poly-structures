@@ -773,6 +773,13 @@ This satisfies the following universal property of a Kan extension, i.e.\ a righ
 \begin{equation}
 	\poly\left(\lens{p}{q},p'\right)\cong\poly\left(p,p'\tri q\right).
 \end{equation}
+The unit and counit of the adjunction are:
+\begin{equation}\label{eqn.coclosure_unit_counit}
+  p\to\lens{p}{q}\tri q
+  \qqand
+	\lens{p\tri q}{q}\to p
+\end{equation}
+
 The coclosure $\lens{p}{q}$ is covariant in $p$ and contravariant in $q$:
 \begin{equation}
   \begin{prooftree}
@@ -781,12 +788,25 @@ The coclosure $\lens{p}{q}$ is covariant in $p$ and contravariant in $q$:
     \Infer2{\lens{p}{q}\to\lens{p'}{q'}}
   \end{prooftree}
 \end{equation}
-and if $p\to p'$ is vertical or cartesian, then so is $\lens{p}{q}\to\lens{p'}{q}$, respectively. 
+and if $p\to p'$ is vertical or cartesian, then so is $\lens{p}{q}\to\lens{p'}{q}$, respectively.
 
-Just like evaluation is the most common use of a closure, co-evaluation is the most common use of this coclosure: for any $p,q:\poly$ one has
+A formal consequence of the existence of a coclosure is that $\poly$ is enriched in $(\poly\op,\yon,\tri)$ via
 \begin{equation}
-p\to\lens{p}{q}\tri q
+	\Hom(p,q)\coloneqq\lens{p}{q}
 \end{equation}
+and the unit and composition are derived from \eqref{eqn.coclosure_unit_counit}. Being a subcategory $\smset\ss\poly$ is also enriched in $(\poly\op,\yon,\tri)$ via
+\begin{equation}
+	\Hom(A,B)\coloneqq\lens{A}{B}=A\yon^B.
+\end{equation}
+\footnote{
+In both cases, the underlying set of maps is as expected:
+$
+\poly\op\left(\yon,\lens{p}{q}\right)=\poly\left(\lens{p}{q},\yon\right)=\poly(p,q)
+$ and
+$
+\poly\op(\yon,A\yon^B)=\smset(A,B).
+$
+}
 
 Since $\lens{-}{q}$ is a left adjoint, it interacts with $+$ by
 \begin{equation}
