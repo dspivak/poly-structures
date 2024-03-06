@@ -779,6 +779,10 @@ The unit and counit of the adjunction are:
   \qqand
 	\lens{p\tri q}{q}\to p
 \end{equation}
+For $q=\yon^Q$, the unit factors through
+\begin{equation}
+	p\to\lens{p}{\yon^Q}\otimes\yon^Q.
+\end{equation}
 
 The coclosure $\lens{p}{q}$ is covariant in $p$ and contravariant in $q$:
 \begin{equation}
@@ -885,14 +889,9 @@ Given $\varphi\colon p\to q\tri r$, we denote its image by $(\varphi.1,\varphi.2
 \end{align}
 In \eqref{eqn.deriv}, $p_*$ is defined as follows.
 \begin{equation}\label{eqn.p_star}
-p_*\coloneqq \dot{p}\yon=p\cocl{\id}p=\sum_{I: p(1)}p[I]\yon^{p[I]}
+p_*\coloneqq p\cocl{\id}p=\sum_{I: p(1)}p[I]\yon^{p[I]}
 \end{equation}
-Note that the derivative $p\mapsto\dot{p}$ is an adjoint in $\polycart$:
-\begin{equation}
-  \polycart(q\yon,p)\cong
-  \polycart(q,\dot{p})
-\end{equation}
-Just like $p\mapsto\dot{p}$, the assignment $p\mapsto p_*$ is not functorial in $\poly$, though it is functorial in the Cartesian morphisms
+The assignment $p\mapsto p_*$ is not functorial in $\poly$, though it is functorial in the Cartesian morphisms
 \begin{equation}
 	(p\mapsto p_*)\colon\polycart\to\polycart
 \end{equation}
@@ -911,7 +910,24 @@ In fact, this is strong monoidal with respect to $+$, $\otimes$, and hence $\cur
 \end{align}
 It extends to a comonad $p_*\to p$ and $p_*\to (p_*)_*$ on $\polycart$; note that there is a $\poly$-map $p_*\to\yon$, but $p_*$ is in general not itself a $(\tri)$-comonad. The bundle representation of a polynomial $p$ is $p_*(1)\to p(1)$. 
 
-The product and chain rules from calculus extend to isomorphisms
+The operation $(p\mapsto p_*)$ is related to the derivative $p\mapsto\dot{p}$, where
+\begin{equation}
+\dot{p}\coloneqq\sum_{I:p(1)}\sum_{i:p[I]}\yon^{p[I]-\{i\}},
+\end{equation}
+indeed $p_*\cong\dot{p}\yon$. The derivative operation is an adjoint in $\polycart$:
+\begin{equation}
+  \polycart(q\yon,p)\cong
+  \polycart(q,\dot{p})
+\end{equation}
+There are maps $p\to p\tri\dot{p}$, $p\to p\tri\dot{p}\tri\ddot{p}$, etc., all natural in $\polycart$. 
+
+The product and chain rules from calculus hold
+\begin{equation}\label{eqn.calculus}
+	\dot{(pq)}\cong \dot{p}q+p\dot{q}
+	\qqand
+	\dot{(p\tri q)}\cong(\dot{p}\tri q)\dot{q}.
+\end{equation}
+and they extend to isomorphisms 
 \begin{equation}\label{eqn.calculus}
 	(pq)_*\cong p_*q+pq_*
 	\qqand
