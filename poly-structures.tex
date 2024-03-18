@@ -49,7 +49,7 @@ citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode]{hyperr
 
 
 % biblatex %
-  \addbibresource{Library20220131.bib} 
+  \addbibresource{Library20240318.bib} 
 
 % hyperref %
   \hypersetup{final}
@@ -627,6 +627,14 @@ satisfying the usual laws. This map is derived from \eqref{duoidal} by taking $p
   p\otimes\yon^A\cong p\tri \yon^A.
 \end{equation}
 
+Since $A\yon$ and $\yon^A$ are extensionally left and right adjoint functors $\smset\to\smset$, they are left and right duals of one another in the sense that there are maps:
+\begin{equation}
+	\yon\to \yon^A\tri A\yon
+	\qqand
+	A\yon\tri\yon^A\to\yon
+\end{equation}
+making the triangle equations hold. If $a$ has a right dual, then $a=A\yon$ for some $A:\smset$.
+
 The natural maps \eqref{eqn.Day}, defining $\times$ and $\otimes$ as Day convolutions of $+,\times$, can be extended from sets to polynomials using \cref{eqn.comp_plus,eqn.comp_times}. That is, we have maps:
 \begin{align}
 	(p_1\tri p_2)\times(q_1\tri q_2)&\to(p_1\otimes q_1)\tri(p_2\times q_2)\\
@@ -877,8 +885,7 @@ This satisfies the following indexed-adjunction formula:%
 
 Given $\varphi\colon p\to q\tri r$, we denote its image by $(\varphi.1,\varphi.2)$, where $\varphi.1\colon p(1)\to q(1)$ and $\varphi.2\colon (p\cocl{\varphi.1}q)\to r$. The indexed coclosure is a very well-behaved structure.
 \begin{align}
-	p\cocl{!}\yon^A&\cong Ap\\
-	p\cocl{\id}p&\cong p_*\label{eqn.deriv}\\
+	(p\cocl{!}\yon^A)&\cong Ap\\
 	(p+p')\cocl{(f,f')}q&\cong(p\cocl{f}q)+(p'\cocl{f'}q)\\
 	p\cocl{(f,g)}(q\times q')&\cong(p\cocl{f}q)+(p\cocl{g}q')\\
 	(p\cocl{f}q)\times p'&\cong(p\times p')\cocl{(p\times!)\then f}q\\
@@ -887,7 +894,7 @@ Given $\varphi\colon p\to q\tri r$, we denote its image by $(\varphi.1,\varphi.2
 	(p\otimes p')\cocl{f\otimes f'}(q\otimes q')&\cong(p\cocl{f}q)\otimes(p'\cocl{f'}q')\\
 	[p,q\tri r]&\cong\sum_{f\colon p(1)\to q(1)}[p\cocl{f}q,r]
 \end{align}
-In \eqref{eqn.deriv}, $p_*$ is defined as follows.
+Moreover, using $\frown$ we can define $p_*$ as follows.
 \begin{equation}\label{eqn.p_star}
 p_*\coloneqq p\cocl{\id}p=\sum_{I: p(1)}p[I]\yon^{p[I]}
 \end{equation}
@@ -961,7 +968,9 @@ This functor is strong monoidal with respect to both $+$ and $\otimes$. One may 
 	p\ar[r, equal]&p\ar[r,"\varphi"']&q
 \end{tikzcd}
 \end{equation}
-and evaluating at $1$ returns the usual bundle picture, since $(p\cocl{\varphi_1}q)(1)\cong p(1)\times_{q(1)}q_*(1)$.
+and evaluating at $1$ returns the usual bundle picture, since $(p\cocl{\varphi_1}q)(1)\cong p(1)\times_{q(1)}q_*(1)$. Since cartesian maps in $\poly$ are exponentiable%
+\footnote{I believe the Cartesian maps are precisely the exponentiable maps in $\poly$.}
+the maps $p_*\to p$ can be treated as $\poly$-polynomials in the sense of \cite{weber2015polynomials}, thus giving an embedding of $\poly$ into what might be denoted $\poly_\poly$.
 
 There is an indexed coclosure for $\otimes$.%
 \footnote{I learned about this indexed coclosure $\hyper{}$ for $\otimes$ from Nelson Niu.}
