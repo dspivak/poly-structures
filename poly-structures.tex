@@ -316,7 +316,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\sspan}{\mathbb{S}\Cat{pan}}
 \newcommand{\en}{\Cat{End}}
 
-\newcommand{\List}{\Fun{List}}
+\newcommand{\List}{\Fun{list}}
 \newcommand{\set}{\tn{-}\Cat{Set}}
 
 
@@ -341,7 +341,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\founds}{\Yleft}
 \newcommand{\cofree}{\mathfrak{c}}
 \newcommand{\free}{\mathfrak{m}}
-\newcommand{\uu}{\mathit{list}}
+\newcommand{\uu}{\List}
 
 % lenses
 \newcommand{\biglens}[2]{
@@ -887,6 +887,7 @@ Given $\varphi\colon p\to q\tri r$, we denote its image by $(\varphi.1,\varphi.2
 \begin{align}
 	(p\cocl{!}\yon^A)&\cong Ap\\
 	(p+p')\cocl{(f,f')}q&\cong(p\cocl{f}q)+(p'\cocl{f'}q)\\
+	(p+p')\cocl{f+f'}(q+q')&\cong(p\cocl{f}q)+(p'\cocl{f'}q')\\
 	p\cocl{(f,g)}(q\times q')&\cong(p\cocl{f}q)+(p\cocl{g}q')\\
 	(p\cocl{f}q)\times p'&\cong(p\times p')\cocl{(p\times!)\then f}q\\
 	(p\cocl{f}q)\tri p'&\cong(p\tri p')\cocl{(p\tri!)\then f}q\\
@@ -971,6 +972,13 @@ This functor is strong monoidal with respect to both $+$ and $\otimes$. One may 
 and evaluating at $1$ returns the usual bundle picture, since $(p\cocl{\varphi_1}q)(1)\cong p(1)\times_{q(1)}q_*(1)$. Since cartesian maps in $\poly$ are exponentiable%
 \footnote{I believe the Cartesian maps are precisely the exponentiable maps in $\poly$.}
 the maps $p_*\to p$ can be treated as $\poly$-polynomials in the sense of \cite{weber2015polynomials}, thus giving an embedding of $\poly$ into what might be denoted $\poly_\poly$.
+
+There is a normal lax monoidal functor 
+\begin{align}
+	@\colon(\polycart,\yon,\otimes)\times(\poly,\yon,\otimes)&\to(\poly,\yon,\otimes)\\
+	(p,\ell)&\mapsto p@\ell\coloneqq p\frown\lens{p}{\ell}
+\end{align}
+We have $\yon\cong(\yon@\yon)$ and maps $(p@\ell)\otimes(p'@\ell')\to(p\otimes p')@(\ell\otimes\ell')$. Special cases include $p@0=0$, $p@1=p$, $p@\yon=p_*$. One interesting case is when $\ell$ is an applicative functor (e.g.\ a monad such as $\ell=\List$), in which case each position is equipped with an $\ell$-structure on (e.g.\ a list of) directions; in this case we have $(p@\ell)\otimes(q@\ell)\to (p\otimes q)@\ell$. There is a natural cartesian map $p@\ell\to p$ and natural map $p@\ell\to\ell$.
 
 There is an indexed coclosure for $\otimes$.%
 \footnote{I learned about this indexed coclosure $\hyper{}$ for $\otimes$ from Nelson Niu.}
