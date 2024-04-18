@@ -1064,7 +1064,7 @@ We know of two more monoidal products $(\yon,\dagger)$ and $(\yon, \ddagger)$ fr
 \end{align}
 E.g.\ in the case of monomials we have $I\yon^A\dagger J\yon^B\cong IJ\yon^{AB^I}$ and $I\yon^A\ddagger J\yon^B\cong IJ\yon^{A^JB^I}$.
 
-\chapter{Polynomial monoids and comonoids}
+\chapter{Polynomial monoids and comonoids}\label{chap.monoids.comonoids}
 
 We can consider monoids and comonoids in other monoidal structures on $\smset$. 
 
@@ -1118,9 +1118,14 @@ The free $(\otimes)$-monoid on $p$ is
 
 If $m,n$ are $(\otimes)$-monoids, then so are $m\otimes n$, $m\times n$, and $m\tri n$. 
 
+The $(\otimes)$-comonoids $(p,\epsilon,\delta)$ are ``sets of monoids'', i.e.\ for each position $I:p(1)$ the direction set $p[I]$ carries a monoid structure, where $\epsilon$ provides the unit and $\delta$ provides the multiplication.
 
+If $(m,\eta,\mu)$ is a $(\times)$-monoid, then for any $p:\poly$, there is a $\otimes$-comonoid structure on $\lens{p}{m}$ given by the transposes of the following maps
+\begin{gather}
+	p\to \yon\to m=\yon\tri m\\
+	p\to pp\to\left(\lens{p}{m}\tri m\right)\left(\lens{p}{m}\tri m\right)\to\left(\lens{p}{m}\otimes\lens{p}{m}\right)\tri mm\to\left(\lens{p}{m}\otimes\lens{p}{m}\right)\tri m
+\end{gather}
 
-The $(\otimes)$-comonoids $(p,\epsilon,\delta)$ are ``sets of monoids'', i.e.\ for each position $I:p(1)$ the direction set $p[I]$ carries a monoid structure, where $\epsilon$ provides the unit and $\delta$ provides the multiplication; conversely, for any $P:\smset$ and functor $P\to\Cat{Monoid}$, there is an associated $(\otimes)$-comonoid.
 
 \paragraph{$(\tri)$-monoids and comonoids.} These will be discussed in \cref{chap.monad_comonad}.
 
