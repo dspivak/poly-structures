@@ -898,7 +898,13 @@ Given $\varphi\colon p\to q\tri r$, we denote its image by $(\varphi.1,\varphi.2
 	(p\otimes p')\cocl{f\otimes f'}(q\otimes q')&\cong(p\cocl{f}q)\otimes(p'\cocl{f'}q')\\
 	[p,q\tri r]&\cong\sum_{f\colon p(1)\to q(1)}[p\cocl{f}q,r]
 \end{align}
-Moreover, using $\frown$ we can define $p_*$ as follows.
+
+For any $p,q,r:\poly$ and map $f\colon p(1)\to q(1)$, there is an isomorphism relating the two coclosures
+\begin{equation}
+	\lens{p\cocl{f}q}{r}\cong\lens{p}{r}\cocl{f}q.
+\end{equation}
+
+Using $\frown$ we can define for any $p:\poly$ an object $p_*:\poly$ as follows.
 \begin{equation}\label{eqn.p_star}
 p_*\coloneqq p\cocl{\id}p=\sum_{I: p(1)}p[I]\yon^{p[I]}
 \end{equation}
