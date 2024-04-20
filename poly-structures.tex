@@ -1147,13 +1147,25 @@ The category of $(\tri)$-comonoids has finite sums and products, with units $0$ 
 
 The category of $(\tri)$-monoids has products; the terminal object is $(1,!,!)$, and the product $t\times t'$ has unit $(\eta,\eta')$, and its multiplication arises from \eqref{eqn.comp_times} and projection. The forgetful functor from $\tri$-monoids to $\poly$ is strong monoidal with respect to $\times$. 
 
-For any polynomial monad $t$, and polynomial $p$, the left Kan extension $\lens{p}{p\tri t}$ is a $\tri$-comonad. As a category, it is equivalent to the full subcategory of the opposite of the Kleisli category $\smset_t$ spanned by the sets $p[I]$ for $I:p(1)$. For example, the Lawvere theory corresponding to $t$ is the $\tri$-comonad (category)
+For any polynomial monad $(t,\eta,\mu)$, and polynomial $p\colon$, the left Kan extension $\lens{p}{p\tri t}$ is a $\tri$-comonad
+\begin{equation}
+  \lens{p}{p\tri t}\to\yon
+  \qqand
+  \lens{p}{p\tri t}\to\lens{p}{p\tri t}\tri\lens{p}{p\tri t}
+\end{equation}
+As a category, it is equivalent to the full subcategory of the opposite of the Kleisli category $\smset_t$ spanned by the sets $p[I]$ for $I:p(1)$. For example, the Lawvere theory corresponding to $t$ is the $\tri$-comonad (category)
 \begin{equation}
 	\text{Law}(t)\cong\lens{\uu}{\uu\tri t}
 \end{equation}
 where $\uu$ is as in \eqref{eqn.list}.
 
-For any $p:\poly$ and comonad $(c,\epsilon,\delta)$, the polynomial $\lens{p\tri c}{p}$ also carries a comonad structure. These were called \emph{selection categories} and discussed \href{https://topos.site/blog/2021/12/creating-new-categories-from-old-selection-categories/}{here}.
+For any $p:\poly$ and comonad $(c,\epsilon,\delta)$, the polynomial $\lens{p\tri c}{p}$ also carries a comonad structure
+\begin{equation}
+  \lens{p\tri c}{p}\to\yon
+  \qqand
+  \lens{p\tri c}{p}\to\lens{p\tri c}{p}\tri\lens{p\tri c}{p}
+\end{equation}
+These were called \emph{selection categories} and discussed \href{https://topos.site/blog/2021/12/creating-new-categories-from-old-selection-categories/}{here}.
 
 Using the maps \eqref{eqn.allfour} have interesting consequences for exponentiating with base $t$, where $t$ is a monad. First, it gives a surprising lax monoidal functor $(\poly,\yon,\tri)\op\to(\poly,1,\times)$:
 \begin{equation}\label{eqn.monad_times}
