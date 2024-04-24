@@ -237,6 +237,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \DeclareMathOperator{\el}{El}
 \DeclareMathOperator{\votimes}{\varotimes}
 
+\newcommand{\iHom}{\ul{\Hom}}
 
 
 
@@ -807,11 +808,11 @@ and if $p\to p'$ is vertical or cartesian, then so is $\lens{p}{q}\to\lens{p'}{q
 
 A formal consequence of the existence of a coclosure is that $\poly$ is enriched in $(\poly\op,\yon,\tri)$ via
 \begin{equation}
-	\Hom(p,q)\coloneqq\lens{p}{q}
+	\iHom(p,q)\coloneqq\lens{p}{q}
 \end{equation}
 and the unit and composition are derived from \eqref{eqn.coclosure_unit_counit}. Being a subcategory $\smset\ss\poly$ is also enriched in $(\poly\op,\yon,\tri)$ via
 \begin{equation}
-	\Hom(A,B)\coloneqq\lens{A}{B}=A\yon^B.
+	\iHom(A,B)\coloneqq\lens{A}{B}=A\yon^B.
 \end{equation}
 \footnote{
 In both cases, the underlying set of maps is as expected:
@@ -872,7 +873,17 @@ For any sets $S,B:\smset\op$ and $A,T:\smset$, we have an isomorphism
 \end{equation}
 For example, it's useful in the theory of Moore and Mealy machines to know that $[B\yon^A,\yon]\cong[A\yon,B\yon]$.
 
-For any set $A$, we have $\lens{p}{\yon+A}\cong p\times\yon^A$ by \eqref{eqn.cart_cl}. More importantly we have
+All functors between cartesian categories are colax monoidal; in the case of $\lens{p}{-}$ for any $p:\poly$, this gives
+\begin{equation}
+	\lens{p}{q_1+q_2}\to\lens{p}{q_1}\times\lens{p}{q_2}.
+\end{equation}
+For sets $A,B:\smset$ and polynomials $p,q:\poly$ there is an isomorphism
+\begin{equation}
+	\lens{Ap}{B+q}\cong\lens{A}{B}\times\lens{p}{q}
+\end{equation}
+a common case of which has $A=1$ and $q=0$.
+
+For any $A:\smset$ and $p:\poly$ we have isomorphisms
 \begin{equation}\label{eqn.left_adjoints}
   \lens{p}{A\yon}\cong 
   p\tri\yon^A\cong 
@@ -1088,11 +1099,13 @@ Every polynomial is a $(+)$-monoid in a unique way, and the only object that is 
 \paragraph{$(\times)$-monoids and comonoids.}
 Every polynomial is a $(\times)$-comonoid in a unique way.
 
-A $(\times)$-monoid $(p,\eta,\mu)$ can be identified with a polynomial functor $p\colon\smset\to\smset$ that factors as
+A $(\times)$-monoid $(m,\eta,\mu)$ can be identified with a polynomial functor $m\colon\smset\to\smset$ that factors as
 \begin{equation}
-	\smset\To{(p,\eta,\mu)}\Cat{Monoid}\To{U}\smset
+	\smset\To{(m,\eta,\mu)}\Cat{Monoid}\To{U}\smset
 \end{equation}
 where $U$ takes a monoid to its underlying set.
+
+Any monoid $(M,e,*)$ in $\smset$ is also a $(\times)$-monoid in $\poly$. Every commutative $(\times)$-monoid $m$ in $\poly$ arises in this way, i.e.\ $m=m(1)$ is constant.
 
 The free $(\times)$-monoid is $\uu$, defined as follows
 \begin{equation}\label{eqn.list}
@@ -1116,6 +1129,7 @@ Suppose that $m,n$ are $(\times)$-monoids, $a$ is a $(\otimes)$-monoid, $t$ is a
 	a\tri m&\quad\tn{carries the structure of a $(\times)$-monoid}\\
 \end{align}
 
+
 \paragraph{$(\otimes)$-monoids and comonoids.}
 The $(\otimes)$-monoids
 \begin{equation}\label{eqn.otimes_monoids}
@@ -1134,11 +1148,19 @@ If $m,n$ are $(\otimes)$-monoids, then so are $m\otimes n$, $m\times n$, and $m\
 
 The $(\otimes)$-comonoids $(p,\epsilon,\delta)$ are ``sets of monoids'', i.e.\ for each position $I:p(1)$ the direction set $p[I]$ carries a monoid structure, where $\epsilon$ provides the unit and $\delta$ provides the multiplication.
 
-If $(m,\eta,\mu)$ is a $(\times)$-monoid, then for any $p:\poly$, there is a $\otimes$-comonoid structure on $\lens{p}{m}$ given by the transposes of the following maps
+If $(m,\eta,\mu)$ is a $(\times)$-monoid, then for any $p:\poly$, there is a $\otimes$-comonoid structure
+\begin{equation}
+	\epsilon\colon\lens{p}{m}\to\yon
+	\qqand
+	\delta\colon\lens{p}{m}\to\lens{p}{m}\otimes\lens{p}{m}
+\end{equation}
+on $\lens{p}{m}$ given by the transposes of the following maps
 \begin{gather}
 	p\to \yon\to m=\yon\tri m\\
 	p\to pp\to\left(\lens{p}{m}\tri m\right)\left(\lens{p}{m}\tri m\right)\to\left(\lens{p}{m}\otimes\lens{p}{m}\right)\tri mm\to\left(\lens{p}{m}\otimes\lens{p}{m}\right)\tri m
 \end{gather}
+The comultiplication map $\delta$ is a cofunctor
+
 
 
 \paragraph{$(\tri)$-monoids and comonoids.} These will be discussed in \cref{chap.monad_comonad}.
