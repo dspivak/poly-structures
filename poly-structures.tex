@@ -904,8 +904,9 @@ This satisfies the following indexed-adjunction formula:%
 \begin{equation}\label{indexed_adjunction}
 	\poly(p,q\tri r)\cong\sum_{f\colon p(1)\to q(1)}\poly(p\cocl{f}q,r)
 \end{equation}
+Given $\varphi\colon p\to q\tri r$, we denote its image under this isomorphism by $(\varphi.1,\varphi.2)$, where $\varphi.1\colon p(1)\to q(1)$ and $\varphi.2\colon (p\cocl{\varphi.1}q)\to r$.
 
-Given $\varphi\colon p\to q\tri r$, we denote its image by $(\varphi.1,\varphi.2)$, where $\varphi.1\colon p(1)\to q(1)$ and $\varphi.2\colon (p\cocl{\varphi.1}q)\to r$. The indexed coclosure is a very well-behaved structure.
+The indexed coclosure is a very well-behaved structure.
 \begin{align}
 	(p\cocl{!}\yon^A)&\cong Ap\\
 	(p+p')\cocl{(f,f')}q&\cong(p\cocl{f}q)+(p'\cocl{f'}q)\\
@@ -915,13 +916,15 @@ Given $\varphi\colon p\to q\tri r$, we denote its image by $(\varphi.1,\varphi.2
 	(p\cocl{f}q)\tri p'&\cong(p\tri p')\cocl{(p\tri!)\then f}q\\
 	p\cocl{f}(q\tri r)&\cong(p\cocl{f.1}q)\cocl{f.2}r\\
 	(p\otimes p')\cocl{f\otimes f'}(q\otimes q')&\cong(p\cocl{f}q)\otimes(p'\cocl{f'}q')\\
+	\lens{p}{r}\cocl{f}q&\cong\lens{p\cocl{f}q}{r}\\
 	[p,q\tri r]&\cong\sum_{f\colon p(1)\to q(1)}[p\cocl{f}q,r]
 \end{align}
 
-For any $p,q,r:\poly$ and map $f\colon p(1)\to q(1)$, there is an isomorphism relating the two coclosures
+Given $p,q:\poly$ and map $f\colon p(1)\to q(1)$, there is a natural map
 \begin{equation}
-	\lens{p\cocl{f}q}{r}\cong\lens{p}{r}\cocl{f}q.
+	\lens{p}{p\cocl{f}q}\to q.
 \end{equation}
+For example when $p=\yon$, this is the cartesian map picking out the representable summand of $q$ at position $f$.
 
 Using $\frown$ we can define for any $p:\poly$ an object $p_*:\poly$ as follows.
 \begin{equation}\label{eqn.p_star}
