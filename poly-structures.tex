@@ -856,13 +856,11 @@ The coclosure interacts with $\otimes$ via vertical maps
 	\qqand
 	\lens{p_1\otimes p_2}{q_1\otimes q_2}\to\lens{p_1}{q_1}\otimes\lens{p_2}{q_2}
 \end{equation}
-It interacts with the $\otimes$-closure (Dirichlet-hom) by a vertical map
+It interacts with the $\otimes$-closure (Dirichlet-hom) by maps
 \begin{equation}
-	\left[\lens{p}{q},p'\right]\to[p,p'\tri q]
-\end{equation}
-and a map
-\begin{equation}\label{eqn.shapiro_2}
-	\lens{p\otimes p'}{q}\to\lens{p}{[p',q]}.
+	\left[\lens{p}{[p',q']},q\right]\to[p\otimes p',q\tri q']
+	\qqand
+	\lens{p\otimes p'}{q\tri q'}\to\lens{p}{\left[\lens{p'}{q'},q\right]}
 \end{equation}
 
 For any sets $S,B:\smset\op$ and $A,T:\smset$, we have an isomorphism
@@ -871,7 +869,7 @@ For any sets $S,B:\smset\op$ and $A,T:\smset$, we have an isomorphism
 	\cong
 	\left[\lens{SB}{1},\lens{AT}{1}\right]
 \end{equation}
-For example, it's useful in the theory of Moore and Mealy machines to know that $[B\yon^A,\yon]\cong[A\yon,B\yon]$.
+For example, it's useful in the theory of Moore and Mealy machines to know that $[S\yon^T,\yon]\cong[S\yon,T\yon]$.
 
 All functors between cartesian categories are colax monoidal; in the case of $\lens{p}{-}$ for any $p:\poly$, this gives
 \begin{equation}
