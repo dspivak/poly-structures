@@ -839,12 +839,19 @@ The Cartesian closure is closely connected with the coclosure:
 \end{equation}
 for any $p,q:\poly$.
 
-The coclosure interacts with $\tri$ by
+The coclosure interacts with $\tri$ in a few different ways.
 \begin{equation}
 	\lens{\lens{p}{q}}{q'}\cong\lens{p}{q'\tri q}
 	\qqand
 	p\cong\lens{p}{\yon}
 \end{equation}
+We also have a natural map
+\begin{equation}
+\lens{p\tri q}{p'\tri q'}\to\lens{p\tri\lens{q}{q'}}{p'}
+\end{equation}
+and in the case $q'=Q'\yon$ is linear, this map is an isomorphism.
+
+Finally, there is a natural map
 \begin{equation}
 	\lens{p\tri p'}{q}\to p\tri\lens{p'}{q}
 \end{equation}
