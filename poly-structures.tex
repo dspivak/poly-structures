@@ -423,7 +423,7 @@ In this document, we collect a list of categorical structures on the category $\
 \tableofcontents*
 \bigskip
 
-This document is only meant as a handy guide to the abundance of structure in $\poly$. In particular, we do not supply proofs, though we have written about most of these structures elsewhere; see \cite{spivak2022poly}, \cite{spivak2021functorial}, and \cite{spivak2022polynomial}. For everything else written here, one can consider it to be only conjecture, since in some cases we have not checked all the details. Hence, if someone proves something written here---something which has not been proven elsewhere---that person should be taken to have the professional ``priority'' and credit. In particular, we wish to claim no credit for originality of anything contained in this document, though most of it was discovered independently by the author, so we also do not supply additional references. We also make absolutely no claim of completeness.
+This document is only meant as a handy guide to the abundance of structure in $\poly$. In particular, we do not supply proofs, though we have written about most of these structures elsewhere; see \cite{spivak2021functorial}, \cite{niu2022poly}, and \cite{spivak2022polynomial}. For everything else written here, one can consider it to be only conjecture, since in some cases we have not checked all the details. Hence, if someone proves something written here---something which has not been proven elsewhere---that person should be taken to have the professional ``priority'' and credit. In particular, we wish to claim no credit for originality of anything contained in this document, though most of it was discovered independently by the author, so we also do not supply additional references. We also make absolutely no claim of completeness.
 
 \chapter{Background and notation}
 
@@ -446,7 +446,7 @@ p&\mapsto X\mapsto\sum_{I:p(1)}X^{p[I]}
 \end{align} 
 The functor $\ext$ preserves coproducts and is fully faithful, meaning that a morphism between polynomials is a natural transformation $\varphi\colon \ext(p)\to \ext(q)$. What we denote $p(1)$ is actually $\ext(p)(1)$. By the Yoneda lemma and universal property of coproducts, a morphism in $\poly$ consists of a function $\varphi_1\colon p(1)\to q(1)$ and, for each $I: p(1)$ a function $\varphi^\sharp_I\colon q[\varphi_1(I)]\to p[I]$. A map $\varphi$ is called \emph{vertical} if $\varphi_1$ is identity on positions; it is called \emph{cartesian} if for each $I: p(1)$ the function $\varphi_I^\sharp$ is a bijection; see \cref{chap.bifib} for more on this. 
 
-The category of polynomial functors and morphisms between them is denoted $\poly$; the wide subcategory of polynomial functors and cartesian morphisms between them is denoted $\polycart$. The forgetful functor $\poly\to\Cat{Fun}(\smset,\smset)$ preserves limits and coproducts. The forgetful functor $\polycart\to\Cat{Fun}(\smset,\smset)$ preserves all limits and colimits.
+The category of polynomial functors and morphisms between them is denoted $\poly$; the wide subcategory of polynomial functors and cartesian morphisms between them is denoted $\polycart$. Both of these have all limits and colimits. The forgetful functor $\poly\to\Cat{Fun}(\smset,\smset)$ preserves limits and coproducts. The forgetful functor $\polycart\to\Cat{Fun}(\smset,\smset)$ preserves all limits and colimits.
 %For more, see \cref{chap.background}. 
 
 
@@ -486,11 +486,10 @@ For any set $S$, there is a monoidal structure $(0,\vee_S)$ on $\smset$,\footnot
 \begin{equation}
 	A\vee_SB\coloneqq A+A\times S\times B + B.
 \end{equation}
-We denote the $S=1$ case simply by $\vee\coloneqq\vee_1$. When $S=0$ this is the usual coproduct, $A\vee_0B\cong A+B$, which we will treat seperately since it is very important. The other important monoidal product on $\smset$ for us is $\times$%
+We denote the $S=1$ case simply by $\vee\coloneqq\vee_1$. When $S=0$ this is the usual coproduct, $A\vee_0B\cong A+B$, which we will treat seperately since it is very important. The other important monoidal product on $\smset$ for us is $\times$.%
 \footnote{
 	We sometimes denote products using juxtaposition, $AB\coloneqq A\times B$. We may also do this for polynomials $pq\coloneqq p\times q$.
-}%
-.
+}
 %, and the following
 %\begin{equation}
 %	A!B\coloneqq
@@ -807,15 +806,11 @@ The coclosure $\lens{p}{q}$ is covariant in $p$ and contravariant in $q$:
 and if $p\to p'$ is vertical or cartesian, then so is $\lens{p}{q}\to\lens{p'}{q}$, respectively.
 
 A formal consequence of the existence of a coclosure is that $\poly$ is enriched in $(\poly\op,\yon,\tri)$ via
-\begin{equation}
+\begin{equation}\label{eqn.ihom1}
 	\iHom(p,q)\coloneqq\lens{p}{q}
 \end{equation}
-and the unit and composition are derived from \eqref{eqn.coclosure_unit_counit}. Being a subcategory $\smset\ss\poly$ is also enriched in $(\poly\op,\yon,\tri)$ via
-\begin{equation}
-	\iHom(A,B)\coloneqq\lens{A}{B}=A\yon^B.
-\end{equation}
-\footnote{
-In both cases, the underlying set of maps is as expected:
+and the unit and composition are derived from \eqref{eqn.coclosure_unit_counit}. Being a subcategory $\smset\ss\poly$ is also enriched in $(\poly\op,\yon,\tri)$ via\footnote{
+In both \cref{eqn.ihom1,eqn.ihom2}, the underlying set of maps is as expected:
 $
 \poly\op\left(\yon,\lens{p}{q}\right)=\poly\left(\lens{p}{q},\yon\right)=\poly(p,q)
 $ and
@@ -823,6 +818,10 @@ $
 \poly\op(\yon,A\yon^B)=\smset(A,B).
 $
 }
+\begin{equation}\label{eqn.ihom2}
+	\iHom(A,B)\coloneqq\lens{A}{B}=A\yon^B.
+\end{equation}
+
 
 
 Since $\lens{-}{q}$ is a left adjoint, it interacts with $+$ by
