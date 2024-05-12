@@ -446,18 +446,9 @@ p&\mapsto X\mapsto\sum_{I:p(1)}X^{p[I]}
 \end{align} 
 The functor $\ext$ preserves coproducts and is fully faithful, meaning that a morphism between polynomials is a natural transformation $\varphi\colon \ext(p)\to \ext(q)$. What we denote $p(1)$ is actually $\ext(p)(1)$. By the Yoneda lemma and universal property of coproducts, a morphism in $\poly$ consists of a function $\varphi_1\colon p(1)\to q(1)$ and, for each $I: p(1)$ a function $\varphi^\sharp_I\colon q[\varphi_1(I)]\to p[I]$. A map $\varphi$ is called \emph{vertical} if $\varphi_1$ is identity on positions; it is called \emph{cartesian} if for each $I: p(1)$ the function $\varphi_I^\sharp$ is a bijection; see \cref{chap.bifib} for more on this. 
 
-The category of polynomial functors and morphisms between them is denoted $\poly$; the wide subcategory of polynomial functors and cartesian morphisms between them is denoted $\polycart$. Both of these have all limits and colimits. The forgetful functor $\poly\to\Cat{Fun}(\smset,\smset)$ preserves limits and coproducts. The forgetful functor $\polycart\to\Cat{Fun}(\smset,\smset)$ preserves all limits and colimits.
+The category of polynomial functors and morphisms between them is denoted $\poly$; the wide subcategory of polynomial functors and cartesian morphisms between them is denoted $\polycart$. Both of these have all limits and colimits. The forgetful functor $\poly\to\Cat{Fun}(\smset,\smset)$ preserves limits and coproducts. The forgetful functor $\polycart\to\Cat{Fun}(\smset,\smset)$ preserves all limits and colimits. 
 
-%Not every epimorphism in $\poly$ is a regular epimorphism. For example, there is a map $\varphi\colon\{P_1,P_2,P_3\}\yon^{\{d_1,d_2\}}\to\yon^{\{b_1,b_2,b_3\}}$ given by
-%\[
-%\begin{array}{c|ccc}
-%	\varphi^\sharp_{P}(b)&b_1&b_2&b_3\\\hline
-%	P_1&d_1&d_2&d_1\\
-%	P_2&d_1&d_1&d_2\\
-%	P_3&d_2&d_1&d_1
-%\end{array}
-%\]
-%for which the associated kernel pair has coequalizer $y^8\not\cong\yon^{\{b_1,b_2,b_3\}}$. I do not know if $\poly$ is a regular category.
+
 
 
 %-------- Chapter --------%
@@ -1576,6 +1567,16 @@ There are at least four factorization systems on $\poly$:
 \end{itemize}
 A natural transformation $\varphi\colon p\to q$ is \emph{taut} iff for all monomorphisms of sets $f\colon A\to B$, the naturality square for $f$ and $\varphi$ is a pullback. Par\'{e} showed that if $p,q$ are polynomials then $\varphi$ is taut iff for each $I:p(1)$ the map $\varphi_I^\sharp\colon q[\varphi(I)]\to p[I]$ is surjective. These form the left class of a factorization system whose right class are bijective on positions and injective on directions.
 
+We note that $\poly$ is not a regular category because epimorphisms (and hence image factorizations) are not stable under pullback. Indeed, the notationally-indicated bottom map in the pullback diagram
+\begin{equation}
+\begin{tikzcd}
+	2\yon\ar[r, "!"]\ar[d]&
+	\yon^{\{1,2\}}\ar[d, "\psi"]\\
+	\yon^{\{a,b\}}+\yon^{\{c,d\}}\ar[r, "\varphi"']&
+	\yon^{\{1ac, 1bd, 2ad, 2bc\}}\ar[ul, phantom, very near end, "\lrcorner"]
+\end{tikzcd}
+\end{equation}
+is an epimorphism, but its pullback along $\psi$, the unique map $2\yon\to\yon^2$ is not. 
 
 \section*{Acknowledgments}
 \thanksAFOSR{FA9550-20-1-0348 and FA9550-23-1-0376}.
