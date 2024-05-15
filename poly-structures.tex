@@ -522,15 +522,21 @@ The first two are highly relevant: the first ($\times$) is the categorical produ
 	p(1)\times q(1)\ar[ul, phantom, very near end, "\lrcorner"]
 \end{tikzcd}
 \end{equation}
-Multiplication by $\yon$ yields a strong monoidal functor $(\poly,1,\ovee)\to(\poly,\yon,\otimes)$:
+Multiplication by $\yon$ yields a normal lax monoidal functor $(\poly,1,\times)\to(\poly,\yon,\otimes)$: 
+\begin{equation}
+	p\yon\otimes q\yon\to (p\times q)\yon
+	\qqand
+	\yon\cong \yon
+\end{equation}
+and a strong monoidal functor $(\poly,1,\ovee)\to(\poly,\yon,\otimes)$:
 \begin{equation}
 	p\yon\otimes q\yon\cong (p\ovee q)\yon
 	\qqand
-	\yon\cong 1\yon.
+	\yon\cong \yon.
 \end{equation}
 
 
-The dirichlet product commutes with connected limits in either variable: for any connected category $\cat{J}$, functor $p\colon\cat{J}\to\poly$, and polynomial $q$, the induced map
+The Dirichlet product commutes with connected limits in either variable: for any connected category $\cat{J}$, functor $p\colon\cat{J}\to\poly$, and polynomial $q$, the induced map
 \begin{equation}
 	\left(\lim_{j:\cat{J}}p_j\right)\otimes q
 	\To{\cong}
