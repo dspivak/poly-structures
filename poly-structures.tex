@@ -1282,11 +1282,13 @@ Important monads include $\List$, see \eqref{eqn.list}, and $\lott$:
 We can build new monads from old as follows. Suppose that $t,u$ are monads, $c$ is a comonad, $p:\poly$ is any polynomial, and $M:\smset$ is a set. Then
 \begin{align}
 	tu&\quad\tn{carries the structure of a monad}\\
+	\label{eqn.t^p}
 	t^p&\quad\tn{carries the structure of a monad}\\
+	\label{eqn.[c,t]}
 	[c,t]&\quad\tn{carries the structure of a monad}\\
 	t\tri M\yon&\quad\tn{carries the structure of a monad}.
 \end{align}
-As one example, $t^{R\yon^E}\cong\yon^R\tri t\tri(\yon+E)$ is the ``$R$-reader'' monad, followed by $t$, followed by the ``$E$-exceptions'' monad. As another example, $[S\yon^S,t]\cong\yon^S\tri t\tri S\yon$ is sometimes called the ``$S$-parser'' monad.
+As an example of \eqref{eqn.t^p}, $t^{R\yon^E}\cong\yon^R\tri t\tri(\yon+E)$ is the ``$R$-reader'' monad, followed by $t$, followed by the ``$E$-exceptions'' monad; thus we can think of \eqref{eqn.t^p} as allowing for exception types that depend on what is read in. As an example of \eqref{eqn.[c,t]}, $[S\yon^S,t]\cong\yon^S\tri t\tri S\yon$ is sometimes called the ``$S$-parser'' monad.
 
 
 There is a cofree $\tri$-comonoid (often called the cofree comonad) construction on $\poly$:
