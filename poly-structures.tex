@@ -318,6 +318,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\en}{\Cat{End}}
 
 \newcommand{\List}{\Fun{list}}
+\newcommand{\lott}{\Fun{lott}}
 \newcommand{\set}{\tn{-}\Cat{Set}}
 
 
@@ -328,7 +329,6 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\Span}{\Cat{Span}}
 \newcommand{\rect}{\Set{Rect}}
 \newcommand{\polycart}{\poly^{\tn{cart}}}
-\newcommand{\hh}{\mathcal{h}}
 \newcommand{\ppoly}{\mathbb{P}\Cat{oly}}
 \newcommand{\0}{\textsf{0}}
 \newcommand{\1}{\tn{\textsf{1}}}
@@ -376,11 +376,15 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\bang}{\,\mathbin{!}\,}
 \newcommand{\obang}{\mathbin{\othis{!}}}
 
-\newcommand{\qand}{\quad\text{and}\quad}
-\newcommand{\qqand}{\qquad\text{and}\qquad}
-\newcommand{\qor}{\quad\text{or}\quad}
-\newcommand{\qqor}{\qquad\text{or}\qquad}
-
+\newcommand{\hh}[2][]{#1 \tn{\textit{#2}} #1}
+\newcommand{\qqand}{\hh[\qquad]{and}}
+\newcommand{\qand}{\hh[\quad]{and}}
+\renewcommand{\iff}[1][\;\;]{#1\Leftrightarrow#1}
+\newcommand{\ifff}[1][\;\;]{#1\xLeftrightarrow{\quad}#1}
+\newcommand{\hi}[4][]{#1 #2 \tn{\textit{#4}} #3}
+\newcommand{\where}[1][,]{\hi[#1]{\qquad}{\quad}{where}}
+\newcommand{\qimplies}{\hh[\quad]{$\implies$}}
+\newcommand{\qqor}{\hh[\qquad]{or}}
 
 \newcommand{\coto}{\nrightarrow}
 \newcommand{\cofun}{{\raisebox{2pt}{\resizebox{2.5pt}{2.5pt}{$\setminus$}}}}
@@ -523,7 +527,7 @@ The first two are highly relevant: the first ($\times$) is the categorical produ
 \end{tikzcd}
 \end{equation}
 Multiplication by $\yon$ yields a normal lax monoidal functor $(\poly,1,\times)\to(\poly,\yon,\otimes)$: 
-\begin{equation}
+\begin{equation}\label{eqn.lax_times_tensor}
 	p\yon\otimes q\yon\to (p\times q)\yon
 	\qqand
 	\yon\cong \yon
@@ -1141,7 +1145,7 @@ Suppose that $m,n$ are $(\times)$-monoids, $a$ is a $(\otimes)$-monoid, $t$ is a
 	m\tri p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
 	[p,m]&\quad\tn{carries the structure of a $(\times)$-monoid}\\
 	m^p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
-	a\tri m&\quad\tn{carries the structure of a $(\times)$-monoid}\\
+	a\tri m&\quad\tn{carries the structure of a $(\times)$-monoid}
 \end{align}
 
 
@@ -1174,7 +1178,13 @@ on $\lens{p}{m}$ given by the transposes of the following maps
 	p\to \yon\to m=\yon\tri m\\
 	p\to pp\to\left(\lens{p}{m}\tri m\right)\left(\lens{p}{m}\tri m\right)\to\left(\lens{p}{m}\otimes\lens{p}{m}\right)\tri mm\to\left(\lens{p}{m}\otimes\lens{p}{m}\right)\tri m
 \end{gather}
-The comultiplication map $\delta$ is a cofunctor
+
+For any $(\times)$-monoid $(m,\eta,\mu)$, \eqref{eqn.lax_times_tensor} induces a $(\otimes)$-monoid structure on $m\yon$
+\begin{equation}
+	\yon\cong1\yon\To{\eta\yon} m\yon
+	\qqand
+	m\yon\otimes m\yon\to (mm)\yon\To{\mu\yon} m\yon.
+\end{equation}
 
 
 
@@ -1185,6 +1195,7 @@ The comultiplication map $\delta$ is a cofunctor
 \chapter{Polynomial monads and comonads}\label{chap.monad_comonad}
 
 A polynomial monad is a monoid in $(\poly,\yon,\tri)$, i.e.\ a tuple $(t,\eta,\mu)$ where $t:\poly$ and where $\eta\colon\yon\to t$ and $\mu\colon t\tri t\to t$ satisfy the monoid laws. Note that the maps $\eta$ and $\mu$ are often asked to be Cartesian; we refer to these as \emph{Cartesian monads}. Finitary Cartesian monads can be identified with $\Sigma$-free (one-object) operads: $t(1)$ is the set of operations and for each $T:t(1)$ the set $t[T]$ is its arity; the unit and multiplication $(\eta,\mu)$ correspond to the identity and composition respectively. Morphisms between $(\tri)$-monoids are functors between operads.
+
 
 A polynomial comonad is a comonoid in $(\poly,\yon,\tri)$, i.e.\ a tuple $(c,\epsilon,\delta)$ where $c:\poly$ and where $\epsilon\colon c\to\yon$ and $\delta\colon c\to c\tri c$ satisfy the comonoid laws. Polynomial comonads can be identified with categories: $c(1)$ is the set of objects, and for each $C:c(1)$ the set $c[C]$ is the set of outgoing arrows from that object; the counit corresponds to the identities and the comultiplication corresponds to the codomain and composition information. Morphisms of $(\tri)$-comonoids are not functors, but cofunctors: we leave this to the reader to investigate.
 
@@ -1255,6 +1266,21 @@ For monads, but more generally for pointed endofunctors $\yon\to t$, the map $t\
 	\qqand
 	t^p\tri u^p\to(t\tri u)^p.
 \end{equation}
+
+Important monads include $\List$, see \eqref{eqn.list}, and $\lott$:
+\begin{equation}
+	\lott\coloneqq\sum_{N:\nn}\sum_{P:\Delta_N}\yon^N
+	\where
+	\Delta_N\coloneqq\{P\colon\{1,\ldots,N\}\to[0,1]\mid1=P(1)+\cdots+P(N)\}\}.
+\end{equation}
+We can build new monads from old as follows. Suppose that $t,u$ are monads, $c$ is a comonad, $p:\poly$ is any polynomial, and $M:\smset$ is a set. Then
+\begin{align}
+	tu&\quad\tn{carries the structure of a monad}\\
+	t^p&\quad\tn{carries the structure of a monad}\\
+	[c,t]&\quad\tn{carries the structure of a monad}\\
+	t\tri M\yon&\quad\tn{carries the structure of a monad}.
+\end{align}
+As one example, $t^{R\yon^E}\cong\yon^R\tri t\tri(\yon+E)$ is the ``$R$-reader'' monad, followed by $t$, followed by the ``$E$-exceptions'' monad. As another example, $[S\yon^S,t]\cong\yon^S\tri t\tri S\yon$ is sometimes called the ``$S$-parser'' monad.
 
 
 There is a cofree $\tri$-comonoid (often called the cofree comonad) construction on $\poly$:
