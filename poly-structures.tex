@@ -376,7 +376,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\bang}{\,\mathbin{!}\,}
 \newcommand{\obang}{\mathbin{\othis{!}}}
 
-\newcommand{\hh}[2][]{#1 \tn{\textit{#2}} #1}
+\newcommand{\hh}[2][]{#1 \tn{#2} #1}
 \newcommand{\qqand}{\hh[\qquad]{and}}
 \newcommand{\qand}{\hh[\quad]{and}}
 \renewcommand{\iff}[1][\;\;]{#1\Leftrightarrow#1}
@@ -615,7 +615,7 @@ is an isomorphism.%
 \footnote{The unique map $\yon\to 1 $ is an epimorphism, but $\yon\tri 0\to 1\tri 0$ is not.}
 
 All functors $\smset\to\smset$ have a \emph{$\times$-strength}; this is expressed for any $p:\poly$ by the data of natural maps
-\begin{equation}
+\begin{equation}\label{eqn.strength}
 	(p\tri q)\times r\to p\tri(q\times r).
 \end{equation}
 
@@ -655,9 +655,12 @@ Since $A\yon$ and $\yon^A$ are extensionally left and right adjoint functors $\s
 \end{equation}
 making the triangle equations hold. If $a$ has a right dual, then $a=A\yon$ for some $A:\smset$.
 
-The natural maps \eqref{eqn.Day}, defining $\times$ and $\otimes$ as Day convolutions of $+,\times$, can be extended from sets to polynomials using \cref{eqn.comp_plus,eqn.comp_times}. That is, we have maps:
+The natural maps \eqref{eqn.Day}, defining $\times$ and $\otimes$ as Day convolutions of $+,\times$, can be extended from sets to polynomials using \cref{eqn.comp_plus,eqn.comp_times}. That is, we have maps:%
+\footnote{Note that the map in \eqref{eqn.dayx} induces the strength \eqref{eqn.strength}, using $q_1=\yon$.}
 \begin{align}
+\label{eqn.dayx}
 	(p_1\tri p_2)\times(q_1\tri q_2)&\to(p_1\otimes q_1)\tri(p_2\times q_2)\\
+\label{eqn.day+}
 	(p_1\tri p_2)\times(q_1\tri q_2)&\to(p_1\times q_1)\tri(p_2+q_2)
 \end{align}
 Thus we obtain a natural map combining all four of the main monoidal products: $\tri$, $\otimes$, $\times$, and $+$:
@@ -848,13 +851,6 @@ Since $\lens{-}{q}$ is a left adjoint, it interacts with $+$ by
 	\lens{p+p'}{q}\cong\lens{p}{q}+\lens{p'}{q}.
 \end{equation}
 
-
-The Cartesian closure is closely connected with the coclosure:
-\begin{equation}\label{eqn.cart_from_co}
-	q^p\cong\yon^{\lens{p}{q}}
-\end{equation}
-for any $p,q:\poly$.
-
 The coclosure interacts with $\tri$ in a few different ways.
 \begin{equation}
 	\lens{\lens{p}{q}}{q'}\cong\lens{p}{q'\tri q}
@@ -865,20 +861,25 @@ We have a natural map
 \begin{equation}
 	\lens{p\tri p'}{q}\to p\tri\lens{p'}{q}
 \end{equation}
-and in the case $q=Q\yon$ is linear, this map is an isomorphism.
+and in the case that either $q=Q\yon$ or $p=P\yon$ is linear, this map is an isomorphism.
 
 The coclosure interacts with $\otimes$ via vertical maps
-\begin{equation}
+\begin{equation}\label{eqn.coclosure_tensor}
 	\lens{\yon}{\yon}\cong\yon
 	\qqand
 	\lens{p_1\otimes p_2}{q_1\otimes q_2}\to\lens{p_1}{q_1}\otimes\lens{p_2}{q_2}
 \end{equation}
-This map is an isomorphism iff any of the following hold:
+The latter map in \eqref{eqn.coclosure_tensor} is an isomorphism iff any of the following hold:
 \begin{itemize}
 	\item $q_1$ and $q_2$ are both constant,
 	\item $q_1$ and $q_2$ are both linear, or
 	\item $p_1$ and $p_2$ are both linear.
 \end{itemize}
+For example, using this isomorphism and the strength \eqref{eqn.strength} one obtains maps
+\begin{equation}
+	\lens{A}{B}\otimes\lens{B}{C}\to\lens{A}{C}.
+\end{equation}
+
 The coclosure interacts with the $\otimes$-closure (Dirichlet-hom) by maps
 \begin{equation}
 	\left[\lens{p}{q_2},q_1\right]\to[p,q_1\tri q_2]
