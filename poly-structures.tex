@@ -247,7 +247,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\cat}[1]{\mathcal{#1}}%a generic category
 \newcommand{\Cat}[1]{\mathbf{#1}}%a named category
 \newcommand{\fun}[1]{\mathrm{#1}}%a function
-\newcommand{\Fun}[1]{\mathit{#1}}%a named functor
+\newcommand{\Fun}[1]{\mathsf{#1}}%a named functor
 
 
 
@@ -261,7 +261,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\iso}{\cong}
 \newcommand{\too}{\longrightarrow}
 \newcommand{\tto}{\rightrightarrows}
-\newcommand{\To}[2][]{\xrightarrow[#1]{#2}}
+\newcommand{\To}[2][]{\xrightarrow[#1]{\tn{$#2$}}}
 \renewcommand{\Mapsto}[1]{\xmapsto{#1}}
 \newcommand{\Tto}[3][13pt]{\begin{tikzcd}[sep=#1, cramped, ampersand replacement=\&, text height=1ex, text depth=.3ex]\ar[r, shift left=2pt, "#2"]\ar[r, shift right=2pt, "#3"']\&{}\end{tikzcd}}
 \newcommand{\Too}[1]{\xrightarrow{\;\;#1\;\;}}
@@ -324,7 +324,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 
 
 
-\newcommand{\yon}{\mathcal{y}}
+\newcommand{\yon}{{\mathcal{y}}}
 \newcommand{\poly}{\Cat{Poly}}
 \newcommand{\Span}{\Cat{Span}}
 \newcommand{\rect}{\Set{Rect}}
@@ -636,9 +636,9 @@ and
 	\qqand
 	[p,q]\tri r\to [p,q\tri r].
 \end{equation}
-The identity functor $\poly\to\poly$ is lax monoidal as a functor $(\poly,\yon,\tri)\to(\poly,\yon,\otimes)$, i.e.\ for every $p,q$ a map of polynomials
+The identity functor $\poly\to\poly$ is lax monoidal as a functor $(\poly,\yon,\tri)\to(\poly,\yon,\otimes)$, i.e.\ for every $p,q$ a map of polynomials, which we call $\indep$:
 \begin{equation}\label{eqn.indep}
-	p\otimes q\to p\tri q
+	p\otimes q\To{\indep} p\tri q
 \end{equation}
 satisfying the usual laws. This map is derived from \eqref{duoidal} by taking $p_1\coloneqq p$, $q_1\coloneqq\yon$, $p_2\coloneqq\yon$, and $q_2\coloneqq q$. Note that if $p$ is linear or $q$ is representable, then \eqref{eqn.indep} is an isomorphism:
 \begin{equation}
@@ -754,8 +754,14 @@ The Dirichlet closure interacts with substitution of linear and representables a
 \begin{equation}
   [p\tri \yon^S,q]\cong[p,q\tri S\yon]
   \qqand
-  [S\yon\tri p,q]\cong[p\tri\yon^S\tri q]
+  [S\yon\tri p,q]\cong[p,\yon^S\tri q]
 \end{equation}
+Since $[\yon,r]\cong r$ for any $r:\poly$, these induce isomorphisms:
+\begin{equation}\label{eqn.closure_lin_rep}
+	[\yon^S,q]\cong q\tri S\yon
+	\qqand
+	[S\yon,q]\cong\yon^S\tri q.
+\end{equation} 
 
 The cartesian closure interacts with coproducts and products via maps
 \begin{equation}
@@ -801,7 +807,7 @@ The left Kan extension of a polynomial functor $p$ along another polynomial func
 \end{equation}
 This satisfies the following universal property of a Kan extension, i.e.\ a right-coclosure:%
 \footnote{I learned the right-coclosure from Josh Meyers. I learned the in-retrospect-obvious fact that it is the same as a left Kan extension from Todd Trimble.}
-\begin{equation}
+\begin{equation}\label{eqn.cocl_define}
 	\poly\left(\lens{p}{q},p'\right)\cong\poly\left(p,p'\tri q\right).
 \end{equation}
 The unit and counit of the adjunction are:
@@ -810,9 +816,9 @@ The unit and counit of the adjunction are:
   \qqand
 	\lens{p\tri q}{q}\to p
 \end{equation}
-For $q=\yon^Q$, the unit factors through
+For $q=\yon^Q$, the unit factors as
 \begin{equation}
-	p\to\lens{p}{\yon^Q}\otimes\yon^Q.
+	p\to\lens{p}{\yon^Q}\otimes\yon^Q\To{\indep}\lens{p}{\yon^Q}\tri\yon^Q
 \end{equation}
 
 The coclosure $\lens{p}{q}$ is covariant in $p$ and contravariant in $q$:
@@ -823,7 +829,7 @@ The coclosure $\lens{p}{q}$ is covariant in $p$ and contravariant in $q$:
     \Infer2{\lens{p}{q}\to\lens{p'}{q'}}
   \end{prooftree}
 \end{equation}
-and if $p\to p'$ is vertical or cartesian, then so is $\lens{p}{q}\to\lens{p'}{q}$, respectively.
+and if $p\to p'$ is vertical or cartesian, then so is $\lens{p}{q}\to\lens{p'}{q}$, respectively. 
 
 A formal consequence of the existence of a coclosure is that $\poly$ is enriched in $(\poly\op,\yon,\tri)$ via
 \begin{equation}\label{eqn.ihom1}
@@ -845,11 +851,16 @@ $
 
 
 Since $\lens{-}{q}$ is a left adjoint, it interacts with $+$ by
-\begin{equation}
+\begin{equation}\label{eqn.cocl_plus}
 	\lens{0}{q}=0
 	\qqand
 	\lens{p+p'}{q}\cong\lens{p}{q}+\lens{p'}{q}.
 \end{equation}
+When $p=\yon^P$ is representable, we have
+\begin{equation}\label{eqn.cocl_rep}
+	\lens{\yon^P}{q}\cong\yon^{q\tri P},
+\end{equation}
+so we obtain \eqref{eqn.cocl_define} from \cref{eqn.cocl_plus,eqn.cocl_rep}.
 
 The coclosure interacts with $\tri$ in a few different ways.
 \begin{equation}
@@ -858,10 +869,10 @@ The coclosure interacts with $\tri$ in a few different ways.
 	p\cong\lens{p}{\yon}
 \end{equation}
 We have a natural map
-\begin{equation}
+\begin{equation}\label{eqn.tricoclose}
 	\lens{p\tri p'}{q}\to p\tri\lens{p'}{q}
 \end{equation}
-and in the case that either $q=Q\yon$ or $p=P\yon$ is linear, this map is an isomorphism.
+and in the case that either $q=Q\yon$ or $p=P\yon$ is linear, \eqref{eqn.tricoclose} is an isomorphism.
 
 The coclosure interacts with $\otimes$ via vertical maps
 \begin{equation}\label{eqn.coclosure_tensor}
@@ -875,18 +886,25 @@ The latter map in \eqref{eqn.coclosure_tensor} is an isomorphism iff any of the 
 	\item $q_1$ and $q_2$ are both linear, or
 	\item $p_1$ and $p_2$ are both linear.
 \end{itemize}
-For example, using this isomorphism and the strength \eqref{eqn.strength} one obtains maps
+Here are two examples of this. First, for any sets $A,B,C:\smset$ one obtains maps
 \begin{equation}
 	\lens{A}{B}\otimes\lens{B}{C}\to\lens{A}{C}.
 \end{equation}
+using the inverse of \eqref{eqn.coclosure_tensor} and the strength \eqref{eqn.strength}. And second, when used together with \eqref{eqn.cocl_rep}, we obtain a map for any $p,q:\poly$,
+\begin{equation}
+	\lens{p}{q}=\lens{\yon\otimes p}{q\otimes\yon}\to\yon^{q(1)}\otimes p
+\end{equation}
+which is an isomorphism if either $p=P\yon$ or $q=Q\yon$ is linear.
 
 The coclosure interacts with the $\otimes$-closure (Dirichlet-hom) by maps
 \begin{equation}
+\label{eqn.cocl_closure1}
 	\left[\lens{p}{q_2},q_1\right]\to[p,q_1\tri q_2]
 \end{equation}
 \begin{equation}\label{eqn.shapiro_2}
-	\lens{p_1\otimes p_2}{q}\to\lens{p_1}{\left[p_2,q_1\right]}
+	\lens{p_1\otimes p_2}{q}\to\lens{p_1}{\left[p_2,q\right]}
 \end{equation}
+The map \eqref{eqn.cocl_closure1} is an isomorphism if $q_2$ is linear or $q_1$ is constant. The map \eqref{eqn.shapiro_2} is an isomorphism if $p_2$ is representable.
 
 For any sets $S,B:\smset\op$ and $A,T:\smset$, we have an isomorphism
 \begin{equation}
