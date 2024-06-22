@@ -49,7 +49,7 @@ citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode]{hyperr
 
 
 % biblatex %
-  \addbibresource{Library20240320.bib} 
+  \addbibresource{Library20240622.bib} 
 
 % hyperref %
   \hypersetup{final}
@@ -1192,6 +1192,12 @@ If $m,n$ are $(\otimes)$-monoids, then so are $m\otimes n$, $m\times n$, and $m\
 
 The $(\otimes)$-comonoids $(p,\epsilon,\delta)$ are ``sets of monoids'', i.e.\ for each position $I:p(1)$ the direction set $p[I]$ carries a monoid structure, where $\epsilon$ provides the unit and $\delta$ provides the multiplication.
 
+If $(p,\epsilon,\delta)$ is a $\otimes$-monoid, the functor $p\otimes-$ induces a colax monoidal functor
+\begin{equation}
+	(p\otimes -)\colon(\poly,0,\vee)\to(\poly,0,\vee)
+\end{equation}
+given by $(p\otimes 0)\cong0$ and $p\otimes (q_1\vee q_2)\cong(p\otimes q_1)+(p\otimes q_1\otimes q_2)+(p\otimes q_2)\to(p\otimes q_1)\vee(p\otimes q_2)$.
+
 If $(m,\eta,\mu)$ is a $(\times)$-monoid, then for any $p:\poly$, there is a $\otimes$-comonoid structure
 \begin{equation}
 	\epsilon\colon\lens{p}{m}\to\yon
@@ -1521,11 +1527,11 @@ and the functor $\cofree_-\colon\poly\to\poly$ from \cref{eqn.cofree} is itself 
 	\qqand
 	\cofree_p\to\cofree_{\cofree_p}. 
 \end{equation}
-Moreover, the former is a module over the latter, i.e.\ for any finitary $p,q$ there is a natural map
+Moreover, the former is a module over the latter---see \cite{libkind2024pattern}---i.e.\ for any $p,q$ there is a natural map
 \begin{equation}\label{module_easy}
   \free_p\otimes\cofree_q\to\free_{p\otimes q}
 \end{equation}
-satisfying the action laws for the maps from \cref{cofree_lax_monoidal} as well as coherence for $\free$ as a monad and $\cofree$ as a comonad:
+satisfying the action laws for the maps from \cref{cofree_lax_monoidal}. It also satisfies the following coherence for $\free$ as a monad and $\cofree$ as a comonad:
 \begin{equation}\label{eqn.monad_comonad_coherence}
 \begin{tikzcd}
   p\otimes\cofree_q\ar[r]\ar[d]&p\otimes q\ar[d]\\
@@ -1556,6 +1562,8 @@ satisfying the action laws for the maps from \cref{cofree_lax_monoidal} as well 
 %\begin{equation}
 %	\cofree_{p\tri A\yon}\to\cofree_p\tri\free_{A\yon}.
 %\end{equation}
+
+
 
 For any polynomial $e:\poly$, exponentiation by $e$ is a monad on $\poly$:
 \begin{equation}
