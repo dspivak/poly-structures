@@ -751,7 +751,7 @@ The representation functor $\yon^-\colon(\poly,1,\times)\op\to(\poly,\yon,\tri)$
 
 
 The Dirichlet closure interacts with substitution of linear and representables as follows:
-\begin{equation}
+\begin{equation}\label{eqn.innerhom_adj}
   [p\tri \yon^S,q]\cong[p,q\tri S\yon]
   \qqand
   [S\yon\tri p,q]\cong[p,\yon^S\tri q]
@@ -1277,13 +1277,18 @@ From \eqref{eqn.monad_tri} it follows that $t^p$ is a monad for any $p:\poly$. I
   \yon\to t^c &\qqand t^c\otimes t^c\to t^c,\\
   \yon\to t^c &\qqand t^c\tri t^c\to t^c.
 \intertext{
-For any monad $t$ and comonad $c$, their Dirichlet hom $[c,t]$ also has a monad structure by duoidality:
+For any monad $t$ and comonad $c$, their Dirichlet hom $[c,t]$ also has a monad structure by duoidality:%
+\footnote{The isomorphism $[c,t]\tri 1\cong t^c\tri 0$ induces a natural map of polynomials $[c,t]\to t^c$, but it does not respect monad multiplication.}
 }
 	\yon\to[c,t]
 	&\qqand
 	[c,t]\tri[c,t]\to[c,t].
 \end{align}
-The isomorphism $[c,t]\tri 1\cong t^c\tri 0$ induces a natural map of polynomials $[c,t]\to t^c$, but it does not respect monad multiplication.
+By this and \eqref{eqn.innerhom_adj}, the polynomial
+\begin{equation}
+	[S\yon,S\yon]\cong [S\yon^S,\yon]\cong (S\yon)^S
+\end{equation}
+is a monad, the \emph{$S$-state monad}, for any set $S:\smset$.
 
 For monads, but more generally for pointed endofunctors $\yon\to t$, the map $t\mapsto t^p$ is lax monoidal for any $p:\poly$:
 \begin{equation}
