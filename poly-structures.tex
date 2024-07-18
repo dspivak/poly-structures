@@ -714,7 +714,7 @@ The cartesian closure satisfies all the usual arithmetic properties:
 	q^{p_1\times p_2}\cong (q^{p_2})^{p_1}
 \end{gather}
 The Dirichlet closure has only some of the analogous properties:
-\begin{gather}
+\begin{gather}\label{eqn.dirhom_properties}
 	[0,p]\cong1,\qquad
 	[p_1+p_2,q]\cong [p_1,q]\times[p_2,q],\qquad
 	[\yon,q]\cong q,\qquad
@@ -860,7 +860,7 @@ When $p=\yon^P$ is representable, we have
 \begin{equation}\label{eqn.cocl_rep}
 	\lens{\yon^P}{q}\cong\yon^{q\tri P},
 \end{equation}
-so we obtain \eqref{eqn.cocl_define} from \cref{eqn.cocl_plus,eqn.cocl_rep}.
+so we obtain \eqref{eqn.cocl_define} from \cref{eqn.cocl_plus,eqn.cocl_rep}. 
 
 The coclosure interacts with $\tri$ in a few different ways.
 \begin{equation}
@@ -923,6 +923,13 @@ For sets $A,B:\smset$ and polynomials $p,q:\poly$ there is an isomorphism
 	\lens{Ap}{B+q}\cong\lens{A}{B}\times\lens{p}{q}
 \end{equation}
 a common case of which has $A=1$ and $q=0$.
+
+Speaking of cartesian product, for any $p,q:\poly$, there is an isomorphism
+\begin{equation}
+	p\times q\cong\sum_{P:p(1)}\lens{q}{\yon+p[P]}.
+\end{equation}
+From this one can obtain the cartesian closure formula \eqref{eqn.cart_cl}.
+
 
 For any $A:\smset$ and $p:\poly$ we have isomorphisms
 \begin{equation}\label{eqn.left_adjoints}
