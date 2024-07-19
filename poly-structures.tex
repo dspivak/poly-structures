@@ -473,11 +473,11 @@ p+q\cong\sum_{X: p(1)+q(1)}\yon^{\fontsize{8pt}{8pt}\selectfont
 \end{equation}
 
 For any symmetric monoidal product $(\mathbb{I},\cdot)$ on $\smset$, there is a corresponding symmetric monoidal structure $(\yon^\mathbb{I},\odot)$ on $\poly$, where the monoidal product given as follows:
-\begin{equation}
+\begin{equation}\label{eqn.day_all}
 p\odot q\coloneqq\sum_{(I,J): p(1)\times q(1)}\yon^{p[I]\cdot q[J]}.
 \end{equation}
 It always distributes over $+$:
-\begin{equation}
+\begin{equation}\label{eqn.day_distributes}
 p\odot(q_1+q_2)\cong (p\odot q_1)+(p\odot q_2).
 \end{equation}
 The symmetric monoidal structure $\odot$ on $\poly$ is the Day convolution of the $\cdot$ structure on $\smset$. This means we have maps
@@ -705,7 +705,7 @@ where $\varphi_1\colon p(1)\to q(1)$ is the $1$-component of the natural transfo
 \end{equation}
 
 The cartesian closure satisfies all the usual arithmetic properties:
-\begin{gather}
+\begin{gather}\label{eqn.timeshom_properties}
 	q^0\cong1,\quad
 	q^{p_1+p_2}\cong (q^{p_1})\times(q^{p_2}),\quad
 	1^p\cong 1,\quad
@@ -924,11 +924,11 @@ For sets $A,B:\smset$ and polynomials $p,q:\poly$ there is an isomorphism
 \end{equation}
 a common case of which has $A=1$ and $q=0$.
 
-Speaking of cartesian product, for any $p,q:\poly$, there is an isomorphism
+For any symmetric monoidal product $\cdot$ on $\smset$, with associated symmetric monoidal product $\odot$ on $\poly$ (see \cref{eqn.day_all}) there is an isomorphism
 \begin{equation}
-	p\times q\cong\sum_{P:p(1)}\lens{q}{\yon+p[P]}.
+	p\odot q\cong\sum_{P:p(1)}\lens{q}{\yon\odot p[P]}.
 \end{equation}
-From this one can obtain the cartesian closure formula \eqref{eqn.cart_cl}.
+From this and \eqref{eqn.day_distributes} one can obtain the monoidal closure formula, e.g.\ \eqref{eqn.cart_cl}.
 
 
 For any $A:\smset$ and $p:\poly$ we have isomorphisms
