@@ -1582,7 +1582,12 @@ This monad distributes over the free monad monad
 	\free_{p^e}\to(\free_p)^e
 \end{equation}
 
-
+For any polynomial comonad $(c,\epsilon,\delta)$, there is a comonad on $\poly$ given by $p\mapsto p\tri c$. By \cref{eqn.comp_plus,eqn.comp_times}, this comonad is strong monoidal with respect to $+$ and $\times$:
+\begin{align}
+	(p\tri c)+(q\tri c)&\cong (p+q)\tri c&0\tri c&\cong0\\
+	(p\tri c)\times(q\tri c)&\cong (p\times q)\tri c&1\tri c&\cong1	
+\end{align}
+While this is basically trivial, it is useful e.g.\ for $c=2\yon$ and other linear polynomials, because $p\tri 2\yon\cong\sum_{I:p(1)}\sum_{U\ss p[I]}\yon^{p[I]}$ allows one to ``specify a desired outcome as part of the position''.
 
 \chapter{*-Bifibration over $\smset$ and factorization systems}\label{chap.bifib}
 
