@@ -486,7 +486,7 @@ The symmetric monoidal structure $\odot$ on $\poly$ is the Day convolution of th
 \end{equation}
 natural in $A,B:\smset$. 
 
-For any set $S$, there is a monoidal structure $(0,\vee_S)$ on $\smset$,\footnote{I learned the $\vee_1$ monoidal structure (pronounced ``or'') on $\smset$ from Richard Garner, and Solomon Bothwell later informed me that it's called \href{https://hackage.haskell.org/package/these}{\texttt{These}} in Haskell. I learned the $\vee_S$ for $S\geq 2$, as well as other monoidal structures, from \href{https://mathoverflow.net/questions/155939/what-other-monoidal-structures-exist-on-the-category-of-sets}{mathoverflow}.}
+For any set $S$, there is a monoidal structure $(0,\vee_S)$ on $\smset$,\footnote{I learned the $\vee_1$ monoidal structure (pronounced ``or'') on $\smset$ from Richard Garner, and Solomon Bothwell later informed me that it's called \href{https://hackage.haskell.org/package/these}{\texttt{These}} in Haskell. A version of it exists in any distributive monoidal category $(\cat{C},0,+,I,\odot)$, given by $c\vee c'\coloneqq c+(c\odot c')+c'$, and note that $\vee$-monoids are the same as $\odot$-semigroups. I learned the $\vee_S$ for $S\geq 2$, as well as other monoidal structures, from a \href{https://mathoverflow.net/questions/155939/what-other-monoidal-structures-exist-on-the-category-of-sets}{mathoverflow post}.}
  where
 \begin{equation}
 	A\vee_SB\coloneqq A+A\times S\times B + B.
