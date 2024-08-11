@@ -733,6 +733,13 @@ The following pattern holds for any monoidal closure, but we include it for $\ti
 	[p_1,q_1]\otimes[p_2,q_2]\to[p_1\otimes p_2,q_1\otimes q_2]
 \end{equation}
 
+There is a vertical epimorphism
+\begin{equation}
+	[p\times q,r]\to[p,r^q]
+\end{equation}
+which is an isomorphism iff $q$ is constant, i.e.\ $q=A$ for some $A:\smset$.
+%Indeed, the two sides have the same set $\{\varphi\colon pq\to r\}$ of positions, but a direction $(I,J,x):\sum_{I:p(1)}\sum_{J:q(1)}r[\varphi_1(I,J)]$ is in $[p,r^q]$ only when $\varphi^\sharp(x)\in p[I]$.
+
 The cartesian closure also interacts with substitution as follows:
 \begin{equation}
 	r\tri (q^p)\to (r\tri q)^p
@@ -742,13 +749,14 @@ and this map is an isomorphism in case $p\cong\yon^A$ for some $A:\smset$.
 %\begin{equation}
 %	q^p\to (pq)^p
 %\end{equation}
-The representation functor $\yon^-\colon(\poly,1,\times)\op\to(\poly,\yon,\tri)$ is strong monoidal
+
+The functor $\yon^-\colon(\poly,1,\times)\op\to(\poly,\yon,\tri)$ is strong monoidal
 \begin{equation}
-	\yon\cong\yon
+	\yon\cong\yon^1
 	\qqand
 	\yon^p\tri\yon^q\cong\yon^{p\times q}.
 \end{equation}
-
+We will see a generalization of this, lax monoidality for any monad in place of $\yon$, in \eqref{eqn.monad_tri}.
 
 The Dirichlet closure interacts with substitution of linear and representables as follows:
 \begin{equation}\label{eqn.innerhom_adj}
@@ -1281,12 +1289,16 @@ Thus we find a $(\poly,1,\times)$-enrichment of the Kleisli category $\smset_t$ 
 \end{equation}
 arise from \eqref{eqn.monad_times} via the obvious maps $A\yon^A\to\yon$ and $A\yon^C\to A\yon^B\tri B\yon^C$. This embeds fully faithfully into the Kleisli category $\poly_{t\tri-}$, which is also enriched in $(\poly,1,\times)$ with hom-polynomials $t^{\tiny\lens{p}{q}}$.
 
-From \eqref{eqn.monad_tri} it follows that $t^p$ is a monad for any $p:\poly$. In addition, when $c$ is a comonoid, the polynomial $t^c$ has a monoid structure for several monoidal structures:
+From \eqref{eqn.monad_tri} it follows that $t^p$ is a monad for any $p:\poly$. 
+\begin{equation}\label{eqn.t^p_monad}
+	\yon\to t^p\qqand t^p\tri t^p\to t^p.
+\end{equation}
+In addition, when $c$ is a comonoid, the polynomial $t^c$ has a monoid structure for several monoidal structures:
 \begin{align}
   0\to t^c &\qqand t^c + t^c\to t^c,\\
   \label{eqn.t^c_times_monoid}
   1\to t^c &\qqand t^c\times t^c\to t^c,\\
-  \yon\to t^c &\qqand t^c\otimes t^c\to t^c,\\
+  \yon\to t^c &\qqand t^c\otimes t^c\to t^c,\\\label{eqn.monad_comonad_power}
   \yon\to t^c &\qqand t^c\tri t^c\to t^c.
 \intertext{
 For any monad $t$ and comonad $c$, their Dirichlet hom $[c,t]$ also has a monad structure by duoidality:%
@@ -1581,6 +1593,7 @@ This monad distributes over the free monad monad
 \begin{equation}
 	\free_{p^e}\to(\free_p)^e
 \end{equation}
+so $p\mapsto(\free_p)^e$ is also a monad on $\poly$.
 
 For any polynomial comonad $(c,\epsilon,\delta)$, there is a comonad on $\poly$ given by $p\mapsto p\tri c$. By \cref{eqn.comp_plus,eqn.comp_times}, this comonad is strong monoidal with respect to $+$ and $\times$:
 \begin{align}
