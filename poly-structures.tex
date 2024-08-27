@@ -940,7 +940,7 @@ common cases of which are
 
 For any symmetric monoidal product $(I,\cdot)$ on $\smset$, let $(\yon^I,\odot)$ be the associated symmetric monoidal product on $\poly$ (see \cref{eqn.day_all}). Then for any $p,q:\poly$ there is an isomorphism
 \begin{equation}
-	p\odot q\cong\sum_{P:p(1)}\lens{q}{\yon\odot p[P]}.
+	p\odot q\cong\sum_{I:p(1)}\lens{q}{\yon\odot p[I]}.
 \end{equation}
 From this and \eqref{eqn.day_distributes} one can obtain the monoidal closure formula, e.g.\ \eqref{eqn.cart_cl}.
 
@@ -1509,7 +1509,11 @@ The rightward maps to $\smset$ are also distributive monoidal; indeed by \cref{e
 \end{equation}
 We denote the idempotent comonad $p\mapsto p(1)\yon$ by $\lin{p}$. It is strong monoidal with respect to $+,\otimes$ and lax monoidal with respect to $\tri$. 
 
-The functor $\Gamma$ preserves coproducts, since coproducts in $\smset\op$ are products in $\smset$:
+The functor $\Gamma$ can be derived from the Cartesian closure \eqref{eqn.cart_cl}
+\begin{equation}
+  \Gamma(p)=\yon^p\tri 0=\prod_{I:p(1)}p[I]
+\end{equation}
+It preserves coproducts, since coproducts in $\smset\op$ are products in $\smset$:
 \begin{equation}
 	\Gamma(p+q)\cong\Gamma(p)\times\Gamma(q)
 \end{equation}
@@ -1525,7 +1529,7 @@ We can say more about $\Gamma$ if we package it with $p\mapsto p(1)$; i.e.\ ther
 		\ar[from=l, shift right=-8pt, "{\big(p(1)\,,\,\Gamma(p)\big)}"]
 \end{tikzcd}
 \end{equation}
-This functor is comonadic. It is also strong monoidal with respect to coproduct and $\otimes$. To say so requires us to mention that $\smset\times\smset\op$ has a coproduct structure and to specify an $\otimes$ structure on $\smset\times\smset\op$; they are given as follows:
+The left adjoint above is comonadic. It is also strong monoidal with respect to coproduct and $\otimes$. To say so requires us to mention that $\smset\times\smset\op$ has a coproduct structure and to specify a $\otimes$-structure on $\smset\times\smset\op$; they are given as follows:
 \begin{align}
  (A_1,B_1)+(A_2,B_2)&\coloneqq(A_1+A_2\,,\,B_1\times B_2)\\
   (A_1,B_1)\otimes(A_2,B_2)&\coloneqq(A_1\times A_2\,,\,B_1^{A_2}\times B_2^{A_1})
