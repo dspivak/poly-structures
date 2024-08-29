@@ -1597,6 +1597,11 @@ For any polynomial $p$, the free monad $\free_p$ is a left $\cofree_{p+1}$-comod
 \end{equation}
 which is induced by the composite $\free_p\To{\cong}\yon+p\tri\free_p\to(\yon+p)\tri\free_p$. 
 
+For any $p,q:\poly$ and map $p\tri q\to q\tri p$ there is an induced distributive law
+\begin{equation}
+  \free_p\tri\cofree_q\to\cofree_q\tri\free_p.
+\end{equation}
+
 For any polynomial $e:\poly$, exponentiation by $e$ is a monad on $\poly$:
 \begin{equation}
 	p\to p^e
