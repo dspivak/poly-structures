@@ -1591,7 +1591,11 @@ satisfying the action laws for the maps from \cref{cofree_lax_monoidal}. It also
 %	\cofree_{p\tri A\yon}\to\cofree_p\tri\free_{A\yon}.
 %\end{equation}
 
-
+For any polynomial $p$, the free monad $\free_p$ is a left $\cofree_{p+1}$-comodule, i.e.\ there is a left coaction:
+\begin{equation}
+	\free_p\to\cofree_{\yon+p}\tri\free_p
+\end{equation}
+which is induced by the composite $\free_p\To{\cong}\yon+p\tri\free_p\to(\yon+p)\tri\free_p$. 
 
 For any polynomial $e:\poly$, exponentiation by $e$ is a monad on $\poly$:
 \begin{equation}
