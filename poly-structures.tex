@@ -335,6 +335,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\tri}{\mathbin{\triangleleft}}
 \newcommand{\triright}{\mathbin{\triangleright}}
 \newcommand{\tripow}[1]{^{\tri #1}}
+\newcommand{\tenspow}[1]{^{\otimes #1}}
 \newcommand{\indep}{\Fun{Indep}}
 \newcommand{\duoid}{\Fun{Duoid}}
 \newcommand{\jump}{\pi}
@@ -386,8 +387,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\qimplies}{\hh[\quad]{$\implies$}}
 \newcommand{\qqor}{\hh[\qquad]{or}}
 
-\newcommand{\coto}{\nrightarrow}
-\newcommand{\cofun}{{\raisebox{2pt}{\resizebox{2.5pt}{2.5pt}{$\setminus$}}}}
+\newcommand{\retto}{\nrightarrow}
 
 \newcommand{\coalg}{\tn{-}\Cat{Coalg}}
 \newcommand{\ext}{\fun{Ext}}
@@ -1248,7 +1248,7 @@ For any $(\times)$-monoid $(m,\eta,\mu)$, \eqref{eqn.lax_times_tensor} induces a
 A polynomial monad is a monoid in $(\poly,\yon,\tri)$, i.e.\ a tuple $(t,\eta,\mu)$ where $t:\poly$ and where $\eta\colon\yon\to t$ and $\mu\colon t\tri t\to t$ satisfy the monoid laws. Note that the maps $\eta$ and $\mu$ are often asked to be Cartesian; we refer to these as \emph{Cartesian monads}. Finitary Cartesian monads can be identified with $\Sigma$-free (one-object) operads: $t(1)$ is the set of operations and for each $T:t(1)$ the set $t[T]$ is its arity; the unit and multiplication $(\eta,\mu)$ correspond to the identity and composition respectively. Morphisms between $(\tri)$-monoids are functors between operads.
 
 
-A polynomial comonad is a comonoid in $(\poly,\yon,\tri)$, i.e.\ a tuple $(c,\epsilon,\delta)$ where $c:\poly$ and where $\epsilon\colon c\to\yon$ and $\delta\colon c\to c\tri c$ satisfy the comonoid laws. Polynomial comonads can be identified with categories: $c(1)$ is the set of objects, and for each $C:c(1)$ the set $c[C]$ is the set of outgoing arrows from that object; the counit corresponds to the identities and the comultiplication corresponds to the codomain and composition information. Morphisms of $(\tri)$-comonoids are not functors, but cofunctors: we leave this to the reader to investigate.
+A polynomial comonad is a comonoid in $(\poly,\yon,\tri)$, i.e.\ a tuple $(c,\epsilon,\delta)$ where $c:\poly$ and where $\epsilon\colon c\to\yon$ and $\delta\colon c\to c\tri c$ satisfy the comonoid laws. Polynomial comonads can be identified with categories: $c(1)$ is the set of objects, and for each $C:c(1)$ the set $c[C]$ is the set of outgoing arrows from that object; the counit corresponds to the identities and the comultiplication corresponds to the codomain and composition information. Morphisms of $(\tri)$-comonoids are not functors, but retrofunctors: we leave this to the reader to investigate.
 
 The category of $(\tri)$-comonoids has finite sums and products, with units $0$ and $\yon$ respectively; it also has another monoidal product $\otimes$ with unit $\yon$, which agrees with the usual Cartesian product of categories. The forgetful functor from $\tri$-comonoids to $\poly$ is strong monoidal with respect to $(0,+)$ and $(\yon,\otimes)$; we will discuss its right adjoint $\cofree$ below.
 
@@ -1272,7 +1272,10 @@ For any $p:\poly$ and comonad $(c,\epsilon,\delta)$, the polynomial $\lens{p\tri
   \qqand
   \lens{p\tri c}{p}\to\lens{p\tri c}{p}\tri\lens{p\tri c}{p}
 \end{equation}
-These were called \emph{selection categories} and discussed \href{https://topos.site/blog/2021/12/creating-new-categories-from-old-selection-categories/}{here}.
+These were called \emph{selection categories} and discussed \href{https://topos.site/blog/2021/12/creating-new-categories-from-old-selection-categories/}{here}. There is a  retrofunctor
+\begin{equation}
+\lens{p\tri c}{p}\retto\sum_{I:p(1)}c\tenspow{p[I]}\qquad \tn{e.g.\ }\quad\lens{\yon^A\tri c}{\yon^A}\retto\bigotimes_{a:A}c
+\end{equation}
 
 Using the maps \eqref{eqn.allfour} have interesting consequences for exponentiating with base $t$, where $t$ is a monad. First, it gives a surprising lax monoidal functor $(\poly,\yon,\tri)\op\to(\poly,1,\times)$:
 \begin{equation}\label{eqn.monad_times}
