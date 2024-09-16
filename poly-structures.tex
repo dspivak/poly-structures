@@ -1266,13 +1266,23 @@ As a category, it is equivalent to the full subcategory of the opposite of the K
 \end{equation}
 where $\uu$ is as in \eqref{eqn.list}.
 
+For any cardinality $\kappa$, let $\kappa\poly$ denote the full subcategory of $\kappa$-small polynomials, and let $u_\kappa\coloneqq\sum_{|A|<\kappa}\yon^A$. For example, if $\kappa=\aleph_0$ is the smallest infinite cardinal then $u_\kappa=\uu$. Note that $u_\kappa$ has the structure of a Cartesian monad. Consider the Kleisli category $\kappa\polycart_{-\tri u_\kappa}$, whose objects are $\kappa$-small polynomials and whose maps are cartesian natural transformations $p\To{\tn{cart}} q\tri u_\kappa$. Then there is an isomorphism of categories
+\begin{equation}
+	\kappa\polycart_{-\tri u_\kappa}\cong\kappa\Cat{Dir}
+\end{equation}
+where $\Cat{Dir}$ is the arrow category of $\smset$ and $\kappa\Cat{Dir}$ is the full subcategory spanned by maps with $\kappa$-small fibers. In other words, a Dirichlet map (or bundle map) from $p$ to $q$ can be identified with a cartesian map of polynomials $p\to q\tri u_\kappa$.
+
 For any $p:\poly$ and comonad $(c,\epsilon,\delta)$, the polynomial $\lens{p\tri c}{p}$ also carries a comonad structure
 \begin{equation}
   \lens{p\tri c}{p}\to\yon
   \qqand
   \lens{p\tri c}{p}\to\lens{p\tri c}{p}\tri\lens{p\tri c}{p}
 \end{equation}
-These were called \emph{selection categories} and discussed \href{https://topos.site/blog/2021/12/creating-new-categories-from-old-selection-categories/}{here}. There is a  retrofunctor
+These were called \emph{selection categories} and discussed \href{https://topos.site/blog/2021/12/creating-new-categories-from-old-selection-categories/}{here}. 
+%\[
+%\lens{\{BT,WT\}\yon^{8\times 8}\tri\left(\{o\}\yon^{\{o,b,w\}}+\{b,w\}\yon^{\{b,w\}}\right)}{\{BT,WT\}\yon^{8\times 8}}\To{\text{Othello}}\yon^{8\times 8}\tri(\yon+1)
+%\]
+There is a  retrofunctor
 \begin{equation}
 \lens{p\tri c}{p}\retto\sum_{I:p(1)}c\tenspow{p[I]}\qquad \tn{e.g.\ }\quad\lens{\yon^A\tri c}{\yon^A}\retto\bigotimes_{a:A}c
 \end{equation}
@@ -1336,9 +1346,9 @@ Important monads include $\List$, see \eqref{eqn.list}, and $\lott$:
 	\where
 	\Delta_N\coloneqq\{P\colon\{1,\ldots,N\}\to[0,1]\mid1=P(1)+\cdots+P(N)\}\}.
 \end{equation}
-We can build new monads from old as follows. Suppose that $t,u$ are monads, $c$ is a comonad, $p:\poly$ is any polynomial, and $M:\smset$ is a set. Then
+We can build new monads from old as follows. Suppose that $t,t'$ are monads, $c$ is a comonad, $p:\poly$ is any polynomial, and $M:\smset$ is a set. Then
 \begin{align}
-	tu&\quad\tn{carries the structure of a monad}\\
+	tt'&\quad\tn{carries the structure of a monad}\\
 	\label{eqn.t^p}
 	t^p&\quad\tn{carries the structure of a monad}\\
 	\label{eqn.[c,t]}
