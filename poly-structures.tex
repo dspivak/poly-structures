@@ -1198,8 +1198,7 @@ Suppose that $m,n$ are $(\times)$-monoids, $a$ is a $(\otimes)$-monoid, $t$ is a
 	m^p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
 	a\tri m&\quad\tn{carries the structure of a $(\times)$-monoid}
 \end{align}
-
-
+\
 \paragraph{$(\otimes)$-monoids and comonoids.}
 The $(\otimes)$-monoids
 \begin{equation}\label{eqn.otimes_monoids}
@@ -1325,10 +1324,18 @@ In addition, when $c$ is a comonoid, the polynomial $t^c$ has a monoid structure
   1\to t^c &\qqand t^c\times t^c\to t^c,\\
   \yon\to t^c &\qqand t^c\otimes t^c\to t^c,\\\label{eqn.monad_comonad_power}
   \yon\to t^c &\qqand t^c\tri t^c\to t^c.
-\intertext{
+\end{align}
+In fact, for any polynomial comonad $c$, the functor $-^c$ is a monad on polynomial monads: for any polynomial monad $t$ the maps
+\begin{equation}
+	t\to t^c
+	\qqand
+	(t^c)^c\to t^c
+\end{equation}
+induced by $c\to 1$ and $c\to c\times c$ are in fact monad maps.
+
 For any monad $t$ and comonad $c$, their Dirichlet hom $[c,t]$ also has a monad structure by duoidality:%
 \footnote{The isomorphism $[c,t]\tri 1\cong t^c\tri 0$ induces a natural map of polynomials $[c,t]\to t^c$, but it does not respect monad multiplication.}
-}
+\begin{align}
 	\yon\to[c,t]
 	&\qqand
 	[c,t]\tri[c,t]\to[c,t].
@@ -1541,7 +1548,7 @@ We can say more about $\Gamma$ if we package it with $p\mapsto p(1)$; i.e.\ ther
 \begin{equation}\label{eqn.rectangle}
 \begin{tikzcd}[column sep=60pt]
 	\poly
-  	\ar[from=r, shift left=8pt, "B\yon^A"]
+  	\ar[from=r, shift left=8pt, "A\yon^B"]
 		\ar[from=r, phantom, "\scriptstyle\bot"]
   	&
 	\smset\times\smset\op
@@ -1553,11 +1560,19 @@ The left adjoint above is comonadic. It is also strong monoidal with respect to 
  (A_1,B_1)+(A_2,B_2)&\coloneqq(A_1+A_2\,,\,B_1\times B_2)\\
   (A_1,B_1)\otimes(A_2,B_2)&\coloneqq(A_1\times A_2\,,\,B_1^{A_2}\times B_2^{A_1})
 \end{align}
-Returning to our point, the left adjoint in \eqref{eqn.rectangle} is rig monoidal (preserves $+$ and $\otimes$):
+Returning to our point, the left adjoint in \eqref{eqn.rectangle} is (strong) rig monoidal (preserves $+$ and $\otimes$):
 \begin{align}
 	(p(1),\Gamma(p))+(q(1),\Gamma(q))&\cong((p+q)(1),\Gamma(p+q))\\
 	(p(1),\Gamma(p))\otimes(q(1),\Gamma(q))&\cong((p\otimes q)(1),\Gamma(p\otimes q))
 \end{align}
+It follows that the unit $p\mapsto p(1)\yon^{\Gamma(p)}$ is normal lax monoidal, i.e.\ the unitor $\yon(1)\yon^{\Gamma(\yon)}\cong\yon$ is an isomorphism and for any $p,q:\poly$, there is a map%
+\footnote{
+Capucci refers to the vertical map \eqref{eqn.nashator} as the ``Nashator'', as it shows up in Nash equilibria. Indeed, given ``moves'' $I:p(1)$ and $J:q(1)$ by two players, and given a ``payoff matrix'' $\gamma\colon \Gamma(p\otimes q)$, this map returns the payoff ``row'' for $p$ given $q$'s move and the payoff ``column'' for $q$ given $p$'s move.
+}
+\begin{equation}\label{eqn.nashator}
+	p(1)\yon^{\Gamma(p)}\otimes q(1)\yon^{\Gamma(q)}\to(p\otimes q)(1)\yon^{\Gamma(p\otimes q)}
+\end{equation}
+
 
 The map $p\mapsto p_*$ from \cref{eqn.p_star} forms an idempotent comonad on $\polycart$. It is strong monoidal with respect to $\otimes,+$. There is an isomorphism $\lin{p}_*\cong \lin{p}$.
 % A quiver can be identified with a pair $(a,\tau)$, where $a:\poly$ and $\tau\colon \lin{a_*}\to a$ are arrows and their targets.
@@ -1620,6 +1635,7 @@ For any $p,q:\poly$ and map $p\tri q\to q\tri p$ there is an induced distributiv
 \begin{equation}
   \free_p\tri\cofree_q\to\cofree_q\tri\free_p.
 \end{equation}
+A special case comes from the identity on $p\tri p$, which gives a well-known distributive law $\free_p\tri\cofree_p\to\cofree_p\tri\free_p$.
 
 For any polynomial $e:\poly$, exponentiation by $e$ is a monad on $\poly$:
 \begin{equation}
@@ -1631,7 +1647,14 @@ This monad distributes over the free monad monad
 \begin{equation}
 	\free_{p^e}\to(\free_p)^e
 \end{equation}
-so $p\mapsto(\free_p)^e$ is also a monad on $\poly$.
+so $p\mapsto(\free_p)^e$ is also a monad on $\poly$. Similarly, for any polynomial monad $t$, both the functors $p\mapsto t\tri p$ and $p\mapsto p\tri t$ are monads on $\poly$. The free monad monad distributes over both these monads
+\begin{equation}
+	t\tri\free_p\to\free_{t\tri p}
+	\qqand
+	\free_p\tri t\to\free_{p\tri t}
+\end{equation}
+so $p\mapsto \free_{t\tri p}$ and $p\mapsto \free_{p\tri t}$ are both monads on $\poly$.
+
 
 For any polynomial comonad $(c,\epsilon,\delta)$, there is a comonad on $\poly$ given by $p\mapsto p\tri c$. By \cref{eqn.comp_plus,eqn.comp_times}, this comonad is strong monoidal with respect to $+$ and $\times$:
 \begin{align}
