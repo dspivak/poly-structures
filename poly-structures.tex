@@ -1483,7 +1483,7 @@ $
   \yon\cong\free_0\
 $.
 }
-but in many different ways, the free monad functor is lax monoidal as it maps out of the $(0,\curlyvee)$ monoidal structure from \eqref{eqn.vee}:
+but in many different ways, the free monad \emph{functor} is lax monoidal with the $(0,\curlyvee)$ monoidal structure from \eqref{eqn.vee}.
 \begin{align}
 \label{eqn.vee1}
 	\free_p+\free_q&\to\free_{p\curlyvee q}\\
@@ -1494,16 +1494,22 @@ but in many different ways, the free monad functor is lax monoidal as it maps ou
 \label{eqn.vee4}
 	\free_p\curlyvee\free_q&\to\free_{p\curlyvee q}
 \end{align}
-There are also lax monoidal structures factoring \cref{eqn.vee1,eqn.vee3}:
+Each of the maps \eqref{eqn.vee1} to \eqref{eqn.vee4} is cartesian.
+\begin{warning}\label{warn.noncommutative}
+Note that the monad multiplication $\free_{\free_-}\to\free_-$ is \emph{not} a monoidal natural transformation with respect to $\curlyvee$. In particular, $\free_-\colon\poly\to\poly$ is \emph{not} a commutative monad with respect to $\vee$, so the Kleisli category $\poly_\free$ is pre-monoidal but \emph{not} monoidal.
+\end{warning}
+
+There are (cartesian) lax monoidal structures factoring \cref{eqn.vee1,eqn.vee3}:
 \begin{align}
 	\free_p+\free_q&\to\free_{p+q}\\
-	\free_p\tri\free_q&\to\free_{p+q}.
+	\free_p\tri\free_q&\to\free_{p+q}.\label{eqn.free_tri_plus}
 \end{align}
-There is also an unrelated lax monoidal structure
+
+There is also an unrelated (cartesian) lax monoidal structure
 \begin{equation}
 	\free_p\otimes\free_q\to\free_{p+q}\label{eqn.free_plus_otimes}
 \end{equation}
-coming from $p\otimes q\to p\tri q\to (p+q)\tri(p+q)\to\free_{p+q}$.
+coming from $\free_p\otimes\free_q\To{\indep} \free_p\tri \free_q\To{\eqref{eqn.free_tri_plus}} \free_{p+q}$. However, similarly to \cref{warn.noncommutative}, be warned that it does not play well with duoidality \eqref{duoidal}: the two maps $(\free_p\tri\free_p)\otimes(\free_q\tri\free_q)\tto\free_{p+q}$ do not agree.
 
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
