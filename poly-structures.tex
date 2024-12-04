@@ -343,6 +343,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\founds}{\Yleft}
 \newcommand{\cofree}{\mathfrak{c}}
 \newcommand{\free}{\mathfrak{m}}
+\newcommand{\freecol}{\mathfrak{l}}
 \newcommand{\uu}{\List}
 
 % lenses
@@ -1215,10 +1216,22 @@ The $(\otimes)$-monoids
 \end{equation}
 are precisely the lax monoidal polynomial functors $\smset\to\smset$, sometimes called \emph{applicatives}; indeed, by Day convolution we have $(p\tri A)\times (p\tri B)\To{\text{Day}} (p\otimes p)\tri(AB)\To{\mu}p(A\times B)$. Any $(\tri)$-monoid has an underlying $(\otimes)$-monoid structure.
 
-The free $(\otimes)$-monoid on $p$ is
+The free $(\otimes)$-monoid on $p$ is 
 \begin{equation}
-	\sum_{N:\nn}p^{\otimes N}=\sum_{N:\nn}\sum_{i\colon N\to p(1)}\yon^{\prod_{n:N}p[i(n)]}
+	\freecol_p\coloneqq\sum_{N:\nn}p^{\otimes N}=\sum_{N:\nn}\sum_{i\colon N\to p(1)}\yon^{\prod_{n:N}p[i(n)]}
 \end{equation}
+The functor $\freecol=\freecol_-\colon\poly\to\poly$ is a monad. It distributes over the monad $\yon+-$, i.e.\ there is a distributive law $\freecol_{\yon+-}\to\yon+\freecol_-$, making $\yon+\freecol_-$ a monad. It also distributes over $\free_-\colon\poly\to\poly$ as a pointed endofunctor but not as a monad.%
+\footnote{In particular, the following diagram does not commute when applied to $\yon$:
+\[
+\begin{tikzcd}[ampersand replacement=\&]
+  \freecol\circ\free\circ\free\ar[r]\ar[d]\&
+  \free\circ\freecol\circ\free\ar[r]\&
+  \free\circ\free\circ\freecol\ar[d]\\
+  \freecol\circ\free\ar[rr]\&\&
+  \free\circ\freecol\ar[ull, phantom, "\text{Does not commute}"]
+\end{tikzcd}
+\]
+}
 
 If $m,n$ are $(\otimes)$-monoids, then so are $m\otimes n$, $m\times n$, and $m\tri n$. 
 
