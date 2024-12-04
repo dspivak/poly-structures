@@ -1623,7 +1623,9 @@ Moreover, the former is a module over the latter---see \cite{libkind2024pattern}
 \begin{equation}\label{module_easy}
   \free_p\otimes\cofree_q\to\free_{p\otimes q}
 \end{equation}
-satisfying the action laws for the maps from \cref{cofree_lax_monoidal}. It also satisfies the following coherence for $\free$ as a monad and $\cofree$ as a comonad:
+satisfying the action laws for the maps from \cref{cofree_lax_monoidal}.%
+\footnote{In fact, there is a natural map $\free_{p\vee p'}\otimes\cofree_{q}\to\free_{(p\otimes q)\vee p'}$.}
+  It also satisfies the following coherence for $\free$ as a monad and $\cofree$ as a comonad:
 \begin{equation}\label{eqn.monad_comonad_coherence}
 \begin{tikzcd}
   p\otimes\cofree_q\ar[r]\ar[d]&p\otimes q\ar[d]\\
@@ -1655,7 +1657,7 @@ satisfying the action laws for the maps from \cref{cofree_lax_monoidal}. It also
 %	\cofree_{p\tri A\yon}\to\cofree_p\tri\free_{A\yon}.
 %\end{equation}
 
-For any polynomial $p$, the free monad $\free_p$ is a left $\cofree_{p+1}$-comodule, i.e.\ there is a left coaction:
+For any polynomial $p$, the free monad $\free_p$ is a left $\cofree_{\yon+p}$-comodule, i.e.\ there is a left coaction:
 \begin{equation}
 	\free_p\to\cofree_{\yon+p}\tri\free_p
 \end{equation}
