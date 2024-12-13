@@ -1488,6 +1488,11 @@ For any polynomial $p:\poly$ and set $X:\smset$, there is a natural bijection
 \end{equation}
 and each is isomorphic to the free $p$-algebra on the set $X$.
 
+Using the monad structure \eqref{eqn.monad_tri} on $\free_x^p$, one obtains a tensorial strength on the free monad endofunctor $\free$ on $(\poly,1,\times)$:
+\begin{equation}\label{eqn.p_action_free}
+	p\times\free_q\to\free_{p\times q}
+\end{equation}
+
 The free monad functor $\free\colon\poly\to\poly$ is not lax monoidal with respect to $\otimes$ on both sides,%
 \footnote{For example, there is no map of polynomials 
 $
@@ -1517,12 +1522,17 @@ There are (cartesian) lax monoidal structures factoring \cref{eqn.vee1,eqn.vee3}
 	\free_p+\free_q&\to\free_{p+q}\\
 	\free_p\tri\free_q&\to\free_{p+q}.\label{eqn.free_tri_plus}
 \end{align}
-
-There is also an unrelated (cartesian) lax monoidal structure
+The latter induces a (cartesian) lax monoidal structure
 \begin{equation}
 	\free_p\otimes\free_q\to\free_{p+q}\label{eqn.free_plus_otimes}
 \end{equation}
 coming from $\free_p\otimes\free_q\To{\indep} \free_p\tri \free_q\To{\eqref{eqn.free_tri_plus}} \free_{p+q}$. However, similarly to \cref{warn.noncommutative}, be warned that it does not play well with duoidality \eqref{duoidal}: the two maps $(\free_p\tri\free_p)\otimes(\free_q\tri\free_q)\tto\free_{p+q}$ do not agree.
+
+%There is also a (non-cartesian) lax monoidal structure
+%\begin{equation}
+%	\free_p\times\free_q\to\free_{p\times q}
+%\end{equation}
+%arising from the strength \eqref{eqn.p_action_free}. ...%Not sure if this is true.
 
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
