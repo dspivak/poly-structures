@@ -548,8 +548,8 @@ and a strong monoidal functor $(\poly,1,\ovee)\to(\poly,\yon,\otimes)$:
 \end{equation}
 
 
-The Dirichlet product commutes with connected limits in either variable: for any connected category $\cat{J}$, functor $p\colon\cat{J}\to\poly$, and polynomial $q$, the induced map
-\begin{equation}
+The Dirichlet product commutes with connected limits in either variable: for any \emph{connected} category $\cat{J}$, functor $p\colon\cat{J}\to\poly$, and polynomial $q$, the induced map
+\begin{equation}\label{eqn.tensor_limits}
 	\left(\lim_{j:\cat{J}}p_j\right)\otimes q
 	\To{\cong}
 	\lim_{j:\cat{J}}(p_j\otimes q)
@@ -698,12 +698,12 @@ These satisfy the defining universal properties:
   \poly(p',\present{p,q}_S)&\cong\poly(p'\ovee_S p,q)
 \end{align}
 The first one, $q^p$, is the Cartesian closure; its standard form is not particularly enlightening, and neither is that of the third one, $\present{p,q}$. The second one, $[p,q]$, is what we call the \emph{Dirichlet closure}; it has a very nice standard form:
-\[
+\begin{equation}\label{eqn.dirichlet_hom_standard}
 [p,q]\cong\sum_{\varphi:\poly(p,q)}\yon^{\sum\limits_{I: p(1)}q[\varphi_1I]}
-\]
+\end{equation}
 where $\varphi_1\colon p(1)\to q(1)$ is the $1$-component of the natural transformation $\varphi$. Another nice representation is
 \begin{equation}
-[p,q]\cong\prod_{I: p(1)}\sum_{J: q(1)}\prod_{j: q[J]}\sum_{i: p[I]}\yon
+[p,q]\cong\prod_{I: p(1)}\sum_{J: q(1)}\prod_{j: q[J]}\sum_{i: p[I]}\yon.
 \end{equation}
 
 The cartesian closure satisfies all the usual arithmetic properties:
@@ -723,11 +723,20 @@ The Dirichlet closure has only some of the analogous properties:
 	[p_1\otimes p_2,q]\cong[p_1,[p_2,q]]
 \end{gather}
 The Dirichlet closure also satisfies the following relation with $(1,\times)$:
-\begin{equation}
+\begin{equation}\label{eqn.closure_products}
   [p,1]\cong 1
   \qqand
   [p,q_1\times q_2]\cong[p,q_1]\times[p,q_2].
 \end{equation}
+In fact, by \eqref{eqn.tensor_limits} and \eqref{eqn.closure_products}, the natural map
+\begin{equation}
+	[p,\lim_{i:\cat{I}}q_i]\To{\cong}\lim_{i:\cat{I}}[p,q_i]
+\end{equation}
+is an isomorphism for any $p:\poly$, $q\colon\cat{I}\to\poly$. By \eqref{eqn.dirichlet_hom_standard} and $-\tri 1$ is a left adjoint \eqref{eqn.adjunctions} so preserves colimits, one checks that the following is also an isomorphism
+\begin{equation}
+	[\colim_{i:\cat{I}}q_i,p]\To{\cong}\lim_{i:\cat{I}}[q_i,p].
+\end{equation}
+
 The following pattern holds for any monoidal closure, but we include it for $\times$ and $\otimes$ in case it's convenient:
 \begin{equation}
 	q_1^{p_1}\times q_2^{p_2}\to (q_1q_2)^{p_1p_2}
