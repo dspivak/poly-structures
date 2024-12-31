@@ -389,6 +389,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\qqor}{\hh[\qquad]{or}}
 
 \newcommand{\retto}{\nrightarrow}
+\newcommand{\OR}{\curlyvee}
 
 \newcommand{\coalg}{\tn{-}\Cat{Coalg}}
 \newcommand{\ext}{\fun{Ext}}
@@ -1009,7 +1010,7 @@ The assignment $p\mapsto p_*$ is not functorial in $\poly$, though it is functor
 \begin{equation}
 	(p\mapsto p_*)\colon\polycart\to\polycart
 \end{equation}
-In fact, this is strong monoidal with respect to $+$, $\otimes$, and hence $\curlyvee$:%
+In fact, this is strong monoidal with respect to $+$, $\otimes$, and hence $\OR$:%
 \footnote{Although there is a map of polynomials $\dot{p}\otimes\dot{q}\to\dot{(p\otimes q)}$, it is not Cartesian, and hence does not constitute any sort of lax monoidal structure on $p\mapsto\dot{p}$.}
 \begin{align}
 	0_*\cong 0
@@ -1020,7 +1021,7 @@ In fact, this is strong monoidal with respect to $+$, $\otimes$, and hence $\cur
 	(p\otimes q)_*\cong p_*\otimes q_*\\
 	0_*\cong0
 	&\qqand
-	(p\curlyvee q)_*\cong p_*\curlyvee q_*
+	(p\OR q)_*\cong p_*\OR q_*
 \end{align}
 It extends to a comonad $p_*\to p$ and $p_*\to (p_*)_*$ on $\polycart$; note that there is a $\poly$-map $p_*\to\yon$, but $p_*$ is in general not itself a $(\tri)$-comonad. The bundle representation of a polynomial $p$ is $p_*(1)\to p(1)$. 
 
@@ -1130,28 +1131,28 @@ For example, $\yon^{q\coalg[A]}\cong\lens{\yon^A}{q}\hyper{}\yon^A$.
 %-------- Chapter --------%
 \chapter{Other monoidal structures}
 
-Of the following three monoidal structures, only the first one ($\curlyvee$) appears to be interesting; it will appear prominently in \cref{chap.adj_mon_com}.
+Of the following three monoidal structures, only the first one ($\OR$) appears to be interesting; it will appear prominently in \cref{chap.adj_mon_com}.
 
 There is a symmetric monoidal structure on $\poly$ with unit $0$ and product given by
 \begin{equation}\label{eqn.vee}
-  p\curlyvee q\coloneqq p+(p\otimes q)+q.
+  p\OR q\coloneqq p+(p\otimes q)+q.
 \end{equation}
-The functor $(p\mapsto p+\yon)$ is strong monoidal $(\poly,0,\curlyvee)\to(\poly,\yon,\otimes)$, i.e.\ there is a natural isomorphism
+The functor $(p\mapsto p+\yon)$ is strong monoidal $(\poly,0,\OR)\to(\poly,\yon,\otimes)$, i.e.\ there is a natural isomorphism
 \begin{equation}
-	(p+\yon)\otimes(q+\yon)\cong (p\curlyvee q)+\yon.
+	(p+\yon)\otimes(q+\yon)\cong (p\OR q)+\yon.
 \end{equation}
-Note that although there is an inclusion $p\otimes q\to p\curlyvee q$, there is no map $\yon\to0$, so the identity on $\poly$ is neither lax nor colax as a map $(\poly,0,\curlyvee)\to(\poly,\yon,\otimes)$.
+Note that although there is an inclusion $p\otimes q\to p\OR q$, there is no map $\yon\to0$, so the identity on $\poly$ is neither lax nor colax as a map $(\poly,0,\OR)\to(\poly,\yon,\otimes)$.
 
 The identity functor $\poly\to\poly$ has a lax monoidal structure,
 \begin{equation}
-	p+q\to p\curlyvee q.
+	p+q\to p\OR q.
 \end{equation}
-There are two duoidal structures for $\curlyvee$, one with $\tri$ and one with $\otimes$:
+There are two duoidal structures for $\OR$, one with $\tri$ and one with $\otimes$:
 \begin{align*}
-	(p_1\tri p_2)\curlyvee(q_1\tri q_2)&\to(p_1\curlyvee q_1)\tri(p_2\curlyvee q_2)\\
-	(p_1\otimes p_2)\curlyvee(q_1\otimes q_2)&\to(p_1\curlyvee q_1)\otimes(p_2\curlyvee q_2)
+	(p_1\tri p_2)\OR(q_1\tri q_2)&\to(p_1\OR q_1)\tri(p_2\OR q_2)\\
+	(p_1\otimes p_2)\OR(q_1\otimes q_2)&\to(p_1\OR q_1)\otimes(p_2\OR q_2)
 \end{align*}
-We will see in \cref{eqn.vee1,eqn.vee2,eqn.vee3,eqn.vee4} that $\curlyvee$ is surprisingly useful when it comes to free monads.
+We will see in \cref{eqn.vee1,eqn.vee2,eqn.vee3,eqn.vee4} that $\OR$ is surprisingly useful when it comes to free monads.
 
 Here are two other symmetric monoidal structures, though we currently know of no interesting uses of them, so we do not even give them symbols. We are simply using the fact that if a symmetric monoidal product distributes over $+$ then we can follow the pattern we learned from Garner; see \eqref{eqn.ovee}.
 \begin{align}
@@ -1501,20 +1502,31 @@ $
   \yon\cong\free_0\
 $.
 }
-but in many different ways, the free monad \emph{functor} is lax monoidal with the $(0,\curlyvee)$ monoidal structure from \eqref{eqn.vee}.
+but in many different ways, the free monad \emph{functor} is lax monoidal with the $(0,\OR)$ monoidal structure from \eqref{eqn.vee}.
 \begin{align}
 \label{eqn.vee1}
-	\free_p+\free_q&\to\free_{p\curlyvee q}\\
+	\free_p+\free_q&\to\free_{p\OR q}\\
 \label{eqn.vee3}
-	\free_p\tri\free_q&\to\free_{p\curlyvee q}\\
+	\free_p\tri\free_q&\to\free_{p\OR q}\\
 \label{eqn.vee2}
-	\free_p\otimes\free_q&\to\free_{p\curlyvee q}\\
+	\free_p\otimes\free_q&\to\free_{p\OR q}\\
 \label{eqn.vee4}
-	\free_p\curlyvee\free_q&\to\free_{p\curlyvee q}
+	\free_p\OR\free_q&\to\free_{p\OR q}
 \end{align}
 Each of the maps \eqref{eqn.vee1} to \eqref{eqn.vee4} is cartesian.
+
 \begin{warning}\label{warn.noncommutative}
-Note that the monad multiplication $\free_{\free_-}\to\free_-$ is \emph{not} a monoidal natural transformation with respect to $\curlyvee$. In particular, $\free_-\colon\poly\to\poly$ is \emph{not} a commutative monad with respect to $\vee$, so the Kleisli category $\poly_\free$ is pre-monoidal but \emph{not} monoidal.
+Note that the monad multiplication $\free_{\free_-}\to\free_-$ is \emph{not} a monoidal natural transformation with respect to $\OR$: the diagram
+\begin{equation}
+\begin{tikzcd}[column sep=40pt, row sep=23pt]
+	\free_{\free_p}\OR\free_{\free_q}\ar[r, "\varphi_{\free_p,\free_q}"]\ar[d,"\mu_p\OR\mu_q"']&
+	\free_{\free_p\OR\free_q}\ar[r, "\free_{\varphi_{p,q}}"]&
+	\free_{\free_{p\OR q}}\ar[d, "\mu_{p\OR q}"]\\
+	\free_p\OR\free_q\ar[rr, "\varphi_{p,q}"']&\ar[u, phantom, pos=.6, "\text{does not commute}"]&
+	\free_{p\OR q}
+\end{tikzcd}
+\end{equation}
+%does \emph{not} commute. Hence, $\free_-\colon\poly\to\poly$ is \emph{not} a commutative monad with respect to $\vee$, so the Kleisli category $\poly_\free$ is pre-monoidal but \emph{not} monoidal.
 \end{warning}
 
 There are (cartesian) lax monoidal structures factoring \cref{eqn.vee1,eqn.vee3}:
@@ -1656,9 +1668,9 @@ satisfying the action laws for the maps from \cref{cofree_lax_monoidal}.%
 %	\free_{A\yon}\To{\cong}[\cofree_{\yon^A},\yon]
 %\end{equation}
 %
-%%More generally, the functor $\free_{-\curlyvee -}\colon\poly\times\poly\to\poly$ is a module over $\cofree_-$, i.e.\ for any $p,p',q:\poly$ there is a natural map
+%%More generally, the functor $\free_{-\OR -}\colon\poly\times\poly\to\poly$ is a module over $\cofree_-$, i.e.\ for any $p,p',q:\poly$ there is a natural map
 %%\begin{equation}
-%%  \free_{p\curlyvee p'}\otimes\cofree_q\to\free_{(p\otimes q)\curlyvee p'}
+%%  \free_{p\OR p'}\otimes\cofree_q\to\free_{(p\otimes q)\OR p'}
 %%\end{equation}
 %%satisfying the action laws and monad-comonad coherence, analogous to \eqref{eqn.monad_comonad_coherence}.
 %
