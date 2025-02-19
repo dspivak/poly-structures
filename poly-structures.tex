@@ -950,6 +950,11 @@ There is also a natural isomorphism $[p,\yon]\cong\Gamma(p)\times\lens{\yon}{p}$
 \begin{equation}
 	[p,\yon]\to\lens{\yon}{p}.
 \end{equation}
+In fact, for any $I:\smset$ and $p\colon I\to\poly$, there is a natural vertical map
+\begin{equation}
+	\left[\bigotimes_{i:I}p_i,\,\yon\right]\too\bigotimes_{i:I}\left[p_i,\,\bigotimes_{j\neq i}\lens{\yon}{p_j}\right],
+\end{equation}
+e.g.\ $[p\otimes q,\yon]\to[p,\yon^{q(1)}]\otimes[q,\yon^{p(1)}]$ and $\poly(p\otimes q,\yon)\cong\poly(p,\yon^{q(1)})\times\poly(q,\yon^{p(1)})$.
 
 All functors between cartesian categories are colax monoidal; in the case of the functor $\lens{p}{-}$ for any $p:\poly$, the comultiplication map factors through an isomorphism:
 \begin{equation}
