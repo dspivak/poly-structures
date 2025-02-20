@@ -1327,9 +1327,15 @@ These were called \emph{selection categories} and discussed \href{https://topos.
 %\[
 %\lens{\{BT,WT\}\yon^{8\times 8}\tri\left(\{o\}\yon^{\{o,b,w\}}+\{b,w\}\yon^{\{b,w\}}\right)}{\{BT,WT\}\yon^{8\times 8}}\To{\text{Othello}}\yon^{8\times 8}\tri(\yon+1)
 %\]
-There is a  retrofunctor
+For any comonad $c$, this construction constitutes a normal colax monoidal functor
 \begin{equation}
-\lens{p\tri c}{p}\retto\sum_{I:p(1)}c\tenspow{p[I]}\qquad \tn{e.g.\ }\quad\lens{\yon^A\tri c}{\yon^A}\retto\bigotimes_{a:A}c
+\lens{-\tri c}{-}\colon(\poly,1,\times)\to(\catsharp,\yon,\otimes),
+\end{equation}
+i.e.\ there is a counitor isomorphism and a coproductor (bijective on objects) retrofunctor
+\begin{equation}
+ \lens{1\tri c}{1}\cong\yon
+ \qqand
+ \lens{pq\tri c}{pq}\to\lens{p\tri c}{p}\otimes\lens{q\tri c}{q}.
 \end{equation}
 
 Using the maps \eqref{eqn.allfour} have interesting consequences for exponentiating with base $t$, where $t$ is a monad. First, it gives a surprising lax monoidal functor $(\poly,\yon,\tri)\op\to(\poly,1,\times)$:
