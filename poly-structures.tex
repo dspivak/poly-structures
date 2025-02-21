@@ -333,7 +333,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\0}{\textsf{0}}
 \newcommand{\1}{\tn{\textsf{1}}}
 \newcommand{\tri}{\mathbin{\triangleleft}}
-\newcommand{\triright}{\mathbin{\triangleright}}
+\newcommand{\irt}{\mathbin{\triangleright}}
 \newcommand{\tripow}[1]{^{\tri #1}}
 \newcommand{\tenspow}[1]{^{\otimes #1}}
 \newcommand{\indep}{\Fun{Indep}}
@@ -613,7 +613,7 @@ For any filtered category $\cat{I}$, diagram $p\colon \cat{I}\to\polycart$ of ca
 is an isomorphism.%
 \footnote{The functor $(-\tri q)$ does not preserve coequalizers of cartesian maps and also does not preserve filtered colimits of arbitrary maps. A counterexample of the first is that the coequalizer of the two distinct cartesian maps $\yon^2\tto\yon^2$ is $1$, but the corresponding coequalizer of $\yon^2\tri Q\tto \yon^2\tri Q$ is isomorphic to $Q$. A counterexample of the second is that the filtered diagram $\yon^\nn\to\yon^\nn\to\cdots$ given by maps $(n\mapsto n+1)\colon\nn\to\nn$ has $1$ as its colimit, but the corresponding colimit of $\yon^\nn\tri Q$ is only $1$ for $Q=1$; for example when $Q=0$ this colimit is clearly $0$. These counterexamples were found in collaboration with Sophie Libkind.
 }
- For any $p:\poly$ the operation $(p\tri -)$ preserves monomorphisms and epimorphisms in $\poly$. For any $q:\poly$, the operation $(-\tri q)$ preserves monomorphisms and if $q\neq 0$ then it also preserves epimorphisms.%
+ For any $p:\poly$ the operation $(p\tri\,-)$ preserves monomorphisms and epimorphisms in $\poly$. For any $q:\poly$, the operation $(-\tri q)$ preserves monomorphisms and if $q\neq 0$ then it also preserves epimorphisms.%
 \footnote{The unique map $\yon\to 1 $ is an epimorphism, but $\yon\tri 0\to 1\tri 0$ is not.}
 
 All functors $\smset\to\smset$ have a \emph{$\times$-strength}; this is expressed for any $p:\poly$ by the data of natural maps
@@ -898,13 +898,16 @@ The coclosure interacts with $\tri$ in a few different ways.
 \begin{equation}
 	\lens{\lens{p}{q}}{q'}\cong\lens{p}{q'\tri q}
 	\qqand
-	p\cong\lens{p}{\yon}
+	p\cong\lens{p}{\yon}.
 \end{equation}
 We have a natural map
 \begin{equation}\label{eqn.tricoclose}
-	\lens{p\tri p'}{q}\to p\tri\lens{p'}{q}
+	\lens{p\tri p'}{q}\to p\tri\lens{p'}{q},
 \end{equation}
-and in the case that either $q=Q\yon$ or $p=P\yon$ is linear, \eqref{eqn.tricoclose} is an isomorphism.
+and in the case that either $q=Q\yon$ or $p=P\yon$ is linear, \eqref{eqn.tricoclose} is an isomorphism. In fact, the above extends to a map
+\begin{equation}
+	\lens{p\tri p'\tri r}{q\tri r}\to p\tri\lens{p'}{q}.
+\end{equation}
 
 The coclosure interacts with $\otimes$ via vertical maps
 \begin{equation}\label{eqn.coclosure_tensor}
@@ -956,7 +959,7 @@ In fact, for any $I:\smset$ and $p\colon I\to\poly$, there is a natural vertical
 \end{equation}
 e.g.\ $[p\otimes q,\yon]\to[p,\yon^{q(1)}]\otimes[q,\yon^{p(1)}]$ and $\poly(p\otimes q,\yon)\cong\poly(p,\yon^{q(1)})\times\poly(q,\yon^{p(1)})$.
 
-All functors between cartesian categories are colax monoidal; in the case of the functor $\lens{p}{-}$ for any $p:\poly$, the comultiplication map factors through an isomorphism:
+All functors between cartesian categories are oplax monoidal; in the case of the functor $\lens{p}{-}$ for any $p:\poly$, the comultiplication map factors through an isomorphism:
 \begin{equation}
 	\lens{p}{q_1+q_2}\To{\cong}\lens{p}{q_1}\times_{p(1)}\lens{p}{q_2}
 \end{equation}
@@ -1160,7 +1163,7 @@ The functor $(p\mapsto p+\yon)$ is strong monoidal $(\poly,0,\OR)\to(\poly,\yon,
 \begin{equation}
 	(p+\yon)\otimes(q+\yon)\cong (p\OR q)+\yon.
 \end{equation}
-Note that although there is an inclusion $p\otimes q\to p\OR q$, there is no map $\yon\to0$, so the identity on $\poly$ is neither lax nor colax as a map $(\poly,0,\OR)\to(\poly,\yon,\otimes)$.
+Note that although there is an inclusion $p\otimes q\to p\OR q$, there is no map $\yon\to0$, so the identity on $\poly$ is neither lax nor oplax as a map $(\poly,0,\OR)\to(\poly,\yon,\otimes)$.
 
 The identity functor $\poly\to\poly$ has a lax monoidal structure,
 \begin{equation}
@@ -1257,7 +1260,7 @@ If $m,n$ are $(\otimes)$-monoids, then so are $m\otimes n$, $m\times n$, and $m\
 
 The $(\otimes)$-comonoids $(p,\epsilon,\delta)$ are ``sets of monoids'', i.e.\ for each position $I:p(1)$ the direction set $p[I]$ carries a monoid structure, where $\epsilon$ provides the unit and $\delta$ provides the multiplication.
 
-If $(p,\epsilon,\delta)$ is a $\otimes$-monoid, the functor $p\otimes-$ induces a colax monoidal functor
+If $(p,\epsilon,\delta)$ is a $\otimes$-monoid, the functor $p\otimes-$ induces a oplax monoidal functor
 \begin{equation}
 	(p\otimes -)\colon(\poly,0,\vee)\to(\poly,0,\vee)
 \end{equation}
@@ -1300,7 +1303,7 @@ The category of $(\tri)$-comonoids has finite sums and products, with units $0$ 
 The category of $(\tri)$-monoids has products; the terminal object is $(1,!,!)$, and the product $t\times t'$ has unit $(\eta,\eta')$, and its multiplication arises from \eqref{eqn.comp_times} and projection. The forgetful functor from $\tri$-monoids to $\poly$ is strong monoidal with respect to $\times$. 
 
 For any polynomial monad $(t,\eta,\mu)$, and polynomial $p\colon$, the left Kan extension $\lens{p}{p\tri t}$ is a $\tri$-comonad
-\begin{equation}
+\begin{equation}\label{eqn.comonad_from_monad}
   \lens{p}{p\tri t}\to\yon
   \qqand
   \lens{p}{p\tri t}\to\lens{p}{p\tri t}\tri\lens{p}{p\tri t}
@@ -1309,7 +1312,16 @@ As a category, it is equivalent to the full subcategory of the opposite of the K
 \begin{equation}
 	\text{Law}(t)\cong\lens{\uu}{\uu\tri t}
 \end{equation}
-where $\uu$ is as in \eqref{eqn.list}.
+where $\uu$ is as in \eqref{eqn.list}. The construction in \eqref{eqn.comonad_from_monad} comes from an oplax monoidal functor
+\begin{equation}
+	\lens{p}{p\tri\,-}\colon(\poly\op,\yon,\tri)\too(\poly,\yon,\irt),
+\end{equation}
+whose unitor and co-productor have the form
+\begin{equation}
+	\lens{p}{p\tri\yon}\to\yon
+  \qqand
+	\lens{p}{p\tri q_1\tri q_2}\to\lens{p}{p\tri q_2}\tri\lens{p}{p\tri q_1}
+\end{equation}
 
 For any cardinality $\kappa$, let $\kappa\poly$ denote the full subcategory of $\kappa$-small polynomials, and let $u_\kappa\coloneqq\sum_{|A|<\kappa}\yon^A$. For example, if $\kappa=\aleph_0$ is the smallest infinite cardinal then $u_\kappa=\uu$. Note that $u_\kappa$ has the structure of a Cartesian monad. Consider the Kleisli category $\kappa\polycart_{-\tri u_\kappa}$, whose objects are $\kappa$-small polynomials and whose maps are cartesian natural transformations $p\To{\tn{cart}} q\tri u_\kappa$. Then there is an isomorphism of categories
 \begin{equation}
@@ -1318,7 +1330,7 @@ For any cardinality $\kappa$, let $\kappa\poly$ denote the full subcategory of $
 where $\Cat{Dir}$ is the arrow category of $\smset$ and $\kappa\Cat{Dir}$ is the full subcategory spanned by maps with $\kappa$-small fibers. In other words, a Dirichlet map (or bundle map) from $p$ to $q$ can be identified with a cartesian map of polynomials $p\to q\tri u_\kappa$.
 
 For any $p:\poly$ and comonad $(c,\epsilon,\delta)$, the polynomial $\lens{p\tri c}{p}$ also carries a comonad structure
-\begin{equation}
+\begin{equation}\label{eqn.selection_caty}
   \lens{p\tri c}{p}\to\yon
   \qqand
   \lens{p\tri c}{p}\to\lens{p\tri c}{p}\tri\lens{p\tri c}{p}
@@ -1327,7 +1339,7 @@ These were called \emph{selection categories} and discussed \href{https://topos.
 %\[
 %\lens{\{BT,WT\}\yon^{8\times 8}\tri\left(\{o\}\yon^{\{o,b,w\}}+\{b,w\}\yon^{\{b,w\}}\right)}{\{BT,WT\}\yon^{8\times 8}}\To{\text{Othello}}\yon^{8\times 8}\tri(\yon+1)
 %\]
-For any comonad $c$, this construction constitutes a normal colax monoidal functor
+For any comonad $c$, this construction constitutes a normal oplax monoidal functor
 \begin{equation}
 \lens{-\tri c}{-}\colon(\poly,1,\times)\to(\catsharp,\yon,\otimes),
 \end{equation}
@@ -1337,6 +1349,17 @@ i.e.\ there is a counitor isomorphism and a coproductor (bijective on objects) r
  \qqand
  \lens{pq\tri c}{pq}\to\lens{p\tri c}{p}\otimes\lens{q\tri c}{q}.
 \end{equation}
+The construction in \eqref{eqn.selection_caty} comes from an oplax monoidal functor
+\begin{equation}
+	\lens{p\tri\,-}{p}\colon(\poly,\yon,\tri)\to(\poly,\yon,\tri)
+\end{equation}
+whose unitor and co-productor have the form
+\begin{equation}
+  \lens{p\tri\yon}{p}\to\yon
+  \qqand
+  \lens{p\tri q_1\tri q_2}{p}\to\lens{p\tri q_1}{p}\tri\lens{p\tri q_2}{p}.
+\end{equation}
+
 
 Using the maps \eqref{eqn.allfour} have interesting consequences for exponentiating with base $t$, where $t$ is a monad. First, it gives a surprising lax monoidal functor $(\poly,\yon,\tri)\op\to(\poly,1,\times)$:
 \begin{equation}\label{eqn.monad_times}
@@ -1357,7 +1380,7 @@ Thus we find a $(\poly,1,\times)$-enrichment of the Kleisli category $\smset_t$ 
 	\qqand
 	t^{A\yon^B}\times t^{B\yon^C}\to t^{A\yon^C}
 \end{equation}
-arise from \eqref{eqn.monad_times} via the obvious maps $A\yon^A\to\yon$ and $A\yon^C\to A\yon^B\tri B\yon^C$. This embeds fully faithfully into the Kleisli category $\poly_{t\tri-}$, which is also enriched in $(\poly,1,\times)$ with hom-polynomials $t^{\tiny\lens{p}{q}}$.
+arise from \eqref{eqn.monad_times} via the obvious maps $A\yon^A\to\yon$ and $A\yon^C\to A\yon^B\tri B\yon^C$. This embeds fully faithfully into the Kleisli category $\poly_{t\tri\,-}$, which is also enriched in $(\poly,1,\times)$ with hom-polynomials $t^{\tiny\lens{p}{q}}$.
 
 From \eqref{eqn.monad_tri} it follows that $t^p$ is a monad for any $p:\poly$. 
 \begin{equation}\label{eqn.t^p_monad}
