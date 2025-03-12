@@ -1220,7 +1220,7 @@ and this is the free $(\times)$-monoid on $p$.
 
 A representable $\yon^S$ carries a monoid structure iff $S=0$, in which case it is the terminal monoid. We know from \eqref{eqn.t^c_times_monoid} that $t^c$ carries a $(\times)$-monoid structure for any polynomial monad $t$ and comonad $c$.
 
-Suppose that $m,n$ are $(\times)$-monoids, $a$ is a $(\otimes)$-monoid, $t$ is a $(\tri)$-monoid, and $p$ is any polynomial; then:
+Suppose that $m,n$ are $(\times)$-monoids, $a$ is a $(\otimes)$-monoid, $t$ is a $(\tri)$-monoid, and $p, q$ are any polynomials; then:
 \begin{align}
 	mn&\quad\tn{carries the structure of a $(\times)$-monoid}\\
 	m+p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
@@ -1228,7 +1228,8 @@ Suppose that $m,n$ are $(\times)$-monoids, $a$ is a $(\otimes)$-monoid, $t$ is a
 	[p,m]&\quad\tn{carries the structure of a $(\times)$-monoid}\\
 	m^p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
 	a\tri m&\quad\tn{carries the structure of a $(\times)$-monoid}\\
-	(mp)^p&\quad\tn{carries the structure of a $(\times)$-monoid}
+	(mp)^p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
+	p^{qp}&\quad\tn{carries the structure of a $(\times)$-monoid}
 \end{align}
 \
 \paragraph{$(\otimes)$-monoids and comonoids.}
@@ -1257,7 +1258,15 @@ The functor $\freecol=\freecol_-\colon\poly\to\poly$ is a monad. It distributes 
 \]
 }
 
-If $m,n$ are $(\otimes)$-monoids, then so are $m\otimes n$, $m\times n$, and $m\tri n$. 
+Suppose that $m,n$ are $(\otimes)$-monoids, that $c$ is a $(\otimes)$-comonoid, and that $p$ is any polynomial; then:
+\begin{align}
+	m\otimes n&\quad\tn{carries the structure of a $(\otimes)$-monoid}\\
+	m\times n&\quad\tn{carries the structure of a $(\otimes)$-monoid}\\
+	m\tri n&\quad\tn{carries the structure of a $(\otimes)$-monoid}\\
+	[p, m\otimes p]&\quad\tn{carries the structure of a $(\otimes)$-monoid}\\
+	[c\otimes p, p]&\quad\tn{carries the structure of a $(\otimes)$-monoid}
+\end{align}
+ 
 
 The $(\otimes)$-comonoids $(p,\epsilon,\delta)$ are ``sets of monoids'', i.e.\ for each position $I:p(1)$ the direction set $p[I]$ carries a monoid structure, where $\epsilon$ provides the unit and $\delta$ provides the multiplication.
 
