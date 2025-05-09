@@ -343,7 +343,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\founds}{\Yleft}
 \newcommand{\cofree}{\mathfrak{c}}
 \newcommand{\free}{\mathfrak{m}}
-\newcommand{\freecol}{\mathfrak{l}}
+\newcommand{\freecol}{\mathfrak{m}^\otimes}
 \newcommand{\uu}{\List}
 
 % lenses
@@ -1174,7 +1174,7 @@ There are two duoidal structures for $\OR$, one with $\tri$ and one with $\otime
 	(p_1\tri p_2)\OR(q_1\tri q_2)&\to(p_1\OR q_1)\tri(p_2\OR q_2)\\
 	(p_1\otimes p_2)\OR(q_1\otimes q_2)&\to(p_1\OR q_1)\otimes(p_2\OR q_2)
 \end{align*}
-We will see in \cref{eqn.vee1,eqn.vee2,eqn.vee3,eqn.vee4} that $\OR$ is surprisingly useful when it comes to free monads.
+%We will see in \cref{eqn.vee1,eqn.vee2,eqn.vee3,eqn.vee4} that $\curlyvee$ is surprisingly useful when it comes to free monads.%
 
 Here are two other symmetric monoidal structures, though we currently know of no interesting uses of them, so we do not even give them symbols. We are simply using the fact that if a symmetric monoidal product distributes over $+$ then we can follow the pattern we learned from Garner; see \eqref{eqn.ovee}.
 \begin{align}
@@ -1245,7 +1245,9 @@ The free $(\otimes)$-monoid on $p$ is
 \begin{equation}
 	\freecol_p\coloneqq\sum_{N:\nn}p^{\otimes N}=\sum_{N:\nn}\sum_{i\colon N\to p(1)}\yon^{\prod_{n:N}p[i(n)]}
 \end{equation}
-The functor $\freecol=\freecol_-\colon\poly\to\poly$ is a monad. It distributes over the monad $\yon+-$, i.e.\ there is a distributive law $\freecol_{\yon+-}\to\yon+\freecol_-$, making $\yon+\freecol_-$ a monad. It also distributes over $\free_-\colon\poly\to\poly$ as a pointed endofunctor but not as a monad.%
+The functor $\freecol=\freecol_-\colon\poly\to\poly$ is a monad. It distributes 
+%over the monad $\yon+-$, i.e.\ there is a distributive law $\freecol_{\yon+-}\to\yon+\freecol_-$, making $\yon+\freecol_-$ a monad. It also distributes 
+over $\free_-\colon\poly\to\poly$ as a pointed endofunctor but not as a monad.%
 \footnote{In particular, the following diagram does not commute when applied to $\yon$:
 \[
 \begin{tikzcd}[ampersand replacement=\&]
@@ -1270,7 +1272,7 @@ Suppose that $m,n$ are $(\otimes)$-monoids, that $c$ is a $(\otimes)$-comonoid, 
 
 The $(\otimes)$-comonoids $(p,\epsilon,\delta)$ are ``sets of monoids'', i.e.\ for each position $I:p(1)$ the direction set $p[I]$ carries a monoid structure, where $\epsilon$ provides the unit and $\delta$ provides the multiplication.
 
-If $(p,\epsilon,\delta)$ is a $\otimes$-monoid, the functor $p\otimes-$ induces a oplax monoidal functor
+If $(p,\epsilon,\delta)$ is a $\otimes$-comonoid, the functor $p\otimes-$ induces a colax monoidal functor
 \begin{equation}
 	(p\otimes -)\colon(\poly,0,\vee)\to(\poly,0,\vee)
 \end{equation}
