@@ -49,7 +49,7 @@ citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode]{hyperr
 
 
 % biblatex %
-  \addbibresource{Library20240622.bib} 
+  \addbibresource{Library20250509.bib} 
 
 % hyperref %
   \hypersetup{final}
@@ -377,6 +377,8 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
             \node[shape=circle,draw,inner sep=1pt] (char) {\tiny #1};}}
 \newcommand{\bang}{\,\mathbin{!}\,}
 \newcommand{\obang}{\mathbin{\othis{!}}}
+
+\newcommand{\upup}{\uparrow\!\uparrow}
 
 \newcommand{\hh}[2][]{#1 \tn{#2} #1}
 \newcommand{\qqand}{\hh[\qquad]{and}}
@@ -939,7 +941,10 @@ The coclosure interacts with the $\otimes$-closure (Dirichlet-hom) by maps
 \begin{equation}\label{eqn.shapiro_2}
 	\lens{p_1\otimes p_2}{q}\to\lens{p_1}{\left[p_2,q\right]}
 \end{equation}
-The map \eqref{eqn.cocl_closure1} is an isomorphism if $q_2$ is linear or $q_1$ is constant. The map \eqref{eqn.shapiro_2} is an isomorphism if $p_2$ is representable.
+The map \eqref{eqn.cocl_closure1} is an isomorphism if $q_2$ is linear or $q_1$ is constant. The map \eqref{eqn.shapiro_2} is an isomorphism if $p_2$ is representable. For example, there is a map of the form
+\begin{equation}
+  p_1\otimes p_2\to\lens{p_1}{[p_2,\yon]}.
+\end{equation}
 
 For any sets $S,B:\smset\op$ and $A,T:\smset$, we have an isomorphism
 \begin{equation}
@@ -1151,7 +1156,7 @@ For example, $\yon^{q\coalg[A]}\cong\lens{\yon^A}{q}\hyper{}\yon^A$.
 
 
 %-------- Chapter --------%
-\chapter{Other monoidal structures}
+\chapter{Other monoidal structures and actions}
 
 Of the following three monoidal structures, only the first one ($\OR$) appears to be interesting; it will appear prominently in \cref{chap.adj_mon_com}.
 
@@ -1189,6 +1194,39 @@ We know of two more monoidal products $(\yon,\dagger)$ and $(\yon, \ddagger)$ fr
 	p\ddagger q\coloneqq\sum_{I: p(1)}\sum_{J: q(1)}\prod_{i\colon q(1)\to p[I]}\prod_{j\colon p(1)\to q[J]}\yon
 \end{align}
 E.g.\ in the case of monomials we have $I\yon^A\dagger J\yon^B\cong IJ\yon^{AB^I}$ and $I\yon^A\ddagger J\yon^B\cong IJ\yon^{A^JB^I}$.
+
+\bigskip
+Monoidal products on $\poly$ give rise to actions of $\poly$ on itself; we now turn to an action of $\polycart$ on $\poly$.
+In \cite{aberle2024polynomial}, the authors define an action of $(\polycart,\yon,\tri)$
+\begin{equation}
+  \upup\colon\polycart\times\poly\to\poly
+\end{equation}
+given by
+\begin{equation}
+  p\upup q\coloneqq\sum_{I:p(1)}\sum_{J\colon p[I]\to q(1)}\yon^{\prod_{d:p[I]}q[J(d)]}\;.
+\end{equation}
+Indeed, there are unitor and actor isomorphisms of the form
+\begin{equation}
+	\yon\upup q\cong q
+	\qqand
+	(p_1\tri p_2)\upup q\cong p_1\upup(p_2\upup q).
+\end{equation}
+There is an additional colax structure:
+\begin{equation}
+	p\upup\yon\to\yon
+	\qqand
+	p\upup(q_1\tri q_2)\too(p\upup q_1)\tri(p\upup q_2).
+\end{equation}
+
+The $\upup$ structure is used in defining distributive laws of various sorts. We won't go into it here, but we note that for any $r:\poly$, there is a bijection
+\begin{equation}
+\poly(p\upup q,r)\cong\{\varphi\colon p\tri q\to r\otimes p\mid\varphi_1(I,J)=(K,I)\text{ and }\varphi^\sharp_{(I,J)}(f,d)=(d,e)\}.
+\end{equation}
+We note in passing that for any $p:\poly$ there is an isomorphism
+\begin{equation}
+p\upup\yon\cong\lens{p}{1}
+\end{equation}
+giving two different constructions of the ``linearization'' comonad $p\mapsto p(1)$; see also \eqref{eqn.adjunctions}. 
 
 \chapter{Polynomial monoids and comonoids}\label{chap.monoids.comonoids}
 
