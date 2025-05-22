@@ -315,7 +315,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\ccatsharplin}{\mathbb{C}\Cat{at}^{\sharp}_{\tn{lin}}}
 \newcommand{\ccatsharpdisccon}{\mathbb{C}\Cat{at}^{\sharp}_{\tn{disc,con}}}
 \newcommand{\sspan}{\mathbb{S}\Cat{pan}}
-\newcommand{\en}{\Cat{End}}
+\newcommand{\End}{\Cat{End}}
 
 \newcommand{\List}{\Fun{list}}
 \newcommand{\lott}{\Fun{lott}}
@@ -1223,6 +1223,11 @@ There is an additional colax structure:
 	\qqand
 	p\upup(q_1\tri q_2)\too(p\upup q_1)\tri(p\upup q_2).
 \end{equation}
+All told, the above can be summarized as a strong rig monoidal functor
+\begin{equation}
+\big(\polycart,0,+,\yon,\tri\big)\too\big(\Cat{ColaxEnd}(\poly,\yon,\tri),0,+,\id,\circ\big)
+\end{equation}
+
 
 The $\upup$ structure is used in defining distributive laws of various sorts. We won't go into it here, but we note that for any $r:\poly$, there is a bijection
 \begin{equation}
