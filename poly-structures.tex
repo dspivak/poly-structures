@@ -1037,7 +1037,9 @@ The assignment $p\mapsto p_*$ is not functorial in $\poly$, though it is functor
 \begin{equation}
 	(p\mapsto p_*)\colon\polycart\to\polycart
 \end{equation}
-In fact, this is strong monoidal with respect to $+$, $\otimes$, and hence $\OR$:%
+The bundle representation of a polynomial $p$ is $p_*(1)\to p(1)$.
+
+In fact, the $p\mapsto p_*$ construction is strong monoidal with respect to $+$, $\otimes$, and hence $\OR$:%
 \footnote{Although there is a map of polynomials $\dot{p}\otimes\dot{q}\to\dot{(p\otimes q)}$, it is not Cartesian, and hence does not constitute any sort of lax monoidal structure on $p\mapsto\dot{p}$.}
 \begin{align}
 	0_*\cong 0
@@ -1050,7 +1052,33 @@ In fact, this is strong monoidal with respect to $+$, $\otimes$, and hence $\OR$
 	&\qqand
 	(p\OR q)_*\cong p_*\OR q_*
 \end{align}
-It extends to a comonad $p_*\to p$ and $p_*\to (p_*)_*$ on $\polycart$; note that there is a $\poly$-map $p_*\to\yon$, but $p_*$ is in general not itself a $(\tri)$-comonad. The bundle representation of a polynomial $p$ is $p_*(1)\to p(1)$. 
+This construction extends to a comonad $p_*\to p$ and $p_*\to (p_*)_*$ on $\polycart$. 
+
+For each $p:\poly$, its pointing $p_*$ is a $\tri$-comonoid
+\begin{equation}
+	\epsilon\colon p_*\to\yon
+	\qqand
+	\delta\colon p_*\to (p_*)_*.
+\end{equation}
+The map $\epsilon$ sends $(i,d_0)\mapsto d_0$ and the map $\delta$ sends $(i,d_0)\mapsto((i,d_0), d\mapsto ((i,d), d'\mapsto d'))$. So as a category $p_*$ has objects $\sum_{i:p(1)}p[i]$, and for each object $(i,d_0)$, a map out is an element $d:p[i]$; its codomain is $(i,d)$, and composing is just taking the most recent pointing.
+
+For any polynomial $p$, there is a map
+\begin{align}
+	(p_*)_*&\to\yon+1=\sum_{i:\{0,1\}}\yon^i\\
+	(i,d_1,d_2)&\mapsto
+	\begin{cases}
+		(1,d_1)&\text{ if } d_1=d_2 \\
+		(0,!)&\text{ if }d_1\neq d_2
+	\end{cases}
+\end{align}
+The vertical-cartesian factorization of $(p_*)_*\to\yon+1$ was called the \emph{identity type} for $p$ in \cite{aberle2024polynomial}; it is
+\begin{equation}
+	p^=\coloneqq\sum_{i:p(1)}\sum_{d_1,d_2:p[i]}\yon^{\begin{cases}1&\text{ if } d_1=d_2 \\0&\text{ if }d_1\neq d_2\end{cases}}
+\end{equation}
+There is a cartesian map
+\begin{equation}
+	p\to (p\otimes p)\tri p^=
+\end{equation}
 
 The operation $(p\mapsto p_*)$ is related to the derivative $p\mapsto\dot{p}$, where
 \begin{equation}
