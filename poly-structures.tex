@@ -875,6 +875,21 @@ $
 	\iHom(A,B)\coloneqq\lens{A}{B}=A\yon^B.
 \end{equation}
 
+The coclosure interacts with $\tri$ in a few different ways.
+\begin{equation}
+	p\cong\lens{p}{\yon}.
+	\qqand
+	\lens{\lens{p}{q}}{q'}\cong\lens{p}{q'\tri q}
+\end{equation}
+We have a natural map
+\begin{equation}\label{eqn.tricoclose}
+	\lens{p\tri p'}{q}\to p\tri\lens{p'}{q},
+\end{equation}
+and in the case that either $q=Q\yon$ or $p=P\yon$ is linear, \eqref{eqn.tricoclose} is an isomorphism. In fact, \eqref{eqn.tricoclose} extends to a map generaling the counit from \eqref{eqn.coclosure_unit_counit}:
+\begin{equation}
+	\lens{p\tri p'\tri r}{q\tri r}\to p\tri\lens{p'}{q}.
+\end{equation}
+
 
 
 Since $\lens{-}{q}$ is a left adjoint, it interacts with $+$ by
@@ -895,21 +910,6 @@ When $p=\yon^P$ is representable, we have
 	\lens{\yon^P}{q}\cong\yon^{q\tri P},
 \end{equation}
 so we obtain \eqref{eqn.cocl_define} from \cref{eqn.cocl_plus,eqn.cocl_rep}. 
-
-The coclosure interacts with $\tri$ in a few different ways.
-\begin{equation}
-	\lens{\lens{p}{q}}{q'}\cong\lens{p}{q'\tri q}
-	\qqand
-	p\cong\lens{p}{\yon}.
-\end{equation}
-We have a natural map
-\begin{equation}\label{eqn.tricoclose}
-	\lens{p\tri p'}{q}\to p\tri\lens{p'}{q},
-\end{equation}
-and in the case that either $q=Q\yon$ or $p=P\yon$ is linear, \eqref{eqn.tricoclose} is an isomorphism. In fact, the above extends to a map
-\begin{equation}
-	\lens{p\tri p'\tri r}{q\tri r}\to p\tri\lens{p'}{q}.
-\end{equation}
 
 The coclosure interacts with $\otimes$ via vertical maps
 \begin{equation}\label{eqn.coclosure_tensor}
@@ -941,7 +941,7 @@ The coclosure interacts with the $\otimes$-closure (Dirichlet-hom) by maps
 \begin{equation}\label{eqn.shapiro_2}
 	\lens{p_1\otimes p_2}{q}\to\lens{p_1}{\left[p_2,q\right]}
 \end{equation}
-The map \eqref{eqn.cocl_closure1} is an isomorphism if $q_2$ is linear or $q_1$ is constant. The map \eqref{eqn.shapiro_2} is an isomorphism if $p_2$ is representable. For example, there is a map of the form
+The map \eqref{eqn.cocl_closure1} is vertical. It is Cartesian (and hence an isomorphism) if $q_2$ is linear or $q_1$ is constant. The map \eqref{eqn.shapiro_2} is an isomorphism if $p_2$ is representable. For example, there is a map of the form
 \begin{equation}
   p_1\otimes p_2\to\lens{p_1}{[p_2,\yon]}.
 \end{equation}
