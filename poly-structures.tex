@@ -1569,8 +1569,11 @@ The map $\cofree\to\yon$ is easy and the map $\cofree\to\cofree\tri\cofree$ is g
 	\cofree_p\To{\cong} (p\tri\cofree_p)\times\yon.
 \end{equation}
 %For any $A:\smset$, we have $\cofree_{A\yon}\cong(A\yon)^\nn$. 
-If $p\to q$ is cartesian, so is $\cofree_p\to\cofree_q$.
-
+If $p\to q$ is cartesian, so is $\cofree_p\to\cofree_q$. In particular, \eqref{eqn.cofree_iso} gives rise to Lambek's lemma, which says that the coalgebra map for the finaal algebra $\cofree_p\tri 1$ is a bijection
+\begin{equation}
+		\cofree_p\tri 1\To\cong p\tri(\cofree_p\tri 1).
+\end{equation}
+ 
 In many different ways, the cofree comonad functor $\cofree\colon\poly\to\poly$ is lax monoidal as it maps out of the $(\yon,\otimes)$ monoidal structure:%
 \footnote{Recall from \eqref{eqn.ovee} that $p\ovee q\coloneqq \sum_{(I,J): p(1)\times q(1)}\yon^{p[I]+p[I]\times q[J]+q[J]}$.}
 \begin{align}
@@ -1635,7 +1638,10 @@ Analogous to \cref{eqn.cofree_iso} there is an isomorphism of polynomials
 \begin{equation}
 	 \yon+(p\tri\free_p)\To{\cong}\free_p.
 	\end{equation}
-
+In particular, this gives rise to Lambek's lemma that the algebra map for the initial algebra $\free_p\tri 0$is a bijection
+\begin{equation}
+		p\tri(\free_p\tri 0)\To\cong\free_p\tri0.
+\end{equation}
 
 For any polynomial $p:\poly$ and set $X:\smset$, there is a natural bijection
 \begin{equation}
@@ -1706,7 +1712,7 @@ For any $p:\poly$ there is a function
 \begin{equation}
 	\free_p\tri 0\to\cofree_p\tri 1
 \end{equation}
-since the free $p$-algebra $\free_p\tri 0$ is also a $p$-coalgebra. In case $p=A\yon+B$, this extends to a bijection 
+since the initial $p$-algebra $\free_p\tri 0$ is also a $p$-coalgebra and $\cofree_p\tri 1$ is the final $p$-coalgebra. In case $p=A\yon+B$, this extends to a bijection 
 \begin{equation}
 	\free_{A\yon+B}\tri 0 +\cofree_{A\yon}\tri 1 \cong\cofree_{A\yon+B}\tri 1.
 \end{equation}
