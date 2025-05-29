@@ -1069,23 +1069,11 @@ For each $p:\poly$, its pointing $p_*$ is a $\tri$-comonoid
 \end{equation}
 The map $\epsilon$ sends $(i,d_0)\mapsto d_0$ and the map $\delta$ sends $(i,d_0)\mapsto((i,d_0), d\mapsto ((i,d), d'\mapsto d'))$. So as a category $p_*$ has objects $\sum_{i:p(1)}p[i]$, and for each object $(i,d_0)$, a map out is an element $d:p[i]$; its codomain is $(i,d)$, and composing is just taking the most recent pointing.
 
-For any polynomial $p$, there is a map
-\begin{align}
-	(p_*)_*&\to\yon+1=\sum_{i:\{0,1\}}\yon^i\\
-	(i,d_1,d_2)&\mapsto
-	\begin{cases}
-		(1,d_1)&\text{ if } d_1=d_2 \\
-		(0,!)&\text{ if }d_1\neq d_2
-	\end{cases}
-\end{align}
-The vertical-cartesian factorization of $(p_*)_*\to\yon+1$ was called the \emph{identity type} for $p$ in \cite{aberle2024polynomial}; it is
+There is a map
 \begin{equation}
-	p^=\coloneqq\sum_{i:p(1)}\sum_{d_1,d_2:p[i]}\yon^{\begin{cases}1&\text{ if } d_1=d_2 \\0&\text{ if }d_1\neq d_2\end{cases}}
+	p\otimes [p,\yon]\to p_*,
 \end{equation}
-There is a cartesian map
-\begin{equation}
-	p\to (p\otimes p)\tri p^=
-\end{equation}
+given by $(i,\gamma)\mapsto ((i,\gamma(i)), d\mapsto (d,i))$, and it is functorial in $p:\polycart$ when regarded as a map $p\to[[p,\yon],p_*]$.
 
 The operation $(p\mapsto p_*)$ is related to the derivative $p\mapsto\dot{p}$, where
 \begin{equation}
@@ -1119,6 +1107,25 @@ Given a map $\varphi\colon p\to p'$ and a function $g\colon q(1)\to q'(1)$, ther
 natural in $p,q:\poly$ and $p',q':\polycart$. In particular, there is a Cartesian map
 \begin{equation}
 	p_*\tri q_*\to(p\tri q)_*.
+\end{equation}
+
+
+For any polynomial $p$, there is a map
+\begin{align}
+	(p_*)_*&\to\yon+1=\sum_{i:\{0,1\}}\yon^i\\
+	(i,d_1,d_2)&\mapsto
+	\begin{cases}
+		(1,d_1)&\text{ if } d_1=d_2 \\
+		(0,!)&\text{ if }d_1\neq d_2
+	\end{cases}
+\end{align}
+The vertical-cartesian factorization of $(p_*)_*\to\yon+1$ was called the \emph{identity type} for $p$ in \cite{aberle2024polynomial}; it is
+\begin{equation}
+	p^=\coloneqq\sum_{i:p(1)}\sum_{d_1,d_2:p[i]}\yon^{\begin{cases}1&\text{ if } d_1=d_2 \\0&\text{ if }d_1\neq d_2\end{cases}}
+\end{equation}
+There is a cartesian map
+\begin{equation}
+	p\to (p\otimes p)\tri p^=
 \end{equation}
 
 The assignment $p\mapsto p_*$ is also functorial as a map $\poly\to\Span(\poly)$:
@@ -1694,6 +1701,15 @@ coming from $\free_p\otimes\free_q\To{\indep} \free_p\tri \free_q\To{\eqref{eqn.
 %	\free_p\times\free_q\to\free_{p\times q}
 %\end{equation}
 %arising from the strength \eqref{eqn.p_action_free}. ...%Not sure if this is true.
+
+For any $p:\poly$ there is a function
+\begin{equation}
+	\free_p\tri 0\to\cofree_p\tri 1
+\end{equation}
+since the free $p$-algebra $\free_p\tri 0$ is also a $p$-coalgebra. In case $p=\yon+A$ for some $A:\smset$, this extends to a bijection 
+\begin{equation}
+	\free_{\yon+A}\tri 0 +1 \cong\cofree_{\yon+A}\tri 1.
+\end{equation}
 
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
