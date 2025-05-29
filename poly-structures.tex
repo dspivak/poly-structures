@@ -1687,8 +1687,8 @@ Note that the monad multiplication $\free_{\free_-}\to\free_-$ is \emph{not} a m
 
 There are (cartesian) lax monoidal structures factoring \cref{eqn.vee1,eqn.vee3}:
 \begin{align}
-	\free_p+\free_q&\to\free_{p+q}\\
-	\free_p\tri\free_q&\to\free_{p+q}.\label{eqn.free_tri_plus}
+	\free_p+\free_q&\to\free_{p+q}\\\label{eqn.free_tri_plus}
+	\free_p\tri\free_q&\to\free_{p+q}.
 \end{align}
 The latter induces a (cartesian) lax monoidal structure
 \begin{equation}
@@ -1706,9 +1706,9 @@ For any $p:\poly$ there is a function
 \begin{equation}
 	\free_p\tri 0\to\cofree_p\tri 1
 \end{equation}
-since the free $p$-algebra $\free_p\tri 0$ is also a $p$-coalgebra. In case $p=\yon+A$ for some $A:\smset$, this extends to a bijection 
+since the free $p$-algebra $\free_p\tri 0$ is also a $p$-coalgebra. In case $p=A\yon+B$, this extends to a bijection 
 \begin{equation}
-	\free_{\yon+A}\tri 0 +1 \cong\cofree_{\yon+A}\tri 1.
+	\free_{A\yon+B}\tri 0 +\cofree_{A\yon}\tri 1 \cong\cofree_{A\yon+B}\tri 1.
 \end{equation}
 
 %-------- Chapter --------%
