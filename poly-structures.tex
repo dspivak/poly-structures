@@ -1069,11 +1069,14 @@ For each $p:\poly$, its pointing $p_*$ is a $\tri$-comonoid
 \end{equation}
 The map $\epsilon$ sends $(i,d_0)\mapsto d_0$ and the map $\delta$ sends $(i,d_0)\mapsto((i,d_0), d\mapsto ((i,d), d'\mapsto d'))$. So as a category $p_*$ has objects $\sum_{i:p(1)}p[i]$, and for each object $(i,d_0)$, a map out is an element $d:p[i]$; its codomain is $(i,d)$, and composing is just taking the most recent pointing.
 
-There is a map
-\begin{equation}
-	p\otimes [p,\yon]\to p_*,
+The evaluation map $p\otimes [p,q]\to q$ factors via $\epsilon\colon p_*\to \yon$ through a map
+\begin{equation}\label{eqn.eval.factor}
+	p\otimes [p,q]\to q\tri p_*\;,
 \end{equation}
-given by $(i,\gamma)\mapsto ((i,\gamma(i)), d\mapsto (d,i))$, and it is functorial in $p:\polycart$ when regarded as a map $p\to[[p,\yon],p_*]$.
+given by $(i,\varphi)\mapsto (\varphi_1(i),e\mapsto(i,\varphi^\sharp_i(e),d\mapsto(d,(i,e))))$. \cref{eqn.eval.factor} is functorial in $q:\poly$ for fixed $p$, and its mate $p\to[[p,q],q\tri p_*]$ is functorial in $p:\polycart$ for fixed $q$. In particular, there is a map $p\otimes[p,\yon]\to p_*$, and often more useful,
+\begin{equation}
+	p\otimes [p,\yon]\to p_*(1)\yon.
+\end{equation}
 
 The operation $(p\mapsto p_*)$ is related to the derivative $p\mapsto\dot{p}$, where
 \begin{equation}
@@ -1714,7 +1717,7 @@ For any $p:\poly$ there is a function
 \end{equation}
 since the initial $p$-algebra $\free_p\tri 0$ is also a $p$-coalgebra and $\cofree_p\tri 1$ is the final $p$-coalgebra. In case $p=A\yon+B$, this extends to a bijection 
 \begin{equation}
-	\free_{A\yon+B}\tri 0 +\cofree_{A\yon}\tri 1 \cong\cofree_{A\yon+B}\tri 1.
+	\left(\free_{A\yon+B}\tri 0\right) +\left(\cofree_{A\yon}\tri 1\right) \cong\cofree_{A\yon+B}\tri 1.
 \end{equation}
 
 %-------- Chapter --------%
