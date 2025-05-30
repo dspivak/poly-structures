@@ -1062,7 +1062,7 @@ In fact, the $p\mapsto p_*$ construction is strong monoidal with respect to $+$,
 This construction extends to a comonad $p_*\to p$ and $p_*\to (p_*)_*$ on $\polycart$. 
 
 For each $p:\poly$, its pointing $p_*$ is a $\tri$-comonoid
-\begin{equation}
+\begin{equation}\label{eqn.pointing_comonad}
 	\epsilon\colon p_*\to\yon
 	\qqand
 	\delta\colon p_*\to (p_*)_*.
@@ -1719,6 +1719,19 @@ since the initial $p$-algebra $\free_p\tri 0$ is also a $p$-coalgebra and $\cofr
 \begin{equation}
 	\left(\free_{A\yon+B}\tri 0\right) +\left(\cofree_{A\yon}\tri 1\right) \cong\cofree_{A\yon+B}\tri 1.
 \end{equation}
+
+For any $p:\polycart$ there is a natural map
+\begin{equation}
+	\sigma_p\colon (\cofree_p)_*\to(\free_p)_*
+\end{equation}
+making the following diagram commute, where for an arbitrary $q:\poly$ we write $\epsilon\colon q_*\to\yon$ for the counit map of \cref{eqn.pointing_comonad}:
+\begin{equation}
+\begin{tikzcd}
+	(\cofree_p)_*\ar[r, "\sigma_p"]\ar[d, "\epsilon"']&(\free_p)_*\ar[d, "\epsilon"]\\
+	\yon\ar[r, equal]&\yon
+\end{tikzcd}
+\end{equation}
+
 
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
