@@ -1085,7 +1085,7 @@ The operation $(p\mapsto p_*)$ is related to the derivative $p\mapsto\dot{p}$, w
 indeed $p_*\cong\dot{p}\yon$. The derivative operation is an adjoint in $\polycart$:
 \begin{equation}
   \polycart(q\yon,p)\cong
-  \polycart(q,\dot{p})
+  \polycart(q,\dot{p}).
 \end{equation}
 There are maps $p\to p\tri\dot{p}$, $p\to p\tri\dot{p}\tri\ddot{p}$, etc., all natural in $\polycart$. 
 
@@ -1722,15 +1722,16 @@ since the initial $p$-algebra $\free_p\tri 0$ is also a $p$-coalgebra and $\cofr
 
 For any $p:\polycart$ there is a natural map
 \begin{equation}
-	\sigma_p\colon (\cofree_p)_*\to(\free_p)_*
+	\tn{alt}_p\colon (\cofree_p)_*\to(\free_p)_*
 \end{equation}
-making the following diagram commute, where for an arbitrary $q:\poly$ we write $\epsilon\colon q_*\to\yon$ for the counit map of \cref{eqn.pointing_comonad}:
+making the following diagram commute:
 \begin{equation}
 \begin{tikzcd}
-	(\cofree_p)_*\ar[r, "\sigma_p"]\ar[d, "\epsilon"']&(\free_p)_*\ar[d, "\epsilon"]\\
+	(\cofree_p)_*\ar[r, "\tn{alt}_p"]\ar[d, "\epsilon"']&(\free_p)_*\ar[d, "\epsilon"]\\
 	\yon\ar[r, equal]&\yon
 \end{tikzcd}
 \end{equation}
+where for an arbitrary $q:\poly$ we write $\epsilon\colon q_*\to\yon$ to denote the counit map of \cref{eqn.pointing_comonad}.
 
 
 %-------- Chapter --------%
