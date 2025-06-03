@@ -829,10 +829,7 @@ Dirichlet-mapping into $\yon$ is often of interest; we have the following maps a
 \label{eqn.homy6}
 	[p,\yon]\tri[q,\yon]&\to[p\tri q,\yon]
 \end{align}
-\cref{eqn.homy1,eqn.homy3} hold for any $r:\poly$ in place of $\yon$, \cref{eqn.homy5,eqn.homy6} hold for any $(\otimes)$-monoid in place of $\yon$; see \cref{eqn.otimes_monoids}, and \cref{eqn.homy5} factors through an isomorphism
-\begin{equation}
-	[p,\yon^{q(1)}]\otimes[q,\yon^{p(1)}]\cong[p\otimes q,\yon].
-\end{equation}
+\cref{eqn.homy1,eqn.homy3} hold for any $r:\poly$ in place of $\yon$, and \cref{eqn.homy5,eqn.homy6} hold for any $(\otimes)$-monoid in place of $\yon$; see \cref{eqn.otimes_monoids}.
 
 
 %-------- Chapter --------%
@@ -972,7 +969,10 @@ In fact, for any $I:\smset$ and $p\colon I\to\poly$, there is a natural vertical
 \begin{equation}
 	\left[\bigotimes_{i:I}p_i,\,\yon\right]\too\bigotimes_{i:I}\left[p_i,\,\bigotimes_{j\neq i}\lens{\yon}{p_j}\right],
 \end{equation}
-e.g.\ $[p\otimes q,\yon]\to[p,\yon^{q(1)}]\otimes[q,\yon^{p(1)}]$ and $\poly(p\otimes q,\yon)\cong\poly(p,\yon^{q(1)})\times\poly(q,\yon^{p(1)})$.
+e.g.\ $[p\otimes q,\yon]\to[p,\yon^{q(1)}]\otimes[q,\yon^{p(1)}]$ and an isomorphism
+\begin{equation}
+	[p\otimes q,\yon]\cong\left[\lens{p}{\yon^{q(1)}},\yon\right]\otimes\left[\lens{q}{\yon^{p(1)}},\yon\right].
+\end{equation}
 
 All functors between cartesian categories are oplax monoidal; in the case of the functor $\lens{p}{-}$ for any $p:\poly$, the comultiplication map factors through an isomorphism:
 \begin{equation}
