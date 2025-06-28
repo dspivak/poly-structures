@@ -334,6 +334,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\1}{\tn{\textsf{1}}}
 \newcommand{\tri}{\mathbin{\triangleleft}}
 \newcommand{\irt}{\mathbin{\triangleright}}
+\newcommand{\at}{\mathbin{@}}
 \newcommand{\tripow}[1]{^{\tri #1}}
 \newcommand{\tenspow}[1]{^{\otimes #1}}
 \newcommand{\indep}{\Fun{Indep}}
@@ -1160,12 +1161,27 @@ and evaluating at $1$ returns the usual bundle picture, since $(p\cocl{\varphi_1
 \footnote{I believe the Cartesian maps are precisely the exponentiable maps in $\poly$.}
 the maps $p_*\to p$ can be treated as $\poly$-polynomials in the sense of \cite{weber2015polynomials}, thus giving an embedding of $\poly$ into what might be denoted $\poly_\poly$.
 
-There is a normal lax monoidal functor 
-\begin{align}
-	@\colon(\polycart,\yon,\otimes)\times(\poly,\yon,\otimes)&\to(\poly,\yon,\otimes)\\
-	(p,\ell)&\mapsto p@\ell\coloneqq p\frown\lens{p}{\ell}
-\end{align}
-We have $\yon\cong(\yon@\yon)$ and maps $(p@\ell)\otimes(p'@\ell')\to(p\otimes p')@(\ell\otimes\ell')$. Special cases include $p@0=0$, $p@1=p$, $p@\yon=p_*$. One interesting case is when $\ell$ is an applicative functor (e.g.\ a monad such as $\ell=\List$), in which case each position is equipped with an $\ell$-structure on (e.g.\ a list of) directions; in this case we have $(p@\ell)\otimes(q@\ell)\to (p\otimes q)@\ell$. There is a natural cartesian map $p@\ell\to p$ and natural map $p@\ell\to\ell$.
+There is a normal lax duoidal functor 
+\begin{equation}
+	\at\colon(\polycart,\yon,\otimes,\tri)\times(\poly,\yon,\otimes)\to(\poly,\yon,\otimes,\tri)
+\end{equation}
+defined by
+\begin{equation}
+		p\at\ell\coloneqq p\frown\lens{p}{\ell}=\sum_{I:p(1)}(\ell\tri p[I])\yon^{p[I]}.
+\end{equation}
+That is, $\yon\cong(\yon\at\yon)$, and we have coherent maps
+\begin{equation}
+	(p\at\ell)\otimes(p'\at\ell')\to(p\otimes p')\at(\ell\otimes\ell')
+	\qand
+	(p\at\ell)\tri(p'\at\ell')\to(p\tri p')\at(\ell\tri\ell').
+\end{equation}
+Special cases include
+\begin{equation}
+	p\at A=Ap
+	\qqand 
+	p\at A\yon=Ap_*
+\end{equation}
+for any $A:\smset$. There is a natural cartesian map $p@\ell\to p$ and natural map $p@\ell\to\ell$.
 
 There is an indexed coclosure for $\otimes$.%
 \footnote{I learned about this indexed coclosure $\hyper{}$ for $\otimes$ from Nelson Niu.}
