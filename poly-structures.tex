@@ -700,7 +700,7 @@ These satisfy the defining universal properties:
   \poly(p',[p,q])&\cong\poly(p'\otimes p,q)\\
   \poly(p',\present{p,q}_S)&\cong\poly(p'\ovee_S p,q)
 \end{align}
-The first one, $q^p$, is the Cartesian closure; its standard form is not particularly enlightening, and neither is that of the third one, $\present{p,q}$. The second one, $[p,q]$, is what we call the \emph{Dirichlet closure}; it has a very nice standard form:
+The first one, $q^p$, is the Cartesian closure; it is preserved by the forgetful functor $\ext\colon\poly\to\Cat{Fun}(\smset,\smset)$. The third is not particularly interesting, as far as we know. The second one, $[p,q]$, is what we call the \emph{Dirichlet closure}; it has a very nice standard form:
 \begin{equation}\label{eqn.dirichlet_hom_standard}
 [p,q]\cong\sum_{\varphi:\poly(p,q)}\yon^{\sum\limits_{I: p(1)}q[\varphi_1I]}
 \end{equation}
@@ -1176,13 +1176,12 @@ That is, $\yon\cong(\yon\at\yon)$, and we have coherent maps
 	\qand
 	(p\at\ell)\tri(p'\at\ell')\to(p\tri p')\at(\ell\tri\ell').
 \end{equation}
-Special cases include
+There is a natural cartesian map $p@\ell\to p$ and natural map $p@\ell\to\ell$. We also have
 \begin{equation}
-	p\at A=Ap
-	\qqand 
-	p\at A\yon=Ap_*
+	p\at1\cong p
+	\qqand
+	(p\at \ell)\at\ell'\cong p\at(\ell\times\ell').
 \end{equation}
-for any $A:\smset$. There is a natural cartesian map $p@\ell\to p$ and natural map $p@\ell\to\ell$.
 
 There is an indexed coclosure for $\otimes$.%
 \footnote{I learned about this indexed coclosure $\hyper{}$ for $\otimes$ from Nelson Niu.}
