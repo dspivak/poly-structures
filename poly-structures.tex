@@ -328,7 +328,8 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\poly}{\Cat{Poly}}
 \newcommand{\Span}{\Cat{Span}}
 \newcommand{\rect}{\Set{Rect}}
-\newcommand{\polycart}{\poly^{\tn{cart}}}
+\newcommand{\cart}{\tn{cart}}
+\newcommand{\polycart}{\poly^\cart}
 \newcommand{\ppoly}{\mathbb{P}\Cat{oly}}
 \newcommand{\0}{\textsf{0}}
 \newcommand{\1}{\tn{\textsf{1}}}
@@ -1168,19 +1169,19 @@ There is a normal lax duoidal functor
 \end{equation}
 defined by
 \begin{equation}
-		p\at\ell\coloneqq p\frown\lens{p}{\ell}=\sum_{I:p(1)}(\ell\tri p[I])\yon^{p[I]}.
+		p\at q\coloneqq p\frown\lens{p}{q}=\sum_{I:p(1)}(q\tri p[I])\yon^{p[I]}.
 \end{equation}
 That is, $\yon\cong(\yon\at\yon)$, and we have coherent cartesian maps
 \begin{equation}
-	(p\at\ell)\otimes(p'\at\ell')\to(p\otimes p')\at(\ell\otimes\ell')
+	(p\at q)\otimes(p'\at q')\to(p\otimes p')\at( q\otimes q')
 	\qand
-	(p\at\ell)\tri(p'\at\ell')\to(p\tri p')\at(\ell\tri\ell').
+	(p\at q)\tri(p'\at q')\to(p\tri p')\at( q\tri q').
 \end{equation}
-There is a natural cartesian map $p@\ell\to p$ and natural map $p@\ell\to\ell$. We also have
+There is a natural cartesian map $p@ q\To{\cart} p$ and natural map $p@ q\to q$. We also have
 \begin{equation}
 	p\at1\cong p
 	\qqand
-	(p\at \ell)\at\ell'\cong p\at(\ell\times\ell').
+	(p\at  q)\at q'\cong p\at( q\times q').
 \end{equation}
 
 There is an indexed coclosure for $\otimes$.%
