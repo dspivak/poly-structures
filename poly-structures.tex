@@ -1078,13 +1078,13 @@ For each $p:\poly$, its pointing $p_*$ is a $\tri$-comonoid
 \end{equation}
 The map $\epsilon$ sends $(i,d_0)\mapsto d_0$ and the map $\delta$ sends $(i,d_0)\mapsto((i,d_0), d\mapsto ((i,d), d'\mapsto d'))$. So as a category $p_*$ has objects $\sum_{i:p(1)}p[i]$, and for each object $(i,d_0)$, a map out is an element $d:p[i]$; its codomain is $(i,d)$, and composing is just taking the most recent pointing.
 
-The evaluation map $p\otimes [p,q]\to q$ factors via $\epsilon\colon p_*\to \yon$ through a map
+The composition map $[p,q]\otimes [q,r]\to [p,r]$ factors via $\epsilon\colon q_*\to \yon$ through a map
 \begin{equation}\label{eqn.eval.factor}
-	p\otimes [p,q]\to q\tri p_*\;,
+	[p,q]\otimes [q,r]\to [p,r]\tri q_*\;,
 \end{equation}
-given by $(i,\varphi)\mapsto (\varphi_1(i),e\mapsto(i,\varphi^\sharp_i(e),d\mapsto(d,(i,e))))$. \cref{eqn.eval.factor} is functorial in $q:\poly$ for fixed $p$, and its mate $p\to[[p,q],q\tri p_*]$ is functorial in $p:\polycart$ for fixed $q$. In particular, there is a map $p\otimes[p,\yon]\to p_*$, and often more useful,
+For fixed $q$, \cref{eqn.eval.factor} is functorial in $p:\poly\op$ and $r:\poly$, and its mate $[p,q]\to[[q,r],[p,r]\tri q_*]$ is functorial in $q:\polycart$ for fixed $p,r$. In particular, there is a map
 \begin{equation}
-	p\otimes [p,\yon]\to p_*(1)\yon.
+p\otimes[p,\yon]\to p_*.
 \end{equation}
 
 The operation $(p\mapsto p_*)$ is related to the derivative $p\mapsto\dot{p}$, where
@@ -1164,13 +1164,13 @@ the maps $p_*\to p$ can be treated as $\poly$-polynomials in the sense of \cite{
 
 There is a normal lax duoidal functor 
 \begin{equation}
-	\at\colon(\polycart,\yon,\otimes,\tri)\times(\poly,\yon,\otimes)\to(\poly,\yon,\otimes,\tri)
+	\at\colon(\polycart,\yon,\otimes,\tri)\times(\poly,\yon,\otimes)\to(\polycart,\yon,\otimes,\tri)
 \end{equation}
 defined by
 \begin{equation}
 		p\at\ell\coloneqq p\frown\lens{p}{\ell}=\sum_{I:p(1)}(\ell\tri p[I])\yon^{p[I]}.
 \end{equation}
-That is, $\yon\cong(\yon\at\yon)$, and we have coherent maps
+That is, $\yon\cong(\yon\at\yon)$, and we have coherent cartesian maps
 \begin{equation}
 	(p\at\ell)\otimes(p'\at\ell')\to(p\otimes p')\at(\ell\otimes\ell')
 	\qand
