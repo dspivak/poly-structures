@@ -1184,11 +1184,25 @@ In particular, for any cartesian monad $t$ and monad $m$, this induces a cartesi
 (t\at m)\tri(t\at m)\to (t\tri t)\at(m\tri m)\to t\at m.
 \end{equation}
 
-There is a natural cartesian map $p@ q\To{\cart} p$ and natural map $p@ q\to q$. We also have
+There is a natural cartesian map $p@ q\To{\cart} p$ and natural map $p@ q\to q$. For any $p$, the functor $(p\at -)\colon\poly\to\polycart$ is cocartesian monoidal:
+\begin{equation}
+p\at 0\cong 0
+\qqand
+p\at(q_1+q_2)\cong (p\at q_1)+(p\at q_2).
+\end{equation}
+The induced functor 
+\begin{equation}
+(\poly,1,\times)\To{q\mapsto(-\at q)}(\End(\polycart),\id,\circ)
+\end{equation}
+is strong monoidal. That is, for any $p,q,q'$ we have isomorphisms
 \begin{equation}
 	p\at1\cong p
 	\qqand
-	(p\at  q)\at q'\cong p\at( q\times q').
+	p\at( q\times q')\cong (p\at  q)\at q'.
+\end{equation}
+The obvious map $p\at(q\times q')\to(p\at q)\times(p\at q')$ factors through an isomorphism
+\begin{equation}
+	p\at(q\times q')\cong(p\at q)\times_{p(1)}(p\at q').
 \end{equation}
 
 There is an indexed coclosure for $\otimes$.%
@@ -1635,6 +1649,8 @@ For any $p:\poly$ and $A:\smset$, there is an isomorphism
 	\cofree_p\tri A\yon\cong\cofree_{Ap}.
 \end{equation}
 
+For any cartesian map $p\To{\cart} q$, the induced map $\cofree_p\To{\cart}\cofree_q$ is also cartesian.
+
 There is a free $\tri$-monoid (often called the free monad) construction on $\poly$
 \begin{equation}\label{eqn.free_monad}
 \begin{tikzcd}[column sep=60pt]
@@ -1754,17 +1770,22 @@ since the initial $p$-algebra $\free_p\tri 0$ is also a $p$-coalgebra and $\cofr
 
 For any $p:\polycart$ there is a natural map
 \begin{equation}
-	\tn{alt}_p\colon (\cofree_p)_*\to(\free_p)_*
+	(\cofree_p)_*\to(\free_p)_*
 \end{equation}
 making the following diagram commute:
 \begin{equation}
 \begin{tikzcd}
-	(\cofree_p)_*\ar[r, "\tn{alt}_p"]\ar[d, "\epsilon"']&(\free_p)_*\ar[d, "\epsilon"]\\
+	(\cofree_p)_*\ar[r]\ar[d, "\epsilon"']&(\free_p)_*\ar[d, "\epsilon"]\\
 	\yon\ar[r, equal]&\yon
 \end{tikzcd}
 \end{equation}
 where for an arbitrary $q:\poly$ we write $\epsilon\colon q_*\to\yon$ to denote the counit map of \cref{eqn.pointing_comonad}.
 
+I conjecture that the above extends to a map
+\begin{equation*}
+	\cofree_p\at q\to\free_p\at q
+\end{equation*}
+for any $p,q$. When $q=1$, it factors through the counit $\cofree_p\at 1\cong\cofree_p\to\yon\to\free_p$.
 
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
