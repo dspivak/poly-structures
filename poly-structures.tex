@@ -1810,6 +1810,13 @@ where for an arbitrary $q:\poly$ we write $\epsilon\colon q_*\to\yon$ to denote 
 %\end{equation*}
 %for any $p,q$. When $q=1$, it factors through the counit $\cofree_p\at 1\cong\cofree_p\to\yon\to\free_p$.
 
+For any polynomials $p,q:\poly$ and map $\varphi\colon q\tri p\to p\tri q$, there is an induced map
+\begin{equation}\label{eqn.spooling}
+	\cofree_{p\tri q}\to\cofree_p\tri\free_q
+\end{equation}
+extending to a comonad map $\lens{\cofree_{p\tri q}}{\free_q}\to\cofree_p$.%
+\footnote{The map \eqref{eqn.spooling} was discussed in this \href{https://topos.institute/blog/2023-04-24-spooling-syntax-from-behavior/}{blog post}. To obtain the comonad map $\lens{\cofree_{p\tri q}}{\free_q}\to\cofree_p$, it suffices to check that $c\coloneqq\lens{\cofree_{p\tri q}}{\free_q}$ is indeed a comonad, because there is an obvious map $\cofree_{p\tri q}\to p\tri q\to p\tri\free_q$. To see that $c$ is a comonad, note that $\varphi$ induces a map $q\tri p\tri q\to p\tri q\tri q$ and see \cite[Example 5.11]{spivak2025categories}.}
+
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
 
