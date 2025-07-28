@@ -394,6 +394,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 
 \newcommand{\retto}{\nrightarrow}
 \newcommand{\OR}{\curlyvee}
+\newcommand{\garner}[1]{\mathbin{\ul{#1}}}
 
 \newcommand{\coalg}{\tn{-}\Cat{Coalg}}
 \newcommand{\ext}{\fun{Ext}}
@@ -549,6 +550,11 @@ and a strong monoidal functor $(\poly,1,\ovee)\to(\poly,\yon,\otimes)$:
 	p\yon\otimes q\yon\cong (p\ovee q)\yon
 	\qqand
 	\yon\cong \yon.
+\end{equation}
+There is a natural map%
+\footnote{See also \eqref{eqn.ovee_garner}.}
+\begin{equation}
+(p_1\tri p_2)\ovee (q_1\tri q_2)\to(p_1\otimes q_1)\tri(p_2\ovee q_2).
 \end{equation}
 
 
@@ -1249,9 +1255,11 @@ For example, $\yon^{q\coalg[A]}\cong\lens{\yon^A}{q}\hyper{}\yon^A$.
 %-------- Chapter --------%
 \chapter{Other monoidal structures and actions}
 
-Of the following three monoidal structures, only the first one ($\OR$) appears to be interesting; it will appear prominently in \cref{chap.adj_mon_com}.
-
-There is a symmetric monoidal structure on $\poly$ with unit $0$ and product given by
+We can follow the pattern we learned from Garner to take known monoidal products $\cdot$ that happen to distribute over $+$, and obtain new monoidal products
+\begin{equation}
+p\garner{\cdot} q\coloneqq p+(p\cdot q) + q.
+\end{equation}
+with unit 0.  monoidal products on $\poly$ from any known ones that distribute over $+$. For example, there is a symmetric monoidal structure $\OR\coloneqq\garner\otimes$ on $\poly$ with unit $0$ and product given by
 \begin{equation}\label{eqn.vee}
   p\OR q\coloneqq p+(p\otimes q)+q.
 \end{equation}
@@ -1272,19 +1280,29 @@ There are two duoidal structures for $\OR$, one with $\tri$ and one with $\otime
 \end{align*}
 %We will see in \cref{eqn.vee1,eqn.vee2,eqn.vee3,eqn.vee4} that $\curlyvee$ is surprisingly useful when it comes to free monads.%
 
-Here are two other symmetric monoidal structures, though we currently know of no interesting uses of them, so we do not even give them symbols. We are simply using the fact that if a symmetric monoidal product distributes over $+$ then we can follow the pattern we learned from Garner; see \eqref{eqn.ovee}.
-\begin{align}
-	(p,q)&\mapsto p+(p\times q)+q\\
-	(p,q)&\mapsto p+(p\ovee q)+q
-\end{align}
-Their units are both $0$. 
+Another very similar symmetric monoidal structure we will consider has unit $0$ and product given by
+\begin{equation}\label{eqn.garner_ovee}
+	p\garner{\ovee} q\coloneqq p+p\ovee q+q=p+\left(\sum_{I:p(1)}\sum_{J:q(1)}\yon^{p[I]+p[I]q[J]+q[J]}\right)+q
+\end{equation}
+where $\ovee$ was defined in \eqref{eqn.ovee}. There is a duoidal structure
+\begin{equation}\label{eqn.ovee_garner}
+	(p_1\tri p_2)\garner{\ovee} (q_1\tri q_2)\to(p_1\garner{\ovee} q_1)\tri(p_2\garner{\ovee} q_2).
+\end{equation}
+
+Of course, a third symmetric monoidal structure on $\poly$ is $\garner{\times}$, though we know no use for it.
 
 We know of two more monoidal products $(\yon,\dagger)$ and $(\yon, \ddagger)$ from Nelson Niu, who cites de Paiva's notion of \emph{cross product} as inspiration for $\dagger$:
 \begin{align}
 	p\dagger q\coloneqq\sum_{I: p(1)}\sum_{J: q(1)}\prod_{i: p[I]}\prod_{j\colon p(1)\to q[J]}\yon\\
 	p\ddagger q\coloneqq\sum_{I: p(1)}\sum_{J: q(1)}\prod_{i\colon q(1)\to p[I]}\prod_{j\colon p(1)\to q[J]}\yon
 \end{align}
-E.g.\ in the case of monomials we have $I\yon^A\dagger J\yon^B\cong IJ\yon^{AB^I}$ and $I\yon^A\ddagger J\yon^B\cong IJ\yon^{A^JB^I}$.
+E.g.\ in the case of monomials we have $I\yon^A\dagger J\yon^B\cong IJ\yon^{AB^I}$ and $I\yon^A\ddagger J\yon^B\cong IJ\yon^{A^JB^I}$. There are natural maps
+\begin{equation}
+	p\otimes q\to p\dagger q
+	\qqand
+	p\dagger q\to p\ddagger q
+\end{equation}
+given by $(I,J)\mapsto ((I,J),(i,j)\mapsto(i,j(I))$ and $(I,J)\mapsto((I,J),(i,j)\mapsto(i(J),j)$, respectively.
 
 \bigskip
 Monoidal products on $\poly$ give rise to actions of $\poly$ on itself; we now turn to an action of $\polycart$ on $\poly$.
@@ -1759,6 +1777,11 @@ coming from $\free_p\otimes\free_q\To{\indep} \free_p\tri \free_q\To{\eqref{eqn.
 %\end{equation}
 %arising from the strength \eqref{eqn.p_action_free}. ...%Not sure if this is true.
 
+Using $\garner{\ovee}$ from \cref{eqn.garner_ovee}, there is also a lax monoidal structure
+\begin{equation}
+	\free_p\garner{\ovee}\free_q\to\free_{p\garner{\ovee}q}.
+\end{equation}
+
 For any $p:\poly$ there is a function
 \begin{equation}
 	\free_p\tri 0\to\cofree_p\tri 1
@@ -1781,11 +1804,11 @@ making the following diagram commute:
 \end{equation}
 where for an arbitrary $q:\poly$ we write $\epsilon\colon q_*\to\yon$ to denote the counit map of \cref{eqn.pointing_comonad}.
 
-I conjecture that the above extends to a map
-\begin{equation*}
-	\cofree_p\at q\to\free_p\at q
-\end{equation*}
-for any $p,q$. When $q=1$, it factors through the counit $\cofree_p\at 1\cong\cofree_p\to\yon\to\free_p$.
+%I conjecture that the above extends to a map
+%\begin{equation*}
+%	\cofree_p\at q\to\free_p\at q
+%\end{equation*}
+%for any $p,q$. When $q=1$, it factors through the counit $\cofree_p\at 1\cong\cofree_p\to\yon\to\free_p$.
 
 %-------- Chapter --------%
 \chapter{Adjunctions, monads, and comonads on $\poly$}\label{chap.adj_mon_com}
