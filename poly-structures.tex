@@ -1334,19 +1334,29 @@ There is an additional colax structure:
 \end{equation}
 All told, the above can be summarized as a strong rig monoidal functor
 \begin{equation}
-\big(\polycart,0,+,\yon,\tri\big)\too\big(\Cat{ColaxEnd}(\poly,\yon,\tri),0,+,\id,\circ\big)
+\big(\polycart,0,+,\yon,\tri\big)\too\big(\Cat{ColaxEnd}(\poly,\yon,\tri),0,+,\id,\circ\big).
 \end{equation}
 
-
-The $\upup$ structure is used in defining distributive laws of various sorts. We won't go into it here, but we note that for any $r:\poly$, there is a bijection
+Often the $\upup$ construction is used in defining maps $p\upup q\to q$;
+\footnote{One can think of a map $p\upup q\to q$ as a structure where the positions of $q$ have $p$-ary join structures and the directions of $q$ are a presheaf on this ``lattice''. For example, if $A$ is a join semilattice, $\cat{F}\colon A\op\to\smset$ is a presheaf on it, and $q\coloneqq\sum_{a:A}\yon^{\cat{F}(a)}$, then there is a map $p\upup q\to q$ given by
+\[
+  (I,Q)\mapsto
+  \left(
+  	\bigvee_{d:p[I]}Q(d), \gamma\mapsto d\mapsto \gamma\big|_d
+  \right)
+\]
+where $I:p(1)$, $Q\colon p[I]\to q(1)$, $\gamma:\cat{F}(\bigvee_{d:p[I]}Q(d))$, and $\gamma\big|_{d}$ is the restriction of the ``global'' section $\gamma$ to $d$.
+}
+ for example, this comes up in defining distributive laws of various sorts; we won't go into it here, but we note that for any $r:\poly$, there is a bijection
 \begin{equation}
 \poly(p\upup q,r)\cong\{\varphi\colon p\tri q\to r\otimes p\mid\varphi_1(I,J)=(K,I)\text{ and }\varphi^\sharp_{(I,J)}(f,d)=(d,e)\}.
 \end{equation}
+
 We note in passing that for any $p:\poly$ there is an isomorphism
 \begin{equation}
 p\upup\yon\cong\lens{p}{1}
 \end{equation}
-giving two different constructions of the ``linearization'' comonad $p\mapsto p(1)$; see also \eqref{eqn.adjunctions}. 
+giving two different constructions of the ``linearization'' comonad $p\mapsto (p\tri1)\yon$; see also \eqref{eqn.adjunctions}. 
 
 \chapter{Polynomial monoids and comonoids}\label{chap.monoids.comonoids}
 
