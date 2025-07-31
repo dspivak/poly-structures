@@ -578,6 +578,12 @@ The $\otimes$ and $\times$ operation together form a linearly distributive categ
 p\times(q\otimes r)\to (p\times q)\otimes r.
 \end{equation}
 
+The category $\poly$ is infinitary-extensive: given a map $p\to q$ with $q=\sum_{i:I}q_i$, there is an isomorphism
+\begin{equation}
+	\sum_{i:I}p_i\To{\cong}p
+\end{equation} 
+where $p_i\coloneqq p\times_{q}q_i$ is the pullback of $p\to q\from q_i$.
+
 %-------- Chapter --------%
 \chapter{Substitution product}
 
@@ -591,7 +597,7 @@ The functor $\ext\colon\poly\to\smset^\smset$ from \eqref{ext_functor} sends $\t
 \begin{equation}
 \ext(p)(X)\cong p\tri X
 \end{equation}
-Since $\ext$ is fully faithful, $\varphi\colon p\to q$ is an isomorphism iff $(\varphi\tri X)\colon p\tri X\to q\tri X$ is a bijection for all $X:\smset$.
+Since $\ext$ is fully faithful, $\varphi\colon p\to q$ is an isomorphism iff $(\varphi\tri X)\colon p\tri X\to q\tri X$ is a bijection for all $X:\smset$. In general, when we write $p(1)$, we really mean either $(p\tri 1):\poly$ or $\ext(p)(1):\smset$; hopefully the type is clear from context.
 
 The monoidal structure $\tri$ is left distributive with respect to $+$ and $\times$:
 \begin{align}
