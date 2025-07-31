@@ -479,6 +479,14 @@ p+q\cong\sum_{X: p(1)+q(1)}\yon^{\fontsize{8pt}{8pt}\selectfont
 	}
 \end{equation}
 
+
+The category $\poly$ is infinitary-extensive: given a map $p\to\sum_{i:I}q_i$ for any $p:\poly$, $I:\smset$, and $q\colon I\to\poly$, there is an isomorphism
+\begin{equation}
+	\sum_{i:I}p_i\To{\cong}p,
+\end{equation} 
+where $p_i\coloneqq p\times_{\sum_{i:I}q_i}q_i$ is the pullback.
+
+
 For any symmetric monoidal product $(\mathbb{I},\cdot)$ on $\smset$, there is a corresponding symmetric monoidal structure $(\yon^\mathbb{I},\odot)$ on $\poly$, where the monoidal product given as follows:
 \begin{equation}\label{eqn.day_all}
 p\odot q\coloneqq\sum_{(I,J): p(1)\times q(1)}\yon^{p[I]\cdot q[J]}.
@@ -577,12 +585,6 @@ The $\otimes$ and $\times$ operation together form a linearly distributive categ
 \begin{equation}\label{eqn.shapiro_0}
 p\times(q\otimes r)\to (p\times q)\otimes r.
 \end{equation}
-
-The category $\poly$ is infinitary-extensive: given a map $p\to q$ with $q=\sum_{i:I}q_i$, there is an isomorphism
-\begin{equation}
-	\sum_{i:I}p_i\To{\cong}p
-\end{equation} 
-where $p_i\coloneqq p\times_{q}q_i$ is the pullback of $p\to q\from q_i$.
 
 %-------- Chapter --------%
 \chapter{Substitution product}
