@@ -117,16 +117,16 @@ bimr/.tip={Glyph[glyph math command=triangleright, glyph length=.95ex]},
 % Adjunctions
 \newcommand{\adj}[5][30pt]{%[size] Cat L, Left, Right, Cat R.
 \begin{tikzcd}[ampersand replacement=\&, column sep=#1]
-  #2\ar[r, shift left=7pt, "#3"]
+  #2\ar[r, shift left=5pt, "#3"]
   \ar[r, phantom, "\scriptstyle\Rightarrow"]\&
-  #5\ar[l, shift left=7pt, "#4"]
+  #5\ar[l, shift left=5pt, "#4"]
 \end{tikzcd}
 }
 
 \newcommand{\adjr}[5][30pt]{%[size] Cat R, Right, Left, Cat L.
 \begin{tikzcd}[ampersand replacement=\&, column sep=#1]
-  #2\ar[r, shift left=7pt, "#3"]\&
-  #5\ar[l, shift left=7pt, "#4"]
+  #2\ar[r, shift left=5pt, "#3"]\&
+  #5\ar[l, shift left=5pt, "#4"]
   \ar[l, phantom, "\scriptstyle\Leftarrow"]
 \end{tikzcd}
 }
@@ -1730,13 +1730,17 @@ In particular, this gives rise to Lambek's lemma that the algebra map for the in
 		p\tri(\free_p\tri 0)\To\cong\free_p\tri0.
 \end{equation}
 
-For any polynomial $p:\poly$ and set $X:\smset$, there is a natural bijection
+For any polynomial $p:\poly$ and set $X:\smset$, there is a natural isomorphism
 \begin{equation}
-  \free_p\tri X
+  \free_p\tri(\yon+X)
   \cong
-	\free_{p+X}\tri 0  
+	\free_{(\yon+X)\tri p}.  
 \end{equation}
-and each is isomorphic to the free $p$-algebra on the set $X$.
+Said another way, $\free_p\tri\free_X\cong\free_{\free_X\tri p}$. In particular, we can apply $-\tri 0$ to obtain:
+\begin{equation}
+	\free_p\tri X\cong\free_{p+X}(0)
+\end{equation}
+for any set $X$, and each is isomorphic to the free $p$-algebra on the set $X$.
 
 Using the monad structure \eqref{eqn.monad_tri} on $\free_x^p$, one obtains a tensorial strength on the free monad endofunctor $\free$ on $(\poly,1,\times)$:
 \begin{equation}\label{eqn.p_action_free}
