@@ -1658,6 +1658,7 @@ If $p\to q$ is cartesian, so is $\cofree_p\to\cofree_q$. In particular, \eqref{e
 \begin{equation}
 		\cofree_p\tri 1\To\cong p\tri(\cofree_p\tri 1).
 \end{equation}
+
  
 In many different ways, the cofree comonad functor $\cofree\colon\poly\to\poly$ is lax monoidal as it maps out of the $(\yon,\otimes)$ monoidal structure:%
 \footnote{Recall from \eqref{eqn.ovee} that $p\ovee q\coloneqq \sum_{(I,J): p(1)\times q(1)}\yon^{p[I]+p[I]\times q[J]+q[J]}$.}
@@ -1682,10 +1683,18 @@ that arise from the counits of any comonoid, as well as the distributivity of $\
 
 For any $p:\poly$ and $A:\smset$, there is an isomorphism
 \begin{equation}
-	\cofree_p\tri A\yon\cong\cofree_{Ap}.
+	\cofree_{Ap}
+	\cong
+	\cofree_p\tri A\yon.
 \end{equation}
+For example, $\cofree_{A\yon^B}=\yon^{\List(B)}\tri(A\yon)$.
+
 
 For any cartesian map $p\To{\cart} q$, the induced map $\cofree_p\To{\cart}\cofree_q$ is also cartesian.
+
+%Suppose you want to compose two regular languages $r,s\in\cofree_{2\yon^A}(1)$ to give $r;s$. To do this, note that there is always a map $\cofree_{p+1}\otimes\cofree_q\to\cofree_{p+q}$ induced by the composite
+%\[\cofree_{p+\yon)\otimes\cofree_q\to (p+\yon)\otimes\cofree_q\to (p\otimes\yon)+(\yon\otimes q)\cong p+q.\]
+%So we use $\cofree_{2\yon^A}\otimes\cofree_{2\yon^A}\to\cofree_{\yon^A+\yon}\otimes\cofree_{2\yon^A}\to\cofree_{\yon^A+2\yon^A}\to\cofree{2\yon^A}$.
 
 There is a free $\tri$-monoid (often called the free monad) construction on $\poly$
 \begin{equation}\label{eqn.free_monad}
