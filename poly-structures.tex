@@ -459,7 +459,7 @@ p&\mapsto X\mapsto\sum_{I:p(1)}X^{p[I]}
 \end{align} 
 The functor $\ext$ preserves coproducts, limits, and Cartesian closure, and it is fully faithful, meaning that a morphism between polynomials is a natural transformation $\varphi\colon \ext(p)\to \ext(q)$. What we denote $p(1)$ is actually $\ext(p)(1)$. By the Yoneda lemma and universal property of coproducts, a morphism in $\poly$ consists of a function $\varphi_1\colon p(1)\to q(1)$ and, for each $I: p(1)$ a function $\varphi^\sharp_I\colon q[\varphi_1(I)]\to p[I]$. A map $\varphi$ is called \emph{vertical} if $\varphi_1$ is identity on positions; it is called \emph{cartesian} if for each $I: p(1)$ the function $\varphi_I^\sharp$ is a bijection; see \cref{chap.bifib} for more on this. 
 
-The wide subcategory of polynomial functors and cartesian morphisms between them is denoted $\polycart$. It has all limits and colimits. The composite functor $\polycart\to\poly\To{\ext}\Cat{Fun}(\smset,\smset)$ preserves all limits and colimits. The pushout of a cartesian map along any map is again cartesian, and $\ext$ preserves such pushouts.
+The wide subcategory of polynomial functors and cartesian morphisms between them is denoted $\polycart$. It has all limits, but does not have all colimits (e.g.\ it does not have a  coequalizer of the two distinct maps $\yon^2\to\yon^2$). The composite functor $\polycart\to\poly\To{\ext}\Cat{Fun}(\smset,\smset)$ preserves all limits and all colimits that exist. The pushout of a cartesian map along any map is again cartesian, and $\ext$ preserves such pushouts.
 
 
 
@@ -1181,32 +1181,44 @@ the maps $p_*\to p$ can be treated as $\poly$-polynomials in the sense of \cite{
 
 There is a normal lax duoidal functor 
 \begin{equation}
-	\at\colon(\polycart,\yon,\otimes,\tri)\times(\poly,\yon,\otimes)\to(\polycart,\yon,\otimes,\tri)
+	\at\colon(\polycart,1,\times,\yon,\otimes,\tri)\times(\poly,1,\times,\yon,\otimes,\tri)\to(\polycart,1,\times,\yon,\otimes,\tri)
 \end{equation}
 defined by
 \begin{equation}
 		p\at q\coloneqq p\frown\lens{p}{q}=\sum_{I:p(1)}(q\tri p[I])\yon^{p[I]}.
 \end{equation}
-That is, $\yon\cong(\yon\at\yon)$, and we have coherent cartesian maps
+Its defining property, which drops any mention of cartesianness, is
 \begin{equation}
-	(p\at q)\otimes(p'\at q')\to(p\otimes p')\at( q\otimes q')
-	\qand
-	(p\at q)\tri(p'\at q')\to(p\tri p')\at( q\tri q').
+	\poly(p\at q, r)\cong\poly_{/p(1)}\left(\lens{p}{r},\lens{p}{q}\right).
 \end{equation}
-In particular, for any cartesian monad $t$ and monad $m$, this induces a cartesian monad structure on $t\at m$
-\begin{equation}
-\yon=\yon\at\yon\to t\at m
-\qqand
-(t\at m)\tri(t\at m)\to (t\tri t)\at(m\tri m)\to t\at m.
-\end{equation}
+The normal lax duoidality says that $\yon\cong(\yon\at\yon)$ and that we have coherent cartesian maps
+\begin{align}
+\label{eqn.atplus}
+	(p\at q)+(p'\at q')&\to(p+p')\at(q+ q')\\
+\label{eqn.attimes}
+	(p\at q)\times(p'\at q')&\to(p\times p')\at(q\times q')\\
+\label{eqn.atotimes}
+	(p\at q)\otimes(p'\at q')&\to(p\otimes p')\at( q\otimes q')\\
+\label{eqn.attri}
+	(p\at q)\tri(p'\at q')&\to(p\tri p')\at( q\tri q').
+\end{align}
+%In particular, for any cartesian monad $t$ and monad $m$, this induces a cartesian monad structure on $t\at m$
+%\begin{equation}
+%\yon=\yon\at\yon\to t\at m
+%\qqand
+%(t\at m)\tri(t\at m)\to (t\tri t)\at(m\tri m)\to t\at m.
+%\end{equation}
 
-There is a natural cartesian map $p@ q\To{\cart} p$ and natural map $p@ q\to q$. For any $p$, the functor $(p\at -)\colon\poly\to\polycart$ is cocartesian monoidal:
-\begin{equation}
-p\at 0\cong 0
-\qqand
-p\at(q_1+q_2)\cong (p\at q_1)+(p\at q_2).
-\end{equation}
-The induced functor 
+There is a natural cartesian map $p@ q\To{\cart} p$ and natural map $p@ q\to q$. For any $p,q$, the functors $(p\at -),(-\at q)\colon\poly\to\polycart$ are cocartesian monoidal:
+\begin{align}
+p\at 0&\cong 0
+&
+p\at(q_1+q_2)&\cong (p\at q_1)+(p\at q_2),\\
+0\at p&\cong 0
+&
+(p_1+p_2)\at q&\cong (p_1\at q)+(p_2\at q).
+\end{align}
+And the induced functor 
 \begin{equation}
 (\poly,1,\times)\To{q\mapsto(-\at q)}(\End(\polycart),\id,\circ)
 \end{equation}
@@ -1216,10 +1228,22 @@ is strong monoidal. That is, for any $p,q,q'$ we have isomorphisms
 	\qqand
 	p\at( q\times q')\cong (p\at  q)\at q'.
 \end{equation}
+Thus for any $A:\smset$, we have
+\begin{equation}
+p\at A\cong Ap.
+\end{equation}
 The obvious map $p\at(q\times q')\to(p\at q)\times(p\at q')$ factors through an isomorphism
 \begin{equation}
 	p\at(q\times q')\cong(p\at q)\times_{p(1)}(p\at q').
 \end{equation}
+
+The category of polynomials is enriched in $\sspan(\poly)$:
+\begin{equation}
+  p\to p\at p
+  \qqand
+	(p\at q)\times_q(q\at r)\cong(p\at q)\at r\too p\at r
+\end{equation}
+and this enriched category is monoidal under $(+,\times,\otimes,\tri)$, by \eqref{eqn.atplus}, \eqref{eqn.attimes}, \eqref{eqn.atotimes}, \eqref{eqn.attri}.
 
 There is an indexed coclosure for $\otimes$.%
 \footnote{I learned about this indexed coclosure $\hyper{}$ for $\otimes$ from Nelson Niu.}
@@ -1265,9 +1289,9 @@ For example, $\yon^{q\coalg[A]}\cong\lens{\yon^A}{q}\hyper{}\yon^A$.
 %-------- Chapter --------%
 \chapter{Other monoidal structures and actions}
 
-We can follow the pattern we learned from Garner to take known monoidal products $\cdot$ that happen to distribute over $+$, and obtain new monoidal products
+We can follow the pattern we learned from Garner to take known monoidal products $\star$ that happen to distribute over $+$, and obtain new monoidal products
 \begin{equation}
-p\garner{\cdot} q\coloneqq p+(p\cdot q) + q.
+p\garner{\star} q\coloneqq p+(p\star q) + q.
 \end{equation}
 with unit 0.  monoidal products on $\poly$ from any known ones that distribute over $+$. For example, there is a symmetric monoidal structure $\OR\coloneqq\garner\otimes$ on $\poly$ with unit $0$ and product given by
 \begin{equation}\label{eqn.vee}
@@ -1316,7 +1340,7 @@ given by $(I,J)\mapsto ((I,J),(i,j)\mapsto(i,j(I))$ and $(I,J)\mapsto((I,J),(i,j
 
 \bigskip
 Monoidal products on $\poly$ give rise to actions of $\poly$ on itself; we now turn to an action of $\polycart$ on $\poly$.
-In \cite{aberle2024polynomial}, the authors define an action of $(\polycart,\yon,\tri)$
+In \cite{aberle2024polynomial}, the authors (myself and Aberl\'e) define an action of $(\polycart,\yon,\tri)$
 \begin{equation}
   \upup\colon\polycart\times\poly\to\poly
 \end{equation}
