@@ -1839,6 +1839,17 @@ Using $\garner{\ovee}$ from \cref{eqn.garner_ovee}, there is also a lax monoidal
 	\free_p\garner{\ovee}\free_q\to\free_{p\garner{\ovee}q}.
 \end{equation}
 
+For any monad $t$ and set $A$, there is a distributive law of the form
+\begin{equation}
+	\free_A\tri t\to t\tri\free_A.
+\end{equation}
+If $t$ is (i.e.\ its unit and multiplication maps are) cartesian, then there is also a distributive law of the form
+\begin{equation}
+	t\tri\free_A\to \free_A\tri t,
+\end{equation}
+e.g.\ $t+1$ is also a monad.
+
+
 For any $p:\poly$ there is a function
 \begin{equation}
 	\free_p\tri 0\to\cofree_p\tri 1
