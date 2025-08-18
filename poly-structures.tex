@@ -335,7 +335,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\1}{\tn{\textsf{1}}}
 \newcommand{\tri}{\mathbin{\triangleleft}}
 \newcommand{\irt}{\mathbin{\triangleright}}
-\newcommand{\at}{\mathbin{@}}
+\newcommand{\at}[2]{#2\mathbin{\backslash}#1}
 \newcommand{\tripow}[1]{^{\tri #1}}
 \newcommand{\tenspow}[1]{^{\otimes #1}}
 \newcommand{\indep}{\Fun{Indep}}
@@ -1178,73 +1178,67 @@ the maps $p_*\to p$ can be treated as $\poly$-polynomials in the sense of \cite{
 
 There is a normal lax duoidal functor 
 \begin{equation}
-	\at\colon(\polycart,1,\times,\yon,\otimes,\tri)\times(\poly,1,\times,\yon,\otimes,\tri)\to(\polycart,1,\times,\yon,\otimes,\tri)
+	\at{-}{-}\colon(\polycart,1,\times,\yon,\otimes,\tri)\times(\poly,1,\times,\yon,\otimes,\tri)\to(\polycart,1,\times,\yon,\otimes,\tri)
 \end{equation}
 defined by
 \begin{equation}
-		p\at q\coloneqq p\frown\lens{p}{q}=\sum_{I:p(1)}(q\tri p[I])\yon^{p[I]}.
+		\at{p}{q}\coloneqq p\frown\lens{p}{q}=\sum_{I:p(1)}(q\tri p[I])\yon^{p[I]}.
 \end{equation}
 Its defining property, which drops any mention of cartesianness, is
 \begin{equation}
-	\poly(p\at q, r)\cong\poly_{/p(1)}\left(\lens{p}{r},\lens{p}{q}\right).
+	\poly(\at{p}{q}, r)\cong\poly_{/p(1)}\left(\lens{p}{r},\lens{p}{q}\right).
 \end{equation}
-The normal lax duoidality says that $\yon\cong(\yon\at\yon)$ and that we have coherent cartesian maps
+The normal lax duoidality says that $\yon\cong(\at{\yon}{\yon})$ and that we have coherent cartesian maps
 \begin{align}
 \label{eqn.atplus}
-	(p\at q)+(p'\at q')&\to(p+p')\at(q+ q')\\
+	(\at{p}{q})+(\at{p'}{q'})&\to\at{(p+p')}{(q+ q')}\\
 \label{eqn.attimes}
-	(p\at q)\times(p'\at q')&\to(p\times p')\at(q\times q')\\
+	(\at{p}{q})\times(\at{p'}{q'})&\to\at{(p\times p')}{(q\times q')}\\
 \label{eqn.atotimes}
-	(p\at q)\otimes(p'\at q')&\to(p\otimes p')\at( q\otimes q')\\
+	(\at{p}{q})\otimes(\at{p'}{q'})&\to\at{(p\otimes p')}{( q\otimes q')}\\
 \label{eqn.attri}
-	(p\at q)\tri(p'\at q')&\to(p\tri p')\at( q\tri q').
+	(\at{p}{q})\tri(\at{p'}{q'})&\to\at{(p\tri p')}{( q\tri q')}.
 \end{align}
-%In particular, for any cartesian monad $t$ and monad $m$, this induces a cartesian monad structure on $t\at m$
-%\begin{equation}
-%\yon=\yon\at\yon\to t\at m
-%\qqand
-%(t\at m)\tri(t\at m)\to (t\tri t)\at(m\tri m)\to t\at m.
-%\end{equation}
 
-There is a natural cartesian map $p@ q\To{\cart} p$ and natural map $p@ q\to q$. For any $p,q$, the functors $(p\at -),(-\at q)\colon\poly\to\polycart$ are cocartesian monoidal:
+There is a natural cartesian map $\at{p}{q}\To{\cart} p$ and natural map $\at{p}{q}\to q$. For any $p,q$, the functors $(\at{p}{-}),(\at{-}{q})\colon\poly\to\polycart$ are cocartesian monoidal:
 \begin{align}
-p\at 0&\cong 0
+\at{p}{0}&\cong 0
 &
-p\at(q_1+q_2)&\cong (p\at q_1)+(p\at q_2),\\
-0\at p&\cong 0
+\at{p}{(q_1+q_2)}&\cong (\at{p}{q}_1)+(\at{p}{q}_2),\\
+\at{0}{p}&\cong 0
 &
-(p_1+p_2)\at q&\cong (p_1\at q)+(p_2\at q).
+\at{(p_1+p_2)}{q}&\cong (\at{p_1}{q})+(\at{p_2}{q}).
 \end{align}
 And the induced functor 
 \begin{equation}
-(\poly,1,\times)\To{q\mapsto(-\at q)}(\End(\polycart),\id,\circ)
+(\poly,1,\times)\To{q\mapsto(\at{-}{q})}(\End(\polycart),\id,\circ)
 \end{equation}
 is strong monoidal. That is, for any $p,q,q'$ we have isomorphisms
 \begin{equation}
-	p\at1\cong p
+	\at{p}{1}\cong p
 	\qqand
-	p\at( q\times q')\cong (p\at  q)\at q'.
+	\at{p}{( q\times q')}\cong \at{(\at{p}{q})}{q'}.
 \end{equation}
 Thus for any $A:\smset$, we have
 \begin{equation}
-p\at A\cong Ap.
+\at{p}{A}\cong Ap.
 \end{equation}
-The obvious map $p\at(q\times q')\to(p\at q)\times(p\at q')$ factors through an isomorphism
+The obvious map $\at{p}{(q\times q')}\to(\at{p}{q})\times(\at{p}{q}')$ factors through an isomorphism
 \begin{equation}
-	p\at(q\times q')\cong(p\at q)\times_{p(1)}(p\at q').
+	\at{p}{(q\times q')}\cong(\at{p}{q})\times_{p(1)}(\at{p}{q}').
 \end{equation}
 
 The category of polynomials is enriched in $\sspan(\poly)$:
 \begin{equation}
-  p\to p\at p
+  p\to\at{p}{p}
   \qqand
-	(p\at q)\times_q(q\at r)\cong(p\at q)\at r\too p\at r
+	(\at{p}{q})\times_q(\at{q}{r})\cong\at{(\at{p}{q})}{r}\too \at{p}{r}
 \end{equation}
 and this enriched category is monoidal under $(+,\times,\otimes,\tri)$, by \eqref{eqn.atplus}, \eqref{eqn.attimes}, \eqref{eqn.atotimes}, \eqref{eqn.attri}.
 
 There is a natural map
 \begin{equation}
-	p\at q\to(p\otimes q)\tri(\yon+1)
+	\at{p}{q}\to(p\otimes q)\tri(\yon+1)
 \end{equation}
 sending $(I,J,\ol{j})\mapsto(I,J,(i,j)\mapsto \yon^{i=\ol{i}(j)}$,%
 \footnote{
@@ -1881,7 +1875,7 @@ where for an arbitrary $q:\poly$ we write $\epsilon\colon q_*\to\yon$ to denote 
 
 %I conjecture that the above extends to a map
 %\begin{equation*}
-%	\cofree_p\at q\to\free_p\at q
+%	\cofree_\at{p}{q}\to\free_\at{p}{q}
 %\end{equation*}
 %for any $p,q$. When $q=1$, it factors through the counit $\cofree_p\at 1\cong\cofree_p\to\yon\to\free_p$.
 
