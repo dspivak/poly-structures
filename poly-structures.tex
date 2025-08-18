@@ -1242,6 +1242,16 @@ The category of polynomials is enriched in $\sspan(\poly)$:
 \end{equation}
 and this enriched category is monoidal under $(+,\times,\otimes,\tri)$, by \eqref{eqn.atplus}, \eqref{eqn.attimes}, \eqref{eqn.atotimes}, \eqref{eqn.attri}.
 
+There is a natural map
+\begin{equation}
+	p\at q\to(p\otimes q)\tri(\yon+1)
+\end{equation}
+sending $(I,J,\ol{j})\mapsto(I,J,(i,j)\mapsto \yon^{i=\ol{i}(j)}$,%
+\footnote{
+Here, $I:p(1)$, $J:q(1)$, $\ol{i}\colon q[J]\to p[I]$, $i:p[I]$, $j:q[J]$.
+}
+and it plays well with $+$, $\times$, $\otimes$, and $\tri$.
+
 There is an indexed coclosure for $\otimes$.%
 \footnote{I learned about this indexed coclosure $\hyper{}$ for $\otimes$ from Nelson Niu.}
 For any function $f\colon p(1)\to q(1)$, define
