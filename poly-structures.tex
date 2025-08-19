@@ -1346,7 +1346,7 @@ In \cite{aberle2024polynomial}, the authors (myself and Aberl\'e) define an acti
   \upup\colon\polycart\times\poly\to\poly
 \end{equation}
 given by
-\begin{equation}
+\begin{equation}\label{eqn.upup_formula}
   p\upup q\coloneqq\sum_{I:p(1)}\sum_{J\colon p[I]\to q(1)}\yon^{\prod_{d:p[I]}q[J(d)]}\;.
 \end{equation}
 Indeed, there are unitor and actor isomorphisms of the form
@@ -1368,7 +1368,7 @@ There is an additional colax structure:
 	p\upup(q_1\tri q_2)\too(p\upup q_1)\tri(p\upup q_2).
 \end{equation}
 All told, the above can be summarized as a strong rig monoidal functor
-\begin{equation}
+\begin{equation}\label{eqn.upup_summary}
 \big(\polycart,0,+,\yon,\tri\big)\too\big(\Cat{ColaxEnd}(\poly,\yon,\tri),0,+,\id,\circ\big).
 \end{equation}
 
@@ -1574,6 +1574,8 @@ whose unitor and co-productor have the form
   \qqand
   \lens{p\tri q_1\tri q_2}{p}\to\lens{p\tri q_1}{p}\tri\lens{p\tri q_2}{p}.
 \end{equation}
+
+For any polynomial $p:\polycart$, the functor $(p\upup -)$ from \eqref{eqn.upup_formula} sends comonads to comonads. If $c$ is a comonad with corresponding category $\cat{C}$, then $p\upup c$ is the comonad with corresponding category $\sum_{I:p(1)}\cat{C}^{p[I]}$.
 
 
 Using the maps \eqref{eqn.allfour} have interesting consequences for exponentiating with base $t$, where $t$ is a monad. First, it gives a surprising lax monoidal functor $(\poly,\yon,\tri)\op\to(\poly,1,\times)$:
