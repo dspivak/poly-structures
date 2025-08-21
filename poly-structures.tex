@@ -1209,24 +1209,25 @@ The normal lax duoidality says that $\yon\cong(\at{\yon}{\yon})$ and that we hav
 
 There is a natural cartesian map $\at{p}{q}\To{\cart} p$ and natural map $\at{p}{q}\to q$. For any $p,q$, the functors $(\at{p}{-}),(\at{-}{q})\colon\poly\to\polycart$ are cocartesian monoidal:
 \begin{align}
+\label{eqn.at_add}
 \at{p}{0}&\cong 0
 &
-\at{p}{(q_1+q_2)}&\cong (\at{p}{q}_1)+(\at{p}{q}_2),\\
-\at{0}{p}&\cong 0
+\at{p}{(q_1+q_2)}&\cong (\at{p}{q_1})+(\at{p}{q_2}),\\
+\at{0}{q}&\cong 0
 &
 \at{(p_1+p_2)}{q}&\cong (\at{p_1}{q})+(\at{p_2}{q}).
 \end{align}
 And the induced functor 
-\begin{equation}
+\begin{equation}\label{eqn.at_strong_monoidal_times}
 (\poly,1,\times)\To{q\mapsto(\at{-}{q})}(\End(\polycart),\id,\circ)
 \end{equation}
 is strong monoidal. That is, for any $p,q,q'$ we have isomorphisms
-\begin{equation}
+\begin{equation}\label{eqn.at_p_1}
 	\at{p}{1}\cong p
 	\qqand
 	\at{p}{( q\times q')}\cong \at{(\at{p}{q})}{q'}.
 \end{equation}
-Thus for any $A:\smset$, we have
+Now by \eqref{eqn.at_add} and \eqref{eqn.at_p_1}, for any $A:\smset$, we have
 \begin{equation}
 \at{p}{A}\cong Ap.
 \end{equation}
@@ -1239,6 +1240,15 @@ There is also a natural map
 \at{p}{q}\to\at{p}{(p\times q)}
 \end{equation}
 %given by $(I,J,d)\mapsto\left(I,I,J,x\mapsto\begin{cases}x&\text{ if }x\in p[I]\\d(x)&\text{ if }x\in q[J]\end{cases}\right)$.
+Moreover, the functor in \eqref{eqn.at_strong_monoidal_times} in fact sends each $q$ to a colax duoidal endofunctor:
+\begin{gather}
+	(\at{-}{q})\colon(\poly,\yon,\otimes, \tri)\To{\tn{colax}}(\poly,\yon,\otimes, \tri)\\
+	\at{(p\tri p')}{q}\To{\cart}(\at{p}{q})\tri(\at{p'}{q})
+	\qqand
+	\at{(p\otimes p')}{q}\To{\cart}(\at{p}{q})\otimes(\at{p'}{q})\\
+	\at{\yon}{q}\To{\cart}\yon
+\end{gather}
+and the two maps $\at{\big((p_1\tri p_2)\otimes(p'_1\tri p'_2)\big)}{q}\to\big((\at{p_1}{q})\otimes(\at{p'_1}{q})\big)\tri\big((\at{p_2}{q})\otimes(\at{p'_2}{q})\big)$ agree.
 
 The category of polynomials is enriched in $\sspan(\poly)$:
 \begin{equation}
