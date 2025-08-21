@@ -1182,8 +1182,15 @@ There is a normal lax duoidal functor
 \end{equation}
 defined by
 \begin{equation}
-		\at{p}{q}\coloneqq p\frown\lens{p}{q}=\sum_{I:p(1)}(q\tri p[I])\yon^{p[I]}.
+		\at{p}{q}\coloneqq p\frown\lens{p}{q}.
 \end{equation}
+The formula for it can be written many ways
+\begin{align}
+	\at{p}{q}&\cong
+	\sum_{I:p(1)}\sum_{J:q(1)}\sum_{d\colon q[J]\to p[I]}\yon^{p[I]}\\&\cong
+	\sum_{I:p(1)}(q\tri p[I])\yon^{p[I]}\\&\cong
+	\sum_{J:q(1)}p_{\underbrace{*\cdots*}_{q[J]\text{ times}}}
+\end{align}
 Its defining property, which drops any mention of cartesianness, is
 \begin{equation}
 	\poly(\at{p}{q}, r)\cong\poly_{/p(1)}\left(\lens{p}{r},\lens{p}{q}\right).
@@ -1227,6 +1234,11 @@ The obvious map $\at{p}{(q\times q')}\to(\at{p}{q})\times(\at{p}{q}')$ factors t
 \begin{equation}
 	\at{p}{(q\times q')}\cong(\at{p}{q})\times_{p(1)}(\at{p}{q}').
 \end{equation}
+There is also a natural map
+\begin{equation}
+\at{p}{q}\to\at{p}{(p\times q)}
+\end{equation}
+%given by $(I,J,d)\mapsto\left(I,I,J,x\mapsto\begin{cases}x&\text{ if }x\in p[I]\\d(x)&\text{ if }x\in q[J]\end{cases}\right)$.
 
 The category of polynomials is enriched in $\sspan(\poly)$:
 \begin{equation}
