@@ -906,7 +906,7 @@ $
 \end{equation}
 
 The coclosure interacts with $\tri$ in a few different ways.
-\begin{equation}
+\begin{equation}\label{eqn.lens_tri}
 	p\cong\lens{p}{\yon}.
 	\qqand
 	\lens{\lens{p}{q}}{q'}\cong\lens{p}{q'\tri q}
@@ -925,6 +925,12 @@ Since $\lens{-}{q}$ is a left adjoint, it interacts with $+$ by
 	\qqand
 	\lens{p+p'}{q}\cong\lens{p}{q}+\lens{p'}{q}.
 \end{equation}
+It follows that for any set $A$, we have an isomorphism
+\begin{equation}\label{eqn.lens_Abase}
+	\lens{Ap}{q}\cong A\times\lens{p}{q}.
+\end{equation}
+
+
 Using Day convolution \eqref{eqn.dayx} and the unit \eqref{eqn.coclosure_unit_counit}, coclosure interacts with $\times$ and $\otimes$ by vertical maps
 \begin{equation}
  	\lens{1}{1}\cong\yon
@@ -998,27 +1004,31 @@ The coclosure interacts with cartesian closure by way of a natural map
 \begin{equation}
 	\lens{p\times q}{r}\to\lens{p}{r^q}.
 \end{equation}
-This map is almost never an isomorphism (if and only if $p=0$ or $q=1$). However, for any $A:\smset$, it is a ``$\yon^A$-local equivalence'', i.e.\ it induces an isomorphism
+This map is almost never an isomorphism (it is if and only if $p=0$ or $q=1$). However, for any $A:\smset$, it is always a ``$\yon^A$-local equivalence'', i.e.\ it induces a bijection
 \begin{equation}
 	\poly\left(\lens{p}{r^q},\yon^A\right)
 	\cong
 	\poly\left(\lens{pq}{r},\yon^A\right).
 \end{equation}
 
-All functors between cartesian categories are oplax monoidal; in the case of the functor $\lens{p}{-}$ for any $p:\poly$, the comultiplication map factors through an isomorphism:
-\begin{equation}
+All functors between cartesian categories are oplax monoidal; in the case of the functor $\lens{p}{-}$ for any $p:\poly$, the counit and comultiplication maps factor through isomorphisms:
+\begin{equation}\label{eqn.lens_plus_upstairs_pullback}
+	\lens{p}{0}\To{\cong}p(1)
+	\qqand
 	\lens{p}{q_1+q_2}\To{\cong}\lens{p}{q_1}\times_{p(1)}\lens{p}{q_2}
 \end{equation}
 
-For sets $A,B:\smset$ and polynomials $p,q:\poly$ there is an isomorphism
+For any $p$, we have an isomorphism (left), and it follows from \eqref{eqn.lens_plus_upstairs_pullback} that for any $B:\smset$ there are also isomorphisms (middle and right)
 \begin{equation}
-	\lens{Ap}{B+q}\cong\lens{A}{B}\times\lens{p}{q}
+  \lens{p}{1}\cong p(1)\yon
+  \qqand
+  \lens{p}{B}\cong p(1)\yon^B
+  \qqand
+  \lens{p}{B+\yon}\cong\yon^B\times p
 \end{equation}
-common cases of which are
+It follows from this, \eqref{eqn.tricoclose}, and \eqref{eqn.lens_Abase} that for any $A:\smset$ there is an isomorphism:
 \begin{equation}
-	\lens{p}{B}\cong p(1)\yon^B
-	\qqand
-	\lens{p}{B+\yon}\cong\yon^B\times p
+	\lens{A\times p}{B+q}\cong\lens{A}{B}\times\lens{p}{q}.
 \end{equation}
 
 For any symmetric monoidal product $(I,\cdot)$ on $\smset$, let $(\yon^I,\odot)$ be the associated symmetric monoidal product on $\poly$ (see \cref{eqn.day_all}). Then for any $p,q:\poly$ there is an isomorphism
