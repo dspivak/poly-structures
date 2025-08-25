@@ -1271,13 +1271,20 @@ Moreover, the functor in \eqref{eqn.at_strong_monoidal_times} in fact sends each
 \end{gather}
 and the two maps $\at{\big((p_1\tri p_2)\otimes(p'_1\tri p'_2)\big)}{q}\to\big((\at{p_1}{q})\otimes(\at{p'_1}{q})\big)\tri\big((\at{p_2}{q})\otimes(\at{p'_2}{q})\big)$ agree. Note, however, that the only $(\otimes)$- or $(\tri)$-comonoids in $\polycart$ are linear, i.e.\ of the form $A\yon$ for some $A:\smset$.
 
+There are natural maps
+\begin{equation}
+  p\tri(\at{r}{q})\to \at{(p\tri r)}{(p\tri q)}
+  \qqand
+  p\otimes(\at{r}{q})\to \at{(p\otimes r)}{(p\otimes q)}  
+\end{equation}
+
 The category of polynomials is enriched in $\sspan(\poly)$:
 \begin{equation}
   p\to\at{p}{p}
   \qqand
 	(\at{p}{q})\times_q(\at{q}{r})\cong\at{(\at{p}{q})}{r}\too \at{p}{r}
 \end{equation}
-and this enriched category is monoidal under $(+,\times,\otimes,\tri)$, by \eqref{eqn.atplus}, \eqref{eqn.attimes}, \eqref{eqn.atotimes}, \eqref{eqn.attri}.
+and this enriched category is monoidal under $(+,\times,\otimes,\tri)$, by \eqref{eqn.atplus}, \eqref{eqn.attimes}, \eqref{eqn.atotimes}, \eqref{eqn.attri}. In particular $p\from(\at{p}{p})\to p$ is an internal category object in $\poly$, natural in $p:\polycart$, and each $\at{p}{q}$ is an internal profunctor. 
 
 There is a natural map
 \begin{equation}
