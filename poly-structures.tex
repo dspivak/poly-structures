@@ -1219,15 +1219,15 @@ Its defining property, which drops any mention of cartesianness, is
 The normal lax duoidality says that $\yon\cong(\at{\yon}{\yon})$ and that we have coherent cartesian maps
 \begin{align}
 \label{eqn.atplus}
-	(\at{p}{q})+(\at{p'}{q'})&\to\at{(p+p')}{(q+ q')}\\
+	(\at{p}{q})+(\at{p'}{q'})&\To{\cart}\at{(p+p')}{(q+ q')}\\
 \label{eqn.attimes}
-	(\at{p}{q})\times(\at{p'}{q'})&\to\at{(p\times p')}{(q\times q')}\\
+	(\at{p}{q})\times(\at{p'}{q'})&\To{\cart}\at{(p\times p')}{(q\times q')}\\
 \label{eqn.atotimes}
-	(\at{p}{q})\otimes(\at{p'}{q'})&\to\at{(p\otimes p')}{( q\otimes q')}\\
+	(\at{p}{q})\otimes(\at{p'}{q'})&\To{\cart}\at{(p\otimes p')}{( q\otimes q')}\\
 \label{eqn.attri}
-	(\at{p}{q})\tri(\at{p'}{q'})&\to\at{(p\tri p')}{( q\tri q')},
-\intertext{and there is also a similar-looking map}
-	(\at{p}{q})\upup(\at{p'}{q'})&\to\at{(p\upup p')}{(q\tri q')}.
+	(\at{p}{q})\tri(\at{p'}{q'})&\To{\cart}\at{(p\tri p')}{( q\tri q')},
+\intertext{and there is also a similar-looking cartesian map}
+	(\at{p}{q})\upup(\at{p'}{q'})&\To{\cart}\at{(p\upup p')}{(q\tri q')}.
 \end{align}
 
 There is a natural cartesian map $\at{p}{q}\To{\cart} p$ and natural map $\at{p}{q}\to q$. For any $p,q$, the functors $(\at{p}{-}),(\at{-}{q})\colon\poly\to\polycart$ are cocartesian monoidal:
@@ -1258,9 +1258,9 @@ The obvious map $\at{p}{(q\times q')}\to(\at{p}{q})\times(\at{p}{q}')$ factors t
 \begin{equation}
 	\at{p}{(q\times q')}\cong(\at{p}{q})\times_{p(1)}(\at{p}{q}').
 \end{equation}
-There is also a natural map
+There is also a natural cartesian map
 \begin{equation}
-\at{p}{q}\to\at{p}{(p\times q)}.
+\at{p}{q}\To{\cart}\at{p}{(p\times q)}.
 \end{equation}
 %given by $(I,J,d)\mapsto\left(I,I,J,x\mapsto\begin{cases}x&\text{ if }x\in p[I]\\d(x)&\text{ if }x\in q[J]\end{cases}\right)$.
 Moreover, the functor in \eqref{eqn.at_strong_monoidal_times} in fact sends each $q$ to a colax duoidal endofunctor:
