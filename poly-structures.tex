@@ -888,11 +888,18 @@ The coclosure $\lens{p}{q}$ is covariant in $p$ and contravariant in $q$:
 \end{equation}
 and if $p\to p'$ is vertical or cartesian, then so is $\lens{p}{q}\to\lens{p'}{q}$, respectively. 
 
+Note that $\lens{x}{x}$ is a comonad for any $x:\poly$,
+\begin{equation}\label{eqn.lens.xx.comonad}
+	\lens{x}{x}\to\yon
+	\qqand
+	\lens{x}{x}\to\lens{x}{x}\tri\lens{x}{x}.
+\end{equation}
+
 A formal consequence of the existence of a coclosure is that $\poly$ is enriched in $(\poly\op,\yon,\tri)$ via
 \begin{equation}\label{eqn.ihom1}
 	\iHom(p,q)\coloneqq\lens{p}{q}
 \end{equation}
-and the unit and composition are derived from \eqref{eqn.coclosure_unit_counit}. Being a subcategory $\smset\ss\poly$ is also enriched in $(\poly\op,\yon,\tri)$ via\footnote{
+and the unit and composition are derived from \eqref{eqn.coclosure_unit_counit}. In fact, for any polynomial $x:\poly$, there is an enrichment $\iHom(p,q)\coloneqq\lens{p\tri x}{q\tri x}$. As a subcategory, $\smset\ss\poly$ is also enriched in $(\poly\op,\yon,\tri)$ via\footnote{
 In both \cref{eqn.ihom1,eqn.ihom2}, the underlying set of maps is as expected:
 $
 \poly\op\left(\yon,\lens{p}{q}\right)=\poly\left(\lens{p}{q},\yon\right)=\poly(p,q)
@@ -915,7 +922,10 @@ We have a natural map
 \begin{equation}\label{eqn.tricoclose}
 	\lens{p\tri p'}{q\tri q'}\to \lens{p\tri\lens{p'}{q'}}{q},
 \end{equation}
-and in the case that either $q'=Q'\yon$ or $p=P\yon$ is linear, \eqref{eqn.tricoclose} is an isomorphism. 
+and in the case that either $q'=Q'\yon$ or $p=P\yon$ is linear, \eqref{eqn.tricoclose} is an isomorphism. By \eqref{eqn.lens.xx.comonad}, for any $x:\ob\poly$ there is in particular a map natural in $p,q$:
+\begin{equation}
+\lens{p\tri x}{q\tri x}\to\lens{p}{q}.
+\end{equation}
 
 
 
