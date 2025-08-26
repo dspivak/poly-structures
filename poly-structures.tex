@@ -1208,7 +1208,7 @@ and evaluating at $1$ returns the usual bundle picture, since $(p\cocl{\varphi_1
 \footnote{I believe the Cartesian maps are precisely the exponentiable maps in $\poly$.}
 the maps $p_*\to p$ can be treated as $\poly$-polynomials in the sense of \cite{weber2015polynomials}, thus giving an embedding of $\poly$ into what might be denoted $\poly_\poly$.
 
-There is a normal lax duoidal functor 
+There is a normal lax duoidal functor, which we call the \emph{Kan residual}
 \begin{equation}
 	\at{-}{-}\colon(\polycart,1,\times,\yon,\otimes,\tri)\times(\poly,1,\times,\yon,\otimes,\tri)\to(\polycart,1,\times,\yon,\otimes,\tri)
 \end{equation}
@@ -1217,7 +1217,7 @@ defined by
 		\at{p}{q}\coloneqq p\frown\lens{p}{q}.
 \end{equation}
 The formula for it can be written many ways%
-\footnote{The notation $\at{p}{q}$ is supposed to very lightly evoke the notation from logic where $\phi[x/y]$ means substitute $x$'s in place of the $y$'s found in $\phi$. The function $d\colon q[J]\to p[I]$ in \eqref{eqn.at_main} is what let's us substitute $p$-directions in place of $q$-directions. See also \eqref{eqn.at_q_coalg_poly_over_q} for another justification of this notation.}
+\footnote{The notation $\at{p}{q}$ is supposed to very lightly evoke the notation from logic where $\phi[x/y]$ means substitute $x$'s in place of the $y$'s found in $\phi$. The function $d\colon q[J]\to p[I]$ in \eqref{eqn.at_main} is what let's us substitute $p$-directions in place of $q$-directions. See also \eqref{eqn.at_add2}, \eqref{eqn.at_p_1}, and \eqref{eqn.at_q_coalg_poly_over_q} for other justifications of this notation.}
 \begin{align}
 	\at{p}{q}&\cong\label{eqn.at_main}
 	\sum_{I:p(1)}\sum_{J:q(1)}\sum_{d\colon q[J]\to p[I]}\yon^{p[I]}\\&\cong
@@ -1242,14 +1242,20 @@ The normal lax duoidality says that $\yon\cong\at{\yon}{\yon}$ and that we have 
 	\at{p}{q}\upup\at{p'}{q'}&\To{\cart}\at{(p\upup p')}{(q\tri q')}.
 \end{align}
 
-There is a natural cartesian map $\at{p}{q}\To{\cart} p$ and natural map $\at{p}{q}\to q$. For any $p,q$, the functors $\at{p}{-},\at{-}{q}\colon\poly\to\polycart$ are cocartesian monoidal:
+For any $p,q$, the Kan residual $\at{p}{q}$ forms the apex of a span of natural maps, one of which is cartesian:
+\begin{equation}\label{eqn.KR_span}
+  \at{p}{q}\To{\cart} p
+  \qqand
+  \at{p}{q}\to q.
+\end{equation}
+For any $p,q$, the functors $\at{p}{-},\at{-}{q}\colon\poly\to\polycart$ are cocartesian monoidal:
 \begin{align}
 \label{eqn.at_add}
 \at{p}{0}&\cong 0
 &
 \at{p}{(q_1+q_2)}&\cong \at{p}{q_1}+\at{p}{q_2},\\
 \at{0}{q}&\cong 0
-&
+&\label{eqn.at_add2}
 \at{(p_1+p_2)}{q}&\cong \at{p_1}{q}+\at{p_2}{q}.
 \end{align}
 And the induced functor 
@@ -1276,6 +1282,7 @@ For any $q:\poly$, the functor $\at{-}{q}\colon\polycart\to\polycart$ is a comon
 \begin{equation}\label{eqn.at_q_coalg_poly_over_q}
 	\at{-}{q}\coalg\cong\poly_{/q}.
 \end{equation}
+Given a coalgebra $p\to\at{p}{q}$, one composes with $\at{p}{q}\to q$ from \eqref{eqn.KR_span} to obtain the map $p\to q$.
 
 By \eqref{eqn.at_add} and \eqref{eqn.at_p_1}, for any $A:\smset$, we have
 \begin{equation}
@@ -2183,12 +2190,12 @@ The $p\mapsto p(1)$ bifibration \eqref{eqn.bifib} gives us the terms \emph{verti
 \end{itemize}
 More explicitly, $\varphi$ is cartesian iff for each $I: p(1)$, the function $\varphi^\sharp_I\colon p[I]\to q[\varphi_1I]$ is a bijection. It is op-cartesian if for each $J: q(1)$ the map $q[J]\to\prod\limits_{\varphi_1(I)=J}p[I]$ is a bijection.
 
-There are at least four factorization systems on $\poly$:
+Let \emph{essentially-vertical} mean that $\varphi_1$ is a bijection, rather than identity. Then there are at least four factorization systems on $\poly$:
 \begin{itemize}
 	\item (epi, mono),
-	\item (vertical, cartesian),
-	\item (op-cartesian, vertical),
-	\item (taut, vertical epi).
+	\item (essentially-vertical, cartesian),
+	\item (op-cartesian, essentially-vertical),
+	\item (taut, essentially-vertical epi).
 \end{itemize}
 A natural transformation $\varphi\colon p\to q$ is \emph{taut} iff for all monomorphisms of sets $f\colon A\to B$, the naturality square for $f$ and $\varphi$ is a pullback. Par\'{e} showed that if $p,q$ are polynomials then $\varphi$ is taut iff for each $I:p(1)$ the map $\varphi_I^\sharp\colon q[\varphi(I)]\to p[I]$ is surjective. These form the left class of a factorization system whose right class are bijective on positions and injective on directions.
 
