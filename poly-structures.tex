@@ -329,6 +329,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\Span}{\Cat{Span}}
 \newcommand{\rect}{\Set{Rect}}
 \newcommand{\cart}{\tn{cart}}
+\newcommand{\tocart}{\To{\cart}}
 \newcommand{\polycart}{\poly^\cart}
 \newcommand{\ppoly}{\mathbb{P}\Cat{oly}}
 \newcommand{\0}{\textsf{0}}
@@ -1231,20 +1232,21 @@ Its defining property, which drops any mention of cartesianness, is
 The normal lax duoidality says that $\yon\cong\at{\yon}{\yon}$ and that we have coherent cartesian maps
 \begin{align}
 \label{eqn.atplus}
-	\at{p}{q}+\at{p'}{q'}&\To{\cart}\at{(p+p')}{(q+ q')}\\
+	\at{p}{q}+\at{p'}{q'}&\tocart\at{(p+p')}{(q+ q')}\\
 \label{eqn.attimes}
-	\at{p}{q}\times\at{p'}{q'}&\To{\cart}\at{(p\times p')}{(q\times q')}\\
+	\at{p}{q}\times\at{p'}{q'}&\tocart\at{(p\times p')}{(q\times q')}\\
 \label{eqn.atotimes}
-	\at{p}{q}\otimes\at{p'}{q'}&\To{\cart}\at{(p\otimes p')}{( q\otimes q')}\\
+	\at{p}{q}\otimes\at{p'}{q'}&\tocart\at{(p\otimes p')}{( q\otimes q')}\\
 \label{eqn.attri}
-	\at{p}{q}\tri\at{p'}{q'}&\To{\cart}\at{(p\tri p')}{( q\tri q')},
-\intertext{and there is also a similar-looking cartesian map}
-	\at{p}{q}\upup\at{p'}{q'}&\To{\cart}\at{(p\upup p')}{(q\tri q')}.
+	\at{p}{q}\tri\at{p'}{q'}&\tocart\at{(p\tri p')}{( q\tri q')},
+\intertext{and there is also a similar-looking cartesian map%
+\footnote{The $\upup$ map will be defined in \eqref{eqn.upup_formula}.}}
+	\at{p}{q}\upup\at{p'}{q'}&\tocart\at{(p\upup p')}{(q\tri q')}.
 \end{align}
 
 For any $p,q$, the Kan residual $\at{p}{q}$ forms the apex of a span of natural maps, one of which is cartesian:
 \begin{equation}\label{eqn.KR_span}
-  \at{p}{q}\To{\cart} p
+  \at{p}{q}\tocart p
   \qqand
   \at{p}{q}\to q.
 \end{equation}
@@ -1271,10 +1273,10 @@ is strong monoidal. That is, for any $p,q,q'$ we have isomorphisms
 Moreover, the functor in \eqref{eqn.at_strong_monoidal_times} in fact sends each $q$ to a colax duoidal endofunctor:
 \begin{gather}
 	\at{-}{q}\colon(\polycart,\yon,\otimes, \tri)\To{\tn{colax}}(\polycart,\yon,\otimes, \tri)\\
-	\at{(p\tri p')}{q}\To{\cart}\at{p}{q}\tri\at{p'}{q}
+	\at{(p\tri p')}{q}\tocart\at{p}{q}\tri\at{p'}{q}
 	\qqand
-	\at{(p\otimes p')}{q}\To{\cart}\at{p}{q}\otimes\at{p'}{q}\\
-	\at{\yon}{q}\To{\cart}\yon
+	\at{(p\otimes p')}{q}\tocart\at{p}{q}\otimes\at{p'}{q}\\
+	\at{\yon}{q}\tocart\yon
 \end{gather}
 and the two maps $\at{\big((p_1\tri p_2)\otimes(p'_1\tri p'_2)\big)}{q}\to\big(\at{p_1}{q}\otimes\at{p'_1}{q}\big)\tri\big(\at{p_2}{q}\otimes\at{p'_2}{q}\big)$ agree.%
 \footnote{Note, however, that the only $(\otimes)$- or $(\tri)$-comonoids in $\polycart$ are linear, i.e.\ of the form $A\yon$ for some $A:\smset$.}
@@ -1294,17 +1296,18 @@ The obvious map $\at{p}{(q\times q')}\to\at{p}{q}\times\at{p}{q}'$ factors throu
 \end{equation}
 There is also a natural cartesian map
 \begin{equation}
-\at{p}{q}\To{\cart}\at{p}{(p\times q)}.
+\at{p}{q}\tocart\at{p}{(p\times q)}.
 \end{equation}
 %given by $(I,J,d)\mapsto\left(I,I,J,x\mapsto\begin{cases}x&\text{ if }x\in p[I]\\d(x)&\text{ if }x\in q[J]\end{cases}\right)$.
 
 
-There are natural maps
-\begin{equation}
-  p\tri\at{r}{q}\to \at{(p\tri r)}{(p\tri q)}
-  \qqand
-  p\otimes\at{r}{q}\to \at{(p\otimes r)}{(p\otimes q)}  
-\end{equation}
+There are Cartesian natural maps%
+\footnote{The $\upup$ map will be defined in \eqref{eqn.upup_formula}.}
+\begin{align}
+  p\tri\at{q}{r}&\tocart \at{(p\tri q)}{(p\tri r)}\\
+  p\otimes\at{q}{r}&\tocart \at{(p\otimes q)}{(p\otimes r)}\\
+  p\upup\at{q}{r}&\tocart\at{(p\upup q)}{(p\upup r)}
+\end{align}
 
 The category of polynomials is enriched in $\sspan(\poly)$:
 \begin{equation}
@@ -1449,6 +1452,12 @@ All told, the above can be summarized as a strong rig monoidal functor
 \begin{equation}\label{eqn.upup_summary}
 \big(\polycart,0,+,\yon,\tri\big)\too\big(\Cat{ColaxEnd}(\poly,\yon,\tri),0,+,\id,\circ\big).
 \end{equation}
+There is also a natural map
+\begin{equation}
+	p\tri q\to(p\upup q)\otimes p
+\end{equation}
+given by $(I.J)\mapsto(I.J,I),(e,d)\mapsto(d,e(d))$.%
+\footnote{Here $I:p(1)$, $J:p[I]\to q(1)$, $e:\prod_{d:p[I]}q[J(d)]$, $d:p[I]$.}
 
 Often the $\upup$ construction is used in defining maps $p\upup q\to q$;
 \footnote{One can think of a map $p\upup q\to q$ as a structure where the positions of $q$ have $p[-]$-ary joins and the directions of $q$ constitute a presheaf on this ``lattice''. For example, if $A$ is a suplattice, $\cat{F}\colon A\op\to\smset$ is a presheaf on it, and $q\coloneqq\sum_{a:A}\yon^{\cat{F}(a)}$, then there is a map $p\upup q\to q$ given by
@@ -1797,7 +1806,7 @@ For any $p:\poly$ and $A:\smset$, there is an isomorphism
 In other words, $\cofree_{\cofree_A\tri p}\cong\cofree_p\tri\cofree_A$. For example, $\cofree_{A\yon^B}=\yon^{\List(B)}\tri(A\yon)$.
 
 
-For any cartesian map $p\To{\cart} q$, the induced map $\cofree_p\To{\cart}\cofree_q$ is also cartesian.
+For any cartesian map $p\tocart q$, the induced map $\cofree_p\tocart\cofree_q$ is also cartesian.
 
 %Suppose you want to compose two regular languages $r,s\in\cofree_{2\yon^A}(1)$ to give $r;s$. To do this, note that there is always a map $\cofree_{p+1}\otimes\cofree_q\to\cofree_{p+q}$ induced by the composite
 %\[\cofree_{p+\yon)\otimes\cofree_q\to (p+\yon)\otimes\cofree_q\to (p\otimes\yon)+(\yon\otimes q)\cong p+q.\]
@@ -2215,3 +2224,7 @@ is an epimorphism, but its pullback along $\psi$, the unique map $2\yon\to\yon^2
 
 \printbibliography 
 \end{document}
+
+
+
+
