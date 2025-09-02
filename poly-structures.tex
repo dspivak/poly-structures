@@ -688,11 +688,14 @@ The natural maps \eqref{eqn.Day}, defining $\times$ and $\otimes$ as Day convolu
 	(p_1\tri p_2)\times(q_1\tri q_2)&\to(p_1\otimes q_1)\tri(p_2\times q_2)\\
 \label{eqn.day+}
 	(p_1\tri p_2)\times(q_1\tri q_2)&\to(p_1\times q_1)\tri(p_2+q_2)
+\intertext{It is sometimes useful to factor \eqref{eqn.day+} through a map of the form}
+	(p_1\tri p_2)\times (q_1\tri q_2)&\to (p_1\times q_1) \tri\Big(p_2\times(q_1\tri q_2)+(p_1\tri p_2)\times q_2\Big).
 \end{align}
-Thus we obtain a natural map combining all four of the main monoidal products: $\tri$, $\otimes$, $\times$, and $+$:
-\begin{equation}\label{eqn.allfour}
-	(p_1\tri p_2\tri p_3)\times(q_1\tri q_2\tri q_3)\to (p_1\otimes q_1)\tri (p_2\times q_2)\tri(p_3+q_3)
-\end{equation}
+
+%Thus we obtain a natural map combining all four of the main monoidal products: $\tri$, $\otimes$, $\times$, and $+$:
+%\begin{equation}\label{eqn.allfour}
+%	(p_1\tri p_2\tri p_3)\times(q_1\tri q_2\tri q_3)\to (p_1\otimes q_1)\tri (p_2\times q_2)\tri(p_3+q_3)
+%\end{equation}
 %These commute with the duoidality maps \eqref{duoidal}.
 %These lead to interesting maps, e.g.\ $pq\to p\tri (q\yon)$ and $p(1)q\to p\tri q$.
 %Together these assemble into maps that sandwich a single $\times$ between arbitrary-length layers of $\otimes$'s and $+$'s, i.e.\ of the following form for any $i,j:\nn$ and $2(i+1+j)$-many polynomials denoted $\myred{p_{-i}},\myred{q_{-i}}\ldots,\myred{p_{-1}},\myred{q_{-1}},p_0,\mygreen{q_0}
@@ -951,6 +954,12 @@ Using Day convolution \eqref{eqn.dayx} and the unit \eqref{eqn.coclosure_unit_co
 	\qqand
   \lens{pp'}{qq'}\to\lens{p}{q}\otimes\lens{p'}{q'}.
 \end{equation}
+Using \eqref{eqn.day+} we also have
+\begin{equation}
+	\lens{1}{0}\cong 1
+	\qqand
+	\lens{pp'}{q+q'}\to\lens{p}{q}\lens{p'}{q'}.
+\end{equation}
 
 When $p=\yon^P$ is representable, we have
 \begin{equation}\label{eqn.cocl_rep}
@@ -1040,10 +1049,6 @@ For any $p$, we have an isomorphism (left), and it follows from \eqref{eqn.lens_
   \qqand
   \lens{p}{B+\yon}\cong\yon^B\times p
 \end{equation}
-It follows from this, \eqref{eqn.tricoclose}, and \eqref{eqn.lens_Abase} that for any $A:\smset$ there is an isomorphism:
-\begin{equation}
-	\lens{A\times p}{B+q}\cong\lens{A}{B}\times\lens{p}{q}.
-\end{equation}
 
 For any symmetric monoidal product $(I,\cdot)$ on $\smset$, let $(\yon^I,\odot)$ be the associated symmetric monoidal product on $\poly$ (see \cref{eqn.day_all}). Then for any $p,q:\poly$ there is an isomorphism
 \begin{equation}
@@ -1080,7 +1085,8 @@ The indexed coclosure is a very well-behaved structure.
 	(p\cocl{!}\yon^A)&\cong Ap\\
 	(p+p')\cocl{(f,f')}q&\cong(p\cocl{f}q)+(p'\cocl{f'}q)\\
 	(p+p')\cocl{f+f'}(q+q')&\cong(p\cocl{f}q)+(p'\cocl{f'}q')\\
-	p\cocl{(f,g)}(q\times q')&\cong(p\cocl{f}q)+(p\cocl{g}q')\\
+	p\cocl{(f,f')}(q\times q')&\cong(p\cocl{f}q)+(p\cocl{f'}q')\\
+	(p\times p')\cocl{\pi_1\then f}q&\cong(p\cocl{f}q)\times p'\\
 	(p\cocl{f}q)\times p'&\cong(p\times p')\cocl{(p\times!)\then f}q\\
 	(p\cocl{f}q)\tri p'&\cong(p\tri p')\cocl{(p\tri!)\then f}q\\
 	p\cocl{f}(q\tri r)&\cong(p\cocl{f.1}q)\cocl{f.2}r\\
@@ -1667,7 +1673,7 @@ whose unitor and co-productor have the form
 For any polynomial $p:\polycart$, the functor $(p\upup -)$ from \eqref{eqn.upup_formula} sends comonads to comonads. If $c$ is a comonad with corresponding category $\cat{C}$, then $p\upup c$ is the comonad with corresponding category $\sum_{I:p(1)}\cat{C}^{p[I]}$.
 
 
-Using the maps \eqref{eqn.allfour} have interesting consequences for exponentiating with base $t$, where $t$ is a monad. First, it gives a surprising lax monoidal functor $(\poly,\yon,\tri)\op\to(\poly,1,\times)$:
+Using the maps \eqref{eqn.dayx} and \eqref{eqn.day+}, we have interesting consequences for exponentiating with base $t$, where $t$ is a monad. First, it gives a surprising lax monoidal functor $(\poly,\yon,\tri)\op\to(\poly,1,\times)$:
 \begin{equation}\label{eqn.monad_times}
 	1\to t^\yon
 	\qqand
