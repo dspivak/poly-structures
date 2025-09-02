@@ -461,7 +461,9 @@ p&\mapsto X\mapsto\sum_{I:p(1)}X^{p[I]}
 \end{align} 
 The functor $\ext$ preserves coproducts, limits, and Cartesian closure, and it is fully faithful, meaning that a morphism between polynomials is a natural transformation $\varphi\colon \ext(p)\to \ext(q)$. What we denote $p(1)$ is actually $\ext(p)(1)$. By the Yoneda lemma and universal property of coproducts, a morphism in $\poly$ consists of a function $\varphi_1\colon p(1)\to q(1)$ and, for each $I: p(1)$ a function $\varphi^\sharp_I\colon q[\varphi_1(I)]\to p[I]$. A map $\varphi$ is called \emph{vertical} if $\varphi_1$ is identity on positions; it is called \emph{cartesian} if for each $I: p(1)$ the function $\varphi_I^\sharp$ is a bijection; see \cref{chap.bifib} for more on this. 
 
-The wide subcategory of polynomial functors and cartesian morphisms between them is denoted $\polycart$. It has all limits, but does not have all colimits (e.g.\ it does not have a  coequalizer of the two distinct maps $\yon^2\to\yon^2$). The composite functor $\polycart\to\poly\To{\ext}\Cat{Fun}(\smset,\smset)$ preserves all limits and all colimits that exist. The pushout of a cartesian map along any map is again cartesian, and $\ext$ preserves such pushouts.
+The wide subcategory of polynomial functors and cartesian morphisms between them is denoted $\polycart$. It has all limits, but does not have all colimits%
+\footnote{For example, $\polycart$ does not have a coequalizer of the two distinct maps $\yon^2\to\yon^2$.} 
+The composite functor $\polycart\to\poly\To{\ext}\Cat{Fun}(\smset,\smset)$ preserves all limits. The pushout of a cartesian map along any map is again cartesian, and $\ext$ preserves such pushouts.
 
 
 
