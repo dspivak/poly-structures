@@ -461,11 +461,11 @@ The functor $\smset\to\smset$ corresponding to $p:\poly$ is called its \emph{ext
 \ext\colon\poly&\to\End(\smset)\label{ext_functor}\\
 p&\mapsto X\mapsto\sum_{I:p(1)}X^{p[I]}
 \end{align} 
-The functor $\ext$ preserves coproducts, limits, and Cartesian closure, and it is fully faithful, meaning that a morphism between polynomials is a natural transformation $\varphi\colon \ext(p)\to \ext(q)$. What we denote $p(1)$ is actually $\ext(p)(1)$. By the Yoneda lemma and universal property of coproducts, a morphism in $\poly$ consists of a function $\varphi_1\colon p(1)\to q(1)$ and, for each $I: p(1)$ a function $\varphi^\sharp_I\colon q[\varphi_1(I)]\to p[I]$. A map $\varphi$ is called \emph{vertical} if $\varphi_1$ is identity on positions; it is called \emph{cartesian} if for each $I: p(1)$ the function $\varphi_I^\sharp$ is a bijection; see \cref{chap.bifib} for more on this. 
+The functor $\ext$ preserves coproducts, limits, and cartesian closure, and it is fully faithful, meaning that a morphism between polynomials is a natural transformation $\varphi\colon \ext(p)\to \ext(q)$. What we denote $p(1)$ is actually $\ext(p)(1)$. By the Yoneda lemma and universal property of coproducts, a morphism in $\poly$ consists of a function $\varphi_1\colon p(1)\to q(1)$ and, for each $I: p(1)$ a function $\varphi^\sharp_I\colon q[\varphi_1(I)]\to p[I]$. A map $\varphi$ is called \emph{vertical} if $\varphi_1$ is identity on positions; it is called \emph{cartesian} if for each $I: p(1)$ the function $\varphi_I^\sharp$ is a bijection; see \cref{chap.bifib} for more on this. 
 
-The wide subcategory of polynomial functors and cartesian morphisms between them is denoted $\polycart$. It has all limits, but does not have all colimits.%
+The subcategory of polynomial functors and cartesian morphisms between them is denoted $\polycart$. The wide, faithful functor $\polycart\to\poly$ creates all limits, coproducts, and filtered colimits; $\polycart$ does not have coequalizers.%
 \footnote{For example, $\polycart$ does not have a coequalizer of the two distinct maps $\yon^2\to\yon^2$.} 
-The composite functor $\polycart\to\poly\To{\ext}\End(\smset)$ preserves all limits and filtered colimits of monics. The pushout of a cartesian map along any map is again cartesian, and $\ext$ preserves such pushouts.
+In particular, the composite functor $\polycart\to\poly\To{\ext}\End(\smset)$ preserves all limits, coproducts, and filtered colimits. The pushout of a cartesian map along any map is again cartesian, and $\ext$ preserves such pushouts.
 
 
 
@@ -630,7 +630,7 @@ If $p:\poly$ is finitary (each $p[I]$ is a finite set) then for any sifted (e.g.
 \end{equation}
 is an isomorphism. In fact \cref{eqn.finitary_tri_sifted} also holds for any cardinal $\kappa$ such that $p[I]<\kappa$ for all $I:p(1)$, any $\kappa$-filtered category $\cat{J}$, and any diagram $q\colon \cat{J}\to\poly$.
 
-For any filtered category $\cat{I}$, diagram $p\colon \cat{I}\to\polycart$ of cartesian maps, and polynomial $q:\poly$, the natural map
+For any filtered category $\cat{I}$, diagram $p\colon \cat{I}\to\polycart$ of cartesian maps between polynomials $p_i$, and for any polynomial $q:\poly$, the natural map
 \begin{equation}\label{eqn.cart_tri}
 	\colim_{i: \cat{I}}(p_i\tri q)
 	\To{\cong}
@@ -726,7 +726,7 @@ These satisfy the defining universal properties:
   \poly(p',[p,q])&\cong\poly(p'\otimes p,q)\\
   \poly(p',\present{p,q}_S)&\cong\poly(p'\ovee_S p,q)
 \end{align}
-The first one, $q^p$, is the Cartesian closure; it is preserved by the forgetful functor $\ext\colon\poly\to\End(\smset)$. The third is not particularly interesting, as far as we know. The second one, $[p,q]$, is what we call the \emph{Dirichlet closure}; it has a very nice standard form:
+The first one, $q^p$, is the cartesian closure; it is preserved by the forgetful functor $\ext\colon\poly\to\End(\smset)$. The third is not particularly interesting, as far as we know. The second one, $[p,q]$, is what we call the \emph{Dirichlet closure}; it has a very nice standard form:
 \begin{equation}\label{eqn.dirichlet_hom_standard}
 [p,q]\cong\sum_{\varphi:\poly(p,q)}\yon^{\sum\limits_{I: p(1)}q[\varphi_1I]}
 \end{equation}
@@ -999,7 +999,7 @@ The coclosure interacts with the $\otimes$-closure (Dirichlet-hom) by maps
 \begin{equation}\label{eqn.shapiro_2}
 	\lens{p_1\otimes p_2}{q}\to\lens{p_1}{\left[p_2,q\right]}
 \end{equation}
-The map \eqref{eqn.cocl_closure1} is vertical. It is Cartesian (and hence an isomorphism) if $q_2$ is linear or $q_1$ is constant. The map \eqref{eqn.shapiro_2} is an isomorphism if $p_2$ is representable. For example, there is a map of the form
+The map \eqref{eqn.cocl_closure1} is vertical. It is cartesian (and hence an isomorphism) if $q_2$ is linear or $q_1$ is constant. The map \eqref{eqn.shapiro_2} is an isomorphism if $p_2$ is representable. For example, there is a map of the form
 \begin{equation}
   p_1\otimes p_2\to\lens{p_1}{[p_2,\yon]}.
 \end{equation}
@@ -1106,14 +1106,14 @@ Using $\frown$ we can define for any $p:\poly$ an object $p_*:\poly$ as follows.
 \begin{equation}\label{eqn.p_star}
 p_*\coloneqq p\cocl{\id}p=\sum_{I: p(1)}p[I]\yon^{p[I]}
 \end{equation}
-The assignment $p\mapsto p_*$ is not functorial in $\poly$, though it is functorial in the Cartesian morphisms
+The assignment $p\mapsto p_*$ is not functorial in $\poly$, though it is functorial in the cartesian morphisms
 \begin{equation}
 	(p\mapsto p_*)\colon\polycart\to\polycart
 \end{equation}
 The bundle representation of a polynomial $p$ is $p_*(1)\to p(1)$.
 
 In fact, the $p\mapsto p_*$ construction is strong monoidal with respect to $+$, $\otimes$, and hence $\OR$:%
-\footnote{Although there is a map of polynomials $\dot{p}\otimes\dot{q}\to\dot{(p\otimes q)}$, it is not Cartesian, and hence does not constitute any sort of lax monoidal structure on $p\mapsto\dot{p}$.}
+\footnote{Although there is a map of polynomials $\dot{p}\otimes\dot{q}\to\dot{(p\otimes q)}$, it is not cartesian, and hence does not constitute any sort of lax monoidal structure on $p\mapsto\dot{p}$.}
 \begin{align}
 	0_*\cong 0
 	&\qqand
@@ -1168,12 +1168,12 @@ and they extend to isomorphisms
 	(p\tri q)_*\cong(\dot{p}\tri q)q_*.
 \end{equation}
 
-Given a map $\varphi\colon p\to p'$ and a function $g\colon q(1)\to q'(1)$, there is a Cartesian map
+Given a map $\varphi\colon p\to p'$ and a function $g\colon q(1)\to q'(1)$, there is a cartesian map
 \begin{equation}
 	(p\cocl{\varphi\tri1}p')\tri(q\cocl{g}q')\to
 	(p\tri q)\cocl{\varphi\tri g}(p'\tri q'),
 \end{equation}
-natural in $p,q:\poly$ and $p',q':\polycart$. In particular, there is a Cartesian map
+natural in $p,q:\poly$ and $p',q':\polycart$. In particular, there is a cartesian map
 \begin{equation}
 	p_*\tri q_*\to(p\tri q)_*
 \end{equation}
@@ -1197,6 +1197,7 @@ There is a cartesian map
 \begin{equation}
 	p\to (p\otimes p)\tri p^=
 \end{equation}
+Note that $p^=$ is affine 
 
 The assignment $p\mapsto p_*$ is also functorial as a map $\poly\to\Span(\poly)$:
 \begin{align}
@@ -1216,7 +1217,7 @@ This functor is strong monoidal with respect to both $+$ and $\otimes$. One may 
 \end{tikzcd}
 \end{equation}
 and evaluating at $1$ returns the usual bundle picture, since $(p\cocl{\varphi_1}q)(1)\cong p(1)\times_{q(1)}q_*(1)$. Since cartesian maps in $\poly$ are exponentiable%
-\footnote{I believe the Cartesian maps are precisely the exponentiable maps in $\poly$.}
+\footnote{I believe the cartesian maps are precisely the exponentiable maps in $\poly$.}
 the maps $p_*\to p$ can be treated as $\poly$-polynomials in the sense of \cite{weber2015polynomials}, thus giving an embedding of $\poly$ into what might be denoted $\poly_\poly$.
 
 There is a normal lax duoidal functor, which we call the \emph{Kan residual}
@@ -1311,7 +1312,7 @@ There is also a natural cartesian map
 %given by $(I,J,d)\mapsto\left(I,I,J,x\mapsto\begin{cases}x&\text{ if }x\in p[I]\\d(x)&\text{ if }x\in q[J]\end{cases}\right)$.
 
 
-There are Cartesian natural maps%
+There are cartesian natural maps%
 \footnote{The $\upup$ map will be defined in \eqref{eqn.upup_formula}.}
 \begin{align}
   p\tri\at{q}{r}&\tocart \at{(p\tri q)}{(p\tri r)}\\
@@ -1640,12 +1641,12 @@ For any $(\times)$-monoid $(m,\eta,\mu)$, \eqref{eqn.lax_times_tensor} induces a
 %-------- Chapter --------%
 \chapter{Polynomial monads and comonads}\label{chap.monad_comonad}
 
-A polynomial monad is a monoid in $(\poly,\yon,\tri)$, i.e.\ a tuple $(t,\eta,\mu)$ where $t:\poly$ and where $\eta\colon\yon\to t$ and $\mu\colon t\tri t\to t$ satisfy the monoid laws. Note that the maps $\eta$ and $\mu$ are often asked to be Cartesian; we refer to these as \emph{Cartesian monads}. Finitary Cartesian monads can be identified with $\Sigma$-free (one-object) operads: $t(1)$ is the set of operations and for each $T:t(1)$ the set $t[T]$ is its arity; the unit and multiplication $(\eta,\mu)$ correspond to the identity and composition respectively. Morphisms between $(\tri)$-monoids are functors between operads.
+A polynomial monad is a monoid in $(\poly,\yon,\tri)$, i.e.\ a tuple $(t,\eta,\mu)$ where $t:\poly$ and where $\eta\colon\yon\to t$ and $\mu\colon t\tri t\to t$ satisfy the monoid laws. Note that the maps $\eta$ and $\mu$ are often asked to be cartesian; we refer to these as \emph{cartesian monads}. Finitary cartesian monads can be identified with $\Sigma$-free (one-object) operads: $t(1)$ is the set of operations and for each $T:t(1)$ the set $t[T]$ is its arity; the unit and multiplication $(\eta,\mu)$ correspond to the identity and composition respectively. Morphisms between $(\tri)$-monoids are functors between operads.
 
 
 A polynomial comonad is a comonoid in $(\poly,\yon,\tri)$, i.e.\ a tuple $(c,\epsilon,\delta)$ where $c:\poly$ and where $\epsilon\colon c\to\yon$ and $\delta\colon c\to c\tri c$ satisfy the comonoid laws. Polynomial comonads can be identified with categories: $c(1)$ is the set of objects, and for each $C:c(1)$ the set $c[C]$ is the set of outgoing arrows from that object; the counit corresponds to the identities and the comultiplication corresponds to the codomain and composition information. Morphisms of $(\tri)$-comonoids are not functors, but retrofunctors: we leave this to the reader to investigate.
 
-The category of $(\tri)$-comonoids has finite sums and products, with units $0$ and $\yon$ respectively; it also has another monoidal product $\otimes$ with unit $\yon$, which agrees with the usual Cartesian product of categories. The forgetful functor from $\tri$-comonoids to $\poly$ is strong monoidal with respect to $(0,+)$ and $(\yon,\otimes)$; we will discuss its right adjoint $\cofree$ below.
+The category of $(\tri)$-comonoids has finite sums and products, with units $0$ and $\yon$ respectively; it also has another monoidal product $\otimes$ with unit $\yon$, which agrees with the usual cartesian product of categories. The forgetful functor from $\tri$-comonoids to $\poly$ is strong monoidal with respect to $(0,+)$ and $(\yon,\otimes)$; we will discuss its right adjoint $\cofree$ below.
 
 The category of $(\tri)$-monoids has products; the terminal object is $(1,!,!)$, and the product $t\times t'$ has unit $(\eta,\eta')$, and its multiplication arises from \eqref{eqn.comp_times} and projection. The forgetful functor from $\tri$-monoids to $\poly$ is strong monoidal with respect to $\times$. 
 
@@ -1670,7 +1671,7 @@ whose unitor and co-productor have the form
 	\lens{p}{p\tri q_1\tri q_2}\to\lens{p}{p\tri q_2}\tri\lens{p}{p\tri q_1}
 \end{equation}
 
-For any cardinality $\kappa$, let $\kappa\poly$ denote the full subcategory of $\kappa$-small polynomials, and let $u_\kappa\coloneqq\sum_{|A|<\kappa}\yon^A$. For example, if $\kappa=\aleph_0$ is the smallest infinite cardinal then $u_\kappa=\uu$. Note that $u_\kappa$ has the structure of a Cartesian monad. Consider the Kleisli category $\kappa\polycart_{-\tri u_\kappa}$, whose objects are $\kappa$-small polynomials and whose maps are cartesian natural transformations $p\To{\tn{cart}} q\tri u_\kappa$. Then there is an isomorphism of categories
+For any cardinality $\kappa$, let $\kappa\poly$ denote the full subcategory of $\kappa$-small polynomials, and let $u_\kappa\coloneqq\sum_{|A|<\kappa}\yon^A$. For example, if $\kappa=\aleph_0$ is the smallest infinite cardinal then $u_\kappa=\uu$. Note that $u_\kappa$ has the structure of a cartesian monad. Consider the Kleisli category $\kappa\polycart_{-\tri u_\kappa}$, whose objects are $\kappa$-small polynomials and whose maps are cartesian natural transformations $p\To{\tn{cart}} q\tri u_\kappa$. Then there is an isomorphism of categories
 \begin{equation}
 	\kappa\polycart_{-\tri u_\kappa}\cong\kappa\Cat{Dir}
 \end{equation}
@@ -1889,7 +1890,7 @@ where $\beta$ is any limit ordinal, and where the maps $g_k\colon q_{\alpha}\to 
 	q_{\alpha+1}=\yon+(q\tri q_{\alpha})
 	\To{g_{\alpha+1}\coloneqq\yon+(q\tri g_\alpha)}\yon+(q\tri q_{\alpha+1})=q_{\alpha+2}
 \end{equation}
-The maps into $q_\beta$ are just the colimit inclusions when $\beta$ is a limit ordinal. Note that each map $g_\alpha$ is Cartesian. 
+The maps into $q_\beta$ are just the colimit inclusions when $\beta$ is a limit ordinal. Note that each map $g_\alpha$ is cartesian. 
 
 Analogous to \cref{eqn.cofree_iso} there is an isomorphism of polynomials
 \begin{equation}
@@ -1991,7 +1992,10 @@ For any $p:\poly$ there is a function
 \end{equation}
 since the initial $p$-algebra $\free_p\tri 0$ is also a $p$-coalgebra and $\cofree_p\tri 1$ is the final $p$-coalgebra. In case $p=A\yon+B$, this extends to a bijection 
 \begin{equation}
-	\left(\free_{A\yon+B}\tri 0\right) +\left(\cofree_{A\yon}\tri 1\right) \cong\cofree_{A\yon+B}\tri 1.
+	\cofree_{A\yon+B}\tri 1
+	\cong
+	\left(\free_{A\yon+B}\tri 0\right) +\left(\cofree_{A\yon}\tri 1\right)
+	\cong\sum_{N:\nn}A^NB+A^\nn.
 \end{equation}
 
 For any $p:\polycart$ there is a natural map
@@ -2061,7 +2065,7 @@ The rightward maps to $\smset$ are also distributive monoidal; indeed by \cref{e
 \end{equation}
 We denote the idempotent comonad $p\mapsto p(1)\yon$ by $\lin{p}$. It is strong monoidal with respect to $+,\otimes$ and lax monoidal with respect to $\tri$. 
 
-The functor $\Gamma$ can be derived from the Cartesian closure \eqref{eqn.cart_cl}
+The functor $\Gamma$ can be derived from the cartesian closure \eqref{eqn.cart_cl}
 \begin{equation}
   \Gamma(p)=\yon^p\tri 0=\prod_{I:p(1)}p[I]
 \end{equation}
