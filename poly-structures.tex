@@ -1975,15 +1975,19 @@ Using $\garner{\ovee}$ from \cref{eqn.garner_ovee}, there is also a lax monoidal
 	\free_p\garner{\ovee}\free_q\to\free_{p\garner{\ovee}q}.
 \end{equation}
 
-For any monad $t$ and set $A$, there is a distributive law of the form
+For any monad $t$ and set $A:\smset$, there is a distributive law of the form
 \begin{equation}
 	\free_A\tri t\to t\tri\free_A.
 \end{equation}
-If $t$ is (i.e.\ its unit and multiplication maps are) cartesian, then there is also a distributive law of the form
-\begin{equation}
+That is, $t\tri(\yon+A)$ is a monad.
+
+Recall that a natural transformation is \emph{taut} iff for all monomorphisms of sets $f\colon A\inj B$, the naturality square is a pullback. Par\'{e} showed that if $p,q$ are polynomials then $\varphi$ is taut iff for each $I:p(1)$ the map $\varphi_I^\sharp\colon q[\varphi(I)]\to p[I]$ is surjective. We say that a monad is \emph{taut} if its unit and multiplication maps are.
+
+If $t$ is taut, then there is also a distributive law of the form
+\begin{equation}\label{eqn.taut_distributive}
 	t\tri\free_A\to \free_A\tri t,
 \end{equation}
-e.g.\ $t+1$ is also a monad.
+e.g.\ $t+A$ is also a monad. 
 
 
 For any $p:\poly$ there is a function
@@ -2195,6 +2199,7 @@ For any polynomial comonad $(c,\epsilon,\delta)$, there is a comonad on $\poly$ 
 \end{align}
 While this is basically trivial, it is useful e.g.\ for $c=2\yon$ and other linear polynomials, because $p\tri 2\yon\cong\sum_{I:p(1)}\sum_{U\ss p[I]}\yon^{p[I]}$ allows one to ``specify a desired outcome as part of the position''.
 
+
 \chapter{*-Bifibration over $\smset$ and factorization systems}\label{chap.bifib}
 
 The functor
@@ -2255,7 +2260,7 @@ Let \emph{essentially-vertical} mean that $\varphi_1$ is a bijection, rather tha
 	\item (op-cartesian, essentially-vertical),
 	\item (taut, essentially-vertical epi).
 \end{itemize}
-A natural transformation $\varphi\colon p\to q$ is \emph{taut} iff for all monomorphisms of sets $f\colon A\to B$, the naturality square for $f$ and $\varphi$ is a pullback. Par\'{e} showed that if $p,q$ are polynomials then $\varphi$ is taut iff for each $I:p(1)$ the map $\varphi_I^\sharp\colon q[\varphi(I)]\to p[I]$ is surjective. These form the left class of a factorization system whose right class are bijective on positions and injective on directions.
+See above \eqref{eqn.taut_distributive} for the definition and a characterization of taut maps. These form the left class of a factorization system whose right class are bijective on positions and injective on directions.
 
 We note that $\poly$ is not a regular category because epimorphisms (and hence image factorizations) are not stable under pullback. Indeed, the notationally-indicated bottom map in the pullback diagram
 \begin{equation}
