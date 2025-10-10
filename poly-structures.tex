@@ -338,8 +338,8 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\1}{\tn{\textsf{1}}}
 \newcommand{\tri}{\mathbin{\triangleleft}}
 \newcommand{\irt}{\mathbin{\triangleright}}
-\newcommand{\at}[2]{\left[#1\mathbin{/}#2\right]}
-%\newcommand{\at}[2]{#1\mathbin{/}#2}
+%\newcommand{\at}[2]{\left[#1\mathbin{/}#2\right]}
+\newcommand{\at}[2]{#1/#2}
 \newcommand{\tripow}[1]{^{\tri #1}}
 \newcommand{\tenspow}[1]{^{\otimes #1}}
 \newcommand{\indep}{\Fun{Indep}}
@@ -1191,13 +1191,13 @@ For any polynomial $p$, there is a map
 \end{align}
 The vertical-cartesian factorization of $(p_*)_*\to\yon+1$ was called the \emph{identity type} for $p$ in \cite{aberle2024polynomial}; it is
 \begin{equation}
-	p^=\coloneqq\sum_{i:p(1)}\sum_{d_1,d_2:p[i]}\yon^{\begin{cases}1&\text{ if } d_1=d_2 \\0&\text{ if }d_1\neq d_2\end{cases}}
+	p^=\coloneqq\sum_{i:p(1)}\sum_{d_1,d_2:p[i]}\yon^{\footnotesize\begin{cases}1&\text{ if } d_1=d_2 \\0&\text{ if }d_1\neq d_2\end{cases}}
 \end{equation}
 There is a cartesian map
 \begin{equation}
 	p\to (p\otimes p)\tri p^=
 \end{equation}
-Note that $p^=$ is affine 
+Note that $p^=$ is affine, i.e.\ of the form $A\yon+B$ for $A,B:\smset$.
 
 The assignment $p\mapsto p_*$ is also functorial as a map $\poly\to\Span(\poly)$:
 \begin{align}
@@ -1212,8 +1212,8 @@ That is, for any $p\To{\varphi}q\To{\psi}r$, there is an isomorphism
 This functor is strong monoidal with respect to both $+$ and $\otimes$. One may think of it as representing the bundle view of $\poly$. Indeed, for any $p:\poly$ we have a counit map $\epsilon_p\colon p_*\to p$, and given $\varphi\colon p\to q$, there is an induced span
 \begin{equation}
 \begin{tikzcd}
-	 p_*\ar[d]&p\cocl{\varphi_1}q\ar[d]\ar[l]\ar[r]& q_*\ar[d]\\
-	p\ar[r, equal]&p\ar[r,"\varphi"']&q
+	 p_*\ar[d, "\cart"']&p\cocl{\varphi_1}q\ar[d]\ar[l, "\cart"']\ar[r]& q_*\ar[d, "\cart"]\\
+	p\ar[r, equal]&p\ar[r,"\varphi"']&q\ar[ul, phantom, very near end, "\lrcorner"]
 \end{tikzcd}
 \end{equation}
 and evaluating at $1$ returns the usual bundle picture, since $(p\cocl{\varphi_1}q)(1)\cong p(1)\times_{q(1)}q_*(1)$. Since cartesian maps in $\poly$ are exponentiable%
@@ -1249,11 +1249,25 @@ The normal lax duoidality says that $\yon\cong\at{\yon}{\yon}$ and that we have 
 \label{eqn.atotimes}
 	\at{p}{q}\otimes\at{p'}{q'}&\tocart\at{(p\otimes p')}{( q\otimes q')}\\
 \label{eqn.attri}
-	\at{p}{q}\tri\at{p'}{q'}&\tocart\at{(p\tri p')}{( q\tri q')},
-\intertext{and there is also a similar-looking cartesian map%
-\footnote{The $\upup$ map will be defined in \eqref{eqn.upup_formula}.}}
-	\at{p}{q}\upup\at{p'}{q'}&\tocart\at{(p\upup p')}{(q\tri q')}.
+	\at{p}{q}\tri\at{p'}{q'}&\tocart\at{(p\tri p')}{( q\tri q')}.
 \end{align}
+These arise from cartesian natural maps%
+
+\begin{align}
+  p\times(\at{q}{r})&\tocart \at{(p\times q)}{(p\times r)}&
+	(\at{p}{q})\times r&\tocart \at{(p\times r)}{(q\times r)}\\  
+	p\otimes(\at{q}{r})&\tocart \at{(p\otimes q)}{(p\otimes r)}&
+	(\at{p}{q})\otimes r&\tocart \at{(p\otimes r)}{(q\otimes r)}\\
+  p\tri(\at{q}{r})&\tocart \at{(p\tri q)}{(p\tri r)}&
+	(\at{p}{q})\tri r&\tocart \at{(p\tri r)}{(q\tri r)}.
+\end{align}
+
+There is also a cartesian natural map,%
+\footnote{The $\upup$ map will be defined in \eqref{eqn.upup_formula}.}
+\begin{align}
+  p\upup(\at{q}{r})&\tocart\at{(p\upup q)}{(p\upup r)}.
+ \end{align}
+
 
 For any $p,q$, the Kan residual $\at{p}{q}$ forms the apex of a span of natural maps, one of which is cartesian:
 \begin{equation}\label{eqn.KR_span}
@@ -1279,7 +1293,7 @@ is strong monoidal. That is, for any $p,q,q'$ we have isomorphisms
 \begin{equation}\label{eqn.at_p_1}
 	\at{p}{1}\cong p
 	\qqand
-	\at{p}{( q\times q')}\cong \at{\at{p}{q}}{q'}.
+	\at{p}{( q\times q')}\cong \at{(\at{p}{q})}{q'}.
 \end{equation}
 Moreover, the functor in \eqref{eqn.at_strong_monoidal_times} in fact sends each $q$ to a colax duoidal endofunctor:
 \begin{gather}
@@ -1311,14 +1325,6 @@ There is also a natural cartesian map
 \end{equation}
 %given by $(I,J,d)\mapsto\left(I,I,J,x\mapsto\begin{cases}x&\text{ if }x\in p[I]\\d(x)&\text{ if }x\in q[J]\end{cases}\right)$.
 
-
-There are cartesian natural maps%
-\footnote{The $\upup$ map will be defined in \eqref{eqn.upup_formula}.}
-\begin{align}
-  p\tri\at{q}{r}&\tocart \at{(p\tri q)}{(p\tri r)}\\
-  p\otimes\at{q}{r}&\tocart \at{(p\otimes q)}{(p\otimes r)}\\
-  p\upup\at{q}{r}&\tocart\at{(p\upup q)}{(p\upup r)}
-\end{align}
 
 The category of polynomials is enriched in $\sspan(\poly)$:
 \begin{equation}
