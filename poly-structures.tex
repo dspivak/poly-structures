@@ -690,10 +690,11 @@ The natural maps \eqref{eqn.Day}, defining $\times$ and $\otimes$ as Day convolu
 	(p_1\tri p_2)\times(q_1\tri q_2)&\to(p_1\otimes q_1)\tri(p_2\times q_2)\\
 \label{eqn.day+}
 	(p_1\tri p_2)\times(q_1\tri q_2)&\to(p_1\times q_1)\tri(p_2+q_2)
-\intertext{It is sometimes useful to factor \eqref{eqn.day+} through a map of the form}
-	(p_1\tri p_2)\times (q_1\tri q_2)&\to (p_1\times q_1) \tri\Big(p_2\times(q_1\tri q_2)+(p_1\tri p_2)\times q_2\Big).
 \end{align}
-
+It is sometimes useful to factor \eqref{eqn.day+} through a map of the form
+\begin{equation}
+	(p_1\tri p_2)\times (q_1\tri q_2)\to (p_1\times q_1) \tri\Big(p_2\times(q_1\tri q_2)+(p_1\tri p_2)\times q_2\Big).
+\end{equation}
 %Thus we obtain a natural map combining all four of the main monoidal products: $\tri$, $\otimes$, $\times$, and $+$:
 %\begin{equation}\label{eqn.allfour}
 %	(p_1\tri p_2\tri p_3)\times(q_1\tri q_2\tri q_3)\to (p_1\otimes q_1)\tri (p_2\times q_2)\tri(p_3+q_3)
@@ -1567,16 +1568,26 @@ and this is the free $(\times)$-monoid on $p$.
 
 A representable $\yon^S$ carries a monoid structure iff $S=0$, in which case it is the terminal monoid. We know from \eqref{eqn.t^c_times_monoid} that $t^c$ carries a $(\times)$-monoid structure for any polynomial monad $t$ and comonad $c$.
 
-Suppose that $m,n$ are $(\times)$-monoids, $a$ is a $(\otimes)$-monoid, $t$ is a $(\tri)$-monoid, and $p, q$ are any polynomials; then:
+Suppose that $m,n$ are $(\times)$-monoids, $a$ is a $(\otimes)$-monoid, and $p, q$ are any polynomials; then:%
+\footnote{
+\eqref{mn:monoid}: $mnmn\cong mmnn\to mn$.\\
+\eqref{m+p:monoid}: $(m+p)(m+p)\cong mm+mp+pm+pp\to m+p+p+pp\to m+p+pp$, and there are two ($j=1$ or $j=2$) maps $pp\to 1+p$ that work, $(I_1,I_2)\mapsto\begin{cases}1&\tn{ if }I_1\neq I_2\\I_j&\tn{ if }I_1=I_2\end{cases}$.\\
+\eqref{m tri p:monoid}: $(m\tri p)(m\tri p)\To{\eqref{eqn.day+}}(m\times m)\tri(p+p)\to m\tri p$.\\
+\eqref{[p,m]:monoid}: $[p,m][p,m]\to[p,p\otimes[p,m][p,m]]\to[p,pp\otimes[p,m][p,m]]\to[p,(p\otimes[p,m])(p\otimes[p,m])\to mm\to m$.\\
+\eqref{m to p:monoid}: $m^p\times m^p=(mm)^p\to m^p$.\\
+\eqref{a tri m:monoid}: $(a\tri m)(a\tri m)\To{\eqref{eqn.dayx}}(a\otimes a)\tri(mm)\to a\tri m$.\\
+\eqref{mp to p:monoid}: $(mp)^p(mp)^p\to(p(mp)^p(mp)^p)^p\to (mp(mp)^p)^p\to (mmp)^p\to *mp)^p$.\\
+\eqref{p to qp:monoid}: $p^{qp}p^{qp}\to (qpp^{qp}p^{qp})^{qp}\to(qqpp^{qp}p^{qp})^{qp}\to(qpp^{qp})^{qp}\to p^{qp}$.
+}
 \begin{align}
-	mn&\quad\tn{carries the structure of a $(\times)$-monoid}\\
-	m+p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
-	m\tri p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
-	[p,m]&\quad\tn{carries the structure of a $(\times)$-monoid}\\
-	m^p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
-	a\tri m&\quad\tn{carries the structure of a $(\times)$-monoid}\\
-	(mp)^p&\quad\tn{carries the structure of a $(\times)$-monoid}\\
-	p^{qp}&\quad\tn{carries the structure of a $(\times)$-monoid}
+	mn&\quad\tn{carries the structure of a $(\times)$-monoid}\label{mn:monoid}\\
+	m+p&\quad\tn{carries the structure of a $(\times)$-monoid}\label{m+p:monoid}\\
+	m\tri p&\quad\tn{carries the structure of a $(\times)$-monoid}\label{m tri p:monoid}\\
+	[p,m]&\quad\tn{carries the structure of a $(\times)$-monoid}\label{[p,m]:monoid}\\
+	m^p&\quad\tn{carries the structure of a $(\times)$-monoid}\label{m to p:monoid}\\
+	a\tri m&\quad\tn{carries the structure of a $(\times)$-monoid}\label{a tri m:monoid}\\
+	(mp)^p&\quad\tn{carries the structure of a $(\times)$-monoid}\label{mp to p:monoid}\\
+	p^{qp}&\quad\tn{carries the structure of a $(\times)$-monoid}\label{p to qp:monoid}
 \end{align}
 \
 \paragraph{$(\otimes)$-monoids and comonoids.}
