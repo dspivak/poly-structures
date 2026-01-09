@@ -1301,16 +1301,13 @@ is strong monoidal. That is, for any $p,q,q'$ we have isomorphisms
 	\qqand
 	\at{p}{( q\times q')}\cong \at{(\at{p}{q})}{q'}.
 \end{equation}
-Moreover, the functor in \eqref{eqn.at_strong_monoidal_times} in fact sends each $q$ to a colax duoidal endofunctor:
+Moreover, the functor in \eqref{eqn.at_strong_monoidal_times} in fact sends each $q$ to a colax monoidal endofunctor:
 \begin{gather}
-	\at{-}{q}\colon(\polycart,\yon,\otimes, \tri)\To{\tn{colax}}(\polycart,\yon,\otimes, \tri)\\
-	\at{(p\tri p')}{q}\tocart\at{p}{q}\tri\at{p'}{q}
-	\qqand
-	\at{(p\otimes p')}{q}\tocart\at{p}{q}\otimes\at{p'}{q}\\
+	\at{-}{q}\colon(\polycart,\yon,\otimes)\To{\tn{colax}}(\polycart,\yon,\otimes)\\
 	\at{\yon}{q}\tocart\yon
+	\qqand
+	\at{(p\otimes p')}{q}\tocart\at{p}{q}\otimes\at{p'}{q}
 \end{gather}
-and the two maps $\at{\big((p_1\tri p_2)\otimes(p'_1\tri p'_2)\big)}{q}\to\big(\at{p_1}{q}\otimes\at{p'_1}{q}\big)\tri\big(\at{p_2}{q}\otimes\at{p'_2}{q}\big)$ agree.%
-\footnote{Note, however, that the only $(\otimes)$- or $(\tri)$-comonoids in $\polycart$ are linear, i.e.\ of the form $A\yon$ for some $A:\smset$.}
 For any $q:\poly$, the functor $\at{-}{q}\colon\polycart\to\polycart$ is a comonad; its category of coalgebras is
 \begin{equation}\label{eqn.at_q_coalg_poly_over_q}
 	\at{-}{q}\coalg\cong\poly_{/q}.
