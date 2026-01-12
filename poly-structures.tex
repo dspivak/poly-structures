@@ -1856,6 +1856,11 @@ It also has natural comonoid homomorphisms of the form
 \end{equation}
 that arise from the counits of any comonoid, as well as the distributivity of $\otimes$ over $+$.
 
+Given any $p,q:\poly$ and map $p\to q\tri p$, there is an induced $\cofree_q$-comodule
+\begin{equation}\label{eqn.induced_comodule}
+p\to\cofree_q\tri p.
+\end{equation}
+
 %Using induction$^?$, \cref{eqn.cofree_iso,eqn.calculus,eqn.unfolding_list}, one can construct a ``counterfactuals'' map 
 %\begin{equation}
 %	\cofree_p\to\cofree_p\tri\uu\tri p_*
@@ -2004,9 +2009,9 @@ Recall that a natural transformation is \emph{taut} iff for all monomorphisms of
 
 If $t$ is taut, then there is also a distributive law of the form
 \begin{equation}\label{eqn.taut_distributive}
-	t\tri\free_A\to \free_A\tri t,
+	t\tri(\yon+1)\to (\yon+1)\tri t,
 \end{equation}
-e.g.\ $t+A$ is also a monad. 
+e.g.\ $t+1$ is also a monad. 
 
 
 For any $p:\poly$ there is a function
@@ -2039,6 +2044,13 @@ where for an arbitrary $q:\poly$ we write $\epsilon\colon q_*\to\yon$ to denote 
 %	\cofree_\at{p}{q}\to\free_\at{p}{q}
 %\end{equation*}
 %for any $p,q$. When $q=1$, it factors through the counit $\cofree_p\at 1\cong\cofree_p\to\yon\to\free_p$.
+
+For any $p:\poly$ the map $\yon+p\tri\free_p\to(\yon+p)\tri\free_p$ induces \eqref{eqn.induced_comodule} a comodule
+\begin{equation}
+\free_p\to\cofree_{\yon+p}\tri\free_p.
+\end{equation}
+The intuition is that given a well-founded $p$-tree $T$, we get a discrete dynamical system that behaves like $T$ until it hits a leaf, at which point it just returns forever; given a state in that dynamical system
+
 
 For any polynomials $p,q:\poly$ and map $\varphi\colon q\tri p\to p\tri q$, there is an induced map
 \begin{equation}\label{eqn.spooling}
