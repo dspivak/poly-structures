@@ -401,6 +401,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\garner}[1]{\mathbin{\ul{#1}}}
 
 \newcommand{\coalg}{\tn{-}\Cat{Coalg}}
+\newcommand{\alg}{\tn{-}\Cat{Alg}}
 \newcommand{\ext}{\fun{Ext}}
 
 \newcommand{\bic}[2]{{}_{#1}\Cat{Comod}_{#2}}
@@ -1378,14 +1379,20 @@ For any polynomial $p$, let $\lin{p}\coloneqq p(1)\yon$. For any $p,q:\poly$ the
 \end{equation}
 where the unwritten indices of $\cocl{}$ and $\hyper{}$ are both the identity on $p(1)$.
 
-For any $q:\poly$ and $A:\smset$, let $q\coalg[A]:\smset$ denote the set $\smset(A,q(A))$ of $q$-coalgebra structures on $A$. For a polynomial $p$, let $q\coalg_p\coloneqq\sum_{I:p(1)}\yon^{q\coalg[p[I]]}$. Then there is an isomorphism%
+For any $q:\poly$ and $A:\smset$, let $q\coalg[A]:\smset$ denote the set $\smset(A,q(A))$ of $q$-coalgebra structures on $A$ and let $q\alg[A]:\smset$ denote the set $\smset(q(A),A)$ of $q$-algebra structures on $A$. For a polynomial $p$, let $q\coalg_p\coloneqq\sum_{I:p(1)}\yon^{q\coalg[p[I]]}$ and $q\alg_p\coloneqq\sum_{I:p(1)}\yon^{q\alg[p[I]]}$. Then there are isomorphisms%
 \footnote{As usual, the unwritten index of $\hyper{}$ in \cref{eqn.hyper_coalg} is the identity on $p(1)$.}
 \begin{equation}\label{eqn.hyper_coalg}
 	q\coalg_p
 	\cong
 	\lens{p}{q}\hyper{}p
+	\qqand
+	q\alg_p
+	\cong
+	p\hyper{}\lens{p}{q}
 \end{equation}
-For example, $\yon^{q\coalg[A]}\cong\lens{\yon^A}{q}\hyper{}\yon^A$.
+For example, $\yon^{q\coalg[A]}\cong\lens{\yon^A}{q}\hyper{}\yon^A$ and $\yon^{q\alg[A]}\cong\yon^A\hyper{}\lens{\yon^A}{q}$.
+
+
 
 
 %-------- Chapter --------%
