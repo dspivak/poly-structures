@@ -1184,7 +1184,7 @@ which is part of a normal lax monoidal functor $-_*\colon(\poly,\yon,\tri)\to(\p
 
 For any polynomial $p$, there is a map
 \begin{align}
-	(p_*)_*&\to\yon+1=\sum_{i:\{0,1\}}\yon^i\\
+	(p_*)_*&\to\yon+1\cong\sum_{i:\{0,1\}}\yon^i\\
 	(i,d_1,d_2)&\mapsto
 	\begin{cases}
 		(1,d_1)&\text{ if } d_1=d_2 \\
@@ -1675,6 +1675,22 @@ A polynomial comonad is a comonoid in $(\poly,\yon,\tri)$, i.e.\ a tuple $(c,\ep
 The category of $(\tri)$-comonoids has finite sums and products, with units $0$ and $\yon$ respectively; it also has another monoidal product $\otimes$ with unit $\yon$, which agrees with the usual cartesian product of categories. The forgetful functor from $\tri$-comonoids to $\poly$ is strong monoidal with respect to $(0,+)$ and $(\yon,\otimes)$; we will discuss its right adjoint $\cofree$ below.
 
 The category of $(\tri)$-monoids has products; the terminal object is $(1,!,!)$, and the product $t\times t'$ has unit $(\eta,\eta')$, and its multiplication arises from \eqref{eqn.comp_times} and projection. The forgetful functor from $\tri$-monoids to $\poly$ is strong monoidal with respect to $\times$. 
+
+For any cartesian monad $(t,\eta,\mu)$, the endofunctor $(t\tri-):\poly\to\poly$ is $[-,-]$-enriched, i.e.\ there is a natural map%
+\footnote{The map $\Phi_t\colon[p,q]\to[t\tri p,t\tri q]$ on positions sends $\varphi\mapsto t\tri\varphi$. A direction in $[t\tri p, t\tri q]$ consists of a position in $t\tri p$ and a direction at its image in $t\tri q$. A position of $t\tri p$ is some $T:t(1)$ and function $P\colon t[T]\to p(1)$; a direction at $\varphi(T,P):t\tri q(1)$ is $(a,e):\sum_{a:t(1)}q[\varphi(Pa)]$. So on directions, $\Phi_t$ sends $(T,P,a,e)$ to $(Pa, e)$.}
+\begin{equation}
+	\Phi_t\colon[p,q]\to[t\tri p,t\tri q]
+\end{equation}
+as well as a \emph{return} and a \emph{bind} map:%
+\footnote{The bind map $[p,t\tri q]\to[t\tri p,t\tri q]$ uses the cartesianness of $t$, or more specifically $\mu\colon t\tri t\to t$; given $(T,T'):t\tri t(1)$, we will implicitly use the isomorphism $t[\mu(T,T')]\cong\sum_{a:t[T]}t[T'a]$. 
+
+Given a position $\varphi\colon p\to t\tri q$ in $[p,t\tri q]$ we get a position $t\tri p\To{t\tri\varphi}t\tri t\tri q\To{mu}t\tri q$ in $[t\tri p,t\tri q]$. For each $P:p(1)$, let's write $(T_P,Q_P):t\tri q(1)$ for its image. A direction in $[t\tri p,t\tri q]$ is a position $(T,P):t\tri p(1)$ and a direction $(a,a',e):\sum_{a:t[T]}\sum_{a':t[T_{Pa}]}q[Qa']$; we send it back to $(Pa, a', e)$.}
+\begin{equation}
+	\yon\To{\eta}[p,t\tri p]
+	\qqand
+	[p,t\tri q]\to[t\tri p,t\tri q]
+\end{equation}
+following all the properties from the \href{https://ncatlab.org/nlab/show/enriched+monad}{nlab page on enriched monads}.
 
 For any polynomial monad $(t,\eta,\mu)$, and polynomial $p\colon$, the left Kan extension $\lens{p}{p\tri t}$ is a $\tri$-comonad
 \begin{equation}\label{eqn.comonad_from_monad}
