@@ -847,6 +847,11 @@ Because of duoidality \eqref{duoidal}, $\otimes$-closure interacts with substitu
 	[p_1,q_1]\tri[p_2,q_2]\to [p_1\tri p_2,q_1\tri q_2].
 \end{equation}
 
+For any set $A:\smset$ and polynomials $p,q:\poly$, there is a natural functor
+\begin{equation}
+[Ap,Aq]\coalg\to[p,q]\coalg.
+\end{equation}
+This follows from \eqref{eqn.innerhom_adj}: there is a map $[Ap,Aq]\to[A\yon^A,[p,q]]$.
 
 Dirichlet-mapping into $\yon$ is often of interest; we have the following maps and isomorphisms:
 \begin{align}
@@ -1692,11 +1697,11 @@ Given a position $\varphi\colon p\to t\tri q$ in $[p,t\tri q]$ we get a position
 \end{equation}
 following all the properties from the \href{https://ncatlab.org/nlab/show/enriched+monad}{nlab page on enriched monads}.
 
-For any polynomial monad $(t,\eta,\mu)$, and polynomial $p\colon$, the left Kan extension $\lens{p}{p\tri t}$ is a $\tri$-comonad
+For any polynomial monad $(t,\eta,\mu)$, and polynomial $p\colon$, the left Kan extension $\lens{p}{p\tri\, t}$ is a $\tri$-comonad
 \begin{equation}\label{eqn.comonad_from_monad}
-  \lens{p}{p\tri t}\to\yon
+  \lens{p}{p\tri\, t}\to\yon
   \qqand
-  \lens{p}{p\tri t}\to\lens{p}{p\tri t}\tri\lens{p}{p\tri t}
+  \lens{p}{p\tri\, t}\to\lens{p}{p\tri\, t}\tri\lens{p}{p\tri\, t}
 \end{equation}
 As a category, it is equivalent to the full subcategory of the opposite of the Kleisli category $\smset_t$ spanned by the sets $p[I]$ for $I:p(1)$. For example, the Lawvere theory corresponding to $t$ is the $\tri$-comonad (category)
 \begin{equation}
