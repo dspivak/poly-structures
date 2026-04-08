@@ -350,7 +350,6 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\cofree}{\mathfrak{c}}
 \newcommand{\free}{\mathfrak{m}}
 \newcommand{\freecol}{\mathfrak{m}^\otimes}
-\newcommand{\uu}{\List}
 
 % lenses
 \newcommand{\biglens}[2]{
@@ -824,6 +823,10 @@ Since $[\yon,r]\cong r$ for any $r:\poly$, these induce isomorphisms:
 	\qqand
 	[S\yon,q]\cong\yon^S\tri q.
 \end{equation} 
+Since $p\tri\yon^S\cong p\otimes\yon^S$, there is a natural isomorphism
+\begin{equation}
+[p,q\tri S\yon]\cong[p,q]\tri S\yon.
+\end{equation}
 
 The cartesian closure interacts with coproducts and products via maps
 \begin{equation}
@@ -851,7 +854,11 @@ For any set $A:\smset$ and polynomials $p,q:\poly$, there is a natural functor
 \begin{equation}
 [Ap,Aq]\coalg\to[p,q]\coalg.
 \end{equation}
-This follows from \eqref{eqn.innerhom_adj}: there is a map $[Ap,Aq]\to[A\yon^A,[p,q]]$.
+More generally, there is a natural functor
+\begin{equation}
+[A\yon\tri p,q\tri A\yon]\coalg\to[p,q]\coalg.
+\end{equation}
+
 
 Dirichlet-mapping into $\yon$ is often of interest; we have the following maps and isomorphisms:
 \begin{align}
@@ -1565,13 +1572,13 @@ where $U$ takes a monoid to its underlying set.
 
 Any monoid $(M,e,*)$ in $\smset$ is also a $(\times)$-monoid in $\poly$. Every commutative $(\times)$-monoid $m$ in $\poly$ arises in this way, i.e.\ $m=m(1)$ is constant.
 
-The free $(\times)$-monoid is $\uu$, defined as follows
+The free $(\times)$-monoid is $\List$, defined as follows
 \begin{equation}\label{eqn.list}
-\uu\coloneqq\sum_{N:\nn}\yon^N\cong 1+\yon+\yon^2+\yon^3+\cdots
+\List\coloneqq\sum_{N:\nn}\yon^N\cong 1+\yon+\yon^2+\yon^3+\cdots
 \end{equation}
-The unit $1\to\uu$ is the empty list and $\uu\times\uu\to\uu$ is list concatenation. For any $p:\poly$ there is an isomorphism
+The unit $1\to\List$ is the empty list and $\List\times\List\to\List$ is list concatenation. For any $p:\poly$ there is an isomorphism
 \begin{equation}\label{eqn.unfolding_list}
-\uu\tri p\cong 1+p\times(\uu\tri p)
+\List\tri p\cong 1+p\times(\List\tri p)
 \end{equation}
 and this is the free $(\times)$-monoid on $p$.
 
@@ -1682,7 +1689,7 @@ The category of $(\tri)$-comonoids has finite sums and products, with units $0$ 
 The category of $(\tri)$-monoids has products; the terminal object is $(1,!,!)$, and the product $t\times t'$ has unit $(\eta,\eta')$, and its multiplication arises from \eqref{eqn.comp_times} and projection. The forgetful functor from $\tri$-monoids to $\poly$ is strong monoidal with respect to $\times$. 
 
 For any cartesian monad $(t,\eta,\mu)$, the endofunctor $(t\tri-):\poly\to\poly$ is $[-,-]$-enriched, i.e.\ there is a natural map%
-\footnote{The map $\Phi_t\colon[p,q]\to[t\tri p,t\tri q]$ on positions sends $\varphi\mapsto t\tri\varphi$. A direction in $[t\tri p, t\tri q]$ consists of a position in $t\tri p$ and a direction at its image in $t\tri q$. A position of $t\tri p$ is some $T:t(1)$ and function $P\colon t[T]\to p(1)$; a direction at $\varphi(T,P):t\tri q(1)$ is $(a,e):\sum_{a:t(1)}q[\varphi(Pa)]$. So on directions, $\Phi_t$ sends $(T,P,a,e)$ to $(Pa, e)$.}
+\footnote{For any $a:\ob\poly$ there is a map $[p,q]\to[a\tri p,a\tri q]$. Indeed, we have $(a\tri p)\otimes[p,q]\to a\tri(p\otimes[p,q])\to a\tri q$.}
 \begin{equation}
 	\Phi_t\colon[p,q]\to[t\tri p,t\tri q]
 \end{equation}
@@ -1695,7 +1702,17 @@ Given a position $\varphi\colon p\to t\tri q$ in $[p,t\tri q]$ we get a position
 	\qqand
 	[p,t\tri q]\to[t\tri p,t\tri q]
 \end{equation}
-following all the properties from the \href{https://ncatlab.org/nlab/show/enriched+monad}{nlab page on enriched monads}.
+satisfying all the properties from the \href{https://ncatlab.org/nlab/show/enriched+monad}{nlab page on enriched monads}.
+
+%The free monoid functor $(\List\tri -)$ seems to be enriched for the $(\times)$-hom, $q^p$. The required map $\List(p)\times q^p\to\List(q)$ on positions sends $((N,I),(J,i?))$, where $N:\nn$, $I:N\to p(1)$, $J:p(1)\to q(1)$ and $i?\colon\prod_{I:p(1)}\prod_{j:q[J(i)]}1+p[I]$, to $(N,J\circ I)$, and on directions is given by
+%\[
+%(n,j)\mapsto
+%\begin{cases}
+%	(n,i_0)&\tn{ if }i?(j)=i_0\in p[I]\\
+%	(j,())&\tn{ if }i?(j)=1
+%\end{cases}
+%\]
+%I haven't checked any of the required properties.
 
 For any polynomial monad $(t,\eta,\mu)$, and polynomial $p\colon$, the left Kan extension $\lens{p}{p\tri\, t}$ is a $\tri$-comonad
 \begin{equation}\label{eqn.comonad_from_monad}
@@ -1705,9 +1722,9 @@ For any polynomial monad $(t,\eta,\mu)$, and polynomial $p\colon$, the left Kan 
 \end{equation}
 As a category, it is equivalent to the full subcategory of the opposite of the Kleisli category $\smset_t$ spanned by the sets $p[I]$ for $I:p(1)$. For example, the Lawvere theory corresponding to $t$ is the $\tri$-comonad (category)
 \begin{equation}
-	\text{Law}(t)\cong\lens{\uu}{\uu\tri t}
+	\text{Law}(t)\cong\lens{\List}{\List\tri t}
 \end{equation}
-where $\uu$ is as in \eqref{eqn.list}. The construction in \eqref{eqn.comonad_from_monad} comes from an oplax monoidal functor
+where $\List$ is as in \eqref{eqn.list}. The construction in \eqref{eqn.comonad_from_monad} comes from an oplax monoidal functor
 \begin{equation}
 	\lens{p}{p\tri\,-}\colon(\poly\op,\yon,\tri)\too(\poly,\yon,\irt),
 \end{equation}
@@ -1718,7 +1735,7 @@ whose unitor and co-productor have the form
 	\lens{p}{p\tri q_1\tri q_2}\to\lens{p}{p\tri q_2}\tri\lens{p}{p\tri q_1}
 \end{equation}
 
-For any cardinality $\kappa$, let $\kappa\poly$ denote the full subcategory of $\kappa$-small polynomials, and let $u_\kappa\coloneqq\sum_{|A|<\kappa}\yon^A$. For example, if $\kappa=\aleph_0$ is the smallest infinite cardinal then $u_\kappa=\uu$. Note that $u_\kappa$ has the structure of a cartesian monad. Consider the Kleisli category $\kappa\polycart_{-\tri u_\kappa}$, whose objects are $\kappa$-small polynomials and whose maps are cartesian natural transformations $p\To{\tn{cart}} q\tri u_\kappa$. Then there is an isomorphism of categories
+For any cardinality $\kappa$, let $\kappa\poly$ denote the full subcategory of $\kappa$-small polynomials, and let $u_\kappa\coloneqq\sum_{|A|<\kappa}\yon^A$. For example, if $\kappa=\aleph_0$ is the smallest infinite cardinal then $u_\kappa=\List$. Note that $u_\kappa$ has the structure of a cartesian monad. Consider the Kleisli category $\kappa\polycart_{-\tri u_\kappa}$, whose objects are $\kappa$-small polynomials and whose maps are cartesian natural transformations $p\To{\tn{cart}} q\tri u_\kappa$. Then there is an isomorphism of categories
 \begin{equation}
 	\kappa\polycart_{-\tri u_\kappa}\cong\kappa\Cat{Dir}
 \end{equation}
@@ -1891,9 +1908,9 @@ p\to\cofree_q\tri p.
 
 %Using induction$^?$, \cref{eqn.cofree_iso,eqn.calculus,eqn.unfolding_list}, one can construct a ``counterfactuals'' map 
 %\begin{equation}
-%	\cofree_p\to\cofree_p\tri\uu\tri p_*
+%	\cofree_p\to\cofree_p\tri\List\tri p_*
 %\end{equation}
-%which extends to a map $(\cofree_p)_*\to\uu\tri p_*$, and relates the cofree comonad $p\mapsto\cofree_p$, the copointing $p\mapsto p_*$, and the free $(\times)$-monoid $\uu$.
+%which extends to a map $(\cofree_p)_*\to\List\tri p_*$, and relates the cofree comonad $p\mapsto\cofree_p$, the copointing $p\mapsto p_*$, and the free $(\times)$-monoid $\List$.
 
 For any $p:\poly$ and $A:\smset$, there is an isomorphism
 \begin{equation}
